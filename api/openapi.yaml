@@ -1,0 +1,5937 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: hello@merge.dev
+    name: Merge Team
+    url: https://www.merge.dev/
+  description: The unified API for building rich integrations with multiple Applicant
+    Tracking System platforms.
+  title: Merge ATS API
+  version: "1.0"
+servers:
+- description: Production
+  url: https://api.merge.dev/api/ats/v1
+- description: Sandbox
+  url: https://api-sandbox.merge.dev/api/ats/v1
+paths:
+  /account-token/{public_token}:
+    get:
+      description: Returns the account token for the end user with the provided public
+        token.
+      operationId: account_token_retrieve
+      parameters:
+      - explode: false
+        in: path
+        name: public_token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountToken'
+      security:
+      - tokenAuth: []
+      tags:
+      - account-token
+      x-accepts: application/json
+  /activities:
+    get:
+      description: Returns a list of `Activity` objects.
+      operationId: activities_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandUser:
+            summary: Expand User
+            value: user
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - user
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      - description: If provided, will only return activities done by this user.
+        examples:
+          UserId:
+            summary: user_id
+        explode: true
+        in: query
+        name: user_id
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedActivityList'
+      security:
+      - tokenAuth: []
+      tags:
+      - activities
+      x-accepts: application/json
+  /activities/{id}:
+    get:
+      description: Returns an `Activity` object with the given `id`.
+      operationId: activities_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandUser:
+            summary: Expand User
+            value: user
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - user
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activity'
+      security:
+      - tokenAuth: []
+      tags:
+      - activities
+      x-accepts: application/json
+  /applications:
+    get:
+      description: Returns a list of `Application` objects.
+      operationId: applications_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return applications for this candidate.
+        examples:
+          CandidateId:
+            summary: candidate_id
+        explode: true
+        in: query
+        name: candidate_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return applications credited to this user.
+        examples:
+          CreditedToId:
+            summary: credited_to_id
+        explode: true
+        in: query
+        name: credited_to_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return applications at this interview
+          stage.
+        examples:
+          CurrentStageId:
+            summary: current_stage_id
+        explode: true
+        in: query
+        name: current_stage_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandCandidate,Job,CreditedTo,CurrentStage,RejectReason:
+            summary: Expand Candidate, Job, Credited_to, Current_stage, Reject_reason
+            value: candidate,job,credited_to,current_stage,reject_reason
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - candidate
+          - candidate,credited_to
+          - candidate,credited_to,current_stage
+          - candidate,credited_to,current_stage,reject_reason
+          - candidate,credited_to,reject_reason
+          - candidate,current_stage
+          - candidate,current_stage,reject_reason
+          - candidate,job
+          - candidate,job,credited_to
+          - candidate,job,credited_to,current_stage
+          - candidate,job,credited_to,current_stage,reject_reason
+          - candidate,job,credited_to,reject_reason
+          - candidate,job,current_stage
+          - candidate,job,current_stage,reject_reason
+          - candidate,job,reject_reason
+          - candidate,reject_reason
+          - credited_to
+          - credited_to,current_stage
+          - credited_to,current_stage,reject_reason
+          - credited_to,reject_reason
+          - current_stage
+          - current_stage,reject_reason
+          - job
+          - job,credited_to
+          - job,credited_to,current_stage
+          - job,credited_to,current_stage,reject_reason
+          - job,credited_to,reject_reason
+          - job,current_stage
+          - job,current_stage,reject_reason
+          - job,reject_reason
+          - reject_reason
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return applications for this job.
+        examples:
+          JobId:
+            summary: job_id
+        explode: true
+        in: query
+        name: job_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: If provided, will only return applications with this reject reason.
+        examples:
+          RejectReasonId:
+            summary: reject_reason_id
+        explode: true
+        in: query
+        name: reject_reason_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedApplicationList'
+      security:
+      - tokenAuth: []
+      tags:
+      - applications
+      x-accepts: application/json
+    post:
+      description: Creates an `Application` object with the given values.
+      operationId: applications_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the RemoteUser deleting the resource. This can be found
+          in the ID field (not remote_id) in the RemoteUser table.
+        explode: true
+        in: query
+        name: remote_user_id
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Whether or not third-party updates should be run asynchronously.
+        explode: true
+        in: query
+        name: run_async
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      security:
+      - tokenAuth: []
+      tags:
+      - applications
+      x-contentType: application/json
+      x-accepts: application/json
+  /applications/{id}:
+    get:
+      description: Returns an `Application` object with the given `id`.
+      operationId: applications_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandCandidate,Job,CreditedTo,CurrentStage,RejectReason:
+            summary: Expand Candidate, Job, Credited_to, Current_stage, Reject_reason
+            value: candidate,job,credited_to,current_stage,reject_reason
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - candidate
+          - candidate,credited_to
+          - candidate,credited_to,current_stage
+          - candidate,credited_to,current_stage,reject_reason
+          - candidate,credited_to,reject_reason
+          - candidate,current_stage
+          - candidate,current_stage,reject_reason
+          - candidate,job
+          - candidate,job,credited_to
+          - candidate,job,credited_to,current_stage
+          - candidate,job,credited_to,current_stage,reject_reason
+          - candidate,job,credited_to,reject_reason
+          - candidate,job,current_stage
+          - candidate,job,current_stage,reject_reason
+          - candidate,job,reject_reason
+          - candidate,reject_reason
+          - credited_to
+          - credited_to,current_stage
+          - credited_to,current_stage,reject_reason
+          - credited_to,reject_reason
+          - current_stage
+          - current_stage,reject_reason
+          - job
+          - job,credited_to
+          - job,credited_to,current_stage
+          - job,credited_to,current_stage,reject_reason
+          - job,credited_to,reject_reason
+          - job,current_stage
+          - job,current_stage,reject_reason
+          - job,reject_reason
+          - reject_reason
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      security:
+      - tokenAuth: []
+      tags:
+      - applications
+      x-accepts: application/json
+    patch:
+      description: Updates an `Application` object with the given `id`.
+      operationId: applications_partial_update
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of the RemoteUser deleting the resource. This can be found
+          in the ID field (not remote_id) in the RemoteUser table.
+        explode: true
+        in: query
+        name: remote_user_id
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Whether or not third-party updates should be run asynchronously.
+        explode: true
+        in: query
+        name: run_async
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedApplicationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedApplicationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedApplicationRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+      security:
+      - tokenAuth: []
+      tags:
+      - applications
+      x-contentType: application/json
+      x-accepts: application/json
+  /attachments:
+    get:
+      description: Returns a list of `Attachment` objects.
+      operationId: attachments_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return attachments for this candidate.
+        examples:
+          CandidateId:
+            summary: candidate_id
+        explode: true
+        in: query
+        name: candidate_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAttachmentList'
+      security:
+      - tokenAuth: []
+      tags:
+      - attachments
+      x-accepts: application/json
+    post:
+      description: Creates an `Attachment` object with the given values.
+      operationId: attachments_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the RemoteUser deleting the resource. This can be found
+          in the ID field (not remote_id) in the RemoteUser table.
+        explode: true
+        in: query
+        name: remote_user_id
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Whether or not third-party updates should be run asynchronously.
+        explode: true
+        in: query
+        name: run_async
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AttachmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AttachmentRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+      security:
+      - tokenAuth: []
+      tags:
+      - attachments
+      x-contentType: application/json
+      x-accepts: application/json
+  /attachments/{id}:
+    get:
+      description: Returns an `Attachment` object with the given `id`.
+      operationId: attachments_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+      security:
+      - tokenAuth: []
+      tags:
+      - attachments
+      x-accepts: application/json
+  /available-actions:
+    get:
+      description: Returns a list of models and actions available for an account.
+      operationId: available_actions_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableActions'
+      security:
+      - tokenAuth: []
+      tags:
+      - available-actions
+      x-accepts: application/json
+  /candidates:
+    get:
+      description: Returns a list of `Candidate` objects.
+      operationId: candidates_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandApplications,Attachments:
+            summary: Expand Applications, Attachments
+            value: applications,attachments
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - applications
+          - applications,attachments
+          - attachments
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCandidateList'
+      security:
+      - tokenAuth: []
+      tags:
+      - candidates
+      x-accepts: application/json
+    post:
+      description: Creates a `Candidate` object with the given values.
+      operationId: candidates_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the RemoteUser deleting the resource. This can be found
+          in the ID field (not remote_id) in the RemoteUser table.
+        explode: true
+        in: query
+        name: remote_user_id
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Whether or not third-party updates should be run asynchronously.
+        explode: true
+        in: query
+        name: run_async
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CandidateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CandidateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CandidateRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Candidate'
+      security:
+      - tokenAuth: []
+      tags:
+      - candidates
+      x-contentType: application/json
+      x-accepts: application/json
+  /candidates/{id}:
+    get:
+      description: Returns a `Candidate` object with the given `id`.
+      operationId: candidates_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandApplications,Attachments:
+            summary: Expand Applications, Attachments
+            value: applications,attachments
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - applications
+          - applications,attachments
+          - attachments
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Candidate'
+      security:
+      - tokenAuth: []
+      tags:
+      - candidates
+      x-accepts: application/json
+  /departments:
+    get:
+      description: Returns a list of `Department` objects.
+      operationId: departments_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDepartmentList'
+      security:
+      - tokenAuth: []
+      tags:
+      - departments
+      x-accepts: application/json
+  /departments/{id}:
+    get:
+      description: Returns a `Department` object with the given `id`.
+      operationId: departments_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+      security:
+      - tokenAuth: []
+      tags:
+      - departments
+      x-accepts: application/json
+  /eeocs:
+    get:
+      description: Returns a list of `EEOC` objects.
+      operationId: eeocs_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return EEOC info for this candidate.
+        examples:
+          CandidateId:
+            summary: candidate_id
+        explode: true
+        in: query
+        name: candidate_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandCandidate:
+            summary: Expand Candidate
+            value: candidate
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - candidate
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEEOCList'
+      security:
+      - tokenAuth: []
+      tags:
+      - eeocs
+      x-accepts: application/json
+  /eeocs/{id}:
+    get:
+      description: Returns an `EEOC` object with the given `id`.
+      operationId: eeocs_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandCandidate:
+            summary: Expand Candidate
+            value: candidate
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - candidate
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EEOC'
+      security:
+      - tokenAuth: []
+      tags:
+      - eeocs
+      x-accepts: application/json
+  /generate-key:
+    post:
+      description: Create a remote key.
+      operationId: generate_key_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateRemoteKeyRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GenerateRemoteKeyRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GenerateRemoteKeyRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteKey'
+      security:
+      - tokenAuth: []
+      tags:
+      - generate-key
+      x-contentType: application/json
+      x-accepts: application/json
+  /interviews:
+    get:
+      description: Returns a list of `ScheduledInterview` objects.
+      operationId: interviews_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return interviews for this application.
+        examples:
+          ApplicationId:
+            summary: application_id
+        explode: true
+        in: query
+        name: application_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandInterviewers,Organizer,Application,JobInterviewStage:
+            summary: Expand Interviewers, Organizer, Application, Job_interview_stage
+            value: interviewers,organizer,application,job_interview_stage
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - application
+          - application,job_interview_stage
+          - interviewers
+          - interviewers,application
+          - interviewers,application,job_interview_stage
+          - interviewers,job_interview_stage
+          - interviewers,organizer
+          - interviewers,organizer,application
+          - interviewers,organizer,application,job_interview_stage
+          - interviewers,organizer,job_interview_stage
+          - job_interview_stage
+          - organizer
+          - organizer,application
+          - organizer,application,job_interview_stage
+          - organizer,job_interview_stage
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return interviews at this stage.
+        examples:
+          JobInterviewStageId:
+            summary: job_interview_stage_id
+        explode: true
+        in: query
+        name: job_interview_stage_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return interviews organized by this user.
+        examples:
+          OrganizerId:
+            summary: organizer_id
+        explode: true
+        in: query
+        name: organizer_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedScheduledInterviewList'
+      security:
+      - tokenAuth: []
+      tags:
+      - interviews
+      x-accepts: application/json
+  /interviews/{id}:
+    get:
+      description: Returns a `ScheduledInterview` object with the given `id`.
+      operationId: interviews_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandInterviewers,Organizer,Application,JobInterviewStage:
+            summary: Expand Interviewers, Organizer, Application, Job_interview_stage
+            value: interviewers,organizer,application,job_interview_stage
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - application
+          - application,job_interview_stage
+          - interviewers
+          - interviewers,application
+          - interviewers,application,job_interview_stage
+          - interviewers,job_interview_stage
+          - interviewers,organizer
+          - interviewers,organizer,application
+          - interviewers,organizer,application,job_interview_stage
+          - interviewers,organizer,job_interview_stage
+          - job_interview_stage
+          - organizer
+          - organizer,application
+          - organizer,application,job_interview_stage
+          - organizer,job_interview_stage
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledInterview'
+      security:
+      - tokenAuth: []
+      tags:
+      - interviews
+      x-accepts: application/json
+  /job-interview-stages:
+    get:
+      description: Returns a list of `JobInterviewStage` objects.
+      operationId: job_interview_stages_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandDepartments,Offices,Job:
+            summary: Expand Departments, Offices, Job
+            value: departments,offices,job
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - departments
+          - departments,job
+          - departments,offices
+          - departments,offices,job
+          - job
+          - offices
+          - offices,job
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return interview stages for this job.
+        examples:
+          JobId:
+            summary: job_id
+        explode: true
+        in: query
+        name: job_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobInterviewStageList'
+      security:
+      - tokenAuth: []
+      tags:
+      - job-interview-stages
+      x-accepts: application/json
+  /job-interview-stages/{id}:
+    get:
+      description: Returns a `JobInterviewStage` object with the given `id`.
+      operationId: job_interview_stages_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandDepartments,Offices,Job:
+            summary: Expand Departments, Offices, Job
+            value: departments,offices,job
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - departments
+          - departments,job
+          - departments,offices
+          - departments,offices,job
+          - job
+          - offices
+          - offices,job
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobInterviewStage'
+      security:
+      - tokenAuth: []
+      tags:
+      - job-interview-stages
+      x-accepts: application/json
+  /jobs:
+    get:
+      description: Returns a list of `Job` objects.
+      operationId: jobs_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandDepartments,Offices,HiringManagers:
+            summary: Expand Departments, Offices, Hiring_managers
+            value: departments,offices,hiring_managers
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - departments
+          - departments,hiring_managers
+          - departments,offices
+          - departments,offices,hiring_managers
+          - hiring_managers
+          - offices
+          - offices,hiring_managers
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobList'
+      security:
+      - tokenAuth: []
+      tags:
+      - jobs
+      x-accepts: application/json
+  /jobs/{id}:
+    get:
+      description: Returns a `Job` object with the given `id`.
+      operationId: jobs_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandDepartments,Offices,HiringManagers:
+            summary: Expand Departments, Offices, Hiring_managers
+            value: departments,offices,hiring_managers
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - departments
+          - departments,hiring_managers
+          - departments,offices
+          - departments,offices,hiring_managers
+          - hiring_managers
+          - offices
+          - offices,hiring_managers
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+      security:
+      - tokenAuth: []
+      tags:
+      - jobs
+      x-accepts: application/json
+  /link-token:
+    post:
+      description: Creates a link token to be used when linking a new end user.
+      operationId: link_token_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndUserDetailsRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EndUserDetailsRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EndUserDetailsRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkToken'
+      security:
+      - tokenAuth: []
+      tags:
+      - link-token
+      x-contentType: application/json
+      x-accepts: application/json
+  /offers:
+    get:
+      description: Returns a list of `Offer` objects.
+      operationId: offers_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return offers for this application.
+        examples:
+          ApplicationId:
+            summary: application_id
+        explode: true
+        in: query
+        name: application_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return offers created by this user.
+        examples:
+          CreatorId:
+            summary: creator_id
+        explode: true
+        in: query
+        name: creator_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandApplication,Creator:
+            summary: Expand Application, Creator
+            value: application,creator
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - application
+          - application,creator
+          - creator
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOfferList'
+      security:
+      - tokenAuth: []
+      tags:
+      - offers
+      x-accepts: application/json
+  /offers/{id}:
+    get:
+      description: Returns an `Offer` object with the given `id`.
+      operationId: offers_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandApplication,Creator:
+            summary: Expand Application, Creator
+            value: application,creator
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - application
+          - application,creator
+          - creator
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+      security:
+      - tokenAuth: []
+      tags:
+      - offers
+      x-accepts: application/json
+  /offices:
+    get:
+      description: Returns a list of `Office` objects.
+      operationId: offices_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOfficeList'
+      security:
+      - tokenAuth: []
+      tags:
+      - offices
+      x-accepts: application/json
+  /offices/{id}:
+    get:
+      description: Returns an `Office` object with the given `id`.
+      operationId: offices_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Office'
+      security:
+      - tokenAuth: []
+      tags:
+      - offices
+      x-accepts: application/json
+  /passthrough:
+    post:
+      description: Pull data from an endpoint not currently supported by Merge.
+      operationId: passthrough_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataPassthroughRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DataPassthroughRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DataPassthroughRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteResponse'
+      security:
+      - tokenAuth: []
+      tags:
+      - passthrough
+      x-contentType: application/json
+      x-accepts: application/json
+  /regenerate-key:
+    post:
+      description: Exchange remote keys.
+      operationId: regenerate_key_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoteKeyForRegenerationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RemoteKeyForRegenerationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RemoteKeyForRegenerationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteKey'
+      security:
+      - tokenAuth: []
+      tags:
+      - regenerate-key
+      x-contentType: application/json
+      x-accepts: application/json
+  /reject-reasons:
+    get:
+      description: Returns a list of `RejectReason` objects.
+      operationId: reject_reasons_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRejectReasonList'
+      security:
+      - tokenAuth: []
+      tags:
+      - reject-reasons
+      x-accepts: application/json
+  /reject-reasons/{id}:
+    get:
+      description: Returns a `RejectReason` object with the given `id`.
+      operationId: reject_reasons_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RejectReason'
+      security:
+      - tokenAuth: []
+      tags:
+      - reject-reasons
+      x-accepts: application/json
+  /scorecards:
+    get:
+      description: Returns a list of `Scorecard` objects.
+      operationId: scorecards_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return scorecards for this application.
+        examples:
+          ApplicationId:
+            summary: application_id
+        explode: true
+        in: query
+        name: application_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandApplication,Interview,Interviewer:
+            summary: Expand Application, Interview, Interviewer
+            value: application,interview,interviewer
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - application
+          - application,interview
+          - application,interview,interviewer
+          - application,interviewer
+          - interview
+          - interview,interviewer
+          - interviewer
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return scorecards for this interview.
+        examples:
+          InterviewId:
+            summary: interview_id
+        explode: true
+        in: query
+        name: interview_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return scorecards for this interviewer.
+        examples:
+          InterviewerId:
+            summary: interviewer_id
+        explode: true
+        in: query
+        name: interviewer_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedScorecardList'
+      security:
+      - tokenAuth: []
+      tags:
+      - scorecards
+      x-accepts: application/json
+  /scorecards/{id}:
+    get:
+      description: Returns a `Scorecard` object with the given `id`.
+      operationId: scorecards_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which relations should be returned in expanded form. Multiple
+          relation names should be comma separated without spaces.
+        examples:
+          ExpandApplication,Interview,Interviewer:
+            summary: Expand Application, Interview, Interviewer
+            value: application,interview,interviewer
+        explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          enum:
+          - application
+          - application,interview
+          - application,interview,interviewer
+          - application,interviewer
+          - interview
+          - interview,interviewer
+          - interviewer
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scorecard'
+      security:
+      - tokenAuth: []
+      tags:
+      - scorecards
+      x-accepts: application/json
+  /sync-status:
+    get:
+      description: Get syncing status.
+      operationId: sync_status_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncStatus'
+      security:
+      - tokenAuth: []
+      tags:
+      - sync-status
+      x-accepts: application/json
+  /sync-status/resync:
+    post:
+      description: Force resync of all models.
+      operationId: sync_status_resync_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncStatus'
+      security:
+      - tokenAuth: []
+      tags:
+      - sync-status
+      x-accepts: application/json
+  /tags:
+    get:
+      description: Returns a list of `Tag` objects.
+      operationId: tags_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTagList'
+      security:
+      - tokenAuth: []
+      tags:
+      - tags
+      x-accepts: application/json
+  /users:
+    get:
+      description: Returns a list of `RemoteUser` objects.
+      operationId: users_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          description: The third-party API ID of the matching object.
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRemoteUserList'
+      security:
+      - tokenAuth: []
+      tags:
+      - users
+      x-accepts: application/json
+  /users/{id}:
+    get:
+      description: Returns a `RemoteUser` object with the given `id`.
+      operationId: users_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteUser'
+      security:
+      - tokenAuth: []
+      tags:
+      - users
+      x-accepts: application/json
+components:
+  schemas:
+    AccessRoleEnum:
+      enum:
+      - SUPER_ADMIN
+      - ADMIN
+      - TEAM_MEMBER
+      - LIMITED_TEAM_MEMBER
+      - INTERVIEWER
+      type: string
+    AccountIntegration:
+      example:
+        image: https://openapi-generator.tech
+        color: color
+        name: name
+        square_image: https://openapi-generator.tech
+        categories:
+        - hris
+        - hris
+        slug: slug
+      properties:
+        name:
+          description: Company name.
+          type: string
+        categories:
+          description: 'Category or categories this integration belongs to. Multiple
+            categories should be comma separated.<br/><br>Example: For [ats, hris],
+            enter <i>ats,hris</i>'
+          items:
+            enum:
+            - hris
+            - ats
+            - accounting
+            type: string
+          type: array
+        image:
+          description: Company logo in rectangular shape. <b>Upload an image with
+            a clear background.</b>
+          format: uri
+          nullable: true
+          type: string
+        square_image:
+          description: Company logo in square shape. <b>Upload an image with a white
+            background.</b>
+          format: uri
+          nullable: true
+          type: string
+        color:
+          description: The color of this integration used for buttons and text throughout
+            the app and landing pages. <b>Choose a darker, saturated color.</b>
+          maxLength: 18
+          pattern: ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$
+          type: string
+        slug:
+          readOnly: true
+          type: string
+      required:
+      - name
+      type: object
+    AccountToken:
+      example:
+        account_token: T9klMDQrcHdm9jrtHuOS2Nf06BIHwMNjpPXPMB
+        integration:
+          image: https://openapi-generator.tech
+          color: color
+          name: name
+          square_image: https://openapi-generator.tech
+          categories:
+          - hris
+          - hris
+          slug: slug
+      properties:
+        account_token:
+          example: T9klMDQrcHdm9jrtHuOS2Nf06BIHwMNjpPXPMB
+          type: string
+        integration:
+          $ref: '#/components/schemas/AccountIntegration'
+      required:
+      - account_token
+      - integration
+      type: object
+    Activity:
+      description: |-
+        # The Activity Object
+        ### Description
+        The `Activity` object is used to represent an activity performed by a user.
+
+        ### Usage Example
+        Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.
+      example:
+        visibility: PRIVATE
+        subject: Gil Feig's applicant status
+        remote_id: "198123"
+        activity_type: NOTE
+        id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        body: Candidate will only join if we provide a Barry's subsidy.
+        user: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+        remote_data:
+        - path: /actions
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "198123"
+          nullable: true
+          type: string
+        user:
+          description: The user the performed the action.
+          example: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+          format: uuid
+          nullable: true
+          type: string
+        remote_created_at:
+          description: When the third party's activity was created.
+          format: date-time
+          nullable: true
+          type: string
+        activity_type:
+          allOf:
+          - $ref: '#/components/schemas/ActivityTypeEnum'
+          description: The activity's type.
+          example: NOTE
+          nullable: true
+        subject:
+          description: The activity's subject.
+          example: Gil Feig's applicant status
+          nullable: true
+          type: string
+        body:
+          description: The activity's body.
+          example: Candidate will only join if we provide a Barry's subsidy.
+          nullable: true
+          type: string
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/VisibilityEnum'
+          description: The activity's visibility.
+          example: PRIVATE
+          nullable: true
+        remote_data:
+          example:
+          - path: /actions
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    ActivityTypeEnum:
+      enum:
+      - NOTE
+      - EMAIL
+      - OTHER
+      type: string
+    Application:
+      description: |-
+        # The Application Object
+        ### Description
+        The `Application` object is used to represent an Application for a job position.
+
+        ### Usage Example
+        Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
+      example:
+        applied_at: 2000-01-23T04:56:07.000+00:00
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        rejected_at: 2000-01-23T04:56:07.000+00:00
+        remote_id: "98796"
+        id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+        source: Campus recruiting event
+        credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+        current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+        reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+        job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+        remote_data:
+        - path: /candidacies
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "98796"
+          nullable: true
+          type: string
+        candidate:
+          description: The candidate applying.
+          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          format: uuid
+          nullable: true
+          type: string
+        job:
+          description: The job being applied for.
+          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          format: uuid
+          nullable: true
+          type: string
+        applied_at:
+          description: When the application was submitted.
+          format: date-time
+          nullable: true
+          type: string
+        rejected_at:
+          description: When the application was rejected.
+          format: date-time
+          nullable: true
+          type: string
+        source:
+          description: The application's source.
+          example: Campus recruiting event
+          nullable: true
+          type: string
+        credited_to:
+          description: The user credited for this application.
+          example: 58166795-8d68-4b30-9bfb-bfd402479484
+          format: uuid
+          nullable: true
+          type: string
+        current_stage:
+          description: The application's current stage.
+          example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          format: uuid
+          nullable: true
+          type: string
+        reject_reason:
+          description: The application's reason for rejection.
+          example: 59b25f2b-da02-40f5-9656-9fa0db555784
+          format: uuid
+          nullable: true
+          type: string
+        remote_data:
+          example:
+          - path: /candidacies
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    ApplicationRequest:
+      description: |-
+        # The Application Object
+        ### Description
+        The `Application` object is used to represent an Application for a job position.
+
+        ### Usage Example
+        Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
+      example:
+        applied_at: 2000-01-23T04:56:07.000+00:00
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        rejected_at: 2000-01-23T04:56:07.000+00:00
+        remote_id: "98796"
+        source: Campus recruiting event
+        credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+        current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+        reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+        job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+      properties:
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "98796"
+          nullable: true
+          type: string
+        candidate:
+          description: The candidate applying.
+          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          format: uuid
+          nullable: true
+          type: string
+        job:
+          description: The job being applied for.
+          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          format: uuid
+          nullable: true
+          type: string
+        applied_at:
+          description: When the application was submitted.
+          format: date-time
+          nullable: true
+          type: string
+        rejected_at:
+          description: When the application was rejected.
+          format: date-time
+          nullable: true
+          type: string
+        source:
+          description: The application's source.
+          example: Campus recruiting event
+          nullable: true
+          type: string
+        credited_to:
+          description: The user credited for this application.
+          example: 58166795-8d68-4b30-9bfb-bfd402479484
+          format: uuid
+          nullable: true
+          type: string
+        current_stage:
+          description: The application's current stage.
+          example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          format: uuid
+          nullable: true
+          type: string
+        reject_reason:
+          description: The application's reason for rejection.
+          example: 59b25f2b-da02-40f5-9656-9fa0db555784
+          format: uuid
+          nullable: true
+          type: string
+      type: object
+    Attachment:
+      description: |-
+        # The Attachment Object
+        ### Description
+        The `Attachment` object is used to represent a attachment for a candidate.
+
+        ### Usage Example
+        Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.
+      example:
+        file_url: http://alturl.com/p749b
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        attachment_type: RESUME
+        file_name: Candidate Resume
+        remote_id: "11167"
+        id: c640b80b-fac9-409f-aa19-1f9221aec445
+        remote_data:
+        - path: /attachments
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: c640b80b-fac9-409f-aa19-1f9221aec445
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "11167"
+          nullable: true
+          type: string
+        file_name:
+          description: The attachment's name.
+          example: Candidate Resume
+          nullable: true
+          type: string
+        file_url:
+          description: The attachment's url.
+          example: http://alturl.com/p749b
+          format: uri
+          maxLength: 2000
+          nullable: true
+          type: string
+        candidate:
+          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          format: uuid
+          nullable: true
+          type: string
+        attachment_type:
+          allOf:
+          - $ref: '#/components/schemas/AttachmentTypeEnum'
+          description: The attachment's type.
+          example: RESUME
+          nullable: true
+        remote_data:
+          example:
+          - path: /attachments
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    AttachmentRequest:
+      description: |-
+        # The Attachment Object
+        ### Description
+        The `Attachment` object is used to represent a attachment for a candidate.
+
+        ### Usage Example
+        Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.
+      example:
+        file_url: http://alturl.com/p749b
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        attachment_type: RESUME
+        file_name: Candidate Resume
+        remote_id: "11167"
+      properties:
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "11167"
+          nullable: true
+          type: string
+        file_name:
+          description: The attachment's name.
+          example: Candidate Resume
+          nullable: true
+          type: string
+        file_url:
+          description: The attachment's url.
+          example: http://alturl.com/p749b
+          format: uri
+          maxLength: 2000
+          nullable: true
+          type: string
+        candidate:
+          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          format: uuid
+          nullable: true
+          type: string
+        attachment_type:
+          allOf:
+          - $ref: '#/components/schemas/AttachmentTypeEnum'
+          description: The attachment's type.
+          example: RESUME
+          nullable: true
+      type: object
+    AttachmentTypeEnum:
+      enum:
+      - RESUME
+      - COVER_LETTER
+      - OFFER_LETTER
+      - OTHER
+      type: string
+    AvailableActions:
+      description: |-
+        # The AvailableActions Object
+        ### Description
+        The `Activity` object is used to see all available model/operation combinations for an integration.
+
+        ### Usage Example
+        Fetch all the actions available for the `Zenefits` integration.
+      example:
+        available_model_operations:
+        - model_name: Candidate
+          available_operations:
+          - FETCH
+          - CREATE
+        integration:
+          image: https://openapi-generator.tech
+          color: color
+          name: name
+          square_image: https://openapi-generator.tech
+          categories:
+          - hris
+          - hris
+          slug: slug
+        passthrough_available: true
+      properties:
+        integration:
+          $ref: '#/components/schemas/AccountIntegration'
+        passthrough_available:
+          example: true
+          type: boolean
+        available_model_operations:
+          example:
+          - model_name: Candidate
+            available_operations:
+            - FETCH
+            - CREATE
+          items:
+            $ref: '#/components/schemas/ModelOperation'
+          type: array
+      required:
+      - integration
+      - passthrough_available
+      type: object
+    Candidate:
+      description: |-
+        # The Candidate Object
+        ### Description
+        The `Candidate` object is used to represent a Candidate for various positions.
+
+        ### Usage Example
+        Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.
+      example:
+        is_private: true
+        email_addresses:
+        - value: hello@merge.dev
+          email_address_type: PERSONAL
+        attachments:
+        - bea08964-32b4-4a20-8bb4-2612ba09de1d
+        remote_id: "21198"
+        last_name: Feig
+        title: Software Engineer
+        remote_updated_at: 2000-01-23T04:56:07.000+00:00
+        tags:
+        - High-Priority
+        remote_data:
+        - path: /candidates
+          data:
+          - Varies by platform
+        phone_numbers:
+        - value: +1234567890
+          phone_number_type: MOBILE
+        urls:
+        - value: http://alturl.com/p749b
+          url_type: BLOG
+        last_interaction_at: 2000-01-23T04:56:07.000+00:00
+        can_email: true
+        company: Columbia Dining App.
+        locations:
+        - San Francisco
+        - New York
+        - Miami
+        id: 521b18c2-4d01-4297-b451-19858d07c133
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        first_name: Gil
+        applications:
+        - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+        - b4d08e5c-de00-4d64-a29f-66addac9af99
+        - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+      properties:
+        id:
+          example: 521b18c2-4d01-4297-b451-19858d07c133
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "21198"
+          nullable: true
+          type: string
+        first_name:
+          description: The candidate's first name.
+          example: Gil
+          nullable: true
+          type: string
+        last_name:
+          description: The candidate's last name.
+          example: Feig
+          nullable: true
+          type: string
+        company:
+          description: The candidate's current company.
+          example: Columbia Dining App.
+          nullable: true
+          type: string
+        title:
+          description: The candidate's current title.
+          example: Software Engineer
+          nullable: true
+          type: string
+        remote_created_at:
+          description: When the third party's candidate was created.
+          format: date-time
+          nullable: true
+          type: string
+        remote_updated_at:
+          description: When the third party's candidate was updated.
+          format: date-time
+          nullable: true
+          type: string
+        last_interaction_at:
+          description: When the most recent candidate interaction occurred.
+          format: date-time
+          nullable: true
+          type: string
+        is_private:
+          description: Whether or not the candidate is private.
+          example: true
+          nullable: true
+          type: boolean
+        can_email:
+          description: Whether or not the candidate can be emailed.
+          example: true
+          nullable: true
+          type: boolean
+        locations:
+          description: The candidate's locations.
+          example:
+          - San Francisco
+          - New York
+          - Miami
+          items:
+            description: The candidate's locations.
+            nullable: true
+            type: string
+          nullable: true
+          type: array
+        phone_numbers:
+          example:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+          type: array
+        email_addresses:
+          example:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          items:
+            $ref: '#/components/schemas/EmailAddress'
+          type: array
+        urls:
+          example:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          items:
+            $ref: '#/components/schemas/Url'
+          type: array
+        tags:
+          example:
+          - High-Priority
+          items:
+            type: string
+          type: array
+        applications:
+          example:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+          items:
+            format: uuid
+            type: string
+          type: array
+        attachments:
+          example:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          items:
+            format: uuid
+            type: string
+          type: array
+        remote_data:
+          example:
+          - path: /candidates
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    CandidateRequest:
+      description: |-
+        # The Candidate Object
+        ### Description
+        The `Candidate` object is used to represent a Candidate for various positions.
+
+        ### Usage Example
+        Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.
+      example:
+        is_private: true
+        email_addresses:
+        - value: hello@merge.dev
+          email_address_type: PERSONAL
+        attachments:
+        - bea08964-32b4-4a20-8bb4-2612ba09de1d
+        remote_id: "21198"
+        last_name: Feig
+        title: Software Engineer
+        remote_updated_at: 2000-01-23T04:56:07.000+00:00
+        tags:
+        - High-Priority
+        phone_numbers:
+        - value: +1234567890
+          phone_number_type: MOBILE
+        urls:
+        - value: http://alturl.com/p749b
+          url_type: BLOG
+        last_interaction_at: 2000-01-23T04:56:07.000+00:00
+        can_email: true
+        company: Columbia Dining App.
+        locations:
+        - San Francisco
+        - New York
+        - Miami
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        first_name: Gil
+        applications:
+        - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+        - b4d08e5c-de00-4d64-a29f-66addac9af99
+        - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+      properties:
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "21198"
+          nullable: true
+          type: string
+        first_name:
+          description: The candidate's first name.
+          example: Gil
+          nullable: true
+          type: string
+        last_name:
+          description: The candidate's last name.
+          example: Feig
+          nullable: true
+          type: string
+        company:
+          description: The candidate's current company.
+          example: Columbia Dining App.
+          nullable: true
+          type: string
+        title:
+          description: The candidate's current title.
+          example: Software Engineer
+          nullable: true
+          type: string
+        remote_created_at:
+          description: When the third party's candidate was created.
+          format: date-time
+          nullable: true
+          type: string
+        remote_updated_at:
+          description: When the third party's candidate was updated.
+          format: date-time
+          nullable: true
+          type: string
+        last_interaction_at:
+          description: When the most recent candidate interaction occurred.
+          format: date-time
+          nullable: true
+          type: string
+        is_private:
+          description: Whether or not the candidate is private.
+          example: true
+          nullable: true
+          type: boolean
+        can_email:
+          description: Whether or not the candidate can be emailed.
+          example: true
+          nullable: true
+          type: boolean
+        locations:
+          description: The candidate's locations.
+          example:
+          - San Francisco
+          - New York
+          - Miami
+          items:
+            description: The candidate's locations.
+            nullable: true
+            type: string
+          nullable: true
+          type: array
+        phone_numbers:
+          example:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          items:
+            $ref: '#/components/schemas/PhoneNumberRequest'
+          type: array
+        email_addresses:
+          example:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          items:
+            $ref: '#/components/schemas/EmailAddressRequest'
+          type: array
+        urls:
+          example:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          items:
+            $ref: '#/components/schemas/UrlRequest'
+          type: array
+        tags:
+          example:
+          - High-Priority
+          items:
+            type: string
+          type: array
+        applications:
+          example:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+          items:
+            format: uuid
+            type: string
+          type: array
+        attachments:
+          example:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          items:
+            format: uuid
+            type: string
+          type: array
+      type: object
+    DataPassthroughRequest:
+      description: |-
+        # The DataPassthrough Object
+        ### Description
+        The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.
+
+        ### Usage Example
+        Create a `DataPassthrough` to get team hierarchies from your Rippling integration.
+      example:
+        path: /scooters
+        headers:
+          EXTRA-HEADER: value
+        method: POST
+        data:
+          scooters:
+          - company: Lime
+            model: Gen 2.5
+          - company: Bird
+            model: Bird Zero
+        base_url_override: base_url_override
+      properties:
+        method:
+          allOf:
+          - $ref: '#/components/schemas/MethodEnum'
+          example: POST
+        path:
+          example: /scooters
+          type: string
+        base_url_override:
+          nullable: true
+          type: string
+        data:
+          additionalProperties: {}
+          example:
+            scooters:
+            - company: Lime
+              model: Gen 2.5
+            - company: Bird
+              model: Bird Zero
+          nullable: true
+          type: object
+        headers:
+          additionalProperties: {}
+          example:
+            EXTRA-HEADER: value
+          nullable: true
+          type: object
+      required:
+      - method
+      - path
+      type: object
+    Department:
+      description: |-
+        # The Department Object
+        ### Description
+        The `Department` object is used to represent a department within a company.
+
+        ### Usage Example
+        Fetch from the `LIST Departments` endpoint and view the departments within a company.
+      example:
+        remote_id: "23456"
+        name: Engineering
+        id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+        remote_data:
+        - path: /departments
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "23456"
+          nullable: true
+          type: string
+        name:
+          description: The department's name.
+          example: Engineering
+          nullable: true
+          type: string
+        remote_data:
+          example:
+          - path: /departments
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    DisabilityStatusEnum:
+      enum:
+      - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+      - NO_I_DONT_HAVE_A_DISABILITY
+      - I_DONT_WISH_TO_ANSWER
+      type: string
+    EEOC:
+      description: |-
+        # The EEOC Object
+        ### Description
+        The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate.
+
+        ### Usage Example
+        Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.
+      example:
+        candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
+        disability_status: I_DONT_WISH_TO_ANSWER
+        race: HISPANIC_OR_LATINO
+        gender: FEMALE
+        submitted_at: 2000-01-23T04:56:07.000+00:00
+        veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
+        remote_id: "76"
+        id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+        remote_data:
+        - path: /eeoc
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "76"
+          nullable: true
+          type: string
+        candidate:
+          description: The candidate being represented.
+          example: f963f34d-3d2f-4f77-b557-cf36bc7e6498
+          format: uuid
+          nullable: true
+          type: string
+        submitted_at:
+          description: When the information was submitted.
+          format: date-time
+          nullable: true
+          type: string
+        race:
+          allOf:
+          - $ref: '#/components/schemas/RaceEnum'
+          description: The candidate's race.
+          example: HISPANIC_OR_LATINO
+          nullable: true
+        gender:
+          allOf:
+          - $ref: '#/components/schemas/GenderEnum'
+          description: The candidate's gender.
+          example: FEMALE
+          nullable: true
+        veteran_status:
+          allOf:
+          - $ref: '#/components/schemas/VeteranStatusEnum'
+          description: The candidate's veteran status.
+          example: I_AM_NOT_A_PROTECTED_VETERAN
+          nullable: true
+        disability_status:
+          allOf:
+          - $ref: '#/components/schemas/DisabilityStatusEnum'
+          description: The candidate's disability status.
+          example: I_DONT_WISH_TO_ANSWER
+          nullable: true
+        remote_data:
+          example:
+          - path: /eeoc
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    EmailAddress:
+      description: |-
+        # The EmailAddress Object
+        ### Description
+        The `EmailAddress` object is used to represent a candidate's email address.
+
+        ### Usage Example
+        Fetch from the `GET Candidate` endpoint and view their email addresses.
+      properties:
+        value:
+          description: The email address.
+          example: merge_is_hiring@gmail.com
+          format: email
+          maxLength: 254
+          nullable: true
+          type: string
+        email_address_type:
+          allOf:
+          - $ref: '#/components/schemas/EmailAddressTypeEnum'
+          description: The type of email address.
+          example: PERSONAL
+          nullable: true
+      type: object
+    EmailAddressRequest:
+      description: |-
+        # The EmailAddress Object
+        ### Description
+        The `EmailAddress` object is used to represent a candidate's email address.
+
+        ### Usage Example
+        Fetch from the `GET Candidate` endpoint and view their email addresses.
+      properties:
+        value:
+          description: The email address.
+          example: merge_is_hiring@gmail.com
+          format: email
+          maxLength: 254
+          nullable: true
+          type: string
+        email_address_type:
+          allOf:
+          - $ref: '#/components/schemas/EmailAddressTypeEnum'
+          description: The type of email address.
+          example: PERSONAL
+          nullable: true
+      type: object
+    EmailAddressTypeEnum:
+      enum:
+      - PERSONAL
+      - WORK
+      - OTHER
+      type: string
+    EndUserDetailsRequest:
+      example:
+        end_user_organization_name: end_user_organization_name
+        integration: integration
+        end_user_email_address: end_user_email_address
+        categories:
+        - hris
+        - hris
+        end_user_origin_id: end_user_origin_id
+      properties:
+        end_user_email_address:
+          type: string
+        end_user_organization_name:
+          type: string
+        end_user_origin_id:
+          type: string
+        categories:
+          items:
+            enum:
+            - hris
+            - ats
+            type: string
+          type: array
+        integration:
+          nullable: true
+          type: string
+      required:
+      - categories
+      - end_user_email_address
+      - end_user_organization_name
+      - end_user_origin_id
+      type: object
+    GenderEnum:
+      enum:
+      - MALE
+      - FEMALE
+      - NON-BINARY
+      - OTHER
+      - DECLINE_TO_SELF_IDENTIFY
+      type: string
+    GenerateRemoteKeyRequest:
+      description: |-
+        # The GenerateRemoteKey Object
+        ### Description
+        The `GenerateRemoteKey` object is used to represent a request for a new remote key.
+
+        ### Usage Example
+        Post a `GenerateRemoteKey` to create a new remote key.
+      example:
+        name: Remote Deployment Key 1
+      properties:
+        name:
+          example: Remote Deployment Key 1
+          type: string
+      required:
+      - name
+      type: object
+    Job:
+      description: |-
+        # The Job Object
+        ### Description
+        The `Job` object is used to represent a Job offering at a company.
+
+        ### Usage Example
+        Fetch from the `LIST Jobs` endpoint to show all job postings.
+      example:
+        hiring_managers:
+        - 787ed912-33ec-444e-a215-8d71cc42fc12
+        remote_id: "8765432"
+        offices:
+        - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+        name: Software Engineer (Merge is actually hiring btw)
+        description: If you're reading this documentation. You might be a good fit!
+        id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+        departments:
+        - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+        - d6e687d6-0c36-48a1-8114-35324b5cb38f
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        status: OPEN
+        remote_updated_at: 2000-01-23T04:56:07.000+00:00
+        confidential: true
+        remote_data:
+        - path: /positions
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "8765432"
+          nullable: true
+          type: string
+        name:
+          description: The job's name.
+          example: Software Engineer (Merge is actually hiring btw)
+          nullable: true
+          type: string
+        description:
+          description: The job's description.
+          example: If you're reading this documentation. You might be a good fit!
+          nullable: true
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/JobStatusEnum'
+          description: The job's status.
+          example: OPEN
+          nullable: true
+        remote_created_at:
+          description: When the third party's job was created.
+          format: date-time
+          nullable: true
+          type: string
+        remote_updated_at:
+          description: When the third party's job was updated.
+          format: date-time
+          nullable: true
+          type: string
+        confidential:
+          description: Whether the job is confidential.
+          example: true
+          nullable: true
+          type: boolean
+        departments:
+          example:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          items:
+            format: uuid
+            type: string
+          type: array
+        offices:
+          example:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          items:
+            format: uuid
+            type: string
+          type: array
+        hiring_managers:
+          example:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          items:
+            format: uuid
+            type: string
+          type: array
+        remote_data:
+          example:
+          - path: /positions
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    JobInterviewStage:
+      description: |-
+        # The JobInterviewStage Object
+        ### Description
+        The `JobInterviewStage` object is used to represent the stage of an interview
+
+        ### Usage Example
+        Fetch from the `LIST JobInterviewStages` endpoint and view the job interview stages used by a company.
+      example:
+        remote_id: "876556788"
+        name: Phone Screen
+        id: f9813dd5-e70b-484c-91d8-00acd6065b07
+        job: ba7d9648-5316-4a80-8d73-4e636cef5a90
+        remote_data:
+        - path: /interview-stages
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: f9813dd5-e70b-484c-91d8-00acd6065b07
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "876556788"
+          nullable: true
+          type: string
+        name:
+          description: The stage's name.
+          example: Phone Screen
+          nullable: true
+          type: string
+        job:
+          description: If stages are specific to a job, this is the job that this
+            stage belongs to.
+          example: ba7d9648-5316-4a80-8d73-4e636cef5a90
+          format: uuid
+          nullable: true
+          type: string
+        remote_data:
+          example:
+          - path: /interview-stages
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    JobStatusEnum:
+      enum:
+      - OPEN
+      - CLOSED
+      - DRAFT
+      - ARCHIVED
+      - PENDING
+      type: string
+    LinkToken:
+      example:
+        integration_name: Lever
+        link_token: necdP7FtdASl1fQwm62be2_dM4wBG8_GactqoUV0
+      properties:
+        link_token:
+          example: necdP7FtdASl1fQwm62be2_dM4wBG8_GactqoUV0
+          type: string
+        integration_name:
+          example: Lever
+          type: string
+      required:
+      - integration_name
+      - link_token
+      type: object
+    MethodEnum:
+      enum:
+      - GET
+      - OPTIONS
+      - HEAD
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
+      type: string
+    ModelOperation:
+      description: |-
+        # The ModelOperation Object
+        ### Description
+        The `ModelOperation` object is used to represent the operations that are currently supported for a given model.
+
+        ### Usage Example
+        View what operations are supported for the `Candidate` endpoint.
+      properties:
+        model_name:
+          example: Candidate
+          type: string
+        available_operations:
+          example:
+          - FETCH
+          - CREATE
+          items:
+            type: string
+          type: array
+        required_post_parameters:
+          example:
+          - remote_user_id
+          items:
+            type: string
+          type: array
+        supported_fields:
+          example:
+          - first_name
+          - last_name
+          - company
+          - title
+          items:
+            type: string
+          type: array
+      required:
+      - available_operations
+      - model_name
+      - required_post_parameters
+      - supported_fields
+      type: object
+    Offer:
+      description: |-
+        # The Offer Object
+        ### Description
+        The `Offer` object is used to represent an offer for an application.
+
+        ### Usage Example
+        Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.
+      example:
+        sent_at: 2000-01-23T04:56:07.000+00:00
+        creator: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+        closed_at: 2000-01-23T04:56:07.000+00:00
+        application: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        remote_id: "9876"
+        id: dd85625c-6a59-446f-a317-6de64d83bae7
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        start_date: 2000-01-23T04:56:07.000+00:00
+        status: SENT
+        remote_data:
+        - path: /offers
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: dd85625c-6a59-446f-a317-6de64d83bae7
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "9876"
+          nullable: true
+          type: string
+        application:
+          description: The application who is receiving the offer.
+          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          format: uuid
+          nullable: true
+          type: string
+        creator:
+          description: The user who created the offer.
+          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          format: uuid
+          nullable: true
+          type: string
+        remote_created_at:
+          description: When the third party's offer was created.
+          format: date-time
+          nullable: true
+          type: string
+        closed_at:
+          description: When the offer was closed.
+          format: date-time
+          nullable: true
+          type: string
+        sent_at:
+          description: When the offer was sent.
+          format: date-time
+          nullable: true
+          type: string
+        start_date:
+          description: The employment start date on the offer.
+          format: date-time
+          nullable: true
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/OfferStatusEnum'
+          description: The offer's status.
+          example: SENT
+          nullable: true
+        remote_data:
+          example:
+          - path: /offers
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    OfferStatusEnum:
+      enum:
+      - DRAFT
+      - APPROVAL-SENT
+      - APPROVED
+      - SENT
+      - SENT-MANUALLY
+      - OPENED
+      - DENIED
+      - SIGNED
+      - DEPRECATED
+      type: string
+    Office:
+      description: |-
+        # The Office Object
+        ### Description
+        The `Office` object is used to represent an office within a company.
+
+        ### Usage Example
+        Fetch from the `LIST Offices` endpoint and view the offices within a company.
+      example:
+        remote_id: "876556788"
+        name: SF Office
+        location: Embarcadero Center 2
+        id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+        remote_data:
+        - path: /locations
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "876556788"
+          nullable: true
+          type: string
+        name:
+          description: The office's name.
+          example: SF Office
+          nullable: true
+          type: string
+        location:
+          description: The office's location.
+          example: Embarcadero Center 2
+          nullable: true
+          type: string
+        remote_data:
+          example:
+          - path: /locations
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    OverallRecommendationEnum:
+      enum:
+      - DEFINITELY_NO
+      - "NO"
+      - "YES"
+      - STRONG_YES
+      - NO_DECISION
+      type: string
+    PaginatedActivityList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - visibility: PRIVATE
+          subject: Gil Feig's applicant status
+          remote_id: "198123"
+          activity_type: NOTE
+          id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          body: Candidate will only join if we provide a Barry's subsidy.
+          user: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+          remote_data:
+          - path: /actions
+            data:
+            - Varies by platform
+        - visibility: PRIVATE
+          subject: Gil Feig's applicant status
+          remote_id: "198123"
+          activity_type: NOTE
+          id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          body: Candidate will only join if we provide a Barry's subsidy.
+          user: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
+          remote_data:
+          - path: /actions
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Activity'
+          type: array
+      type: object
+    PaginatedApplicationList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - applied_at: 2000-01-23T04:56:07.000+00:00
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          rejected_at: 2000-01-23T04:56:07.000+00:00
+          remote_id: "98796"
+          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          source: Campus recruiting event
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          remote_data:
+          - path: /candidacies
+            data:
+            - Varies by platform
+        - applied_at: 2000-01-23T04:56:07.000+00:00
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          rejected_at: 2000-01-23T04:56:07.000+00:00
+          remote_id: "98796"
+          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          source: Campus recruiting event
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          remote_data:
+          - path: /candidacies
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Application'
+          type: array
+      type: object
+    PaginatedAttachmentList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - file_url: http://alturl.com/p749b
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          attachment_type: RESUME
+          file_name: Candidate Resume
+          remote_id: "11167"
+          id: c640b80b-fac9-409f-aa19-1f9221aec445
+          remote_data:
+          - path: /attachments
+            data:
+            - Varies by platform
+        - file_url: http://alturl.com/p749b
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          attachment_type: RESUME
+          file_name: Candidate Resume
+          remote_id: "11167"
+          id: c640b80b-fac9-409f-aa19-1f9221aec445
+          remote_data:
+          - path: /attachments
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Attachment'
+          type: array
+      type: object
+    PaginatedCandidateList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - is_private: true
+          email_addresses:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          attachments:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          remote_id: "21198"
+          last_name: Feig
+          title: Software Engineer
+          remote_updated_at: 2000-01-23T04:56:07.000+00:00
+          tags:
+          - High-Priority
+          remote_data:
+          - path: /candidates
+            data:
+            - Varies by platform
+          phone_numbers:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          urls:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          last_interaction_at: 2000-01-23T04:56:07.000+00:00
+          can_email: true
+          company: Columbia Dining App.
+          locations:
+          - San Francisco
+          - New York
+          - Miami
+          id: 521b18c2-4d01-4297-b451-19858d07c133
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          first_name: Gil
+          applications:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+        - is_private: true
+          email_addresses:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          attachments:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          remote_id: "21198"
+          last_name: Feig
+          title: Software Engineer
+          remote_updated_at: 2000-01-23T04:56:07.000+00:00
+          tags:
+          - High-Priority
+          remote_data:
+          - path: /candidates
+            data:
+            - Varies by platform
+          phone_numbers:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          urls:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          last_interaction_at: 2000-01-23T04:56:07.000+00:00
+          can_email: true
+          company: Columbia Dining App.
+          locations:
+          - San Francisco
+          - New York
+          - Miami
+          id: 521b18c2-4d01-4297-b451-19858d07c133
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          first_name: Gil
+          applications:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Candidate'
+          type: array
+      type: object
+    PaginatedDepartmentList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - remote_id: "23456"
+          name: Engineering
+          id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          remote_data:
+          - path: /departments
+            data:
+            - Varies by platform
+        - remote_id: "23456"
+          name: Engineering
+          id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          remote_data:
+          - path: /departments
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Department'
+          type: array
+      type: object
+    PaginatedEEOCList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
+          disability_status: I_DONT_WISH_TO_ANSWER
+          race: HISPANIC_OR_LATINO
+          gender: FEMALE
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
+          remote_id: "76"
+          id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+          remote_data:
+          - path: /eeoc
+            data:
+            - Varies by platform
+        - candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
+          disability_status: I_DONT_WISH_TO_ANSWER
+          race: HISPANIC_OR_LATINO
+          gender: FEMALE
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
+          remote_id: "76"
+          id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+          remote_data:
+          - path: /eeoc
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/EEOC'
+          type: array
+      type: object
+    PaginatedJobInterviewStageList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - remote_id: "876556788"
+          name: Phone Screen
+          id: f9813dd5-e70b-484c-91d8-00acd6065b07
+          job: ba7d9648-5316-4a80-8d73-4e636cef5a90
+          remote_data:
+          - path: /interview-stages
+            data:
+            - Varies by platform
+        - remote_id: "876556788"
+          name: Phone Screen
+          id: f9813dd5-e70b-484c-91d8-00acd6065b07
+          job: ba7d9648-5316-4a80-8d73-4e636cef5a90
+          remote_data:
+          - path: /interview-stages
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/JobInterviewStage'
+          type: array
+      type: object
+    PaginatedJobList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - hiring_managers:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          remote_id: "8765432"
+          offices:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          name: Software Engineer (Merge is actually hiring btw)
+          description: If you're reading this documentation. You might be a good fit!
+          id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          departments:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          status: OPEN
+          remote_updated_at: 2000-01-23T04:56:07.000+00:00
+          confidential: true
+          remote_data:
+          - path: /positions
+            data:
+            - Varies by platform
+        - hiring_managers:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          remote_id: "8765432"
+          offices:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          name: Software Engineer (Merge is actually hiring btw)
+          description: If you're reading this documentation. You might be a good fit!
+          id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          departments:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          status: OPEN
+          remote_updated_at: 2000-01-23T04:56:07.000+00:00
+          confidential: true
+          remote_data:
+          - path: /positions
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Job'
+          type: array
+      type: object
+    PaginatedOfferList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - sent_at: 2000-01-23T04:56:07.000+00:00
+          creator: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          closed_at: 2000-01-23T04:56:07.000+00:00
+          application: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          remote_id: "9876"
+          id: dd85625c-6a59-446f-a317-6de64d83bae7
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          start_date: 2000-01-23T04:56:07.000+00:00
+          status: SENT
+          remote_data:
+          - path: /offers
+            data:
+            - Varies by platform
+        - sent_at: 2000-01-23T04:56:07.000+00:00
+          creator: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          closed_at: 2000-01-23T04:56:07.000+00:00
+          application: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          remote_id: "9876"
+          id: dd85625c-6a59-446f-a317-6de64d83bae7
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          start_date: 2000-01-23T04:56:07.000+00:00
+          status: SENT
+          remote_data:
+          - path: /offers
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Offer'
+          type: array
+      type: object
+    PaginatedOfficeList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - remote_id: "876556788"
+          name: SF Office
+          location: Embarcadero Center 2
+          id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          remote_data:
+          - path: /locations
+            data:
+            - Varies by platform
+        - remote_id: "876556788"
+          name: SF Office
+          location: Embarcadero Center 2
+          id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          remote_data:
+          - path: /locations
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Office'
+          type: array
+      type: object
+    PaginatedRejectReasonList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - remote_id: "876556788"
+          name: Not passionate enough about APIs.
+          id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
+          remote_data:
+          - path: /rejection-reasons
+            data:
+            - Varies by platform
+        - remote_id: "876556788"
+          name: Not passionate enough about APIs.
+          id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
+          remote_data:
+          - path: /rejection-reasons
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/RejectReason'
+          type: array
+      type: object
+    PaginatedRemoteUserList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - remote_id: "344321"
+          access_role: SUPER_ADMIN
+          last_name: Ding
+          disabled: true
+          id: b82302de-852e-4e60-b050-edf9da3b7c02
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          first_name: Shensi
+          email: hello@merge.dev
+          remote_data:
+          - path: /users
+            data:
+            - Varies by platform
+        - remote_id: "344321"
+          access_role: SUPER_ADMIN
+          last_name: Ding
+          disabled: true
+          id: b82302de-852e-4e60-b050-edf9da3b7c02
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          first_name: Shensi
+          email: hello@merge.dev
+          remote_data:
+          - path: /users
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/RemoteUser'
+          type: array
+      type: object
+    PaginatedScheduledInterviewList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - end_at: 2000-01-23T04:56:07.000+00:00
+          job_interview_stage: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
+          interviewers:
+          - f9813dd5-e70b-484c-91d8-00acd6065b07
+          - 89a86fcf-d540-4e6b-ac3d-ce07c4ec9b3c
+          remote_id: "3"
+          start_at: 2000-01-23T04:56:07.000+00:00
+          remote_updated_at: 2000-01-23T04:56:07.000+00:00
+          remote_data:
+          - path: /interviews
+            data:
+            - Varies by platform
+          application: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          location: Embarcadero Center 2
+          id: b8faf072-98b9-4445-8a9a-6b4950efca19
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          status: SCHEDULED
+        - end_at: 2000-01-23T04:56:07.000+00:00
+          job_interview_stage: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
+          interviewers:
+          - f9813dd5-e70b-484c-91d8-00acd6065b07
+          - 89a86fcf-d540-4e6b-ac3d-ce07c4ec9b3c
+          remote_id: "3"
+          start_at: 2000-01-23T04:56:07.000+00:00
+          remote_updated_at: 2000-01-23T04:56:07.000+00:00
+          remote_data:
+          - path: /interviews
+            data:
+            - Varies by platform
+          application: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          location: Embarcadero Center 2
+          id: b8faf072-98b9-4445-8a9a-6b4950efca19
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          status: SCHEDULED
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ScheduledInterview'
+          type: array
+      type: object
+    PaginatedScorecardList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - interviewer: bbb519a3-246e-4b95-b6b3-dba16107ba6b
+          application: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          remote_id: "22234"
+          overall_recommendation: STRONG_YES
+          id: 3eab2f17-eeb1-450d-97f0-029d8be1e06f
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          interview: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          remote_data:
+          - path: /ratings
+            data:
+            - Varies by platform
+        - interviewer: bbb519a3-246e-4b95-b6b3-dba16107ba6b
+          application: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          remote_id: "22234"
+          overall_recommendation: STRONG_YES
+          id: 3eab2f17-eeb1-450d-97f0-029d8be1e06f
+          remote_created_at: 2000-01-23T04:56:07.000+00:00
+          interview: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          remote_data:
+          - path: /ratings
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Scorecard'
+          type: array
+      type: object
+    PaginatedTagList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - remote_id: "4567"
+          name: High-Priority
+          remote_data:
+          - path: /tags
+            data:
+            - Varies by platform
+        - remote_id: "4567"
+          name: High-Priority
+          remote_data:
+          - path: /tags
+            data:
+            - Varies by platform
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+      type: object
+    PatchedApplicationRequest:
+      description: |-
+        # The Application Object
+        ### Description
+        The `Application` object is used to represent an Application for a job position.
+
+        ### Usage Example
+        Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
+      example:
+        applied_at: 2000-01-23T04:56:07.000+00:00
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        rejected_at: 2000-01-23T04:56:07.000+00:00
+        remote_id: "98796"
+        source: Campus recruiting event
+        credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+        current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+        reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+        job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+      properties:
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "98796"
+          nullable: true
+          type: string
+        candidate:
+          description: The candidate applying.
+          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          format: uuid
+          nullable: true
+          type: string
+        job:
+          description: The job being applied for.
+          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          format: uuid
+          nullable: true
+          type: string
+        applied_at:
+          description: When the application was submitted.
+          format: date-time
+          nullable: true
+          type: string
+        rejected_at:
+          description: When the application was rejected.
+          format: date-time
+          nullable: true
+          type: string
+        source:
+          description: The application's source.
+          example: Campus recruiting event
+          nullable: true
+          type: string
+        credited_to:
+          description: The user credited for this application.
+          example: 58166795-8d68-4b30-9bfb-bfd402479484
+          format: uuid
+          nullable: true
+          type: string
+        current_stage:
+          description: The application's current stage.
+          example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          format: uuid
+          nullable: true
+          type: string
+        reject_reason:
+          description: The application's reason for rejection.
+          example: 59b25f2b-da02-40f5-9656-9fa0db555784
+          format: uuid
+          nullable: true
+          type: string
+      type: object
+    PhoneNumber:
+      description: |-
+        # The PhoneNumber Object
+        ### Description
+        The `PhoneNumber` object is used to represent a candidate's phone number.
+
+        ### Usage Example
+        Fetch from the `GET Candidate` endpoint and view their phone numbers.
+      properties:
+        value:
+          description: The phone number.
+          example: +3198675309
+          nullable: true
+          type: string
+        phone_number_type:
+          allOf:
+          - $ref: '#/components/schemas/PhoneNumberTypeEnum'
+          description: The type of phone number.
+          example: HOME
+          nullable: true
+      type: object
+    PhoneNumberRequest:
+      description: |-
+        # The PhoneNumber Object
+        ### Description
+        The `PhoneNumber` object is used to represent a candidate's phone number.
+
+        ### Usage Example
+        Fetch from the `GET Candidate` endpoint and view their phone numbers.
+      properties:
+        value:
+          description: The phone number.
+          example: +3198675309
+          nullable: true
+          type: string
+        phone_number_type:
+          allOf:
+          - $ref: '#/components/schemas/PhoneNumberTypeEnum'
+          description: The type of phone number.
+          example: HOME
+          nullable: true
+      type: object
+    PhoneNumberTypeEnum:
+      enum:
+      - HOME
+      - WORK
+      - MOBILE
+      - SKYPE
+      - OTHER
+      type: string
+    RaceEnum:
+      enum:
+      - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+      - ASIAN
+      - BLACK_OR_AFRICAN_AMERICAN
+      - HISPANIC_OR_LATINO
+      - WHITE
+      - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+      - TWO_OR_MORE_RACES
+      - DECLINE_TO_SELF_IDENTIFY
+      type: string
+    RejectReason:
+      description: |-
+        # The RejectReason Object
+        ### Description
+        The `RejectReason` object is used to represent a reason for rejecting an application.
+
+        ### Usage Example
+        Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.
+      example:
+        remote_id: "876556788"
+        name: Not passionate enough about APIs.
+        id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
+        remote_data:
+        - path: /rejection-reasons
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: 8be99a4a-f8d4-4339-bf1e-30eac970e217
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "876556788"
+          nullable: true
+          type: string
+        name:
+          description: The rejection reason’s name.
+          example: Not passionate enough about APIs.
+          nullable: true
+          type: string
+        remote_data:
+          example:
+          - path: /rejection-reasons
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    RemoteData:
+      properties:
+        path:
+          type: string
+        data:
+          additionalProperties: {}
+          type: object
+      required:
+      - path
+      type: object
+    RemoteDataRequest:
+      properties:
+        path:
+          type: string
+        data:
+          additionalProperties: {}
+          type: object
+      required:
+      - path
+      type: object
+    RemoteKey:
+      description: |-
+        # The RemoteKey Object
+        ### Description
+        The `RemoteKey` object is used to represent a request for a new remote key.
+
+        ### Usage Example
+        Post a `GenerateRemoteKey` to receive a new `RemoteKey`.
+      example:
+        name: Remote Deployment Key 1
+        key: hXY57W0g0WkdRHjCaPvwijK63fwfN-o_Wh7f30SLTq_uPCOLo-WFcA
+      properties:
+        name:
+          example: Remote Deployment Key 1
+          type: string
+        key:
+          example: hXY57W0g0WkdRHjCaPvwijK63fwfN-o_Wh7f30SLTq_uPCOLo-WFcA
+          type: string
+      required:
+      - key
+      - name
+      type: object
+    RemoteKeyForRegenerationRequest:
+      description: |-
+        # The RemoteKeyForRegeneration Object
+        ### Description
+        The `RemoteKeyForRegeneration` object is used to exchange an old remote key for a new one
+
+        ### Usage Example
+        Post a `RemoteKeyForRegeneration` to swap out an old remote key for a new one
+      example:
+        name: Remote Deployment Key 1
+      properties:
+        name:
+          example: Remote Deployment Key 1
+          type: string
+      required:
+      - name
+      type: object
+    RemoteResponse:
+      description: |-
+        # The RemoteResponse Object
+        ### Description
+        The `RemoteResponse` object is used to represent information returned from a third-party endpoint.
+
+        ### Usage Example
+        View the `RemoteResponse` returned from your `DataPassthrough`.
+      example:
+        path: /scooters
+        headers:
+          EXTRA-HEADER: value
+          Authorization: <redacted>
+        method: GET
+        response:
+          scooters:
+          - company: Lime
+            model: Gen 2.5
+          - company: Bird
+            model: Bird Zero
+        status: 200
+      properties:
+        method:
+          example: GET
+          type: string
+        path:
+          example: /scooters
+          type: string
+        status:
+          example: 200
+          type: integer
+        response:
+          additionalProperties: {}
+          example:
+            scooters:
+            - company: Lime
+              model: Gen 2.5
+            - company: Bird
+              model: Bird Zero
+          type: object
+        headers:
+          additionalProperties: {}
+          example:
+            EXTRA-HEADER: value
+            Authorization: <redacted>
+          type: object
+      required:
+      - method
+      - path
+      - response
+      - status
+      type: object
+    RemoteUser:
+      description: |-
+        # The RemoteUser Object
+        ### Description
+        The `RemoteUser` object is used to represent a third party user.
+
+        ### Usage Example
+        Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.
+      example:
+        remote_id: "344321"
+        access_role: SUPER_ADMIN
+        last_name: Ding
+        disabled: true
+        id: b82302de-852e-4e60-b050-edf9da3b7c02
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        first_name: Shensi
+        email: hello@merge.dev
+        remote_data:
+        - path: /users
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: b82302de-852e-4e60-b050-edf9da3b7c02
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "344321"
+          nullable: true
+          type: string
+        first_name:
+          description: The user's first name.
+          example: Shensi
+          nullable: true
+          type: string
+        last_name:
+          description: The user's last name.
+          example: Ding
+          nullable: true
+          type: string
+        email:
+          description: The user's email.
+          example: hello@merge.dev
+          format: email
+          maxLength: 254
+          nullable: true
+          type: string
+        disabled:
+          description: Whether the user's account had been disabled.
+          nullable: true
+          type: boolean
+        remote_created_at:
+          description: When the third party's user was created.
+          format: date-time
+          nullable: true
+          type: string
+        access_role:
+          allOf:
+          - $ref: '#/components/schemas/AccessRoleEnum'
+          description: The user's role.
+          example: SUPER_ADMIN
+          nullable: true
+        remote_data:
+          example:
+          - path: /users
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    ScheduledInterview:
+      description: |-
+        # The ScheduledInterview Object
+        ### Description
+        The `ScheduledInterview` object is used to represent an interview
+
+        ### Usage Example
+        Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.
+      example:
+        end_at: 2000-01-23T04:56:07.000+00:00
+        job_interview_stage: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
+        interviewers:
+        - f9813dd5-e70b-484c-91d8-00acd6065b07
+        - 89a86fcf-d540-4e6b-ac3d-ce07c4ec9b3c
+        remote_id: "3"
+        start_at: 2000-01-23T04:56:07.000+00:00
+        remote_updated_at: 2000-01-23T04:56:07.000+00:00
+        remote_data:
+        - path: /interviews
+          data:
+          - Varies by platform
+        application: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+        organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+        location: Embarcadero Center 2
+        id: b8faf072-98b9-4445-8a9a-6b4950efca19
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        status: SCHEDULED
+      properties:
+        id:
+          example: b8faf072-98b9-4445-8a9a-6b4950efca19
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "3"
+          nullable: true
+          type: string
+        application:
+          description: The application being interviewed.
+          example: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          format: uuid
+          nullable: true
+          type: string
+        job_interview_stage:
+          description: The stage of the interview.
+          example: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
+          format: uuid
+          nullable: true
+          type: string
+        organizer:
+          description: The user organizing the interview.
+          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          format: uuid
+          nullable: true
+          type: string
+        interviewers:
+          example:
+          - f9813dd5-e70b-484c-91d8-00acd6065b07
+          - 89a86fcf-d540-4e6b-ac3d-ce07c4ec9b3c
+          items:
+            format: uuid
+            type: string
+          type: array
+        location:
+          description: The interview's location.
+          example: Embarcadero Center 2
+          nullable: true
+          type: string
+        start_at:
+          description: When the interview was started.
+          format: date-time
+          nullable: true
+          type: string
+        end_at:
+          description: When the interview was ended.
+          format: date-time
+          nullable: true
+          type: string
+        remote_created_at:
+          description: When the third party's interview was created.
+          format: date-time
+          nullable: true
+          type: string
+        remote_updated_at:
+          description: When the third party's interview was updated.
+          format: date-time
+          nullable: true
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ScheduledInterviewStatusEnum'
+          description: The interview's status.
+          example: SCHEDULED
+          nullable: true
+        remote_data:
+          example:
+          - path: /interviews
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    ScheduledInterviewStatusEnum:
+      enum:
+      - SCHEDULED
+      - AWAITING_FEEDBACK
+      - COMPLETE
+      type: string
+    Scorecard:
+      description: |-
+        # The Scorecard Object
+        ### Description
+        The `Scorecard` object is used to represent a Scorecard for an interview
+
+        ### Usage Example
+        Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.
+      example:
+        interviewer: bbb519a3-246e-4b95-b6b3-dba16107ba6b
+        application: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        submitted_at: 2000-01-23T04:56:07.000+00:00
+        remote_id: "22234"
+        overall_recommendation: STRONG_YES
+        id: 3eab2f17-eeb1-450d-97f0-029d8be1e06f
+        remote_created_at: 2000-01-23T04:56:07.000+00:00
+        interview: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+        remote_data:
+        - path: /ratings
+          data:
+          - Varies by platform
+      properties:
+        id:
+          example: 3eab2f17-eeb1-450d-97f0-029d8be1e06f
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "22234"
+          nullable: true
+          type: string
+        application:
+          description: The application being scored.
+          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          format: uuid
+          nullable: true
+          type: string
+        interview:
+          description: The interview being scored.
+          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          format: uuid
+          nullable: true
+          type: string
+        interviewer:
+          description: The interviewer doing the scoring.
+          example: bbb519a3-246e-4b95-b6b3-dba16107ba6b
+          format: uuid
+          nullable: true
+          type: string
+        remote_created_at:
+          description: When the third party's scorecard was created.
+          format: date-time
+          nullable: true
+          type: string
+        submitted_at:
+          description: When the scorecard was submitted.
+          format: date-time
+          nullable: true
+          type: string
+        overall_recommendation:
+          allOf:
+          - $ref: '#/components/schemas/OverallRecommendationEnum'
+          description: The inteviewer's recommendation.
+          example: STRONG_YES
+          nullable: true
+        remote_data:
+          example:
+          - path: /ratings
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    SyncStatus:
+      description: |-
+        # The SyncStatus Object
+        ### Description
+        The `SyncStatus` object is used to represent the syncing state of an account
+
+        ### Usage Example
+        View the `SyncStatus` for an account to see how recently its models were synced.
+      example:
+        next_sync_start: 2021-03-30T20:44:18.662942Z
+        model_name: Candidate
+        model_id: ats.Candidate
+        last_sync_start: 2021-03-30T19:44:18.695973Z
+        is_initial_sync: true
+        status: SYNCING
+      properties:
+        model_name:
+          example: Candidate
+          type: string
+        model_id:
+          example: ats.Candidate
+          type: string
+        last_sync_start:
+          example: 2021-03-30T19:44:18.695973Z
+          format: date-time
+          type: string
+        next_sync_start:
+          example: 2021-03-30T20:44:18.662942Z
+          format: date-time
+          type: string
+        status:
+          example: SYNCING
+          type: string
+        is_initial_sync:
+          example: true
+          type: boolean
+      required:
+      - is_initial_sync
+      - last_sync_start
+      - model_id
+      - model_name
+      - next_sync_start
+      - status
+      type: object
+    Tag:
+      description: |-
+        # The Tag Object
+        ### Description
+        The `Tag` object is used to represent a tag for a candidate.
+
+        ### Usage Example
+        Fetch from the `LIST Tags` endpoint and view the tags used within a company.
+      example:
+        remote_id: "4567"
+        name: High-Priority
+        remote_data:
+        - path: /tags
+          data:
+          - Varies by platform
+      properties:
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "4567"
+          nullable: true
+          type: string
+        name:
+          description: The tag's name.
+          example: High-Priority
+          nullable: true
+          type: string
+        remote_data:
+          example:
+          - path: /tags
+            data:
+            - Varies by platform
+          items:
+            additionalProperties: {}
+            description: The full data pulled from the third-party API for an object.
+            nullable: true
+            type: object
+          nullable: true
+          type: array
+      type: object
+    Url:
+      description: |-
+        # The Url Object
+        ### Description
+        The `Url` object is used to represent a candidate's website.
+
+        ### Usage Example
+        Fetch from the `GET Candidate` endpoint and view their website urls.
+      properties:
+        value:
+          description: The site's url.
+          example: http://alturl.com/p749b
+          format: uri
+          maxLength: 400
+          nullable: true
+          type: string
+        url_type:
+          allOf:
+          - $ref: '#/components/schemas/UrlTypeEnum'
+          description: The type of site.
+          example: PERSONAL
+          nullable: true
+      type: object
+    UrlRequest:
+      description: |-
+        # The Url Object
+        ### Description
+        The `Url` object is used to represent a candidate's website.
+
+        ### Usage Example
+        Fetch from the `GET Candidate` endpoint and view their website urls.
+      properties:
+        value:
+          description: The site's url.
+          example: http://alturl.com/p749b
+          format: uri
+          maxLength: 400
+          nullable: true
+          type: string
+        url_type:
+          allOf:
+          - $ref: '#/components/schemas/UrlTypeEnum'
+          description: The type of site.
+          example: PERSONAL
+          nullable: true
+      type: object
+    UrlTypeEnum:
+      enum:
+      - PERSONAL
+      - COMPANY
+      - PORTFOLIO
+      - BLOG
+      - SOCIAL_MEDIA
+      - OTHER
+      type: string
+    VeteranStatusEnum:
+      enum:
+      - I_AM_NOT_A_PROTECTED_VETERAN
+      - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
+      - I_DONT_WISH_TO_ANSWER
+      type: string
+    VisibilityEnum:
+      enum:
+      - ADMIN_ONLY
+      - PUBLIC
+      - PRIVATE
+      type: string
+  securitySchemes:
+    tokenAuth:
+      description: Token-based authentication with required prefix "Token"
+      in: header
+      name: Authorization
+      type: apiKey
+
