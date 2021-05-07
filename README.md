@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2021-05-06T16:51:45.473844-07:00[America/Los_Angeles]
+  - Build date: 2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>merge</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.0</version>
+  <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "merge:merge-ats-client:1.0"
+compile "merge:merge-ats-client:1.0.0"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.0.jar`
+* `target/merge-ats-client-1.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
