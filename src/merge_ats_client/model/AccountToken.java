@@ -28,7 +28,7 @@ import merge_ats_client.model.AccountIntegration;
 /**
  * AccountToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class AccountToken {
   public static final String SERIALIZED_NAME_ACCOUNT_TOKEN = "account_token";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_TOKEN)
@@ -100,7 +100,6 @@ public class AccountToken {
   public int hashCode() {
     return Objects.hash(accountToken, integration);
   }
-
 
   @Override
   public String toString() {

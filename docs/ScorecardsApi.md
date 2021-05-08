@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="scorecardsList"></a>
 # **scorecardsList**
-> PaginatedScorecardList scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedScorecardList scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId)
 
 
 
@@ -43,7 +43,6 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
-    String expand = "application,interview,interviewer"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String interviewId = "interviewId_example"; // String | If provided, will only return scorecards for this interview.
     String interviewerId = "interviewerId_example"; // String | If provided, will only return scorecards for this interviewer.
@@ -52,7 +51,7 @@ public class Example {
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedScorecardList result = apiInstance.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedScorecardList result = apiInstance.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScorecardsApi#scorecardsList");
@@ -74,7 +73,6 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
- **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: application, application,interview, application,interview,interviewer, application,interviewer, interview, interview,interviewer, interviewer]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **interviewId** | **String**| If provided, will only return scorecards for this interview. | [optional]
  **interviewerId** | **String**| If provided, will only return scorecards for this interviewer. | [optional]
@@ -103,7 +101,7 @@ Name | Type | Description  | Notes
 
 <a name="scorecardsRetrieve"></a>
 # **scorecardsRetrieve**
-> Scorecard scorecardsRetrieve(xAccountToken, id, expand, includeRemoteData)
+> Scorecard scorecardsRetrieve(xAccountToken, id, includeRemoteData)
 
 
 
@@ -133,10 +131,9 @@ public class Example {
     ScorecardsApi apiInstance = new ScorecardsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
-    String expand = "application,interview,interviewer"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
-      Scorecard result = apiInstance.scorecardsRetrieve(xAccountToken, id, expand, includeRemoteData);
+      Scorecard result = apiInstance.scorecardsRetrieve(xAccountToken, id, includeRemoteData);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScorecardsApi#scorecardsRetrieve");
@@ -155,7 +152,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
- **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: application, application,interview, application,interview,interviewer, application,interviewer, interview, interview,interviewer, interviewer]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

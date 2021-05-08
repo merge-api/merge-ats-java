@@ -3,6 +3,7 @@
 # AttachmentRequest
 
 # The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.
+
 ## Properties
 
 Name | Type | Description | Notes

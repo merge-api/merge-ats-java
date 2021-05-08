@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * AccountIntegration
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class AccountIntegration {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -263,7 +263,6 @@ public class AccountIntegration {
   public int hashCode() {
     return Objects.hash(name, categories, image, squareImage, color, slug);
   }
-
 
   @Override
   public String toString() {

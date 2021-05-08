@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]
+  - Build date: 2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 

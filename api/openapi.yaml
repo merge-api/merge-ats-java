@@ -81,21 +81,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandUser:
-            summary: Expand User
-            value: user
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - user
-          type: string
-        style: form
       - description: Whether to include the original data Merge fetched from the third-party
           to produce these models.
         explode: true
@@ -176,21 +161,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandUser:
-            summary: Expand User
-            value: user
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - user
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -294,51 +264,6 @@ paths:
         name: cursor
         required: false
         schema:
-          type: string
-        style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandCandidate,Job,CreditedTo,CurrentStage,RejectReason:
-            summary: Expand Candidate, Job, Credited_to, Current_stage, Reject_reason
-            value: candidate,job,credited_to,current_stage,reject_reason
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - candidate
-          - candidate,credited_to
-          - candidate,credited_to,current_stage
-          - candidate,credited_to,current_stage,reject_reason
-          - candidate,credited_to,reject_reason
-          - candidate,current_stage
-          - candidate,current_stage,reject_reason
-          - candidate,job
-          - candidate,job,credited_to
-          - candidate,job,credited_to,current_stage
-          - candidate,job,credited_to,current_stage,reject_reason
-          - candidate,job,credited_to,reject_reason
-          - candidate,job,current_stage
-          - candidate,job,current_stage,reject_reason
-          - candidate,job,reject_reason
-          - candidate,reject_reason
-          - credited_to
-          - credited_to,current_stage
-          - credited_to,current_stage,reject_reason
-          - credited_to,reject_reason
-          - current_stage
-          - current_stage,reject_reason
-          - job
-          - job,credited_to
-          - job,credited_to,current_stage
-          - job,credited_to,current_stage,reject_reason
-          - job,credited_to,reject_reason
-          - job,current_stage
-          - job,current_stage,reject_reason
-          - job,reject_reason
-          - reject_reason
           type: string
         style: form
       - description: Whether to include the original data Merge fetched from the third-party
@@ -484,51 +409,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandCandidate,Job,CreditedTo,CurrentStage,RejectReason:
-            summary: Expand Candidate, Job, Credited_to, Current_stage, Reject_reason
-            value: candidate,job,credited_to,current_stage,reject_reason
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - candidate
-          - candidate,credited_to
-          - candidate,credited_to,current_stage
-          - candidate,credited_to,current_stage,reject_reason
-          - candidate,credited_to,reject_reason
-          - candidate,current_stage
-          - candidate,current_stage,reject_reason
-          - candidate,job
-          - candidate,job,credited_to
-          - candidate,job,credited_to,current_stage
-          - candidate,job,credited_to,current_stage,reject_reason
-          - candidate,job,credited_to,reject_reason
-          - candidate,job,current_stage
-          - candidate,job,current_stage,reject_reason
-          - candidate,job,reject_reason
-          - candidate,reject_reason
-          - credited_to
-          - credited_to,current_stage
-          - credited_to,current_stage,reject_reason
-          - credited_to,reject_reason
-          - current_stage
-          - current_stage,reject_reason
-          - job
-          - job,credited_to
-          - job,credited_to,current_stage
-          - job,credited_to,current_stage,reject_reason
-          - job,credited_to,reject_reason
-          - job,current_stage
-          - job,current_stage,reject_reason
-          - job,reject_reason
-          - reject_reason
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -887,23 +767,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandApplications,Attachments:
-            summary: Expand Applications, Attachments
-            value: applications,attachments
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - applications
-          - applications,attachments
-          - attachments
-          type: string
-        style: form
       - description: Whether to include the original data Merge fetched from the third-party
           to produce these models.
         explode: true
@@ -1025,23 +888,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandApplications,Attachments:
-            summary: Expand Applications, Attachments
-            value: applications,attachments
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - applications
-          - applications,attachments
-          - attachments
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -1264,21 +1110,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandCandidate:
-            summary: Expand Candidate
-            value: candidate
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - candidate
-          type: string
-        style: form
       - description: Whether to include the original data Merge fetched from the third-party
           to produce these models.
         explode: true
@@ -1348,21 +1179,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandCandidate:
-            summary: Expand Candidate
-            value: candidate
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - candidate
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -1473,35 +1289,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandInterviewers,Organizer,Application,JobInterviewStage:
-            summary: Expand Interviewers, Organizer, Application, Job_interview_stage
-            value: interviewers,organizer,application,job_interview_stage
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - application
-          - application,job_interview_stage
-          - interviewers
-          - interviewers,application
-          - interviewers,application,job_interview_stage
-          - interviewers,job_interview_stage
-          - interviewers,organizer
-          - interviewers,organizer,application
-          - interviewers,organizer,application,job_interview_stage
-          - interviewers,organizer,job_interview_stage
-          - job_interview_stage
-          - organizer
-          - organizer,application
-          - organizer,application,job_interview_stage
-          - organizer,job_interview_stage
-          type: string
-        style: form
       - description: Whether to include the original data Merge fetched from the third-party
           to produce these models.
         explode: true
@@ -1593,35 +1380,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandInterviewers,Organizer,Application,JobInterviewStage:
-            summary: Expand Interviewers, Organizer, Application, Job_interview_stage
-            value: interviewers,organizer,application,job_interview_stage
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - application
-          - application,job_interview_stage
-          - interviewers
-          - interviewers,application
-          - interviewers,application,job_interview_stage
-          - interviewers,job_interview_stage
-          - interviewers,organizer
-          - interviewers,organizer,application
-          - interviewers,organizer,application,job_interview_stage
-          - interviewers,organizer,job_interview_stage
-          - job_interview_stage
-          - organizer
-          - organizer,application
-          - organizer,application,job_interview_stage
-          - organizer,job_interview_stage
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -1691,27 +1449,6 @@ paths:
         name: cursor
         required: false
         schema:
-          type: string
-        style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandDepartments,Offices,Job:
-            summary: Expand Departments, Offices, Job
-            value: departments,offices,job
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - departments
-          - departments,job
-          - departments,offices
-          - departments,offices,job
-          - job
-          - offices
-          - offices,job
           type: string
         style: form
       - description: Whether to include the original data Merge fetched from the third-party
@@ -1794,27 +1531,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandDepartments,Offices,Job:
-            summary: Expand Departments, Offices, Job
-            value: departments,offices,job
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - departments
-          - departments,job
-          - departments,offices
-          - departments,offices,job
-          - job
-          - offices
-          - offices,job
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -1886,27 +1602,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandDepartments,Offices,HiringManagers:
-            summary: Expand Departments, Offices, Hiring_managers
-            value: departments,offices,hiring_managers
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - departments
-          - departments,hiring_managers
-          - departments,offices
-          - departments,offices,hiring_managers
-          - hiring_managers
-          - offices
-          - offices,hiring_managers
-          type: string
-        style: form
       - description: Whether to include the original data Merge fetched from the third-party
           to produce these models.
         explode: true
@@ -1976,27 +1671,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandDepartments,Offices,HiringManagers:
-            summary: Expand Departments, Offices, Hiring_managers
-            value: departments,offices,hiring_managers
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - departments
-          - departments,hiring_managers
-          - departments,offices
-          - departments,offices,hiring_managers
-          - hiring_managers
-          - offices
-          - offices,hiring_managers
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -2118,23 +1792,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandApplication,Creator:
-            summary: Expand Application, Creator
-            value: application,creator
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - application
-          - application,creator
-          - creator
-          type: string
-        style: form
       - description: Whether to include the original data Merge fetched from the third-party
           to produce these models.
         explode: true
@@ -2204,23 +1861,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandApplication,Creator:
-            summary: Expand Application, Creator
-            value: application,creator
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - application
-          - application,creator
-          - creator
-          type: string
-        style: form
       - explode: false
         in: path
         name: id
@@ -2648,27 +2288,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandApplication,Interview,Interviewer:
-            summary: Expand Application, Interview, Interviewer
-            value: application,interview,interviewer
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - application
-          - application,interview
-          - application,interview,interviewer
-          - application,interviewer
-          - interview
-          - interview,interviewer
-          - interviewer
-          type: string
-        style: form
       - description: Whether to include the original data Merge fetched from the third-party
           to produce these models.
         explode: true
@@ -2760,27 +2379,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Which relations should be returned in expanded form. Multiple
-          relation names should be comma separated without spaces.
-        examples:
-          ExpandApplication,Interview,Interviewer:
-            summary: Expand Application, Interview, Interviewer
-            value: application,interview,interviewer
-        explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          enum:
-          - application
-          - application,interview
-          - application,interview,interviewer
-          - application,interviewer
-          - interview
-          - interview,interviewer
-          - interviewer
-          type: string
-        style: form
       - explode: false
         in: path
         name: id

@@ -37,7 +37,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The EEOC Object ### Description The &#x60;EEOC&#x60; object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the &#x60;LIST EEOCs&#x60; endpoint and filter by &#x60;candidate&#x60; to show all EEOC information for a candidate.
  */
 @ApiModel(description = "# The EEOC Object ### Description The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class EEOC {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -57,19 +57,19 @@ public class EEOC {
 
   public static final String SERIALIZED_NAME_RACE = "race";
   @SerializedName(SERIALIZED_NAME_RACE)
-  private RaceEnum race = null;
+  private RaceEnum race;
 
   public static final String SERIALIZED_NAME_GENDER = "gender";
   @SerializedName(SERIALIZED_NAME_GENDER)
-  private GenderEnum gender = null;
+  private GenderEnum gender;
 
   public static final String SERIALIZED_NAME_VETERAN_STATUS = "veteran_status";
   @SerializedName(SERIALIZED_NAME_VETERAN_STATUS)
-  private VeteranStatusEnum veteranStatus = null;
+  private VeteranStatusEnum veteranStatus;
 
   public static final String SERIALIZED_NAME_DISABILITY_STATUS = "disability_status";
   @SerializedName(SERIALIZED_NAME_DISABILITY_STATUS)
-  private DisabilityStatusEnum disabilityStatus = null;
+  private DisabilityStatusEnum disabilityStatus;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -289,7 +289,6 @@ public class EEOC {
   public int hashCode() {
     return Objects.hash(id, remoteId, candidate, submittedAt, race, gender, veteranStatus, disabilityStatus, remoteData);
   }
-
 
   @Override
   public String toString() {

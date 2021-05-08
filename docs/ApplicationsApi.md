@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 <a name="applicationsList"></a>
 # **applicationsList**
-> PaginatedApplicationList applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, expand, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId)
+> PaginatedApplicationList applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId)
 
 
 
@@ -122,7 +122,6 @@ public class Example {
     String creditedToId = "creditedToId_example"; // String | If provided, will only return applications credited to this user.
     String currentStageId = "currentStageId_example"; // String | If provided, will only return applications at this interview stage.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
-    String expand = "candidate,job,credited_to,current_stage,reject_reason"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String jobId = "jobId_example"; // String | If provided, will only return applications for this job.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
@@ -131,7 +130,7 @@ public class Example {
     String rejectReasonId = "rejectReasonId_example"; // String | If provided, will only return applications with this reject reason.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedApplicationList result = apiInstance.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, expand, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
+      PaginatedApplicationList result = apiInstance.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsList");
@@ -155,7 +154,6 @@ Name | Type | Description  | Notes
  **creditedToId** | **String**| If provided, will only return applications credited to this user. | [optional]
  **currentStageId** | **String**| If provided, will only return applications at this interview stage. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
- **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: candidate, candidate,credited_to, candidate,credited_to,current_stage, candidate,credited_to,current_stage,reject_reason, candidate,credited_to,reject_reason, candidate,current_stage, candidate,current_stage,reject_reason, candidate,job, candidate,job,credited_to, candidate,job,credited_to,current_stage, candidate,job,credited_to,current_stage,reject_reason, candidate,job,credited_to,reject_reason, candidate,job,current_stage, candidate,job,current_stage,reject_reason, candidate,job,reject_reason, candidate,reject_reason, credited_to, credited_to,current_stage, credited_to,current_stage,reject_reason, credited_to,reject_reason, current_stage, current_stage,reject_reason, job, job,credited_to, job,credited_to,current_stage, job,credited_to,current_stage,reject_reason, job,credited_to,reject_reason, job,current_stage, job,current_stage,reject_reason, job,reject_reason, reject_reason]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **jobId** | **String**| If provided, will only return applications for this job. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
@@ -261,7 +259,7 @@ Name | Type | Description  | Notes
 
 <a name="applicationsRetrieve"></a>
 # **applicationsRetrieve**
-> Application applicationsRetrieve(xAccountToken, id, expand, includeRemoteData)
+> Application applicationsRetrieve(xAccountToken, id, includeRemoteData)
 
 
 
@@ -291,10 +289,9 @@ public class Example {
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
-    String expand = "candidate,job,credited_to,current_stage,reject_reason"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
-      Application result = apiInstance.applicationsRetrieve(xAccountToken, id, expand, includeRemoteData);
+      Application result = apiInstance.applicationsRetrieve(xAccountToken, id, includeRemoteData);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsRetrieve");
@@ -313,7 +310,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
- **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: candidate, candidate,credited_to, candidate,credited_to,current_stage, candidate,credited_to,current_stage,reject_reason, candidate,credited_to,reject_reason, candidate,current_stage, candidate,current_stage,reject_reason, candidate,job, candidate,job,credited_to, candidate,job,credited_to,current_stage, candidate,job,credited_to,current_stage,reject_reason, candidate,job,credited_to,reject_reason, candidate,job,current_stage, candidate,job,current_stage,reject_reason, candidate,job,reject_reason, candidate,reject_reason, credited_to, credited_to,current_stage, credited_to,current_stage,reject_reason, credited_to,reject_reason, current_stage, current_stage,reject_reason, job, job,credited_to, job,credited_to,current_stage, job,credited_to,current_stage,reject_reason, job,credited_to,reject_reason, job,current_stage, job,current_stage,reject_reason, job,reject_reason, reject_reason]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

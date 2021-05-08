@@ -34,7 +34,7 @@ import merge_ats_client.model.RemoteData;
  * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
 @ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class Attachment {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -58,7 +58,7 @@ public class Attachment {
 
   public static final String SERIALIZED_NAME_ATTACHMENT_TYPE = "attachment_type";
   @SerializedName(SERIALIZED_NAME_ATTACHMENT_TYPE)
-  private AttachmentTypeEnum attachmentType = null;
+  private AttachmentTypeEnum attachmentType;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -230,7 +230,6 @@ public class Attachment {
   public int hashCode() {
     return Objects.hash(id, remoteId, fileName, fileUrl, candidate, attachmentType, remoteData);
   }
-
 
   @Override
   public String toString() {
