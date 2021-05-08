@@ -2,6 +2,7 @@
 
 # LinkToken
 
+
 ## Properties
 
 Name | Type | Description | Notes

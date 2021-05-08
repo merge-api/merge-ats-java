@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview  ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
  */
 @ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview  ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class ScheduledInterview {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -82,7 +82,7 @@ public class ScheduledInterview {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private ScheduledInterviewStatusEnum status = null;
+  private ScheduledInterviewStatusEnum status;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -406,7 +406,6 @@ public class ScheduledInterview {
   public int hashCode() {
     return Objects.hash(id, remoteId, application, jobInterviewStage, organizer, interviewers, location, startAt, endAt, remoteCreatedAt, remoteUpdatedAt, status, remoteData);
   }
-
 
   @Override
   public String toString() {

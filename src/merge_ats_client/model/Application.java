@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
 @ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class Application {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -341,7 +341,6 @@ public class Application {
   public int hashCode() {
     return Objects.hash(id, remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, remoteData);
   }
-
 
   @Override
   public String toString() {

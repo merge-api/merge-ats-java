@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="interviewsList"></a>
 # **interviewsList**
-> PaginatedScheduledInterviewList interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId)
+> PaginatedScheduledInterviewList interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId)
 
 
 
@@ -43,7 +43,6 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
-    String expand = "interviewers,organizer,application,job_interview_stage"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String jobInterviewStageId = "jobInterviewStageId_example"; // String | If provided, will only return interviews at this stage.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
@@ -52,7 +51,7 @@ public class Example {
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedScheduledInterviewList result = apiInstance.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
+      PaginatedScheduledInterviewList result = apiInstance.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InterviewsApi#interviewsList");
@@ -74,7 +73,6 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
- **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: application, application,job_interview_stage, interviewers, interviewers,application, interviewers,application,job_interview_stage, interviewers,job_interview_stage, interviewers,organizer, interviewers,organizer,application, interviewers,organizer,application,job_interview_stage, interviewers,organizer,job_interview_stage, job_interview_stage, organizer, organizer,application, organizer,application,job_interview_stage, organizer,job_interview_stage]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **jobInterviewStageId** | **String**| If provided, will only return interviews at this stage. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
@@ -103,7 +101,7 @@ Name | Type | Description  | Notes
 
 <a name="interviewsRetrieve"></a>
 # **interviewsRetrieve**
-> ScheduledInterview interviewsRetrieve(xAccountToken, id, expand, includeRemoteData)
+> ScheduledInterview interviewsRetrieve(xAccountToken, id, includeRemoteData)
 
 
 
@@ -133,10 +131,9 @@ public class Example {
     InterviewsApi apiInstance = new InterviewsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
-    String expand = "interviewers,organizer,application,job_interview_stage"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
-      ScheduledInterview result = apiInstance.interviewsRetrieve(xAccountToken, id, expand, includeRemoteData);
+      ScheduledInterview result = apiInstance.interviewsRetrieve(xAccountToken, id, includeRemoteData);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InterviewsApi#interviewsRetrieve");
@@ -155,7 +152,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
- **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: application, application,job_interview_stage, interviewers, interviewers,application, interviewers,application,job_interview_stage, interviewers,job_interview_stage, interviewers,organizer, interviewers,organizer,application, interviewers,organizer,application,job_interview_stage, interviewers,organizer,job_interview_stage, job_interview_stage, organizer, organizer,application, organizer,application,job_interview_stage, organizer,job_interview_stage]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

@@ -30,7 +30,7 @@ import merge_ats_client.model.RemoteUser;
 /**
  * PaginatedRemoteUserList
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class PaginatedRemoteUserList {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -140,7 +140,6 @@ public class PaginatedRemoteUserList {
   public int hashCode() {
     return Objects.hash(next, previous, results);
   }
-
 
   @Override
   public String toString() {

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * LinkToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T11:45:43.170069-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
 public class LinkToken {
   public static final String SERIALIZED_NAME_LINK_TOKEN = "link_token";
   @SerializedName(SERIALIZED_NAME_LINK_TOKEN)
@@ -99,7 +99,6 @@ public class LinkToken {
   public int hashCode() {
     return Objects.hash(linkToken, integrationName);
   }
-
 
   @Override
   public String toString() {
