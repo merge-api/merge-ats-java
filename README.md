@@ -1,10 +1,10 @@
-# merge-ats-client
+# merge-hris-client
 
-Merge ATS API
+Merge HRIS API
 - API version: 1.0
-  - Build date: 2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]
+  - Build date: 2021-06-29T16:57:31.918199-07:00[America/Los_Angeles]
 
-The unified API for building rich integrations with multiple Applicant Tracking System platforms.
+The unified API for building rich integrations with multiple HR Information System platforms.
 
   For more information, please visit [https://www.merge.dev/](https://www.merge.dev/)
 
@@ -39,8 +39,8 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>merge</groupId>
-  <artifactId>merge-ats-client</artifactId>
+  <groupId>dev.merge</groupId>
+  <artifactId>merge-hris-client</artifactId>
   <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "merge:merge-ats-client:1.0.0"
+compile "dev.merge:merge-hris-client:1.0.0"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.0.0.jar`
+* `target/merge-hris-client-1.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -74,17 +74,17 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 // Import classes:
-import merge_ats_client.ApiClient;
-import merge_ats_client.ApiException;
-import merge_ats_client.Configuration;
-import merge_ats_client.auth.*;
-import merge_ats_client.models.*;
-import merge_ats_client.api.AccountTokenApi;
+import merge_hris_client.ApiClient;
+import merge_hris_client.ApiException;
+import merge_hris_client.Configuration;
+import merge_hris_client.auth.*;
+import merge_hris_client.models.*;
+import java.merge_hris_client.api.AccountTokenApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    defaultClient.setBasePath("https://api.merge.dev/api/hris/v1");
     
     // Configure API key authorization: tokenAuth
     ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
@@ -111,125 +111,103 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.merge.dev/api/ats/v1*
+All URIs are relative to *https://api.merge.dev/api/hris/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountTokenApi* | [**accountTokenRetrieve**](docs/AccountTokenApi.md#accountTokenRetrieve) | **GET** /account-token/{public_token} | 
-*ActivitiesApi* | [**activitiesList**](docs/ActivitiesApi.md#activitiesList) | **GET** /activities | 
-*ActivitiesApi* | [**activitiesRetrieve**](docs/ActivitiesApi.md#activitiesRetrieve) | **GET** /activities/{id} | 
-*ApplicationsApi* | [**applicationsCreate**](docs/ApplicationsApi.md#applicationsCreate) | **POST** /applications | 
-*ApplicationsApi* | [**applicationsList**](docs/ApplicationsApi.md#applicationsList) | **GET** /applications | 
-*ApplicationsApi* | [**applicationsPartialUpdate**](docs/ApplicationsApi.md#applicationsPartialUpdate) | **PATCH** /applications/{id} | 
-*ApplicationsApi* | [**applicationsRetrieve**](docs/ApplicationsApi.md#applicationsRetrieve) | **GET** /applications/{id} | 
-*AttachmentsApi* | [**attachmentsCreate**](docs/AttachmentsApi.md#attachmentsCreate) | **POST** /attachments | 
-*AttachmentsApi* | [**attachmentsList**](docs/AttachmentsApi.md#attachmentsList) | **GET** /attachments | 
-*AttachmentsApi* | [**attachmentsRetrieve**](docs/AttachmentsApi.md#attachmentsRetrieve) | **GET** /attachments/{id} | 
 *AvailableActionsApi* | [**availableActionsRetrieve**](docs/AvailableActionsApi.md#availableActionsRetrieve) | **GET** /available-actions | 
-*CandidatesApi* | [**candidatesCreate**](docs/CandidatesApi.md#candidatesCreate) | **POST** /candidates | 
-*CandidatesApi* | [**candidatesList**](docs/CandidatesApi.md#candidatesList) | **GET** /candidates | 
-*CandidatesApi* | [**candidatesRetrieve**](docs/CandidatesApi.md#candidatesRetrieve) | **GET** /candidates/{id} | 
-*DepartmentsApi* | [**departmentsList**](docs/DepartmentsApi.md#departmentsList) | **GET** /departments | 
-*DepartmentsApi* | [**departmentsRetrieve**](docs/DepartmentsApi.md#departmentsRetrieve) | **GET** /departments/{id} | 
-*EeocsApi* | [**eeocsList**](docs/EeocsApi.md#eeocsList) | **GET** /eeocs | 
-*EeocsApi* | [**eeocsRetrieve**](docs/EeocsApi.md#eeocsRetrieve) | **GET** /eeocs/{id} | 
+*BenefitsApi* | [**benefitsList**](docs/BenefitsApi.md#benefitsList) | **GET** /benefits | 
+*BenefitsApi* | [**benefitsRetrieve**](docs/BenefitsApi.md#benefitsRetrieve) | **GET** /benefits/{id} | 
+*CompaniesApi* | [**companiesList**](docs/CompaniesApi.md#companiesList) | **GET** /companies | 
+*CompaniesApi* | [**companiesRetrieve**](docs/CompaniesApi.md#companiesRetrieve) | **GET** /companies/{id} | 
+*EmployeePayrollRunsApi* | [**employeePayrollRunsList**](docs/EmployeePayrollRunsApi.md#employeePayrollRunsList) | **GET** /employee-payroll-runs | 
+*EmployeePayrollRunsApi* | [**employeePayrollRunsRetrieve**](docs/EmployeePayrollRunsApi.md#employeePayrollRunsRetrieve) | **GET** /employee-payroll-runs/{id} | 
+*EmployeesApi* | [**employeesCreate**](docs/EmployeesApi.md#employeesCreate) | **POST** /employees | 
+*EmployeesApi* | [**employeesList**](docs/EmployeesApi.md#employeesList) | **GET** /employees | 
+*EmployeesApi* | [**employeesRetrieve**](docs/EmployeesApi.md#employeesRetrieve) | **GET** /employees/{id} | 
+*EmploymentsApi* | [**employmentsCreate**](docs/EmploymentsApi.md#employmentsCreate) | **POST** /employments | 
+*EmploymentsApi* | [**employmentsList**](docs/EmploymentsApi.md#employmentsList) | **GET** /employments | 
+*EmploymentsApi* | [**employmentsRetrieve**](docs/EmploymentsApi.md#employmentsRetrieve) | **GET** /employments/{id} | 
 *GenerateKeyApi* | [**generateKeyCreate**](docs/GenerateKeyApi.md#generateKeyCreate) | **POST** /generate-key | 
-*InterviewsApi* | [**interviewsList**](docs/InterviewsApi.md#interviewsList) | **GET** /interviews | 
-*InterviewsApi* | [**interviewsRetrieve**](docs/InterviewsApi.md#interviewsRetrieve) | **GET** /interviews/{id} | 
-*JobInterviewStagesApi* | [**jobInterviewStagesList**](docs/JobInterviewStagesApi.md#jobInterviewStagesList) | **GET** /job-interview-stages | 
-*JobInterviewStagesApi* | [**jobInterviewStagesRetrieve**](docs/JobInterviewStagesApi.md#jobInterviewStagesRetrieve) | **GET** /job-interview-stages/{id} | 
-*JobsApi* | [**jobsList**](docs/JobsApi.md#jobsList) | **GET** /jobs | 
-*JobsApi* | [**jobsRetrieve**](docs/JobsApi.md#jobsRetrieve) | **GET** /jobs/{id} | 
 *LinkTokenApi* | [**linkTokenCreate**](docs/LinkTokenApi.md#linkTokenCreate) | **POST** /link-token | 
-*OffersApi* | [**offersList**](docs/OffersApi.md#offersList) | **GET** /offers | 
-*OffersApi* | [**offersRetrieve**](docs/OffersApi.md#offersRetrieve) | **GET** /offers/{id} | 
-*OfficesApi* | [**officesList**](docs/OfficesApi.md#officesList) | **GET** /offices | 
-*OfficesApi* | [**officesRetrieve**](docs/OfficesApi.md#officesRetrieve) | **GET** /offices/{id} | 
+*LocationsApi* | [**locationsList**](docs/LocationsApi.md#locationsList) | **GET** /locations | 
+*LocationsApi* | [**locationsRetrieve**](docs/LocationsApi.md#locationsRetrieve) | **GET** /locations/{id} | 
 *PassthroughApi* | [**passthroughCreate**](docs/PassthroughApi.md#passthroughCreate) | **POST** /passthrough | 
+*PayrollRunsApi* | [**payrollRunsList**](docs/PayrollRunsApi.md#payrollRunsList) | **GET** /payroll-runs | 
+*PayrollRunsApi* | [**payrollRunsRetrieve**](docs/PayrollRunsApi.md#payrollRunsRetrieve) | **GET** /payroll-runs/{id} | 
 *RegenerateKeyApi* | [**regenerateKeyCreate**](docs/RegenerateKeyApi.md#regenerateKeyCreate) | **POST** /regenerate-key | 
-*RejectReasonsApi* | [**rejectReasonsList**](docs/RejectReasonsApi.md#rejectReasonsList) | **GET** /reject-reasons | 
-*RejectReasonsApi* | [**rejectReasonsRetrieve**](docs/RejectReasonsApi.md#rejectReasonsRetrieve) | **GET** /reject-reasons/{id} | 
-*ScorecardsApi* | [**scorecardsList**](docs/ScorecardsApi.md#scorecardsList) | **GET** /scorecards | 
-*ScorecardsApi* | [**scorecardsRetrieve**](docs/ScorecardsApi.md#scorecardsRetrieve) | **GET** /scorecards/{id} | 
+*SyncStatusApi* | [**syncStatusList**](docs/SyncStatusApi.md#syncStatusList) | **GET** /sync-status | 
 *SyncStatusApi* | [**syncStatusResyncCreate**](docs/SyncStatusApi.md#syncStatusResyncCreate) | **POST** /sync-status/resync | 
-*SyncStatusApi* | [**syncStatusRetrieve**](docs/SyncStatusApi.md#syncStatusRetrieve) | **GET** /sync-status | 
-*TagsApi* | [**tagsList**](docs/TagsApi.md#tagsList) | **GET** /tags | 
-*UsersApi* | [**usersList**](docs/UsersApi.md#usersList) | **GET** /users | 
-*UsersApi* | [**usersRetrieve**](docs/UsersApi.md#usersRetrieve) | **GET** /users/{id} | 
+*TeamsApi* | [**teamsList**](docs/TeamsApi.md#teamsList) | **GET** /teams | 
+*TeamsApi* | [**teamsRetrieve**](docs/TeamsApi.md#teamsRetrieve) | **GET** /teams/{id} | 
+*TimeOffApi* | [**timeOffList**](docs/TimeOffApi.md#timeOffList) | **GET** /time-off | 
+*TimeOffApi* | [**timeOffRetrieve**](docs/TimeOffApi.md#timeOffRetrieve) | **GET** /time-off/{id} | 
+*TimeOffBalanceApi* | [**timeOffBalanceList**](docs/TimeOffBalanceApi.md#timeOffBalanceList) | **GET** /time-off-balance | 
+*TimeOffBalanceApi* | [**timeOffBalanceRetrieve**](docs/TimeOffBalanceApi.md#timeOffBalanceRetrieve) | **GET** /time-off-balance/{id} | 
 
 
 ## Documentation for Models
 
- - [AccessRoleEnum](docs/AccessRoleEnum.md)
  - [AccountIntegration](docs/AccountIntegration.md)
  - [AccountToken](docs/AccountToken.md)
- - [Activity](docs/Activity.md)
- - [ActivityTypeEnum](docs/ActivityTypeEnum.md)
- - [Application](docs/Application.md)
- - [ApplicationRequest](docs/ApplicationRequest.md)
- - [Attachment](docs/Attachment.md)
- - [AttachmentRequest](docs/AttachmentRequest.md)
- - [AttachmentTypeEnum](docs/AttachmentTypeEnum.md)
  - [AvailableActions](docs/AvailableActions.md)
- - [Candidate](docs/Candidate.md)
- - [CandidateRequest](docs/CandidateRequest.md)
+ - [Benefit](docs/Benefit.md)
+ - [BenefitPlanTypeEnum](docs/BenefitPlanTypeEnum.md)
+ - [Company](docs/Company.md)
+ - [CountryEnum](docs/CountryEnum.md)
  - [DataPassthroughRequest](docs/DataPassthroughRequest.md)
- - [Department](docs/Department.md)
- - [DisabilityStatusEnum](docs/DisabilityStatusEnum.md)
- - [EEOC](docs/EEOC.md)
- - [EmailAddress](docs/EmailAddress.md)
- - [EmailAddressRequest](docs/EmailAddressRequest.md)
- - [EmailAddressTypeEnum](docs/EmailAddressTypeEnum.md)
+ - [Deduction](docs/Deduction.md)
+ - [Earning](docs/Earning.md)
+ - [Employee](docs/Employee.md)
+ - [EmployeePayrollRun](docs/EmployeePayrollRun.md)
+ - [EmployeeRequest](docs/EmployeeRequest.md)
+ - [Employment](docs/Employment.md)
+ - [EmploymentRequest](docs/EmploymentRequest.md)
+ - [EmploymentStatusEnum](docs/EmploymentStatusEnum.md)
+ - [EmploymentTypeEnum](docs/EmploymentTypeEnum.md)
  - [EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
+ - [EthnicityEnum](docs/EthnicityEnum.md)
+ - [FlsaStatusEnum](docs/FlsaStatusEnum.md)
  - [GenderEnum](docs/GenderEnum.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
- - [Job](docs/Job.md)
- - [JobInterviewStage](docs/JobInterviewStage.md)
- - [JobStatusEnum](docs/JobStatusEnum.md)
  - [LinkToken](docs/LinkToken.md)
+ - [Location](docs/Location.md)
+ - [MaritalStatusEnum](docs/MaritalStatusEnum.md)
  - [MethodEnum](docs/MethodEnum.md)
  - [ModelOperation](docs/ModelOperation.md)
- - [Offer](docs/Offer.md)
- - [OfferStatusEnum](docs/OfferStatusEnum.md)
- - [Office](docs/Office.md)
- - [OverallRecommendationEnum](docs/OverallRecommendationEnum.md)
- - [PaginatedActivityList](docs/PaginatedActivityList.md)
- - [PaginatedApplicationList](docs/PaginatedApplicationList.md)
- - [PaginatedAttachmentList](docs/PaginatedAttachmentList.md)
- - [PaginatedCandidateList](docs/PaginatedCandidateList.md)
- - [PaginatedDepartmentList](docs/PaginatedDepartmentList.md)
- - [PaginatedEEOCList](docs/PaginatedEEOCList.md)
- - [PaginatedJobInterviewStageList](docs/PaginatedJobInterviewStageList.md)
- - [PaginatedJobList](docs/PaginatedJobList.md)
- - [PaginatedOfferList](docs/PaginatedOfferList.md)
- - [PaginatedOfficeList](docs/PaginatedOfficeList.md)
- - [PaginatedRejectReasonList](docs/PaginatedRejectReasonList.md)
- - [PaginatedRemoteUserList](docs/PaginatedRemoteUserList.md)
- - [PaginatedScheduledInterviewList](docs/PaginatedScheduledInterviewList.md)
- - [PaginatedScorecardList](docs/PaginatedScorecardList.md)
- - [PaginatedTagList](docs/PaginatedTagList.md)
- - [PatchedApplicationRequest](docs/PatchedApplicationRequest.md)
- - [PhoneNumber](docs/PhoneNumber.md)
- - [PhoneNumberRequest](docs/PhoneNumberRequest.md)
- - [PhoneNumberTypeEnum](docs/PhoneNumberTypeEnum.md)
- - [RaceEnum](docs/RaceEnum.md)
- - [RejectReason](docs/RejectReason.md)
+ - [PaginatedBenefitList](docs/PaginatedBenefitList.md)
+ - [PaginatedCompanyList](docs/PaginatedCompanyList.md)
+ - [PaginatedEmployeeList](docs/PaginatedEmployeeList.md)
+ - [PaginatedEmployeePayrollRunList](docs/PaginatedEmployeePayrollRunList.md)
+ - [PaginatedEmploymentList](docs/PaginatedEmploymentList.md)
+ - [PaginatedLocationList](docs/PaginatedLocationList.md)
+ - [PaginatedPayrollRunList](docs/PaginatedPayrollRunList.md)
+ - [PaginatedSyncStatusList](docs/PaginatedSyncStatusList.md)
+ - [PaginatedTeamList](docs/PaginatedTeamList.md)
+ - [PaginatedTimeOffBalanceList](docs/PaginatedTimeOffBalanceList.md)
+ - [PaginatedTimeOffList](docs/PaginatedTimeOffList.md)
+ - [PayCurrencyEnum](docs/PayCurrencyEnum.md)
+ - [PayFrequencyEnum](docs/PayFrequencyEnum.md)
+ - [PayPeriodEnum](docs/PayPeriodEnum.md)
+ - [PayrollRun](docs/PayrollRun.md)
  - [RemoteData](docs/RemoteData.md)
  - [RemoteDataRequest](docs/RemoteDataRequest.md)
  - [RemoteKey](docs/RemoteKey.md)
  - [RemoteKeyForRegenerationRequest](docs/RemoteKeyForRegenerationRequest.md)
  - [RemoteResponse](docs/RemoteResponse.md)
- - [RemoteUser](docs/RemoteUser.md)
- - [ScheduledInterview](docs/ScheduledInterview.md)
- - [ScheduledInterviewStatusEnum](docs/ScheduledInterviewStatusEnum.md)
- - [Scorecard](docs/Scorecard.md)
+ - [RequestTypeEnum](docs/RequestTypeEnum.md)
+ - [RunStateEnum](docs/RunStateEnum.md)
+ - [RunTypeEnum](docs/RunTypeEnum.md)
  - [SyncStatus](docs/SyncStatus.md)
- - [Tag](docs/Tag.md)
- - [Url](docs/Url.md)
- - [UrlRequest](docs/UrlRequest.md)
- - [UrlTypeEnum](docs/UrlTypeEnum.md)
- - [VeteranStatusEnum](docs/VeteranStatusEnum.md)
- - [VisibilityEnum](docs/VisibilityEnum.md)
+ - [SyncStatusStatusEnum](docs/SyncStatusStatusEnum.md)
+ - [Tax](docs/Tax.md)
+ - [Team](docs/Team.md)
+ - [TimeOff](docs/TimeOff.md)
+ - [TimeOffBalance](docs/TimeOffBalance.md)
+ - [TimeOffStatusEnum](docs/TimeOffStatusEnum.md)
+ - [TypeEnum](docs/TypeEnum.md)
+ - [UnitsEnum](docs/UnitsEnum.md)
 
 
 ## Documentation for Authorization

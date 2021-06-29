@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>merge</groupId>
-    <artifactId>merge-ats-client</artifactId>
+    <groupId>dev.merge</groupId>
+    <artifactId>merge-hris-client</artifactId>
     <packaging>jar</packaging>
-    <name>merge-ats-client</name>
+    <name>merge-hris-client</name>
     <version>1.0.0</version>
-    <url>https://github.com/merge-api/merge-ats-java</url>
-    <description>Merge ATS Client</description>
+    <url>https://github.com/merge-api/merge-hris-java</url>
+    <description>Merge HRIS Client</description>
     <scm>
         <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
         <developerConnection>scm:git:git@github.com:openapitools/openapi-generator.git</developerConnection>

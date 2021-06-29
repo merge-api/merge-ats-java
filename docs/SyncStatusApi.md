@@ -1,35 +1,35 @@
 # SyncStatusApi
 
-All URIs are relative to *https://api.merge.dev/api/ats/v1*
+All URIs are relative to *https://api.merge.dev/api/hris/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**syncStatusList**](SyncStatusApi.md#syncStatusList) | **GET** /sync-status | 
 [**syncStatusResyncCreate**](SyncStatusApi.md#syncStatusResyncCreate) | **POST** /sync-status/resync | 
-[**syncStatusRetrieve**](SyncStatusApi.md#syncStatusRetrieve) | **GET** /sync-status | 
 
 
-<a name="syncStatusResyncCreate"></a>
-# **syncStatusResyncCreate**
-> SyncStatus syncStatusResyncCreate(xAccountToken)
+<a name="syncStatusList"></a>
+# **syncStatusList**
+> PaginatedSyncStatusList syncStatusList(xAccountToken, cursor, pageSize)
 
 
 
-Force resync of all models.
+Get syncing status.
 
 ### Example
 ```java
 // Import classes:
-import merge_ats_client.ApiClient;
-import merge_ats_client.ApiException;
-import merge_ats_client.Configuration;
-import merge_ats_client.auth.*;
-import merge_ats_client.models.*;
-import merge_ats_client.api.SyncStatusApi;
+import merge_hris_client.ApiClient;
+import merge_hris_client.ApiException;
+import merge_hris_client.Configuration;
+import merge_hris_client.auth.*;
+import merge_hris_client.models.*;
+import java.merge_hris_client.api.SyncStatusApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    defaultClient.setBasePath("https://api.merge.dev/api/hris/v1");
     
     // Configure API key authorization: tokenAuth
     ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
@@ -39,11 +39,13 @@ public class Example {
 
     SyncStatusApi apiInstance = new SyncStatusApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
+    Integer cursor = 56; // Integer | The pagination cursor value.
+    Integer pageSize = 56; // Integer | Number of results to return per page.
     try {
-      SyncStatus result = apiInstance.syncStatusResyncCreate(xAccountToken);
+      PaginatedSyncStatusList result = apiInstance.syncStatusList(xAccountToken, cursor, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SyncStatusApi#syncStatusResyncCreate");
+      System.err.println("Exception when calling SyncStatusApi#syncStatusList");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -58,10 +60,12 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
+ **cursor** | **Integer**| The pagination cursor value. | [optional]
+ **pageSize** | **Integer**| Number of results to return per page. | [optional]
 
 ### Return type
 
-[**SyncStatus**](SyncStatus.md)
+[**PaginatedSyncStatusList**](PaginatedSyncStatusList.md)
 
 ### Authorization
 
@@ -77,28 +81,28 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  -  |
 
-<a name="syncStatusRetrieve"></a>
-# **syncStatusRetrieve**
-> SyncStatus syncStatusRetrieve(xAccountToken)
+<a name="syncStatusResyncCreate"></a>
+# **syncStatusResyncCreate**
+> SyncStatus syncStatusResyncCreate(xAccountToken)
 
 
 
-Get syncing status.
+Force resync of all models.
 
 ### Example
 ```java
 // Import classes:
-import merge_ats_client.ApiClient;
-import merge_ats_client.ApiException;
-import merge_ats_client.Configuration;
-import merge_ats_client.auth.*;
-import merge_ats_client.models.*;
-import merge_ats_client.api.SyncStatusApi;
+import merge_hris_client.ApiClient;
+import merge_hris_client.ApiException;
+import merge_hris_client.Configuration;
+import merge_hris_client.auth.*;
+import merge_hris_client.models.*;
+import java.merge_hris_client.api.SyncStatusApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    defaultClient.setBasePath("https://api.merge.dev/api/hris/v1");
     
     // Configure API key authorization: tokenAuth
     ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
@@ -109,10 +113,10 @@ public class Example {
     SyncStatusApi apiInstance = new SyncStatusApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      SyncStatus result = apiInstance.syncStatusRetrieve(xAccountToken);
+      SyncStatus result = apiInstance.syncStatusResyncCreate(xAccountToken);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SyncStatusApi#syncStatusRetrieve");
+      System.err.println("Exception when calling SyncStatusApi#syncStatusResyncCreate");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'java'
 
-group = 'merge'
+group = 'dev.merge'
 version = '1.0.0'
 
 buildscript {
@@ -87,7 +87,7 @@ if(hasProperty('target') && target == 'android') {
 
     install {
         repositories.mavenInstaller {
-            pom.artifactId = 'merge-ats-client'
+            pom.artifactId = 'merge-hris-client'
         }
     }
 

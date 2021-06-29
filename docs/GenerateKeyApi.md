@@ -1,6 +1,6 @@
 # GenerateKeyApi
 
-All URIs are relative to *https://api.merge.dev/api/ats/v1*
+All URIs are relative to *https://api.merge.dev/api/hris/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,17 +18,17 @@ Create a remote key.
 ### Example
 ```java
 // Import classes:
-import merge_ats_client.ApiClient;
-import merge_ats_client.ApiException;
-import merge_ats_client.Configuration;
-import merge_ats_client.auth.*;
-import merge_ats_client.models.*;
-import merge_ats_client.api.GenerateKeyApi;
+import merge_hris_client.ApiClient;
+import merge_hris_client.ApiException;
+import merge_hris_client.Configuration;
+import merge_hris_client.auth.*;
+import merge_hris_client.models.*;
+import java.merge_hris_client.api.GenerateKeyApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    defaultClient.setBasePath("https://api.merge.dev/api/hris/v1");
     
     // Configure API key authorization: tokenAuth
     ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
