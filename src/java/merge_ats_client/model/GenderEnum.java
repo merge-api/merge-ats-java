@@ -1,6 +1,6 @@
 /*
- * Merge HRIS API
- * The unified API for building rich integrations with multiple HR Information System platforms.
+ * Merge ATS API
+ * The unified API for building rich integrations with multiple Applicant Tracking System platforms.
  *
  * The version of the OpenAPI document: 1.0
  * Contact: hello@merge.dev
@@ -37,7 +37,7 @@ public enum GenderEnum {
   
   OTHER("OTHER"),
   
-  PREFER_NOT_TO_DISCLOSE("PREFER_NOT_TO_DISCLOSE");
+  DECLINE_TO_SELF_IDENTIFY("DECLINE_TO_SELF_IDENTIFY");
 
   private String value;
 

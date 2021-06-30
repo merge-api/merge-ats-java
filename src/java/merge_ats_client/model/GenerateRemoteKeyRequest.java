@@ -1,6 +1,6 @@
 /*
- * Merge HRIS API
- * The unified API for building rich integrations with multiple HR Information System platforms.
+ * Merge ATS API
+ * The unified API for building rich integrations with multiple Applicant Tracking System platforms.
  *
  * The version of the OpenAPI document: 1.0
  * Contact: hello@merge.dev
@@ -28,7 +28,7 @@ import java.io.IOException;
  * # The GenerateRemoteKey Object ### Description The &#x60;GenerateRemoteKey&#x60; object is used to represent a request for a new remote key.  ### Usage Example Post a &#x60;GenerateRemoteKey&#x60; to create a new remote key.
  */
 @ApiModel(description = "# The GenerateRemoteKey Object ### Description The `GenerateRemoteKey` object is used to represent a request for a new remote key.  ### Usage Example Post a `GenerateRemoteKey` to create a new remote key.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-29T17:01:14.011855-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-29T17:02:31.142739-07:00[America/Los_Angeles]")
 public class GenerateRemoteKeyRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)

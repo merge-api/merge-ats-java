@@ -1,6 +1,6 @@
 /*
- * Merge HRIS API
- * The unified API for building rich integrations with multiple HR Information System platforms.
+ * Merge ATS API
+ * The unified API for building rich integrations with multiple Applicant Tracking System platforms.
  *
  * The version of the OpenAPI document: 1.0
  * Contact: hello@merge.dev
@@ -31,7 +31,7 @@ import java.util.Map;
  * # The RemoteResponse Object ### Description The &#x60;RemoteResponse&#x60; object is used to represent information returned from a third-party endpoint.  ### Usage Example View the &#x60;RemoteResponse&#x60; returned from your &#x60;DataPassthrough&#x60;.
  */
 @ApiModel(description = "# The RemoteResponse Object ### Description The `RemoteResponse` object is used to represent information returned from a third-party endpoint.  ### Usage Example View the `RemoteResponse` returned from your `DataPassthrough`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-29T17:01:14.011855-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-29T17:02:31.142739-07:00[America/Los_Angeles]")
 public class RemoteResponse {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)

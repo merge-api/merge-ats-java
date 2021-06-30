@@ -1,6 +1,6 @@
 # AvailableActionsApi
 
-All URIs are relative to *https://api.merge.dev/api/hris/v1*
+All URIs are relative to *https://api.merge.dev/api/ats/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ import java.merge_ats_client.api.AvailableActionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.merge.dev/api/hris/v1");
+    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
     // Configure API key authorization: tokenAuth
     ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");

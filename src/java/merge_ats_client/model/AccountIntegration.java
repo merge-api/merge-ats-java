@@ -1,6 +1,6 @@
 /*
- * Merge HRIS API
- * The unified API for building rich integrations with multiple HR Information System platforms.
+ * Merge ATS API
+ * The unified API for building rich integrations with multiple Applicant Tracking System platforms.
  *
  * The version of the OpenAPI document: 1.0
  * Contact: hello@merge.dev
@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * AccountIntegration
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-29T17:01:14.011855-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-29T17:02:31.142739-07:00[America/Los_Angeles]")
 public class AccountIntegration {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)

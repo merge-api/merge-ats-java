@@ -4,13 +4,89 @@ All URIs are relative to *https://api.merge.dev/api/ats/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**interviewsCreate**](InterviewsApi.md#interviewsCreate) | **POST** /interviews | 
 [**interviewsList**](InterviewsApi.md#interviewsList) | **GET** /interviews | 
 [**interviewsRetrieve**](InterviewsApi.md#interviewsRetrieve) | **GET** /interviews/{id} | 
 
 
+<a name="interviewsCreate"></a>
+# **interviewsCreate**
+> ScheduledInterview interviewsCreate(xAccountToken, remoteUserId, runAsync, scheduledInterviewRequest)
+
+
+
+Creates a &#x60;ScheduledInterview&#x60; object with the given values.
+
+### Example
+```java
+// Import classes:
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import java.merge_ats_client.api.InterviewsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //tokenAuth.setApiKeyPrefix("Token");
+
+    InterviewsApi apiInstance = new InterviewsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
+    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
+    Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
+    ScheduledInterviewRequest scheduledInterviewRequest = new ScheduledInterviewRequest(); // ScheduledInterviewRequest | 
+    try {
+      ScheduledInterview result = apiInstance.interviewsCreate(xAccountToken, remoteUserId, runAsync, scheduledInterviewRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling InterviewsApi#interviewsCreate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
+ **remoteUserId** | **String**| The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. | [optional]
+ **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
+ **scheduledInterviewRequest** | [**ScheduledInterviewRequest**](ScheduledInterviewRequest.md)|  | [optional]
+
+### Return type
+
+[**ScheduledInterview**](ScheduledInterview.md)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+
 <a name="interviewsList"></a>
 # **interviewsList**
-> PaginatedScheduledInterviewList interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId)
+> PaginatedScheduledInterviewList interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId)
 
 
 
@@ -24,7 +100,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.InterviewsApi;
+import java.merge_ats_client.api.InterviewsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -43,6 +119,7 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
+    String expand = "interviewers,organizer,application,job_interview_stage"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String jobInterviewStageId = "jobInterviewStageId_example"; // String | If provided, will only return interviews at this stage.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
@@ -51,7 +128,7 @@ public class Example {
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedScheduledInterviewList result = apiInstance.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
+      PaginatedScheduledInterviewList result = apiInstance.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InterviewsApi#interviewsList");
@@ -73,6 +150,7 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
+ **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: application, application,job_interview_stage, interviewers, interviewers,application, interviewers,application,job_interview_stage, interviewers,job_interview_stage, interviewers,organizer, interviewers,organizer,application, interviewers,organizer,application,job_interview_stage, interviewers,organizer,job_interview_stage, job_interview_stage, organizer, organizer,application, organizer,application,job_interview_stage, organizer,job_interview_stage]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **jobInterviewStageId** | **String**| If provided, will only return interviews at this stage. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
@@ -101,7 +179,7 @@ Name | Type | Description  | Notes
 
 <a name="interviewsRetrieve"></a>
 # **interviewsRetrieve**
-> ScheduledInterview interviewsRetrieve(xAccountToken, id, includeRemoteData)
+> ScheduledInterview interviewsRetrieve(xAccountToken, id, expand, includeRemoteData)
 
 
 
@@ -115,7 +193,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.InterviewsApi;
+import java.merge_ats_client.api.InterviewsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -131,9 +209,10 @@ public class Example {
     InterviewsApi apiInstance = new InterviewsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
+    String expand = "interviewers,organizer,application,job_interview_stage"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
-      ScheduledInterview result = apiInstance.interviewsRetrieve(xAccountToken, id, includeRemoteData);
+      ScheduledInterview result = apiInstance.interviewsRetrieve(xAccountToken, id, expand, includeRemoteData);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InterviewsApi#interviewsRetrieve");
@@ -152,6 +231,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
+ **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: application, application,job_interview_stage, interviewers, interviewers,application, interviewers,application,job_interview_stage, interviewers,job_interview_stage, interviewers,organizer, interviewers,organizer,application, interviewers,organizer,application,job_interview_stage, interviewers,organizer,job_interview_stage, job_interview_stage, organizer, organizer,application, organizer,application,job_interview_stage, organizer,job_interview_stage]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

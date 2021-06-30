@@ -25,7 +25,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.AttachmentsApi;
+import java.merge_ats_client.api.AttachmentsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -40,7 +40,7 @@ public class Example {
 
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
+    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     AttachmentRequest attachmentRequest = new AttachmentRequest(); // AttachmentRequest | 
     try {
@@ -62,7 +62,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **remoteUserId** | **String**| The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. |
+ **remoteUserId** | **String**| The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
  **attachmentRequest** | [**AttachmentRequest**](AttachmentRequest.md)|  | [optional]
 
@@ -100,7 +100,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.AttachmentsApi;
+import java.merge_ats_client.api.AttachmentsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -187,7 +187,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.AttachmentsApi;
+import java.merge_ats_client.api.AttachmentsApi;
 
 public class Example {
   public static void main(String[] args) {
