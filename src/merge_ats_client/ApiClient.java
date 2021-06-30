@@ -1,6 +1,6 @@
 /*
- * Merge ATS API
- * The unified API for building rich integrations with multiple Applicant Tracking System platforms.
+ * Merge HRIS API
+ * The unified API for building rich integrations with multiple HR Information System platforms.
  *
  * The version of the OpenAPI document: 1.0
  * Contact: hello@merge.dev
@@ -56,7 +56,7 @@ import merge_ats_client.auth.ApiKeyAuth;
 
 public class ApiClient {
 
-    private String basePath = "https://api.merge.dev/api/ats/v1";
+    private String basePath = "https://api.merge.dev/api/hris/v1";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private Map<String, String> defaultCookieMap = new HashMap<String, String>();
@@ -142,7 +142,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://api.merge.dev/api/ats/v1
+     * @param basePath Base path of the URL (e.g https://api.merge.dev/api/hris/v1
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {

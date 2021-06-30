@@ -1,6 +1,6 @@
 /*
- * Merge ATS API
- * The unified API for building rich integrations with multiple Applicant Tracking System platforms.
+ * Merge HRIS API
+ * The unified API for building rich integrations with multiple HR Information System platforms.
  *
  * The version of the OpenAPI document: 1.0
  * Contact: hello@merge.dev

@@ -19,12 +19,12 @@ Get syncing status.
 ### Example
 ```java
 // Import classes:
-import merge_hris_client.ApiClient;
-import merge_hris_client.ApiException;
-import merge_hris_client.Configuration;
-import merge_hris_client.auth.*;
-import merge_hris_client.models.*;
-import java.merge_hris_client.api.SyncStatusApi;
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import java.merge_ats_client.api.SyncStatusApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -92,12 +92,12 @@ Force resync of all models.
 ### Example
 ```java
 // Import classes:
-import merge_hris_client.ApiClient;
-import merge_hris_client.ApiException;
-import merge_hris_client.Configuration;
-import merge_hris_client.auth.*;
-import merge_hris_client.models.*;
-import java.merge_hris_client.api.SyncStatusApi;
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import java.merge_ats_client.api.SyncStatusApi;
 
 public class Example {
   public static void main(String[] args) {

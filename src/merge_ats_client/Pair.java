@@ -1,6 +1,6 @@
 /*
- * Merge ATS API
- * The unified API for building rich integrations with multiple Applicant Tracking System platforms.
+ * Merge HRIS API
+ * The unified API for building rich integrations with multiple HR Information System platforms.
  *
  * The version of the OpenAPI document: 1.0
  * Contact: hello@merge.dev
@@ -13,7 +13,7 @@
 
 package merge_ats_client;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-29T17:01:14.011855-07:00[America/Los_Angeles]")
 public class Pair {
     private String name = "";
     private String value = "";

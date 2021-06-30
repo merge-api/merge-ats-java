@@ -19,12 +19,12 @@ Returns a list of &#x60;TimeOff&#x60; objects.
 ### Example
 ```java
 // Import classes:
-import merge_hris_client.ApiClient;
-import merge_hris_client.ApiException;
-import merge_hris_client.Configuration;
-import merge_hris_client.auth.*;
-import merge_hris_client.models.*;
-import java.merge_hris_client.api.TimeOffApi;
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import java.merge_ats_client.api.TimeOffApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -110,12 +110,12 @@ Returns an &#x60;TimeOff&#x60; object with the given &#x60;id&#x60;.
 ### Example
 ```java
 // Import classes:
-import merge_hris_client.ApiClient;
-import merge_hris_client.ApiException;
-import merge_hris_client.Configuration;
-import merge_hris_client.auth.*;
-import merge_hris_client.models.*;
-import java.merge_hris_client.api.TimeOffApi;
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import java.merge_ats_client.api.TimeOffApi;
 
 public class Example {
   public static void main(String[] args) {

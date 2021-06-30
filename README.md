@@ -1,8 +1,8 @@
-# merge-hris-client
+# merge-ats-client
 
 Merge HRIS API
 - API version: 1.0
-  - Build date: 2021-06-29T16:57:31.918199-07:00[America/Los_Angeles]
+  - Build date: 2021-06-29T17:01:14.011855-07:00[America/Los_Angeles]
 
 The unified API for building rich integrations with multiple HR Information System platforms.
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>dev.merge</groupId>
-  <artifactId>merge-hris-client</artifactId>
+  <artifactId>merge-ats-client</artifactId>
   <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.merge:merge-hris-client:1.0.0"
+compile "dev.merge:merge-ats-client:1.0.0"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-hris-client-1.0.0.jar`
+* `target/merge-ats-client-1.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -74,12 +74,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 // Import classes:
-import merge_hris_client.ApiClient;
-import merge_hris_client.ApiException;
-import merge_hris_client.Configuration;
-import merge_hris_client.auth.*;
-import merge_hris_client.models.*;
-import java.merge_hris_client.api.AccountTokenApi;
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import java.merge_ats_client.api.AccountTokenApi;
 
 public class Example {
   public static void main(String[] args) {

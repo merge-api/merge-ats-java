@@ -18,12 +18,12 @@ Create a remote key.
 ### Example
 ```java
 // Import classes:
-import merge_hris_client.ApiClient;
-import merge_hris_client.ApiException;
-import merge_hris_client.Configuration;
-import merge_hris_client.auth.*;
-import merge_hris_client.models.*;
-import java.merge_hris_client.api.GenerateKeyApi;
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import java.merge_ats_client.api.GenerateKeyApi;
 
 public class Example {
   public static void main(String[] args) {
