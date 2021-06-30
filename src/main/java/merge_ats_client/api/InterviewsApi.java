@@ -24,10 +24,7 @@ import merge_ats_client.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 
-
-import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedScheduledInterviewList;
 import merge_ats_client.model.ScheduledInterview;
 import java.util.UUID;

@@ -12,6 +12,7 @@
 
 
 package merge_ats_client.api;
+import
 
 import merge_ats_client.ApiException;
 import org.threeten.bp.OffsetDateTime;
