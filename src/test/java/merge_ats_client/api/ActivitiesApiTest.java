@@ -56,7 +56,7 @@ public class ActivitiesApiTest {
         Integer pageSize = null;
         String remoteId = null;
         String userId = null;
-        PaginatedActivityList response = api.activitiesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, userId);
+        PaginatedActivityList response = api.activitiesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, userId);
 
         // TODO: test validations
     }
@@ -75,7 +75,7 @@ public class ActivitiesApiTest {
         UUID id = null;
         String expand = null;
         Boolean includeRemoteData = null;
-        Activity response = api.activitiesRetrieve(xAccountToken, id, expand, includeRemoteData);
+        Activity response = api.activitiesRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }

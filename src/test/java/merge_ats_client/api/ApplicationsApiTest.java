@@ -81,7 +81,7 @@ public class ApplicationsApiTest {
         Integer pageSize = null;
         String rejectReasonId = null;
         String remoteId = null;
-        PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, expand, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
+        PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
 
         // TODO: test validations
     }
@@ -120,7 +120,7 @@ public class ApplicationsApiTest {
         UUID id = null;
         String expand = null;
         Boolean includeRemoteData = null;
-        Application response = api.applicationsRetrieve(xAccountToken, id, expand, includeRemoteData);
+        Application response = api.applicationsRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }

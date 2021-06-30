@@ -12,12 +12,13 @@
 
 
 package merge_ats_client.api;
-import
 
 import merge_ats_client.ApiException;
-import org.threeten.bp.OffsetDateTime;
+// import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedScheduledInterviewList;
 import merge_ats_client.model.ScheduledInterview;
+
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -59,7 +60,7 @@ public class InterviewsApiTest {
         String organizerId = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedScheduledInterviewList response = api.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
+        PaginatedScheduledInterviewList response = api.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -78,7 +79,7 @@ public class InterviewsApiTest {
         UUID id = null;
         String expand = null;
         Boolean includeRemoteData = null;
-        ScheduledInterview response = api.interviewsRetrieve(xAccountToken, id, expand, includeRemoteData);
+        ScheduledInterview response = api.interviewsRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }

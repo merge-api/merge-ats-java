@@ -58,7 +58,7 @@ public class ScorecardsApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedScorecardList response = api.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, expand, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedScorecardList response = api.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -77,7 +77,7 @@ public class ScorecardsApiTest {
         UUID id = null;
         String expand = null;
         Boolean includeRemoteData = null;
-        Scorecard response = api.scorecardsRetrieve(xAccountToken, id, expand, includeRemoteData);
+        Scorecard response = api.scorecardsRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }
