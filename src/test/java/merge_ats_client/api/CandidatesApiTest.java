@@ -75,7 +75,7 @@ public class CandidatesApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -94,7 +94,7 @@ public class CandidatesApiTest {
         UUID id = null;
         String expand = null;
         Boolean includeRemoteData = null;
-        Candidate response = api.candidatesRetrieve(xAccountToken, id, expand, includeRemoteData);
+        Candidate response = api.candidatesRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }

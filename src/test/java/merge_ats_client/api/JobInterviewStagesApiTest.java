@@ -56,7 +56,7 @@ public class JobInterviewStagesApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedJobInterviewStageList response = api.jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedJobInterviewStageList response = api.jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -75,7 +75,7 @@ public class JobInterviewStagesApiTest {
         UUID id = null;
         String expand = null;
         Boolean includeRemoteData = null;
-        JobInterviewStage response = api.jobInterviewStagesRetrieve(xAccountToken, id, expand, includeRemoteData);
+        JobInterviewStage response = api.jobInterviewStagesRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }

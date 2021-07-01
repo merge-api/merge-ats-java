@@ -21,15 +21,16 @@ import merge_ats_client.Configuration;
 import merge_ats_client.Pair;
 import merge_ats_client.ProgressRequestBody;
 import merge_ats_client.ProgressResponseBody;
+//import com.squareup.okhttp3.OkHttpClient;
+
 
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 
-
-import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedScheduledInterviewList;
 import merge_ats_client.model.ScheduledInterview;
+
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import java.lang.reflect.Type;

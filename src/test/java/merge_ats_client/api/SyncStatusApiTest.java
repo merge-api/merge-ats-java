@@ -29,39 +29,39 @@ import java.util.Map;
 @Ignore
 public class SyncStatusApiTest {
 
-    private final SyncStatusApi api = new SyncStatusApi();
+    // private final SyncStatusApi api = new SyncStatusApiTest();
 
     
-    /**
-     * 
-     *
-     * Force resync of all models.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void syncStatusResyncCreateTest() throws ApiException {
-        String xAccountToken = null;
-        SyncStatus response = api.syncStatusResyncCreate(xAccountToken);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get syncing status.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void syncStatusRetrieveTest() throws ApiException {
-        String xAccountToken = null;
-        SyncStatus response = api.syncStatusRetrieve(xAccountToken);
-
-        // TODO: test validations
-    }
+//    /**
+//     *
+//     *
+//     * Force resync of all models.
+//     *
+//     * @throws ApiException
+//     *          if the Api call fails
+//     */
+//    @Test
+//    public void syncStatusResyncCreateTest() throws ApiException {
+//        String xAccountToken = null;
+//        SyncStatus response = api.syncStatusResyncCreate(xAccountToken);
+//
+//        // TODO: test validations
+//    }
+//
+//    /**
+//     *
+//     *
+//     * Get syncing status.
+//     *
+//     * @throws ApiException
+//     *          if the Api call fails
+//     */
+//    @Test
+//    public void syncStatusRetrieveTest() throws ApiException {
+//        String xAccountToken = null;
+//        SyncStatus response = api.syncStatusRetrieve(xAccountToken);
+//
+//        // TODO: test validations
+//    }
     
 }
