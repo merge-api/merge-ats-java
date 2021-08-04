@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **application** | **UUID** | The application being interviewed. |  [optional]
 **jobInterviewStage** | **UUID** | The stage of the interview. |  [optional]
 **organizer** | **UUID** | The user organizing the interview. |  [optional]
-**interviewers** | **List&lt;UUID&gt;** |  |  [optional]
+**interviewers** | **List&lt;UUID&gt;** | Array of &#x60;RemoteUser&#x60; IDs. |  [optional]
 **location** | **String** | The interview&#39;s location. |  [optional]
 **startAt** | **OffsetDateTime** | When the interview was started. |  [optional]
 **endAt** | **OffsetDateTime** | When the interview was ended. |  [optional]

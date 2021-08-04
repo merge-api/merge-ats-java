@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.api;
+package main.java.merge_ats_client.api;
 
 import merge_ats_client.ApiCallback;
 import merge_ats_client.ApiClient;
@@ -27,10 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import merge_ats_client.model.Attachment;
-import merge_ats_client.model.AttachmentRequest;
+import main.java.merge_ats_client.model.Attachment;
+import main.java.merge_ats_client.model.AttachmentRequest;
 import org.threeten.bp.OffsetDateTime;
-import merge_ats_client.model.PaginatedAttachmentList;
+import main.java.merge_ats_client.model.PaginatedAttachmentList;
 import java.util.UUID;
 
 import java.lang.reflect.Type;
@@ -61,7 +61,7 @@ public class AttachmentsApi {
     /**
      * Build call for attachmentsCreate
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param attachmentRequest  (optional)
      * @param _callback Callback for upload/download progress
@@ -123,11 +123,6 @@ public class AttachmentsApi {
             throw new ApiException("Missing the required parameter 'xAccountToken' when calling attachmentsCreate(Async)");
         }
         
-        // verify the required parameter 'remoteUserId' is set
-        if (remoteUserId == null) {
-            throw new ApiException("Missing the required parameter 'remoteUserId' when calling attachmentsCreate(Async)");
-        }
-        
 
         okhttp3.Call localVarCall = attachmentsCreateCall(xAccountToken, remoteUserId, runAsync, attachmentRequest, _callback);
         return localVarCall;
@@ -138,7 +133,7 @@ public class AttachmentsApi {
      * 
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param attachmentRequest  (optional)
      * @return Attachment
@@ -158,7 +153,7 @@ public class AttachmentsApi {
      * 
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param attachmentRequest  (optional)
      * @return ApiResponse&lt;Attachment&gt;
@@ -179,7 +174,7 @@ public class AttachmentsApi {
      *  (asynchronously)
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param attachmentRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes

@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.model;
+package main.java.merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * EndUserDetailsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
 public class EndUserDetailsRequest {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
@@ -50,7 +50,9 @@ public class EndUserDetailsRequest {
   public enum CategoriesEnum {
     HRIS("hris"),
     
-    ATS("ats");
+    ATS("ats"),
+    
+    ACCOUNTING("accounting");
 
     private String value;
 
@@ -92,7 +94,7 @@ public class EndUserDetailsRequest {
 
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
   @SerializedName(SERIALIZED_NAME_CATEGORIES)
-  private List<CategoriesEnum> categories = new ArrayList<CategoriesEnum>();
+  private List<CategoriesEnum> categories = null;
 
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
@@ -172,6 +174,9 @@ public class EndUserDetailsRequest {
   }
 
   public EndUserDetailsRequest addCategoriesItem(CategoriesEnum categoriesItem) {
+    if (this.categories == null) {
+      this.categories = new ArrayList<CategoriesEnum>();
+    }
     this.categories.add(categoriesItem);
     return this;
   }
@@ -180,7 +185,8 @@ public class EndUserDetailsRequest {
    * Get categories
    * @return categories
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<CategoriesEnum> getCategories() {
     return categories;

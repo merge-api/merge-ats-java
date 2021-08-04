@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.api;
+package main.java.merge_ats_client.api;
 
 import merge_ats_client.ApiCallback;
 import merge_ats_client.ApiClient;
@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import merge_ats_client.model.EEOC;
+import main.java.merge_ats_client.model.EEOC;
 import org.threeten.bp.OffsetDateTime;
-import merge_ats_client.model.PaginatedEEOCList;
+import main.java.merge_ats_client.model.PaginatedEEOCList;
 import java.util.UUID;
 
 import java.lang.reflect.Type;

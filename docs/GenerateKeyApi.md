@@ -23,7 +23,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.GenerateKeyApi;
+import main.java.merge_ats_client.api.GenerateKeyApi;
 
 public class Example {
   public static void main(String[] args) {

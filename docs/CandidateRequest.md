@@ -22,9 +22,9 @@ Name | Type | Description | Notes
 **phoneNumbers** | [**List&lt;PhoneNumberRequest&gt;**](PhoneNumberRequest.md) |  |  [optional]
 **emailAddresses** | [**List&lt;EmailAddressRequest&gt;**](EmailAddressRequest.md) |  |  [optional]
 **urls** | [**List&lt;UrlRequest&gt;**](UrlRequest.md) |  |  [optional]
-**tags** | **List&lt;String&gt;** |  |  [optional]
-**applications** | **List&lt;UUID&gt;** |  |  [optional]
-**attachments** | **List&lt;UUID&gt;** |  |  [optional]
+**tags** | **List&lt;String&gt;** | Array of &#x60;Tag&#x60; names as strings. |  [optional]
+**applications** | **List&lt;UUID&gt;** | Array of &#x60;Application&#x60; object IDs. |  [optional]
+**attachments** | **List&lt;UUID&gt;** | Array of &#x60;Attachment&#x60; object IDs. |  [optional]
 
 
 

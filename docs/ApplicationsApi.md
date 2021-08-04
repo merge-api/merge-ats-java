@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**applicationsCreate**](ApplicationsApi.md#applicationsCreate) | **POST** /applications | 
 [**applicationsList**](ApplicationsApi.md#applicationsList) | **GET** /applications | 
-[**applicationsPartialUpdate**](ApplicationsApi.md#applicationsPartialUpdate) | **PATCH** /applications/{id} | 
 [**applicationsRetrieve**](ApplicationsApi.md#applicationsRetrieve) | **GET** /applications/{id} | 
 
 
@@ -26,7 +25,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.ApplicationsApi;
+import main.java.merge_ats_client.api.ApplicationsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -41,7 +40,7 @@ public class Example {
 
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
+    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     ApplicationRequest applicationRequest = new ApplicationRequest(); // ApplicationRequest | 
     try {
@@ -63,7 +62,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **remoteUserId** | **String**| The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. |
+ **remoteUserId** | **String**| The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
  **applicationRequest** | [**ApplicationRequest**](ApplicationRequest.md)|  | [optional]
 
@@ -101,7 +100,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.ApplicationsApi;
+import main.java.merge_ats_client.api.ApplicationsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -180,83 +179,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  -  |
 
-<a name="applicationsPartialUpdate"></a>
-# **applicationsPartialUpdate**
-> Application applicationsPartialUpdate(xAccountToken, id, remoteUserId, runAsync, patchedApplicationRequest)
-
-
-
-Updates an &#x60;Application&#x60; object with the given &#x60;id&#x60;.
-
-### Example
-```java
-// Import classes:
-import merge_ats_client.ApiClient;
-import merge_ats_client.ApiException;
-import merge_ats_client.Configuration;
-import merge_ats_client.auth.*;
-import merge_ats_client.models.*;
-import merge_ats_client.api.ApplicationsApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
-    
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
-
-    ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    UUID id = new UUID(); // UUID | 
-    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
-    Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
-    PatchedApplicationRequest patchedApplicationRequest = new PatchedApplicationRequest(); // PatchedApplicationRequest | 
-    try {
-      Application result = apiInstance.applicationsPartialUpdate(xAccountToken, id, remoteUserId, runAsync, patchedApplicationRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ApplicationsApi#applicationsPartialUpdate");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xAccountToken** | **String**| Token identifying the end user. |
- **id** | [**UUID**](.md)|  |
- **remoteUserId** | **String**| The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. |
- **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
- **patchedApplicationRequest** | [**PatchedApplicationRequest**](PatchedApplicationRequest.md)|  | [optional]
-
-### Return type
-
-[**Application**](Application.md)
-
-### Authorization
-
-[tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
 <a name="applicationsRetrieve"></a>
 # **applicationsRetrieve**
 > Application applicationsRetrieve(xAccountToken, id, includeRemoteData)
@@ -273,7 +195,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.ApplicationsApi;
+import main.java.merge_ats_client.api.ApplicationsApi;
 
 public class Example {
   public static void main(String[] args) {
