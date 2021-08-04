@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
-import main.java.merge_ats_client.model.UrlTypeEnum;
+import merge_ats_client.model.UrlTypeEnum;
 
 /**
  * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent a candidate&#39;s website.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.

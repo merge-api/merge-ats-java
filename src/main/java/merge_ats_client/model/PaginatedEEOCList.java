@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import main.java.merge_ats_client.model.EEOC;
+import merge_ats_client.model.EEOC;
 
 /**
  * PaginatedEEOCList

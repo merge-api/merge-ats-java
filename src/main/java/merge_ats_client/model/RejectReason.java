@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import main.java.merge_ats_client.model.RemoteData;
+import merge_ats_client.model.RemoteData;
 
 /**
  * # The RejectReason Object ### Description The &#x60;RejectReason&#x60; object is used to represent a reason for rejecting an application.  ### Usage Example Fetch from the &#x60;LIST RejectReasons&#x60; endpoint and filter by &#x60;ID&#x60; to show all reasons.

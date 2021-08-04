@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -23,7 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import main.java.merge_ats_client.model.AccountIntegration;
+import merge_ats_client.model.AccountIntegration;
 
 /**
  * AccountToken

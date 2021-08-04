@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -26,9 +26,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import main.java.merge_ats_client.model.EmailAddressRequest;
-import main.java.merge_ats_client.model.PhoneNumberRequest;
-import main.java.merge_ats_client.model.UrlRequest;
+import merge_ats_client.model.EmailAddressRequest;
+import merge_ats_client.model.PhoneNumberRequest;
+import merge_ats_client.model.UrlRequest;
 import org.threeten.bp.OffsetDateTime;
 
 /**

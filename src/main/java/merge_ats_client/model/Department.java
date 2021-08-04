@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import main.java.merge_ats_client.model.RemoteData;
+import merge_ats_client.model.RemoteData;
 
 /**
  * # The Department Object ### Description The &#x60;Department&#x60; object is used to represent a department within a company.  ### Usage Example Fetch from the &#x60;LIST Departments&#x60; endpoint and view the departments within a company.

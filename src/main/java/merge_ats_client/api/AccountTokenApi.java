@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.api;
+package merge_ats_client.api;
 
 import merge_ats_client.ApiCallback;
 import merge_ats_client.ApiClient;
@@ -27,7 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import main.java.merge_ats_client.model.AccountToken;
+import merge_ats_client.model.AccountToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

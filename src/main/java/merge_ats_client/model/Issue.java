@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import main.java.merge_ats_client.model.IssueStatusEnum;
+import merge_ats_client.model.IssueStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 
 /**

@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.api;
+package merge_ats_client.api;
 
 import merge_ats_client.ApiCallback;
 import merge_ats_client.ApiClient;
@@ -27,8 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import main.java.merge_ats_client.model.GenerateRemoteKeyRequest;
-import main.java.merge_ats_client.model.RemoteKey;
+import merge_ats_client.model.GenerateRemoteKeyRequest;
+import merge_ats_client.model.RemoteKey;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

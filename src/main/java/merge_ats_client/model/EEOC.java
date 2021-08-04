@@ -11,7 +11,7 @@
  */
 
 
-package main.java.merge_ats_client.model;
+package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -26,11 +26,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import main.java.merge_ats_client.model.DisabilityStatusEnum;
-import main.java.merge_ats_client.model.GenderEnum;
-import main.java.merge_ats_client.model.RaceEnum;
-import main.java.merge_ats_client.model.RemoteData;
-import main.java.merge_ats_client.model.VeteranStatusEnum;
+import merge_ats_client.model.DisabilityStatusEnum;
+import merge_ats_client.model.GenderEnum;
+import merge_ats_client.model.RaceEnum;
+import merge_ats_client.model.RemoteData;
+import merge_ats_client.model.VeteranStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 
 /**
