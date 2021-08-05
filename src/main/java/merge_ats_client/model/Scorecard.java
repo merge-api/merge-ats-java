@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
 @ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
 public class Scorecard {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

@@ -4,9 +4,85 @@ All URIs are relative to *https://api.merge.dev/api/ats/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**interviewsCreate**](InterviewsApi.md#interviewsCreate) | **POST** /interviews | 
 [**interviewsList**](InterviewsApi.md#interviewsList) | **GET** /interviews | 
 [**interviewsRetrieve**](InterviewsApi.md#interviewsRetrieve) | **GET** /interviews/{id} | 
 
+
+<a name="interviewsCreate"></a>
+# **interviewsCreate**
+> ScheduledInterview interviewsCreate(xAccountToken, remoteUserId, runAsync, scheduledInterviewRequest)
+
+
+
+Creates a &#x60;ScheduledInterview&#x60; object with the given values.
+
+### Example
+```java
+// Import classes:
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import merge_ats_client.api.InterviewsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //tokenAuth.setApiKeyPrefix("Token");
+
+    InterviewsApi apiInstance = new InterviewsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
+    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
+    Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
+    ScheduledInterviewRequest scheduledInterviewRequest = new ScheduledInterviewRequest(); // ScheduledInterviewRequest | 
+    try {
+      ScheduledInterview result = apiInstance.interviewsCreate(xAccountToken, remoteUserId, runAsync, scheduledInterviewRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling InterviewsApi#interviewsCreate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
+ **remoteUserId** | **String**| The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. | [optional]
+ **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
+ **scheduledInterviewRequest** | [**ScheduledInterviewRequest**](ScheduledInterviewRequest.md)|  | [optional]
+
+### Return type
+
+[**ScheduledInterview**](ScheduledInterview.md)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
 
 <a name="interviewsList"></a>
 # **interviewsList**

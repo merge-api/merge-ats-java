@@ -36,7 +36,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
 @ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
 public class Candidate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -498,11 +498,11 @@ public class Candidate {
   }
 
    /**
-   * Get tags
+   * Array of &#x60;Tag&#x60; names as strings.
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"High-Priority\"]", value = "")
+  @ApiModelProperty(example = "[\"High-Priority\"]", value = "Array of `Tag` names as strings.")
 
   public List<String> getTags() {
     return tags;
@@ -529,11 +529,11 @@ public class Candidate {
   }
 
    /**
-   * Get applications
+   * Array of &#x60;Application&#x60; object IDs.
    * @return applications
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"29eb9867-ce2a-403f-b8ce-f2844b89f078\",\"b4d08e5c-de00-4d64-a29f-66addac9af99\",\"4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56\"]", value = "")
+  @ApiModelProperty(example = "[\"29eb9867-ce2a-403f-b8ce-f2844b89f078\",\"b4d08e5c-de00-4d64-a29f-66addac9af99\",\"4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56\"]", value = "Array of `Application` object IDs.")
 
   public List<UUID> getApplications() {
     return applications;
@@ -560,11 +560,11 @@ public class Candidate {
   }
 
    /**
-   * Get attachments
+   * Array of &#x60;Attachment&#x60; object IDs.
    * @return attachments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"bea08964-32b4-4a20-8bb4-2612ba09de1d\"]", value = "")
+  @ApiModelProperty(example = "[\"bea08964-32b4-4a20-8bb4-2612ba09de1d\"]", value = "Array of `Attachment` object IDs.")
 
   public List<UUID> getAttachments() {
     return attachments;

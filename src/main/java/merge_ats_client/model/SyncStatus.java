@@ -23,13 +23,14 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.SyncStatusStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The SyncStatus Object ### Description The &#x60;SyncStatus&#x60; object is used to represent the syncing state of an account  ### Usage Example View the &#x60;SyncStatus&#x60; for an account to see how recently its models were synced.
  */
 @ApiModel(description = "# The SyncStatus Object ### Description The `SyncStatus` object is used to represent the syncing state of an account  ### Usage Example View the `SyncStatus` for an account to see how recently its models were synced.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
 public class SyncStatus {
   public static final String SERIALIZED_NAME_MODEL_NAME = "model_name";
   @SerializedName(SERIALIZED_NAME_MODEL_NAME)
@@ -49,7 +50,7 @@ public class SyncStatus {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  private SyncStatusStatusEnum status;
 
   public static final String SERIALIZED_NAME_IS_INITIAL_SYNC = "is_initial_sync";
   @SerializedName(SERIALIZED_NAME_IS_INITIAL_SYNC)
@@ -144,7 +145,7 @@ public class SyncStatus {
   }
 
 
-  public SyncStatus status(String status) {
+  public SyncStatus status(SyncStatusStatusEnum status) {
     
     this.status = status;
     return this;
@@ -156,12 +157,12 @@ public class SyncStatus {
   **/
   @ApiModelProperty(example = "SYNCING", required = true, value = "")
 
-  public String getStatus() {
+  public SyncStatusStatusEnum getStatus() {
     return status;
   }
 
 
-  public void setStatus(String status) {
+  public void setStatus(SyncStatusStatusEnum status) {
     this.status = status;
   }
 

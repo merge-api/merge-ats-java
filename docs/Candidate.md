@@ -23,9 +23,9 @@ Name | Type | Description | Notes
 **phoneNumbers** | [**List&lt;PhoneNumber&gt;**](PhoneNumber.md) |  |  [optional]
 **emailAddresses** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional]
 **urls** | [**List&lt;Url&gt;**](Url.md) |  |  [optional]
-**tags** | **List&lt;String&gt;** |  |  [optional]
-**applications** | **List&lt;UUID&gt;** |  |  [optional]
-**attachments** | **List&lt;UUID&gt;** |  |  [optional]
+**tags** | **List&lt;String&gt;** | Array of &#x60;Tag&#x60; names as strings. |  [optional]
+**applications** | **List&lt;UUID&gt;** | Array of &#x60;Application&#x60; object IDs. |  [optional]
+**attachments** | **List&lt;UUID&gt;** | Array of &#x60;Attachment&#x60; object IDs. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

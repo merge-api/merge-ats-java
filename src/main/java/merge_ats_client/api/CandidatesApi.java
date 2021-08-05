@@ -61,7 +61,7 @@ public class CandidatesApi {
     /**
      * Build call for candidatesCreate
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param candidateRequest  (optional)
      * @param _callback Callback for upload/download progress
@@ -123,11 +123,6 @@ public class CandidatesApi {
             throw new ApiException("Missing the required parameter 'xAccountToken' when calling candidatesCreate(Async)");
         }
         
-        // verify the required parameter 'remoteUserId' is set
-        if (remoteUserId == null) {
-            throw new ApiException("Missing the required parameter 'remoteUserId' when calling candidatesCreate(Async)");
-        }
-        
 
         okhttp3.Call localVarCall = candidatesCreateCall(xAccountToken, remoteUserId, runAsync, candidateRequest, _callback);
         return localVarCall;
@@ -138,7 +133,7 @@ public class CandidatesApi {
      * 
      * Creates a &#x60;Candidate&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param candidateRequest  (optional)
      * @return Candidate
@@ -158,7 +153,7 @@ public class CandidatesApi {
      * 
      * Creates a &#x60;Candidate&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param candidateRequest  (optional)
      * @return ApiResponse&lt;Candidate&gt;
@@ -179,7 +174,7 @@ public class CandidatesApi {
      *  (asynchronously)
      * Creates a &#x60;Candidate&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser deleting the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param candidateRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -204,7 +199,10 @@ public class CandidatesApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param emailAddress If provided, will only return candidates with this email_address. (optional)
+     * @param firstName If provided, will only return candidates with this first name. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param lastName If provided, will only return candidates with this last name. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -218,7 +216,7 @@ public class CandidatesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call candidatesListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call candidatesListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String emailAddress, String firstName, Boolean includeRemoteData, String lastName, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -242,8 +240,20 @@ public class CandidatesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
         }
 
+        if (emailAddress != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("email_address", emailAddress));
+        }
+
+        if (firstName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("first_name", firstName));
+        }
+
         if (includeRemoteData != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_remote_data", includeRemoteData));
+        }
+
+        if (lastName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("last_name", lastName));
         }
 
         if (modifiedAfter != null) {
@@ -285,7 +295,7 @@ public class CandidatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call candidatesListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call candidatesListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String emailAddress, String firstName, Boolean includeRemoteData, String lastName, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -293,7 +303,7 @@ public class CandidatesApi {
         }
         
 
-        okhttp3.Call localVarCall = candidatesListCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = candidatesListCall(xAccountToken, createdAfter, createdBefore, cursor, emailAddress, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         return localVarCall;
 
     }
@@ -305,7 +315,10 @@ public class CandidatesApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param emailAddress If provided, will only return candidates with this email_address. (optional)
+     * @param firstName If provided, will only return candidates with this first name. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param lastName If provided, will only return candidates with this last name. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -318,8 +331,8 @@ public class CandidatesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedCandidateList candidatesList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        ApiResponse<PaginatedCandidateList> localVarResp = candidatesListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+    public PaginatedCandidateList candidatesList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String emailAddress, String firstName, Boolean includeRemoteData, String lastName, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        ApiResponse<PaginatedCandidateList> localVarResp = candidatesListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, emailAddress, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
         return localVarResp.getData();
     }
 
@@ -330,7 +343,10 @@ public class CandidatesApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param emailAddress If provided, will only return candidates with this email_address. (optional)
+     * @param firstName If provided, will only return candidates with this first name. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param lastName If provided, will only return candidates with this last name. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -343,8 +359,8 @@ public class CandidatesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedCandidateList> candidatesListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = candidatesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
+    public ApiResponse<PaginatedCandidateList> candidatesListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String emailAddress, String firstName, Boolean includeRemoteData, String lastName, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = candidatesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, emailAddress, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedCandidateList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -356,7 +372,10 @@ public class CandidatesApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param emailAddress If provided, will only return candidates with this email_address. (optional)
+     * @param firstName If provided, will only return candidates with this first name. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param lastName If provided, will only return candidates with this last name. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -370,9 +389,9 @@ public class CandidatesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call candidatesListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedCandidateList> _callback) throws ApiException {
+    public okhttp3.Call candidatesListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String emailAddress, String firstName, Boolean includeRemoteData, String lastName, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedCandidateList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = candidatesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = candidatesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, emailAddress, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedCandidateList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s job was created. |  [optional]
 **remoteUpdatedAt** | **OffsetDateTime** | When the third party&#39;s job was updated. |  [optional]
 **confidential** | **Boolean** | Whether the job is confidential. |  [optional]
-**departments** | **List&lt;UUID&gt;** |  |  [optional]
-**offices** | **List&lt;UUID&gt;** |  |  [optional]
-**hiringManagers** | **List&lt;UUID&gt;** |  |  [optional]
+**departments** | **List&lt;UUID&gt;** | IDs of &#x60;Department&#x60; objects for this &#x60;Job&#x60;. |  [optional]
+**offices** | **List&lt;UUID&gt;** | IDs of &#x60;Office&#x60; objects for this &#x60;Job&#x60;. |  [optional]
+**hiringManagers** | **List&lt;UUID&gt;** | IDs of &#x60;RemoteUser&#x60; objects that serve as hiring managers for this &#x60;Job&#x60;. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

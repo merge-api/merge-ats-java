@@ -31,7 +31,7 @@ import java.util.Map;
  * # The Tag Object ### Description The &#x60;Tag&#x60; object is used to represent a tag for a candidate.  ### Usage Example Fetch from the &#x60;LIST Tags&#x60; endpoint and view the tags used within a company.
  */
 @ApiModel(description = "# The Tag Object ### Description The `Tag` object is used to represent a tag for a candidate.  ### Usage Example Fetch from the `LIST Tags` endpoint and view the tags used within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
 public class Tag {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)

@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company.  ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company.  ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
 public class Job {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -275,11 +275,11 @@ public class Job {
   }
 
    /**
-   * Get departments
+   * IDs of &#x60;Department&#x60; objects for this &#x60;Job&#x60;.
    * @return departments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"5b3c1341-a20f-4e51-b72c-f3830a16c97b\",\"d6e687d6-0c36-48a1-8114-35324b5cb38f\"]", value = "")
+  @ApiModelProperty(example = "[\"5b3c1341-a20f-4e51-b72c-f3830a16c97b\",\"d6e687d6-0c36-48a1-8114-35324b5cb38f\"]", value = "IDs of `Department` objects for this `Job`.")
 
   public List<UUID> getDepartments() {
     return departments;
@@ -306,11 +306,11 @@ public class Job {
   }
 
    /**
-   * Get offices
+   * IDs of &#x60;Office&#x60; objects for this &#x60;Job&#x60;.
    * @return offices
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"9871b4a9-f5d2-4f3b-a66b-dfedbed42c46\"]", value = "")
+  @ApiModelProperty(example = "[\"9871b4a9-f5d2-4f3b-a66b-dfedbed42c46\"]", value = "IDs of `Office` objects for this `Job`.")
 
   public List<UUID> getOffices() {
     return offices;
@@ -337,11 +337,11 @@ public class Job {
   }
 
    /**
-   * Get hiringManagers
+   * IDs of &#x60;RemoteUser&#x60; objects that serve as hiring managers for this &#x60;Job&#x60;.
    * @return hiringManagers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "")
+  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "IDs of `RemoteUser` objects that serve as hiring managers for this `Job`.")
 
   public List<UUID> getHiringManagers() {
     return hiringManagers;
