@@ -5,7 +5,7 @@
     <artifactId>merge-ats-client</artifactId>
     <packaging>jar</packaging>
     <name>merge-ats-client</name>
-    <version>1.0.1</version>
+    <version>1.0.SNAPSHOT</version>
     <url>https://github.com/merge-api/merge-ats-java</url>
     <description>Merge ATS Client</description>
     <scm>
@@ -25,6 +25,7 @@
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+
         <repository>
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
@@ -63,6 +64,8 @@
                         <arg>-Xlint:all</arg>
                         <arg>-J-Xss4m</arg><!-- Compiling the generated JSON.java file may require larger stack size. -->
                     </compilerArgs>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
             <plugin>

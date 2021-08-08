@@ -18,10 +18,10 @@ import merge_ats_client.ApiException;
 import merge_ats_client.model.PaginatedScheduledInterviewList;
 import merge_ats_client.model.ScheduledInterview;
 
-import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
+import org.threeten.bp.OffsetDateTime;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,13 +49,13 @@ public class InterviewsApiTest {
     public void interviewsListTest() throws ApiException {
         String xAccountToken = null;
         String applicationId = null;
-        OffsetDateTime createdAfter = null;
-        OffsetDateTime createdBefore = null;
+        org.threeten.bp.OffsetDateTime createdAfter = null;
+        org.threeten.bp.OffsetDateTime createdBefore = null;
         String cursor = null;
         String expand = null;
         Boolean includeRemoteData = null;
         String jobInterviewStageId = null;
-        OffsetDateTime modifiedAfter = null;
+        org.threeten.bp.OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         String organizerId = null;
         Integer pageSize = null;

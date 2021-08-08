@@ -101,7 +101,8 @@ public class ApplicationsApiTest {
         String remoteUserId = null;
         Boolean runAsync = null;
         PatchedApplicationRequest patchedApplicationRequest = null;
-        Application response = api.applicationsPartialUpdate(xAccountToken, id, remoteUserId, runAsync, patchedApplicationRequest);
+        // Application response = api.applicationsPartialUpdate(xAccountToken, id, remoteUserId, runAsync, patchedApplicationRequest);
+        // aApplication response = api.applicatiosP
 
         // TODO: test validations
     }
