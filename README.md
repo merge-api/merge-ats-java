@@ -120,7 +120,6 @@ Class | Method | HTTP request | Description
 *ActivitiesApi* | [**activitiesRetrieve**](docs/ActivitiesApi.md#activitiesRetrieve) | **GET** /activities/{id} | 
 *ApplicationsApi* | [**applicationsCreate**](docs/ApplicationsApi.md#applicationsCreate) | **POST** /applications | 
 *ApplicationsApi* | [**applicationsList**](docs/ApplicationsApi.md#applicationsList) | **GET** /applications | 
-*ApplicationsApi* | [**applicationsPartialUpdate**](docs/ApplicationsApi.md#applicationsPartialUpdate) | **PATCH** /applications/{id} | 
 *ApplicationsApi* | [**applicationsRetrieve**](docs/ApplicationsApi.md#applicationsRetrieve) | **GET** /applications/{id} | 
 *AttachmentsApi* | [**attachmentsCreate**](docs/AttachmentsApi.md#attachmentsCreate) | **POST** /attachments | 
 *AttachmentsApi* | [**attachmentsList**](docs/AttachmentsApi.md#attachmentsList) | **GET** /attachments | 
@@ -149,11 +148,13 @@ Class | Method | HTTP request | Description
 *RegenerateKeyApi* | [**regenerateKeyCreate**](docs/RegenerateKeyApi.md#regenerateKeyCreate) | **POST** /regenerate-key | 
 *RejectReasonsApi* | [**rejectReasonsList**](docs/RejectReasonsApi.md#rejectReasonsList) | **GET** /reject-reasons | 
 *RejectReasonsApi* | [**rejectReasonsRetrieve**](docs/RejectReasonsApi.md#rejectReasonsRetrieve) | **GET** /reject-reasons/{id} | 
+*ScorecardsApi* | [**scorecardsCreate**](docs/ScorecardsApi.md#scorecardsCreate) | **POST** /scorecards | 
 *ScorecardsApi* | [**scorecardsList**](docs/ScorecardsApi.md#scorecardsList) | **GET** /scorecards | 
 *ScorecardsApi* | [**scorecardsRetrieve**](docs/ScorecardsApi.md#scorecardsRetrieve) | **GET** /scorecards/{id} | 
+*SyncStatusApi* | [**syncStatusList**](docs/SyncStatusApi.md#syncStatusList) | **GET** /sync-status | 
 *SyncStatusApi* | [**syncStatusResyncCreate**](docs/SyncStatusApi.md#syncStatusResyncCreate) | **POST** /sync-status/resync | 
-*SyncStatusApi* | [**syncStatusRetrieve**](docs/SyncStatusApi.md#syncStatusRetrieve) | **GET** /sync-status | 
 *TagsApi* | [**tagsList**](docs/TagsApi.md#tagsList) | **GET** /tags | 
+*UsersApi* | [**usersCreate**](docs/UsersApi.md#usersCreate) | **POST** /users | 
 *UsersApi* | [**usersList**](docs/UsersApi.md#usersList) | **GET** /users | 
 *UsersApi* | [**usersRetrieve**](docs/UsersApi.md#usersRetrieve) | **GET** /users/{id} | 
 
@@ -199,16 +200,16 @@ Class | Method | HTTP request | Description
  - [PaginatedCandidateList](docs/PaginatedCandidateList.md)
  - [PaginatedDepartmentList](docs/PaginatedDepartmentList.md)
  - [PaginatedEEOCList](docs/PaginatedEEOCList.md)
+ - [PaginatedIssueList](docs/PaginatedIssueList.md)
  - [PaginatedJobInterviewStageList](docs/PaginatedJobInterviewStageList.md)
- - [PaginatedJobList](docs/PaginatedJobList.md)
  - [PaginatedOfferList](docs/PaginatedOfferList.md)
  - [PaginatedOfficeList](docs/PaginatedOfficeList.md)
  - [PaginatedRejectReasonList](docs/PaginatedRejectReasonList.md)
  - [PaginatedRemoteUserList](docs/PaginatedRemoteUserList.md)
  - [PaginatedScheduledInterviewList](docs/PaginatedScheduledInterviewList.md)
  - [PaginatedScorecardList](docs/PaginatedScorecardList.md)
+ - [PaginatedSyncStatusList](docs/PaginatedSyncStatusList.md)
  - [PaginatedTagList](docs/PaginatedTagList.md)
- - [PatchedApplicationRequest](docs/PatchedApplicationRequest.md)
  - [PhoneNumber](docs/PhoneNumber.md)
  - [PhoneNumberRequest](docs/PhoneNumberRequest.md)
  - [PhoneNumberTypeEnum](docs/PhoneNumberTypeEnum.md)
@@ -220,10 +221,14 @@ Class | Method | HTTP request | Description
  - [RemoteKeyForRegenerationRequest](docs/RemoteKeyForRegenerationRequest.md)
  - [RemoteResponse](docs/RemoteResponse.md)
  - [RemoteUser](docs/RemoteUser.md)
+ - [RemoteUserRequest](docs/RemoteUserRequest.md)
  - [ScheduledInterview](docs/ScheduledInterview.md)
+ - [ScheduledInterviewRequest](docs/ScheduledInterviewRequest.md)
  - [ScheduledInterviewStatusEnum](docs/ScheduledInterviewStatusEnum.md)
  - [Scorecard](docs/Scorecard.md)
+ - [ScorecardRequest](docs/ScorecardRequest.md)
  - [SyncStatus](docs/SyncStatus.md)
+ - [SyncStatusStatusEnum](docs/SyncStatusStatusEnum.md)
  - [Tag](docs/Tag.md)
  - [Url](docs/Url.md)
  - [UrlRequest](docs/UrlRequest.md)

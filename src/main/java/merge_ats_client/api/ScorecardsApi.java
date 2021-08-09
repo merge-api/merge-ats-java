@@ -30,6 +30,7 @@ import java.io.IOException;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedScorecardList;
 import merge_ats_client.model.Scorecard;
+import merge_ats_client.model.ScorecardRequest;
 import java.util.UUID;
 
 import java.lang.reflect.Type;
@@ -57,6 +58,141 @@ public class ScorecardsApi {
         this.localVarApiClient = apiClient;
     }
 
+    /**
+     * Build call for scorecardsCreate
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param scorecardRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call scorecardsCreateCall(String xAccountToken, String remoteUserId, Boolean runAsync, ScorecardRequest scorecardRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = scorecardRequest;
+
+        // create path and map variables
+        String localVarPath = "/scorecards";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (remoteUserId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_user_id", remoteUserId));
+        }
+
+        if (runAsync != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
+        }
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/x-www-form-urlencoded", "multipart/form-data"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call scorecardsCreateValidateBeforeCall(String xAccountToken, String remoteUserId, Boolean runAsync, ScorecardRequest scorecardRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling scorecardsCreate(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = scorecardsCreateCall(xAccountToken, remoteUserId, runAsync, scorecardRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Creates a &#x60;Scorecard&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param scorecardRequest  (optional)
+     * @return Scorecard
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public Scorecard scorecardsCreate(String xAccountToken, String remoteUserId, Boolean runAsync, ScorecardRequest scorecardRequest) throws ApiException {
+        ApiResponse<Scorecard> localVarResp = scorecardsCreateWithHttpInfo(xAccountToken, remoteUserId, runAsync, scorecardRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Creates a &#x60;Scorecard&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param scorecardRequest  (optional)
+     * @return ApiResponse&lt;Scorecard&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Scorecard> scorecardsCreateWithHttpInfo(String xAccountToken, String remoteUserId, Boolean runAsync, ScorecardRequest scorecardRequest) throws ApiException {
+        okhttp3.Call localVarCall = scorecardsCreateValidateBeforeCall(xAccountToken, remoteUserId, runAsync, scorecardRequest, null);
+        Type localVarReturnType = new TypeToken<Scorecard>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Creates a &#x60;Scorecard&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param scorecardRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call scorecardsCreateAsync(String xAccountToken, String remoteUserId, Boolean runAsync, ScorecardRequest scorecardRequest, final ApiCallback<Scorecard> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = scorecardsCreateValidateBeforeCall(xAccountToken, remoteUserId, runAsync, scorecardRequest, _callback);
+        Type localVarReturnType = new TypeToken<Scorecard>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for scorecardsList
      * @param xAccountToken Token identifying the end user. (required)
