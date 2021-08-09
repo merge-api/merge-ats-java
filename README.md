@@ -128,13 +128,17 @@ Class | Method | HTTP request | Description
 *CandidatesApi* | [**candidatesCreate**](docs/CandidatesApi.md#candidatesCreate) | **POST** /candidates | 
 *CandidatesApi* | [**candidatesList**](docs/CandidatesApi.md#candidatesList) | **GET** /candidates | 
 *CandidatesApi* | [**candidatesRetrieve**](docs/CandidatesApi.md#candidatesRetrieve) | **GET** /candidates/{id} | 
+*DeleteAccountApi* | [**deleteAccountCreate**](docs/DeleteAccountApi.md#deleteAccountCreate) | **POST** /delete-account | 
 *DepartmentsApi* | [**departmentsList**](docs/DepartmentsApi.md#departmentsList) | **GET** /departments | 
 *DepartmentsApi* | [**departmentsRetrieve**](docs/DepartmentsApi.md#departmentsRetrieve) | **GET** /departments/{id} | 
 *EeocsApi* | [**eeocsList**](docs/EeocsApi.md#eeocsList) | **GET** /eeocs | 
 *EeocsApi* | [**eeocsRetrieve**](docs/EeocsApi.md#eeocsRetrieve) | **GET** /eeocs/{id} | 
 *GenerateKeyApi* | [**generateKeyCreate**](docs/GenerateKeyApi.md#generateKeyCreate) | **POST** /generate-key | 
+*InterviewsApi* | [**interviewsCreate**](docs/InterviewsApi.md#interviewsCreate) | **POST** /interviews | 
 *InterviewsApi* | [**interviewsList**](docs/InterviewsApi.md#interviewsList) | **GET** /interviews | 
 *InterviewsApi* | [**interviewsRetrieve**](docs/InterviewsApi.md#interviewsRetrieve) | **GET** /interviews/{id} | 
+*IssuesApi* | [**issuesList**](docs/IssuesApi.md#issuesList) | **GET** /issues | 
+*IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} | 
 *JobInterviewStagesApi* | [**jobInterviewStagesList**](docs/JobInterviewStagesApi.md#jobInterviewStagesList) | **GET** /job-interview-stages | 
 *JobInterviewStagesApi* | [**jobInterviewStagesRetrieve**](docs/JobInterviewStagesApi.md#jobInterviewStagesRetrieve) | **GET** /job-interview-stages/{id} | 
 *JobsApi* | [**jobsList**](docs/JobsApi.md#jobsList) | **GET** /jobs | 
@@ -185,6 +189,8 @@ Class | Method | HTTP request | Description
  - [GenderEnum](docs/GenderEnum.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
  - [Job](docs/Job.md)
+ - [Issue](docs/Issue.md)
+ - [IssueStatusEnum](docs/IssueStatusEnum.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
  - [JobStatusEnum](docs/JobStatusEnum.md)
  - [LinkToken](docs/LinkToken.md)
