@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * PaginatedCandidateList
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:37:52.392478-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:50:38.149290-07:00[America/Los_Angeles]")
 public class PaginatedCandidateList {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)

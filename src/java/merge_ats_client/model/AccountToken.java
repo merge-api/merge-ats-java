@@ -28,7 +28,7 @@ import java.merge_ats_client.model.AccountIntegration;
 /**
  * AccountToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:37:52.392478-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:50:38.149290-07:00[America/Los_Angeles]")
 public class AccountToken {
   public static final String SERIALIZED_NAME_ACCOUNT_TOKEN = "account_token";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_TOKEN)

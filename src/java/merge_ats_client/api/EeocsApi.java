@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import merge_ats_client.model.EEOC;
+import java.merge_ats_client.model.EEOC;
 import org.threeten.bp.OffsetDateTime;
-import merge_ats_client.model.PaginatedEEOCList;
+import java.merge_ats_client.model.PaginatedEEOCList;
 import java.util.UUID;
 
 import java.lang.reflect.Type;

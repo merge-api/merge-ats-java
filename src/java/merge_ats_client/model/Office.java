@@ -32,7 +32,7 @@ import java.util.UUID;
  * # The Office Object ### Description The &#x60;Office&#x60; object is used to represent an office within a company.  ### Usage Example Fetch from the &#x60;LIST Offices&#x60; endpoint and view the offices within a company.
  */
 @ApiModel(description = "# The Office Object ### Description The `Office` object is used to represent an office within a company.  ### Usage Example Fetch from the `LIST Offices` endpoint and view the offices within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:37:52.392478-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:50:38.149290-07:00[America/Los_Angeles]")
 public class Office {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

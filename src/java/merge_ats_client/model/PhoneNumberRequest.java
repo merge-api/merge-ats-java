@@ -29,7 +29,7 @@ import java.merge_ats_client.model.PhoneNumberTypeEnum;
  * # The PhoneNumber Object ### Description The &#x60;PhoneNumber&#x60; object is used to represent a candidate&#39;s phone number.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their phone numbers.
  */
 @ApiModel(description = "# The PhoneNumber Object ### Description The `PhoneNumber` object is used to represent a candidate's phone number.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their phone numbers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:37:52.392478-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:50:38.149290-07:00[America/Los_Angeles]")
 public class PhoneNumberRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)

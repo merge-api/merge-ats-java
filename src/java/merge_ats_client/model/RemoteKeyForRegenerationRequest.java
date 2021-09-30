@@ -28,7 +28,7 @@ import java.io.IOException;
  * # The RemoteKeyForRegeneration Object ### Description The &#x60;RemoteKeyForRegeneration&#x60; object is used to exchange an old remote key for a new one  ### Usage Example Post a &#x60;RemoteKeyForRegeneration&#x60; to swap out an old remote key for a new one
  */
 @ApiModel(description = "# The RemoteKeyForRegeneration Object ### Description The `RemoteKeyForRegeneration` object is used to exchange an old remote key for a new one  ### Usage Example Post a `RemoteKeyForRegeneration` to swap out an old remote key for a new one")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:37:52.392478-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:50:38.149290-07:00[America/Los_Angeles]")
 public class RemoteKeyForRegenerationRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
