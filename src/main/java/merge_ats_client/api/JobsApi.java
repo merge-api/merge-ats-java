@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.api;
+package main.java.merge_ats_client.api;
 
 import merge_ats_client.ApiCallback;
 import merge_ats_client.ApiClient;
@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import merge_ats_client.model.Job;
+import main.java.merge_ats_client.model.Job;
 import org.threeten.bp.OffsetDateTime;
-import merge_ats_client.model.PaginatedJobList;
+import main.java.merge_ats_client.model.PaginatedJobList;
 import java.util.UUID;
 
 import java.lang.reflect.Type;
@@ -60,9 +60,11 @@ public class JobsApi {
     /**
      * Build call for jobsList
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -78,7 +80,7 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobsListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call jobsListCall(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String expand, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -90,6 +92,10 @@ public class JobsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (code != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("code", code));
+        }
+
         if (createdAfter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("created_after", createdAfter));
         }
@@ -100,6 +106,10 @@ public class JobsApi {
 
         if (cursor != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
+        }
+
+        if (expand != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("expand", expand));
         }
 
         if (includeRemoteData != null) {
@@ -149,7 +159,7 @@ public class JobsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call jobsListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call jobsListValidateBeforeCall(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String expand, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -157,7 +167,7 @@ public class JobsApi {
         }
         
 
-        okhttp3.Call localVarCall = jobsListCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
+        okhttp3.Call localVarCall = jobsListCall(xAccountToken, code, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
         return localVarCall;
 
     }
@@ -166,9 +176,11 @@ public class JobsApi {
      * 
      * Returns a list of &#x60;Job&#x60; objects.
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -183,8 +195,8 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedJobList jobsList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
-        ApiResponse<PaginatedJobList> localVarResp = jobsListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
+    public PaginatedJobList jobsList(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String expand, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
+        ApiResponse<PaginatedJobList> localVarResp = jobsListWithHttpInfo(xAccountToken, code, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
         return localVarResp.getData();
     }
 
@@ -192,9 +204,11 @@ public class JobsApi {
      * 
      * Returns a list of &#x60;Job&#x60; objects.
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -209,8 +223,8 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedJobList> jobsListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
-        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, null);
+    public ApiResponse<PaginatedJobList> jobsListWithHttpInfo(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String expand, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
+        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, code, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, null);
         Type localVarReturnType = new TypeToken<PaginatedJobList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -219,9 +233,11 @@ public class JobsApi {
      *  (asynchronously)
      * Returns a list of &#x60;Job&#x60; objects.
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -237,9 +253,9 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobsListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback<PaginatedJobList> _callback) throws ApiException {
+    public okhttp3.Call jobsListAsync(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String expand, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback<PaginatedJobList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
+        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, code, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
         Type localVarReturnType = new TypeToken<PaginatedJobList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -248,6 +264,7 @@ public class JobsApi {
      * Build call for jobsRetrieve
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -258,7 +275,7 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobsRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call jobsRetrieveCall(String xAccountToken, UUID id, String expand, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -270,6 +287,10 @@ public class JobsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (expand != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("expand", expand));
+        }
 
         if (includeRemoteData != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_remote_data", includeRemoteData));
@@ -298,7 +319,7 @@ public class JobsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call jobsRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call jobsRetrieveValidateBeforeCall(String xAccountToken, UUID id, String expand, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -311,7 +332,7 @@ public class JobsApi {
         }
         
 
-        okhttp3.Call localVarCall = jobsRetrieveCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = jobsRetrieveCall(xAccountToken, id, expand, includeRemoteData, _callback);
         return localVarCall;
 
     }
@@ -321,6 +342,7 @@ public class JobsApi {
      * Returns a &#x60;Job&#x60; object with the given &#x60;id&#x60;.
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @return Job
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -330,8 +352,8 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Job jobsRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        ApiResponse<Job> localVarResp = jobsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
+    public Job jobsRetrieve(String xAccountToken, UUID id, String expand, Boolean includeRemoteData) throws ApiException {
+        ApiResponse<Job> localVarResp = jobsRetrieveWithHttpInfo(xAccountToken, id, expand, includeRemoteData);
         return localVarResp.getData();
     }
 
@@ -340,6 +362,7 @@ public class JobsApi {
      * Returns a &#x60;Job&#x60; object with the given &#x60;id&#x60;.
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @return ApiResponse&lt;Job&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -349,8 +372,8 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Job> jobsRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        okhttp3.Call localVarCall = jobsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, null);
+    public ApiResponse<Job> jobsRetrieveWithHttpInfo(String xAccountToken, UUID id, String expand, Boolean includeRemoteData) throws ApiException {
+        okhttp3.Call localVarCall = jobsRetrieveValidateBeforeCall(xAccountToken, id, expand, includeRemoteData, null);
         Type localVarReturnType = new TypeToken<Job>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -360,6 +383,7 @@ public class JobsApi {
      * Returns a &#x60;Job&#x60; object with the given &#x60;id&#x60;.
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
+     * @param expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -370,9 +394,9 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobsRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback<Job> _callback) throws ApiException {
+    public okhttp3.Call jobsRetrieveAsync(String xAccountToken, UUID id, String expand, Boolean includeRemoteData, final ApiCallback<Job> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = jobsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = jobsRetrieveValidateBeforeCall(xAccountToken, id, expand, includeRemoteData, _callback);
         Type localVarReturnType = new TypeToken<Job>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

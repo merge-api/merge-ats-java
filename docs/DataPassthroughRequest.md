@@ -11,8 +11,9 @@ Name | Type | Description | Notes
 **method** | [**MethodEnum**](MethodEnum.md) |  | 
 **path** | **String** |  | 
 **baseUrlOverride** | **String** |  |  [optional]
-**data** | **Map&lt;String, Object&gt;** |  |  [optional]
+**data** | **String** |  |  [optional]
 **headers** | **Map&lt;String, Object&gt;** |  |  [optional]
+**requestFormat** | [**RequestFormatEnum**](RequestFormatEnum.md) |  |  [optional]
 
 
 
