@@ -27,7 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.merge_ats_client.model.AccountDetails;
+import merge_ats_client.model.AccountDetails;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.merge_ats_client.model.Activity;
+import merge_ats_client.model.Activity;
 import org.threeten.bp.OffsetDateTime;
-import java.merge_ats_client.model.PaginatedActivityList;
+import merge_ats_client.model.PaginatedActivityList;
 import java.util.UUID;
 
 import java.lang.reflect.Type;

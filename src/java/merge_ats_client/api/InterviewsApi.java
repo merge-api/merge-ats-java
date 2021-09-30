@@ -28,9 +28,9 @@ import java.io.IOException;
 
 
 import org.threeten.bp.OffsetDateTime;
-import java.merge_ats_client.model.PaginatedScheduledInterviewList;
-import java.merge_ats_client.model.ScheduledInterview;
-import java.merge_ats_client.model.ScheduledInterviewRequest;
+import merge_ats_client.model.PaginatedScheduledInterviewList;
+import merge_ats_client.model.ScheduledInterview;
+import merge_ats_client.model.ScheduledInterviewRequest;
 import java.util.UUID;
 
 import java.lang.reflect.Type;

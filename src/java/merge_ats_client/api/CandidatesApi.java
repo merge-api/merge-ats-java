@@ -27,10 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.merge_ats_client.model.Candidate;
-import java.merge_ats_client.model.CandidateRequest;
+import merge_ats_client.model.Candidate;
+import merge_ats_client.model.CandidateRequest;
 import org.threeten.bp.OffsetDateTime;
-import java.merge_ats_client.model.PaginatedCandidateList;
+import merge_ats_client.model.PaginatedCandidateList;
 import java.util.UUID;
 
 import java.lang.reflect.Type;
