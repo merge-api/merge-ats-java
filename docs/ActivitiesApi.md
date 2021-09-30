@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="activitiesList"></a>
 # **activitiesList**
-> PaginatedActivityList activitiesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, userId)
+> PaginatedActivityList activitiesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, userId)
 
 
 
@@ -42,6 +42,7 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
+    String expand = "user"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
     OffsetDateTime modifiedBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified before this datetime.
@@ -49,7 +50,7 @@ public class Example {
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     String userId = "userId_example"; // String | If provided, will only return activities done by this user.
     try {
-      PaginatedActivityList result = apiInstance.activitiesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, userId);
+      PaginatedActivityList result = apiInstance.activitiesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, userId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ActivitiesApi#activitiesList");
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
+ **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: user]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
  **modifiedBefore** | **OffsetDateTime**| If provided, will only return objects modified before this datetime. | [optional]
@@ -97,7 +99,7 @@ Name | Type | Description  | Notes
 
 <a name="activitiesRetrieve"></a>
 # **activitiesRetrieve**
-> Activity activitiesRetrieve(xAccountToken, id, includeRemoteData)
+> Activity activitiesRetrieve(xAccountToken, id, expand, includeRemoteData)
 
 
 
@@ -127,9 +129,10 @@ public class Example {
     ActivitiesApi apiInstance = new ActivitiesApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
+    String expand = "user"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
-      Activity result = apiInstance.activitiesRetrieve(xAccountToken, id, includeRemoteData);
+      Activity result = apiInstance.activitiesRetrieve(xAccountToken, id, expand, includeRemoteData);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ActivitiesApi#activitiesRetrieve");
@@ -148,6 +151,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
+ **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: user]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

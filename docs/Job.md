@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
 **name** | **String** | The job&#39;s name. |  [optional]
 **description** | **String** | The job&#39;s description. |  [optional]
+**code** | **String** | The job&#39;s code. Typically an additional identifier used to reference the particular job that is displayed on the ATS. |  [optional]
 **status** | [**JobStatusEnum**](JobStatusEnum.md) | The job&#39;s status. |  [optional]
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s job was created. |  [optional]
 **remoteUpdatedAt** | **OffsetDateTime** | When the third party&#39;s job was updated. |  [optional]
