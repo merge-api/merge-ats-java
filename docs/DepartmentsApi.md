@@ -24,7 +24,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.DepartmentsApi;
+import java.merge_ats_client.api.DepartmentsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -109,7 +109,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.DepartmentsApi;
+import java.merge_ats_client.api.DepartmentsApi;
 
 public class Example {
   public static void main(String[] args) {
