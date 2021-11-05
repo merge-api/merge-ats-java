@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company.  ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company.  ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-02T17:09:04.691904-07:00[America/Los_Angeles]")
 public class Job {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -51,6 +51,10 @@ public class Job {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private String code;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -156,7 +160,7 @@ public class Job {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "If you're reading this documentation. You might be a good fit!", value = "The job's description.")
+  @ApiModelProperty(example = "<b>If you're reading this documentation, you might be a good fit for Merge!</b>", value = "The job's description.")
 
   public String getDescription() {
     return description;
@@ -165,6 +169,29 @@ public class Job {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+
+  public Job code(String code) {
+    
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * The job&#39;s code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.
+   * @return code
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "C0025", value = "The job's code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.")
+
+  public String getCode() {
+    return code;
+  }
+
+
+  public void setCode(String code) {
+    this.code = code;
   }
 
 
@@ -202,7 +229,7 @@ public class Job {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's job was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's job was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -225,7 +252,7 @@ public class Job {
    * @return remoteUpdatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's job was updated.")
+  @ApiModelProperty(example = "2021-10-16T00:00Z", value = "When the third party's job was updated.")
 
   public OffsetDateTime getRemoteUpdatedAt() {
     return remoteUpdatedAt;
@@ -380,6 +407,7 @@ public class Job {
         Objects.equals(this.remoteId, job.remoteId) &&
         Objects.equals(this.name, job.name) &&
         Objects.equals(this.description, job.description) &&
+        Objects.equals(this.code, job.code) &&
         Objects.equals(this.status, job.status) &&
         Objects.equals(this.remoteCreatedAt, job.remoteCreatedAt) &&
         Objects.equals(this.remoteUpdatedAt, job.remoteUpdatedAt) &&
@@ -392,7 +420,7 @@ public class Job {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, description, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, remoteData);
+    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, remoteData);
   }
 
   @Override
@@ -403,6 +431,7 @@ public class Job {
     sb.append("    remoteId: ").append(toIndentedString(remoteId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt)).append("\n");
     sb.append("    remoteUpdatedAt: ").append(toIndentedString(remoteUpdatedAt)).append("\n");

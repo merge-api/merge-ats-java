@@ -24,7 +24,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.RemoteData;
 import org.threeten.bp.OffsetDateTime;
@@ -33,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
 @ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-02T17:09:04.691904-07:00[America/Los_Angeles]")
 public class Application {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -78,6 +80,10 @@ public class Application {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private List<RemoteData> remoteData = null;
+
+  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
+  private Map<String, Object> customFields = null;
 
 
    /**
@@ -174,7 +180,7 @@ public class Application {
    * @return appliedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the application was submitted.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the application was submitted.")
 
   public OffsetDateTime getAppliedAt() {
     return appliedAt;
@@ -197,7 +203,7 @@ public class Application {
    * @return rejectedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the application was rejected.")
+  @ApiModelProperty(example = "2021-11-15T00:00Z", value = "When the application was rejected.")
 
   public OffsetDateTime getRejectedAt() {
     return rejectedAt;
@@ -315,6 +321,37 @@ public class Application {
 
 
 
+  public Application customFields(Map<String, Object> customFields) {
+    
+    this.customFields = customFields;
+    return this;
+  }
+
+  public Application putCustomFieldsItem(String key, Object customFieldsItem) {
+    if (this.customFields == null) {
+      this.customFields = new HashMap<String, Object>();
+    }
+    this.customFields.put(key, customFieldsItem);
+    return this;
+  }
+
+   /**
+   * Custom fields configured for a given model.
+   * @return customFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Custom fields configured for a given model.")
+
+  public Map<String, Object> getCustomFields() {
+    return customFields;
+  }
+
+
+  public void setCustomFields(Map<String, Object> customFields) {
+    this.customFields = customFields;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -334,12 +371,13 @@ public class Application {
         Objects.equals(this.creditedTo, application.creditedTo) &&
         Objects.equals(this.currentStage, application.currentStage) &&
         Objects.equals(this.rejectReason, application.rejectReason) &&
-        Objects.equals(this.remoteData, application.remoteData);
+        Objects.equals(this.remoteData, application.remoteData) &&
+        Objects.equals(this.customFields, application.customFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, remoteData);
+    return Objects.hash(id, remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, remoteData, customFields);
   }
 
   @Override
@@ -357,6 +395,7 @@ public class Application {
     sb.append("    currentStage: ").append(toIndentedString(currentStage)).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
+    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }

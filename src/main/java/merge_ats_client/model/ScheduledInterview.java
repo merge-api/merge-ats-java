@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview  ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
  */
 @ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview  ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-02T17:09:04.691904-07:00[America/Los_Angeles]")
 public class ScheduledInterview {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -260,7 +260,7 @@ public class ScheduledInterview {
    * @return startAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the interview was started.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the interview was started.")
 
   public OffsetDateTime getStartAt() {
     return startAt;
@@ -283,7 +283,7 @@ public class ScheduledInterview {
    * @return endAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the interview was ended.")
+  @ApiModelProperty(example = "2021-10-15T02:00Z", value = "When the interview was ended.")
 
   public OffsetDateTime getEndAt() {
     return endAt;
@@ -306,7 +306,7 @@ public class ScheduledInterview {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's interview was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's interview was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -329,7 +329,7 @@ public class ScheduledInterview {
    * @return remoteUpdatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's interview was updated.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's interview was updated.")
 
   public OffsetDateTime getRemoteUpdatedAt() {
     return remoteUpdatedAt;

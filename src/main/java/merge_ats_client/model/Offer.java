@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application.  ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
  */
 @ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application.  ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-02T17:09:04.691904-07:00[America/Los_Angeles]")
 public class Offer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -171,7 +171,7 @@ public class Offer {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's offer was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's offer was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -194,7 +194,7 @@ public class Offer {
    * @return closedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the offer was closed.")
+  @ApiModelProperty(example = "2021-10-16T00:00Z", value = "When the offer was closed.")
 
   public OffsetDateTime getClosedAt() {
     return closedAt;
@@ -217,7 +217,7 @@ public class Offer {
    * @return sentAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the offer was sent.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the offer was sent.")
 
   public OffsetDateTime getSentAt() {
     return sentAt;
@@ -240,7 +240,7 @@ public class Offer {
    * @return startDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The employment start date on the offer.")
+  @ApiModelProperty(example = "2021-11-15T00:00Z", value = "The employment start date on the offer.")
 
   public OffsetDateTime getStartDate() {
     return startDate;

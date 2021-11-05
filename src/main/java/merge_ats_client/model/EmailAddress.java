@@ -29,7 +29,7 @@ import merge_ats_client.model.EmailAddressTypeEnum;
  * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
 @ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-02T17:09:04.691904-07:00[America/Los_Angeles]")
 public class EmailAddress {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -51,7 +51,7 @@ public class EmailAddress {
    * @return value
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "merge_is_hiring@gmail.com", value = "The email address.")
+  @ApiModelProperty(example = "merge_is_hiring@merge.dev", value = "The email address.")
 
   public String getValue() {
     return value;

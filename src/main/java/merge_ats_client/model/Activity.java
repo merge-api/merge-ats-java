@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Activity Object ### Description The &#x60;Activity&#x60; object is used to represent an activity performed by a user.  ### Usage Example Fetch from the &#x60;LIST Activities&#x60; endpoint and filter by &#x60;ID&#x60; to show all activities.
  */
 @ApiModel(description = "# The Activity Object ### Description The `Activity` object is used to represent an activity performed by a user.  ### Usage Example Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-02T17:09:04.691904-07:00[America/Los_Angeles]")
 public class Activity {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -145,7 +145,7 @@ public class Activity {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's activity was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's activity was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -191,7 +191,7 @@ public class Activity {
    * @return subject
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Gil Feig's applicant status", value = "The activity's subject.")
+  @ApiModelProperty(example = "Gil Feig's interview", value = "The activity's subject.")
 
   public String getSubject() {
     return subject;
@@ -214,7 +214,7 @@ public class Activity {
    * @return body
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Candidate will only join if we provide a Barry's subsidy.", value = "The activity's body.")
+  @ApiModelProperty(example = "Candidate loves integrations!!.", value = "The activity's body.")
 
   public String getBody() {
     return body;

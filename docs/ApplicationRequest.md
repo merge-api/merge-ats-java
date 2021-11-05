@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **creditedTo** | **UUID** | The user credited for this application. |  [optional]
 **currentStage** | **UUID** | The application&#39;s current stage. |  [optional]
 **rejectReason** | **UUID** | The application&#39;s reason for rejection. |  [optional]
+**customFields** | **Map&lt;String, Object&gt;** | Custom fields configured for a given model. |  [optional]
 
 
 
