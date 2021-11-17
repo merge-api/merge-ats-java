@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.api;
+package main.java.merge_ats_client.api;
 
 import merge_ats_client.ApiCallback;
 import merge_ats_client.ApiClient;

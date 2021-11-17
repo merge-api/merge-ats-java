@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.model;
+package main.java.merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * EndUserDetailsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:59:17.325283-07:00[America/Los_Angeles]")
 public class EndUserDetailsRequest {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)

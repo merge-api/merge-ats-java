@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.model;
+package main.java.merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -26,15 +26,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.OfferStatusEnum;
-import merge_ats_client.model.RemoteData;
+import main.java.merge_ats_client.model.OfferStatusEnum;
+import main.java.merge_ats_client.model.RemoteData;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application.  ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
  */
 @ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application.  ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:59:17.325283-07:00[America/Los_Angeles]")
 public class Offer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

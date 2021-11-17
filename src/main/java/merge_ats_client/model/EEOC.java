@@ -11,7 +11,7 @@
  */
 
 
-package merge_ats_client.model;
+package main.java.merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -26,18 +26,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.DisabilityStatusEnum;
-import merge_ats_client.model.GenderEnum;
-import merge_ats_client.model.RaceEnum;
-import merge_ats_client.model.RemoteData;
-import merge_ats_client.model.VeteranStatusEnum;
+import main.java.merge_ats_client.model.DisabilityStatusEnum;
+import main.java.merge_ats_client.model.GenderEnum;
+import main.java.merge_ats_client.model.RaceEnum;
+import main.java.merge_ats_client.model.RemoteData;
+import main.java.merge_ats_client.model.VeteranStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The EEOC Object ### Description The &#x60;EEOC&#x60; object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the &#x60;LIST EEOCs&#x60; endpoint and filter by &#x60;candidate&#x60; to show all EEOC information for a candidate.
  */
 @ApiModel(description = "# The EEOC Object ### Description The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-29T17:59:17.325283-07:00[America/Los_Angeles]")
 public class EEOC {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

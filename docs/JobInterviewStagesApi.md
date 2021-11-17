@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="jobInterviewStagesList"></a>
 # **jobInterviewStagesList**
-> PaginatedJobInterviewStageList jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedJobInterviewStageList jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId)
 
 
 
@@ -24,7 +24,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.JobInterviewStagesApi;
+import main.java.merge_ats_client.api.JobInterviewStagesApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -42,6 +42,7 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
+    String expand = "departments,offices,job"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String jobId = "jobId_example"; // String | If provided, will only return interview stages for this job.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
@@ -49,7 +50,7 @@ public class Example {
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedJobInterviewStageList result = apiInstance.jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedJobInterviewStageList result = apiInstance.jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling JobInterviewStagesApi#jobInterviewStagesList");
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
+ **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: departments, departments,job, departments,offices, departments,offices,job, job, offices, offices,job]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **jobId** | **String**| If provided, will only return interview stages for this job. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
@@ -97,7 +99,7 @@ Name | Type | Description  | Notes
 
 <a name="jobInterviewStagesRetrieve"></a>
 # **jobInterviewStagesRetrieve**
-> JobInterviewStage jobInterviewStagesRetrieve(xAccountToken, id, includeRemoteData)
+> JobInterviewStage jobInterviewStagesRetrieve(xAccountToken, id, expand, includeRemoteData)
 
 
 
@@ -111,7 +113,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.JobInterviewStagesApi;
+import main.java.merge_ats_client.api.JobInterviewStagesApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -127,9 +129,10 @@ public class Example {
     JobInterviewStagesApi apiInstance = new JobInterviewStagesApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
+    String expand = "departments,offices,job"; // String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
-      JobInterviewStage result = apiInstance.jobInterviewStagesRetrieve(xAccountToken, id, includeRemoteData);
+      JobInterviewStage result = apiInstance.jobInterviewStagesRetrieve(xAccountToken, id, expand, includeRemoteData);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling JobInterviewStagesApi#jobInterviewStagesRetrieve");
@@ -148,6 +151,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
+ **expand** | **String**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] [enum: departments, departments,job, departments,offices, departments,offices,job, job, offices, offices,job]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type
