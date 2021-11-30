@@ -27,14 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import merge_ats_client.model.RemoteData;
-import merge_ats_client.model.ScheduledInterviewStatusEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview  ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
  */
 @ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview  ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class ScheduledInterview {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -82,7 +82,7 @@ public class ScheduledInterview {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private ScheduledInterviewStatusEnum status;
+  private String status;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -260,7 +260,7 @@ public class ScheduledInterview {
    * @return startAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the interview was started.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the interview was started.")
 
   public OffsetDateTime getStartAt() {
     return startAt;
@@ -283,7 +283,7 @@ public class ScheduledInterview {
    * @return endAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the interview was ended.")
+  @ApiModelProperty(example = "2021-10-15T02:00Z", value = "When the interview was ended.")
 
   public OffsetDateTime getEndAt() {
     return endAt;
@@ -306,7 +306,7 @@ public class ScheduledInterview {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's interview was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's interview was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -329,7 +329,7 @@ public class ScheduledInterview {
    * @return remoteUpdatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's interview was updated.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's interview was updated.")
 
   public OffsetDateTime getRemoteUpdatedAt() {
     return remoteUpdatedAt;
@@ -341,27 +341,18 @@ public class ScheduledInterview {
   }
 
 
-  public ScheduledInterview status(ScheduledInterviewStatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
    /**
-   * The interview&#39;s status.
+   * Get status
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "SCHEDULED", value = "The interview's status.")
+  @ApiModelProperty(example = "SCHEDULED", value = "")
 
-  public ScheduledInterviewStatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
 
-  public void setStatus(ScheduledInterviewStatusEnum status) {
-    this.status = status;
-  }
 
 
    /**
@@ -402,9 +393,20 @@ public class ScheduledInterview {
         Objects.equals(this.remoteData, scheduledInterview.remoteData);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, remoteId, application, jobInterviewStage, organizer, interviewers, location, startAt, endAt, remoteCreatedAt, remoteUpdatedAt, status, remoteData);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

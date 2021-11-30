@@ -27,13 +27,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import merge_ats_client.model.IssueStatusEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Issue
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class Issue {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -41,7 +41,7 @@ public class Issue {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private IssueStatusEnum status;
+  private String status;
 
   public static final String SERIALIZED_NAME_ERROR_DESCRIPTION = "error_description";
   @SerializedName(SERIALIZED_NAME_ERROR_DESCRIPTION)
@@ -78,12 +78,6 @@ public class Issue {
 
 
 
-  public Issue status(IssueStatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
    /**
    * Get status
    * @return status
@@ -91,14 +85,11 @@ public class Issue {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public IssueStatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
 
-  public void setStatus(IssueStatusEnum status) {
-    this.status = status;
-  }
 
 
   public Issue errorDescription(String errorDescription) {
@@ -111,6 +102,7 @@ public class Issue {
    * Get errorDescription
    * @return errorDescription
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getErrorDescription() {
@@ -215,9 +207,20 @@ public class Issue {
         Objects.equals(this.isMuted, issue.isMuted);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, status, errorDescription, endUser, firstIncidentTime, lastIncidentTime, isMuted);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

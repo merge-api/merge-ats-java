@@ -24,14 +24,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import merge_ats_client.model.OverallRecommendationEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
 @ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class ScorecardRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -56,10 +56,6 @@ public class ScorecardRequest {
   public static final String SERIALIZED_NAME_SUBMITTED_AT = "submitted_at";
   @SerializedName(SERIALIZED_NAME_SUBMITTED_AT)
   private OffsetDateTime submittedAt;
-
-  public static final String SERIALIZED_NAME_OVERALL_RECOMMENDATION = "overall_recommendation";
-  @SerializedName(SERIALIZED_NAME_OVERALL_RECOMMENDATION)
-  private OverallRecommendationEnum overallRecommendation;
 
 
   public ScorecardRequest remoteId(String remoteId) {
@@ -165,7 +161,7 @@ public class ScorecardRequest {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's scorecard was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's scorecard was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -188,7 +184,7 @@ public class ScorecardRequest {
    * @return submittedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the scorecard was submitted.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the scorecard was submitted.")
 
   public OffsetDateTime getSubmittedAt() {
     return submittedAt;
@@ -197,29 +193,6 @@ public class ScorecardRequest {
 
   public void setSubmittedAt(OffsetDateTime submittedAt) {
     this.submittedAt = submittedAt;
-  }
-
-
-  public ScorecardRequest overallRecommendation(OverallRecommendationEnum overallRecommendation) {
-    
-    this.overallRecommendation = overallRecommendation;
-    return this;
-  }
-
-   /**
-   * The inteviewer&#39;s recommendation.
-   * @return overallRecommendation
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "STRONG_YES", value = "The inteviewer's recommendation.")
-
-  public OverallRecommendationEnum getOverallRecommendation() {
-    return overallRecommendation;
-  }
-
-
-  public void setOverallRecommendation(OverallRecommendationEnum overallRecommendation) {
-    this.overallRecommendation = overallRecommendation;
   }
 
 
@@ -237,13 +210,23 @@ public class ScorecardRequest {
         Objects.equals(this.interview, scorecardRequest.interview) &&
         Objects.equals(this.interviewer, scorecardRequest.interviewer) &&
         Objects.equals(this.remoteCreatedAt, scorecardRequest.remoteCreatedAt) &&
-        Objects.equals(this.submittedAt, scorecardRequest.submittedAt) &&
-        Objects.equals(this.overallRecommendation, scorecardRequest.overallRecommendation);
+        Objects.equals(this.submittedAt, scorecardRequest.submittedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, application, interview, interviewer, remoteCreatedAt, submittedAt, overallRecommendation);
+    return Objects.hash(remoteId, application, interview, interviewer, remoteCreatedAt, submittedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -256,7 +239,6 @@ public class ScorecardRequest {
     sb.append("    interviewer: ").append(toIndentedString(interviewer)).append("\n");
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt)).append("\n");
     sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
-    sb.append("    overallRecommendation: ").append(toIndentedString(overallRecommendation)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -38,15 +38,15 @@ public class Example {
     //tokenAuth.setApiKeyPrefix("Token");
 
     IssuesApi apiInstance = new IssuesApi(defaultClient);
-    String accountToken = "accountToken_example"; // String | account_token
-    Integer cursor = 56; // Integer | The pagination cursor value.
+    String accountToken = "accountToken_example"; // String | 
+    String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     String endDate = "endDate_example"; // String | If included, will only include issues whose most recent action occurred before this time
-    String endUserOrganizationName = "endUserOrganizationName_example"; // String | end_user_organization_name
+    String endUserOrganizationName = "endUserOrganizationName_example"; // String | 
     String includeMuted = "includeMuted_example"; // String | If True, will include muted issues
-    String integrationName = "integrationName_example"; // String | integration_name
+    String integrationName = "integrationName_example"; // String | 
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String startDate = "startDate_example"; // String | If included, will only include issues whose most recent action occurred after this time
-    String status = "status_example"; // String | status
+    String status = "ONGOING"; // String | 
     try {
       PaginatedIssueList result = apiInstance.issuesList(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status);
       System.out.println(result);
@@ -65,15 +65,15 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountToken** | **String**| account_token | [optional]
- **cursor** | **Integer**| The pagination cursor value. | [optional]
+ **accountToken** | **String**|  | [optional]
+ **cursor** | **String**| The pagination cursor value. | [optional]
  **endDate** | **String**| If included, will only include issues whose most recent action occurred before this time | [optional]
- **endUserOrganizationName** | **String**| end_user_organization_name | [optional]
+ **endUserOrganizationName** | **String**|  | [optional]
  **includeMuted** | **String**| If True, will include muted issues | [optional]
- **integrationName** | **String**| integration_name | [optional]
+ **integrationName** | **String**|  | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
  **startDate** | **String**| If included, will only include issues whose most recent action occurred after this time | [optional]
- **status** | **String**| status | [optional] [enum: ONGOING, RESOLVED]
+ **status** | **String**|  | [optional] [enum: ONGOING, RESOLVED]
 
 ### Return type
 
@@ -123,7 +123,7 @@ public class Example {
     //tokenAuth.setApiKeyPrefix("Token");
 
     IssuesApi apiInstance = new IssuesApi(defaultClient);
-    UUID id = new UUID(); // UUID | 
+    UUID id = UUID.randomUUID(); // UUID | 
     try {
       Issue result = apiInstance.issuesRetrieve(id);
       System.out.println(result);
@@ -142,7 +142,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**UUID**](.md)|  |
+ **id** | **UUID**|  |
 
 ### Return type
 

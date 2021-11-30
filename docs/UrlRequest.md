@@ -9,7 +9,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **value** | **URI** | The site&#39;s url. |  [optional]
-**urlType** | [**UrlTypeEnum**](UrlTypeEnum.md) | The type of site. |  [optional]
 
 
 

@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The SyncStatus Object ### Description The &#x60;SyncStatus&#x60; object is used to represent the syncing state of an account  ### Usage Example View the &#x60;SyncStatus&#x60; for an account to see how recently its models were synced.
  */
 @ApiModel(description = "# The SyncStatus Object ### Description The `SyncStatus` object is used to represent the syncing state of an account  ### Usage Example View the `SyncStatus` for an account to see how recently its models were synced.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class SyncStatus {
   public static final String SERIALIZED_NAME_MODEL_NAME = "model_name";
   @SerializedName(SERIALIZED_NAME_MODEL_NAME)
@@ -67,6 +67,7 @@ public class SyncStatus {
    * Get modelName
    * @return modelName
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "Candidate", required = true, value = "")
 
   public String getModelName() {
@@ -89,6 +90,7 @@ public class SyncStatus {
    * Get modelId
    * @return modelId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "ats.Candidate", required = true, value = "")
 
   public String getModelId() {
@@ -111,6 +113,7 @@ public class SyncStatus {
    * Get lastSyncStart
    * @return lastSyncStart
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2021-03-30T19:44:18.695973Z", required = true, value = "")
 
   public OffsetDateTime getLastSyncStart() {
@@ -133,6 +136,7 @@ public class SyncStatus {
    * Get nextSyncStart
    * @return nextSyncStart
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2021-03-30T20:44:18.662942Z", required = true, value = "")
 
   public OffsetDateTime getNextSyncStart() {
@@ -155,6 +159,7 @@ public class SyncStatus {
    * Get status
    * @return status
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "SYNCING", required = true, value = "")
 
   public SyncStatusStatusEnum getStatus() {
@@ -177,6 +182,7 @@ public class SyncStatus {
    * Get isInitialSync
    * @return isInitialSync
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "true", required = true, value = "")
 
   public Boolean getIsInitialSync() {

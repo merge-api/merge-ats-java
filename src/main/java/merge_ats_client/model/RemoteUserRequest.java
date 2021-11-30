@@ -23,14 +23,14 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import merge_ats_client.model.AccessRoleEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The RemoteUser Object ### Description The &#x60;RemoteUser&#x60; object is used to represent a third party user.  ### Usage Example Fetch from the &#x60;LIST RemoteUsers&#x60; endpoint to show all users for a third party.
  */
 @ApiModel(description = "# The RemoteUser Object ### Description The `RemoteUser` object is used to represent a third party user.  ### Usage Example Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class RemoteUserRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -55,10 +55,6 @@ public class RemoteUserRequest {
   public static final String SERIALIZED_NAME_REMOTE_CREATED_AT = "remote_created_at";
   @SerializedName(SERIALIZED_NAME_REMOTE_CREATED_AT)
   private OffsetDateTime remoteCreatedAt;
-
-  public static final String SERIALIZED_NAME_ACCESS_ROLE = "access_role";
-  @SerializedName(SERIALIZED_NAME_ACCESS_ROLE)
-  private AccessRoleEnum accessRole;
 
 
   public RemoteUserRequest remoteId(String remoteId) {
@@ -187,7 +183,7 @@ public class RemoteUserRequest {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's user was created.")
+  @ApiModelProperty(example = "2020-11-10T00:00Z", value = "When the third party's user was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -196,29 +192,6 @@ public class RemoteUserRequest {
 
   public void setRemoteCreatedAt(OffsetDateTime remoteCreatedAt) {
     this.remoteCreatedAt = remoteCreatedAt;
-  }
-
-
-  public RemoteUserRequest accessRole(AccessRoleEnum accessRole) {
-    
-    this.accessRole = accessRole;
-    return this;
-  }
-
-   /**
-   * The user&#39;s role.
-   * @return accessRole
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "SUPER_ADMIN", value = "The user's role.")
-
-  public AccessRoleEnum getAccessRole() {
-    return accessRole;
-  }
-
-
-  public void setAccessRole(AccessRoleEnum accessRole) {
-    this.accessRole = accessRole;
   }
 
 
@@ -236,13 +209,23 @@ public class RemoteUserRequest {
         Objects.equals(this.lastName, remoteUserRequest.lastName) &&
         Objects.equals(this.email, remoteUserRequest.email) &&
         Objects.equals(this.disabled, remoteUserRequest.disabled) &&
-        Objects.equals(this.remoteCreatedAt, remoteUserRequest.remoteCreatedAt) &&
-        Objects.equals(this.accessRole, remoteUserRequest.accessRole);
+        Objects.equals(this.remoteCreatedAt, remoteUserRequest.remoteCreatedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, firstName, lastName, email, disabled, remoteCreatedAt, accessRole);
+    return Objects.hash(remoteId, firstName, lastName, email, disabled, remoteCreatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -255,7 +238,6 @@ public class RemoteUserRequest {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt)).append("\n");
-    sb.append("    accessRole: ").append(toIndentedString(accessRole)).append("\n");
     sb.append("}");
     return sb.toString();
   }

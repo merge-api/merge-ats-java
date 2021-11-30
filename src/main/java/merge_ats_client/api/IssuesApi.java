@@ -58,15 +58,15 @@ public class IssuesApi {
 
     /**
      * Build call for issuesList
-     * @param accountToken account_token (optional)
+     * @param accountToken  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
-     * @param endUserOrganizationName end_user_organization_name (optional)
+     * @param endUserOrganizationName  (optional)
      * @param includeMuted If True, will include muted issues (optional)
-     * @param integrationName integration_name (optional)
+     * @param integrationName  (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
-     * @param status status (optional)
+     * @param status  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -76,7 +76,7 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call issuesListCall(String accountToken, Integer cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call issuesListCall(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -143,7 +143,7 @@ public class IssuesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call issuesListValidateBeforeCall(String accountToken, Integer cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call issuesListValidateBeforeCall(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
         
 
         okhttp3.Call localVarCall = issuesListCall(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status, _callback);
@@ -154,15 +154,15 @@ public class IssuesApi {
     /**
      * 
      * Gets issues.
-     * @param accountToken account_token (optional)
+     * @param accountToken  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
-     * @param endUserOrganizationName end_user_organization_name (optional)
+     * @param endUserOrganizationName  (optional)
      * @param includeMuted If True, will include muted issues (optional)
-     * @param integrationName integration_name (optional)
+     * @param integrationName  (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
-     * @param status status (optional)
+     * @param status  (optional)
      * @return PaginatedIssueList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -171,7 +171,7 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedIssueList issuesList(String accountToken, Integer cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status) throws ApiException {
+    public PaginatedIssueList issuesList(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status) throws ApiException {
         ApiResponse<PaginatedIssueList> localVarResp = issuesListWithHttpInfo(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status);
         return localVarResp.getData();
     }
@@ -179,15 +179,15 @@ public class IssuesApi {
     /**
      * 
      * Gets issues.
-     * @param accountToken account_token (optional)
+     * @param accountToken  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
-     * @param endUserOrganizationName end_user_organization_name (optional)
+     * @param endUserOrganizationName  (optional)
      * @param includeMuted If True, will include muted issues (optional)
-     * @param integrationName integration_name (optional)
+     * @param integrationName  (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
-     * @param status status (optional)
+     * @param status  (optional)
      * @return ApiResponse&lt;PaginatedIssueList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -196,7 +196,7 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedIssueList> issuesListWithHttpInfo(String accountToken, Integer cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status) throws ApiException {
+    public ApiResponse<PaginatedIssueList> issuesListWithHttpInfo(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status) throws ApiException {
         okhttp3.Call localVarCall = issuesListValidateBeforeCall(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status, null);
         Type localVarReturnType = new TypeToken<PaginatedIssueList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -205,15 +205,15 @@ public class IssuesApi {
     /**
      *  (asynchronously)
      * Gets issues.
-     * @param accountToken account_token (optional)
+     * @param accountToken  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
-     * @param endUserOrganizationName end_user_organization_name (optional)
+     * @param endUserOrganizationName  (optional)
      * @param includeMuted If True, will include muted issues (optional)
-     * @param integrationName integration_name (optional)
+     * @param integrationName  (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
-     * @param status status (optional)
+     * @param status  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -223,7 +223,7 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call issuesListAsync(String accountToken, Integer cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback<PaginatedIssueList> _callback) throws ApiException {
+    public okhttp3.Call issuesListAsync(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback<PaginatedIssueList> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = issuesListValidateBeforeCall(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status, _callback);
         Type localVarReturnType = new TypeToken<PaginatedIssueList>(){}.getType();

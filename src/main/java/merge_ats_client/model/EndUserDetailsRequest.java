@@ -25,11 +25,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import merge_ats_client.model.CategoriesEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * EndUserDetailsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class EndUserDetailsRequest {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
@@ -42,55 +44,6 @@ public class EndUserDetailsRequest {
   public static final String SERIALIZED_NAME_END_USER_ORIGIN_ID = "end_user_origin_id";
   @SerializedName(SERIALIZED_NAME_END_USER_ORIGIN_ID)
   private String endUserOriginId;
-
-  /**
-   * Gets or Sets categories
-   */
-  @JsonAdapter(CategoriesEnum.Adapter.class)
-  public enum CategoriesEnum {
-    HRIS("hris"),
-    
-    ATS("ats"),
-    
-    ACCOUNTING("accounting");
-
-    private String value;
-
-    CategoriesEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static CategoriesEnum fromValue(String value) {
-      for (CategoriesEnum b : CategoriesEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<CategoriesEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final CategoriesEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public CategoriesEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return CategoriesEnum.fromValue(value);
-      }
-    }
-  }
 
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
   @SerializedName(SERIALIZED_NAME_CATEGORIES)
@@ -111,6 +64,7 @@ public class EndUserDetailsRequest {
    * Get endUserEmailAddress
    * @return endUserEmailAddress
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getEndUserEmailAddress() {
@@ -133,6 +87,7 @@ public class EndUserDetailsRequest {
    * Get endUserOrganizationName
    * @return endUserOrganizationName
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getEndUserOrganizationName() {
@@ -155,6 +110,7 @@ public class EndUserDetailsRequest {
    * Get endUserOriginId
    * @return endUserOriginId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getEndUserOriginId() {
@@ -237,9 +193,20 @@ public class EndUserDetailsRequest {
         Objects.equals(this.integration, endUserDetailsRequest.integration);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

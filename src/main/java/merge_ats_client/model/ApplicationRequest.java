@@ -23,14 +23,18 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
 @ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class ApplicationRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -67,6 +71,10 @@ public class ApplicationRequest {
   public static final String SERIALIZED_NAME_REJECT_REASON = "reject_reason";
   @SerializedName(SERIALIZED_NAME_REJECT_REASON)
   private UUID rejectReason;
+
+  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
+  private Map<String, Object> customFields = null;
 
 
   public ApplicationRequest remoteId(String remoteId) {
@@ -149,7 +157,7 @@ public class ApplicationRequest {
    * @return appliedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the application was submitted.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the application was submitted.")
 
   public OffsetDateTime getAppliedAt() {
     return appliedAt;
@@ -172,7 +180,7 @@ public class ApplicationRequest {
    * @return rejectedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the application was rejected.")
+  @ApiModelProperty(example = "2021-11-15T00:00Z", value = "When the application was rejected.")
 
   public OffsetDateTime getRejectedAt() {
     return rejectedAt;
@@ -276,6 +284,37 @@ public class ApplicationRequest {
   }
 
 
+  public ApplicationRequest customFields(Map<String, Object> customFields) {
+    
+    this.customFields = customFields;
+    return this;
+  }
+
+  public ApplicationRequest putCustomFieldsItem(String key, Object customFieldsItem) {
+    if (this.customFields == null) {
+      this.customFields = new HashMap<String, Object>();
+    }
+    this.customFields.put(key, customFieldsItem);
+    return this;
+  }
+
+   /**
+   * Custom fields configured for a given model.
+   * @return customFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Custom fields configured for a given model.")
+
+  public Map<String, Object> getCustomFields() {
+    return customFields;
+  }
+
+
+  public void setCustomFields(Map<String, Object> customFields) {
+    this.customFields = customFields;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -293,12 +332,24 @@ public class ApplicationRequest {
         Objects.equals(this.source, applicationRequest.source) &&
         Objects.equals(this.creditedTo, applicationRequest.creditedTo) &&
         Objects.equals(this.currentStage, applicationRequest.currentStage) &&
-        Objects.equals(this.rejectReason, applicationRequest.rejectReason);
+        Objects.equals(this.rejectReason, applicationRequest.rejectReason) &&
+        Objects.equals(this.customFields, applicationRequest.customFields);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason);
+    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, customFields);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -314,6 +365,7 @@ public class ApplicationRequest {
     sb.append("    creditedTo: ").append(toIndentedString(creditedTo)).append("\n");
     sb.append("    currentStage: ").append(toIndentedString(currentStage)).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason)).append("\n");
+    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }

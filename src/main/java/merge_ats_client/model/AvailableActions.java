@@ -32,7 +32,7 @@ import merge_ats_client.model.ModelOperation;
  * # The AvailableActions Object ### Description The &#x60;Activity&#x60; object is used to see all available model/operation combinations for an integration.  ### Usage Example Fetch all the actions available for the &#x60;Zenefits&#x60; integration.
  */
 @ApiModel(description = "# The AvailableActions Object ### Description The `Activity` object is used to see all available model/operation combinations for an integration.  ### Usage Example Fetch all the actions available for the `Zenefits` integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class AvailableActions {
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
@@ -57,6 +57,7 @@ public class AvailableActions {
    * Get integration
    * @return integration
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public AccountIntegration getIntegration() {
@@ -79,6 +80,7 @@ public class AvailableActions {
    * Get passthroughAvailable
    * @return passthroughAvailable
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "true", required = true, value = "")
 
   public Boolean getPassthroughAvailable() {

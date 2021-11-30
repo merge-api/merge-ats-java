@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 <a name="candidatesList"></a>
 # **candidatesList**
-> PaginatedCandidateList candidatesList(xAccountToken, createdAfter, createdBefore, cursor, emailAddress, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedCandidateList candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId)
 
 
 
@@ -118,7 +118,6 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
-    String emailAddress = "emailAddress_example"; // String | If provided, will only return candidates with this email_address.
     String firstName = "firstName_example"; // String | If provided, will only return candidates with this first name.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String lastName = "lastName_example"; // String | If provided, will only return candidates with this last name.
@@ -127,7 +126,7 @@ public class Example {
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedCandidateList result = apiInstance.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, emailAddress, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedCandidateList result = apiInstance.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CandidatesApi#candidatesList");
@@ -148,7 +147,6 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
- **emailAddress** | **String**| If provided, will only return candidates with this email_address. | [optional]
  **firstName** | **String**| If provided, will only return candidates with this first name. | [optional]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **lastName** | **String**| If provided, will only return candidates with this last name. | [optional]
@@ -206,7 +204,7 @@ public class Example {
 
     CandidatesApi apiInstance = new CandidatesApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    UUID id = new UUID(); // UUID | 
+    UUID id = UUID.randomUUID(); // UUID | 
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
       Candidate result = apiInstance.candidatesRetrieve(xAccountToken, id, includeRemoteData);
@@ -227,7 +225,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **id** | [**UUID**](.md)|  |
+ **id** | **UUID**|  |
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

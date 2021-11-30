@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **endAt** | **OffsetDateTime** | When the interview was ended. |  [optional]
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s interview was created. |  [optional]
 **remoteUpdatedAt** | **OffsetDateTime** | When the third party&#39;s interview was updated. |  [optional]
-**status** | [**ScheduledInterviewStatusEnum**](ScheduledInterviewStatusEnum.md) | The interview&#39;s status. |  [optional]
+**status** | **String** |  |  [optional] [readonly]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

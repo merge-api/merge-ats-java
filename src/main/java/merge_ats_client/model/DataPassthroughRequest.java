@@ -27,12 +27,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import merge_ats_client.model.MethodEnum;
+import merge_ats_client.model.RequestFormatEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class DataPassthroughRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -48,11 +50,15 @@ public class DataPassthroughRequest {
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private Map<String, Object> data = null;
+  private String data;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
   private Map<String, Object> headers = null;
+
+  public static final String SERIALIZED_NAME_REQUEST_FORMAT = "request_format";
+  @SerializedName(SERIALIZED_NAME_REQUEST_FORMAT)
+  private RequestFormatEnum requestFormat;
 
 
   public DataPassthroughRequest method(MethodEnum method) {
@@ -65,6 +71,7 @@ public class DataPassthroughRequest {
    * Get method
    * @return method
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "POST", required = true, value = "")
 
   public MethodEnum getMethod() {
@@ -87,6 +94,7 @@ public class DataPassthroughRequest {
    * Get path
    * @return path
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "/scooters", required = true, value = "")
 
   public String getPath() {
@@ -122,17 +130,9 @@ public class DataPassthroughRequest {
   }
 
 
-  public DataPassthroughRequest data(Map<String, Object> data) {
+  public DataPassthroughRequest data(String data) {
     
     this.data = data;
-    return this;
-  }
-
-  public DataPassthroughRequest putDataItem(String key, Object dataItem) {
-    if (this.data == null) {
-      this.data = new HashMap<String, Object>();
-    }
-    this.data.put(key, dataItem);
     return this;
   }
 
@@ -141,14 +141,14 @@ public class DataPassthroughRequest {
    * @return data
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"scooters\":[{\"company\":\"Lime\",\"model\":\"Gen 2.5\"},{\"company\":\"Bird\",\"model\":\"Bird Zero\"}]}", value = "")
+  @ApiModelProperty(example = "{\"company\": \"Lime\", \"model\": \"Gen 2.5\"}", value = "")
 
-  public Map<String, Object> getData() {
+  public String getData() {
     return data;
   }
 
 
-  public void setData(Map<String, Object> data) {
+  public void setData(String data) {
     this.data = data;
   }
 
@@ -184,6 +184,29 @@ public class DataPassthroughRequest {
   }
 
 
+  public DataPassthroughRequest requestFormat(RequestFormatEnum requestFormat) {
+    
+    this.requestFormat = requestFormat;
+    return this;
+  }
+
+   /**
+   * Get requestFormat
+   * @return requestFormat
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "JSON", value = "")
+
+  public RequestFormatEnum getRequestFormat() {
+    return requestFormat;
+  }
+
+
+  public void setRequestFormat(RequestFormatEnum requestFormat) {
+    this.requestFormat = requestFormat;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -197,12 +220,24 @@ public class DataPassthroughRequest {
         Objects.equals(this.path, dataPassthroughRequest.path) &&
         Objects.equals(this.baseUrlOverride, dataPassthroughRequest.baseUrlOverride) &&
         Objects.equals(this.data, dataPassthroughRequest.data) &&
-        Objects.equals(this.headers, dataPassthroughRequest.headers);
+        Objects.equals(this.headers, dataPassthroughRequest.headers) &&
+        Objects.equals(this.requestFormat, dataPassthroughRequest.requestFormat);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, path, baseUrlOverride, data, headers);
+    return Objects.hash(method, path, baseUrlOverride, data, headers, requestFormat);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -214,6 +249,7 @@ public class DataPassthroughRequest {
     sb.append("    baseUrlOverride: ").append(toIndentedString(baseUrlOverride)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
+    sb.append("    requestFormat: ").append(toIndentedString(requestFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

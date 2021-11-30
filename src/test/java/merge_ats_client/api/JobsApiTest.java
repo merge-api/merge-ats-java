@@ -56,7 +56,7 @@ public class JobsApiTest {
         Integer pageSize = null;
         String remoteId = null;
         String status = null;
-        PaginatedJobList response = api.jobsList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
+        // PaginatedJobList response = api.jobsList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
         // TODO: test validations
     }
     

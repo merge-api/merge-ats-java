@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2021-05-07T19:39:42.511025-07:00[America/Los_Angeles]
+  - Build date: 2021-11-30T09:05:46.017673-05:00[America/New_York]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -39,9 +39,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>merge</groupId>
+  <groupId>dev.merge</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "merge:merge-ats-client:1.0.0"
+compile "dev.merge:merge-ats-client:1.0.0-SNAPSHOT"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.0.0.jar`
+* `target/merge-ats-client-1.0.0-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -79,7 +79,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.AccountTokenApi;
+import merge_ats_client.api.AccountDetailsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -92,13 +92,12 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //tokenAuth.setApiKeyPrefix("Token");
 
-    AccountTokenApi apiInstance = new AccountTokenApi(defaultClient);
-    String publicToken = "publicToken_example"; // String | 
+    AccountDetailsApi apiInstance = new AccountDetailsApi(defaultClient);
     try {
-      AccountToken result = apiInstance.accountTokenRetrieve(publicToken);
+      AccountDetails result = apiInstance.accountDetailsRetrieve();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AccountTokenApi#accountTokenRetrieve");
+      System.err.println("Exception when calling AccountDetailsApi#accountDetailsRetrieve");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -115,6 +114,7 @@ All URIs are relative to *https://api.merge.dev/api/ats/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AccountDetailsApi* | [**accountDetailsRetrieve**](docs/AccountDetailsApi.md#accountDetailsRetrieve) | **GET** /account-details | 
 *AccountTokenApi* | [**accountTokenRetrieve**](docs/AccountTokenApi.md#accountTokenRetrieve) | **GET** /account-token/{public_token} | 
 *ActivitiesApi* | [**activitiesList**](docs/ActivitiesApi.md#activitiesList) | **GET** /activities | 
 *ActivitiesApi* | [**activitiesRetrieve**](docs/ActivitiesApi.md#activitiesRetrieve) | **GET** /activities/{id} | 
@@ -141,9 +141,8 @@ Class | Method | HTTP request | Description
 *IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} | 
 *JobInterviewStagesApi* | [**jobInterviewStagesList**](docs/JobInterviewStagesApi.md#jobInterviewStagesList) | **GET** /job-interview-stages | 
 *JobInterviewStagesApi* | [**jobInterviewStagesRetrieve**](docs/JobInterviewStagesApi.md#jobInterviewStagesRetrieve) | **GET** /job-interview-stages/{id} | 
-*JobsApi* | [**jobsList**](docs/JobsApi.md#jobsList) | **GET** /jobs | 
-*JobsApi* | [**jobsRetrieve**](docs/JobsApi.md#jobsRetrieve) | **GET** /jobs/{id} | 
 *LinkTokenApi* | [**linkTokenCreate**](docs/LinkTokenApi.md#linkTokenCreate) | **POST** /link-token | 
+*LinkedAccountsApi* | [**linkedAccountsList**](docs/LinkedAccountsApi.md#linkedAccountsList) | **GET** /linked-accounts | 
 *OffersApi* | [**offersList**](docs/OffersApi.md#offersList) | **GET** /offers | 
 *OffersApi* | [**offersRetrieve**](docs/OffersApi.md#offersRetrieve) | **GET** /offers/{id} | 
 *OfficesApi* | [**officesList**](docs/OfficesApi.md#officesList) | **GET** /offices | 
@@ -165,41 +164,37 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [AccessRoleEnum](docs/AccessRoleEnum.md)
+ - [AccountDetails](docs/AccountDetails.md)
+ - [AccountDetailsAndActions](docs/AccountDetailsAndActions.md)
+ - [AccountDetailsAndActionsIntegration](docs/AccountDetailsAndActionsIntegration.md)
+ - [AccountDetailsAndActionsStatusEnum](docs/AccountDetailsAndActionsStatusEnum.md)
  - [AccountIntegration](docs/AccountIntegration.md)
  - [AccountToken](docs/AccountToken.md)
  - [Activity](docs/Activity.md)
- - [ActivityTypeEnum](docs/ActivityTypeEnum.md)
  - [Application](docs/Application.md)
  - [ApplicationRequest](docs/ApplicationRequest.md)
  - [Attachment](docs/Attachment.md)
  - [AttachmentRequest](docs/AttachmentRequest.md)
- - [AttachmentTypeEnum](docs/AttachmentTypeEnum.md)
  - [AvailableActions](docs/AvailableActions.md)
  - [Candidate](docs/Candidate.md)
  - [CandidateRequest](docs/CandidateRequest.md)
+ - [CategoriesEnum](docs/CategoriesEnum.md)
+ - [CategoryEnum](docs/CategoryEnum.md)
  - [DataPassthroughRequest](docs/DataPassthroughRequest.md)
  - [Department](docs/Department.md)
- - [DisabilityStatusEnum](docs/DisabilityStatusEnum.md)
  - [EEOC](docs/EEOC.md)
  - [EmailAddress](docs/EmailAddress.md)
  - [EmailAddressRequest](docs/EmailAddressRequest.md)
- - [EmailAddressTypeEnum](docs/EmailAddressTypeEnum.md)
  - [EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
- - [GenderEnum](docs/GenderEnum.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
- - [Job](docs/Job.md)
  - [Issue](docs/Issue.md)
- - [IssueStatusEnum](docs/IssueStatusEnum.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
- - [JobStatusEnum](docs/JobStatusEnum.md)
  - [LinkToken](docs/LinkToken.md)
  - [MethodEnum](docs/MethodEnum.md)
  - [ModelOperation](docs/ModelOperation.md)
  - [Offer](docs/Offer.md)
- - [OfferStatusEnum](docs/OfferStatusEnum.md)
  - [Office](docs/Office.md)
- - [OverallRecommendationEnum](docs/OverallRecommendationEnum.md)
+ - [PaginatedAccountDetailsAndActionsList](docs/PaginatedAccountDetailsAndActionsList.md)
  - [PaginatedActivityList](docs/PaginatedActivityList.md)
  - [PaginatedApplicationList](docs/PaginatedApplicationList.md)
  - [PaginatedAttachmentList](docs/PaginatedAttachmentList.md)
@@ -218,8 +213,6 @@ Class | Method | HTTP request | Description
  - [PaginatedTagList](docs/PaginatedTagList.md)
  - [PhoneNumber](docs/PhoneNumber.md)
  - [PhoneNumberRequest](docs/PhoneNumberRequest.md)
- - [PhoneNumberTypeEnum](docs/PhoneNumberTypeEnum.md)
- - [RaceEnum](docs/RaceEnum.md)
  - [RejectReason](docs/RejectReason.md)
  - [RemoteData](docs/RemoteData.md)
  - [RemoteDataRequest](docs/RemoteDataRequest.md)
@@ -228,9 +221,9 @@ Class | Method | HTTP request | Description
  - [RemoteResponse](docs/RemoteResponse.md)
  - [RemoteUser](docs/RemoteUser.md)
  - [RemoteUserRequest](docs/RemoteUserRequest.md)
+ - [RequestFormatEnum](docs/RequestFormatEnum.md)
  - [ScheduledInterview](docs/ScheduledInterview.md)
  - [ScheduledInterviewRequest](docs/ScheduledInterviewRequest.md)
- - [ScheduledInterviewStatusEnum](docs/ScheduledInterviewStatusEnum.md)
  - [Scorecard](docs/Scorecard.md)
  - [ScorecardRequest](docs/ScorecardRequest.md)
  - [SyncStatus](docs/SyncStatus.md)
@@ -238,9 +231,6 @@ Class | Method | HTTP request | Description
  - [Tag](docs/Tag.md)
  - [Url](docs/Url.md)
  - [UrlRequest](docs/UrlRequest.md)
- - [UrlTypeEnum](docs/UrlTypeEnum.md)
- - [VeteranStatusEnum](docs/VeteranStatusEnum.md)
- - [VisibilityEnum](docs/VisibilityEnum.md)
 
 
 ## Documentation for Authorization
