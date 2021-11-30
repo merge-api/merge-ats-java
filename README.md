@@ -41,17 +41,9 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.merge</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.1.0</version>
   <scope>compile</scope>
 </dependency>
-```
-
-### Gradle users
-
-Add this dependency to your project's build file:
-
-```groovy
-compile "dev.merge:merge-ats-client:1.0.0-SNAPSHOT"
 ```
 
 ### Others
@@ -138,7 +130,9 @@ Class | Method | HTTP request | Description
 *InterviewsApi* | [**interviewsList**](docs/InterviewsApi.md#interviewsList) | **GET** /interviews | 
 *InterviewsApi* | [**interviewsRetrieve**](docs/InterviewsApi.md#interviewsRetrieve) | **GET** /interviews/{id} | 
 *IssuesApi* | [**issuesList**](docs/IssuesApi.md#issuesList) | **GET** /issues | 
-*IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} | 
+*IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} |
+*JobsApi* | [**jobsList**](docs/JobsApi.md#jobsList) | **GET** /jobs |
+*JobsApi* | [**jobsRetrieve**](docs/JobsApi.md#jobsRetrieve) | **GET** /jobs/{id} |
 *JobInterviewStagesApi* | [**jobInterviewStagesList**](docs/JobInterviewStagesApi.md#jobInterviewStagesList) | **GET** /job-interview-stages | 
 *JobInterviewStagesApi* | [**jobInterviewStagesRetrieve**](docs/JobInterviewStagesApi.md#jobInterviewStagesRetrieve) | **GET** /job-interview-stages/{id} | 
 *LinkTokenApi* | [**linkTokenCreate**](docs/LinkTokenApi.md#linkTokenCreate) | **POST** /link-token | 
@@ -188,6 +182,7 @@ Class | Method | HTTP request | Description
  - [EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
  - [Issue](docs/Issue.md)
+ - [Job](docs/Job.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
  - [LinkToken](docs/LinkToken.md)
  - [MethodEnum](docs/MethodEnum.md)
