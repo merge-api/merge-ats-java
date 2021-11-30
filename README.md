@@ -56,7 +56,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.0.0-SNAPSHOT.jar`
+* `target/merge-ats-client-1.1.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
