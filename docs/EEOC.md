@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
 **candidate** | **UUID** | The candidate being represented. |  [optional]
 **submittedAt** | **OffsetDateTime** | When the information was submitted. |  [optional]
-**race** | [**RaceEnum**](RaceEnum.md) | The candidate&#39;s race. |  [optional]
-**gender** | [**GenderEnum**](GenderEnum.md) | The candidate&#39;s gender. |  [optional]
-**veteranStatus** | [**VeteranStatusEnum**](VeteranStatusEnum.md) | The candidate&#39;s veteran status. |  [optional]
-**disabilityStatus** | [**DisabilityStatusEnum**](DisabilityStatusEnum.md) | The candidate&#39;s disability status. |  [optional]
+**race** | **String** |  |  [optional] [readonly]
+**gender** | **String** |  |  [optional] [readonly]
+**veteranStatus** | **String** |  |  [optional] [readonly]
+**disabilityStatus** | **String** |  |  [optional] [readonly]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

@@ -26,14 +26,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.ScheduledInterviewStatusEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview  ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
  */
 @ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview  ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class ScheduledInterviewRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -74,10 +74,6 @@ public class ScheduledInterviewRequest {
   public static final String SERIALIZED_NAME_REMOTE_UPDATED_AT = "remote_updated_at";
   @SerializedName(SERIALIZED_NAME_REMOTE_UPDATED_AT)
   private OffsetDateTime remoteUpdatedAt;
-
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private ScheduledInterviewStatusEnum status;
 
 
   public ScheduledInterviewRequest remoteId(String remoteId) {
@@ -237,7 +233,7 @@ public class ScheduledInterviewRequest {
    * @return startAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the interview was started.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the interview was started.")
 
   public OffsetDateTime getStartAt() {
     return startAt;
@@ -260,7 +256,7 @@ public class ScheduledInterviewRequest {
    * @return endAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the interview was ended.")
+  @ApiModelProperty(example = "2021-10-15T02:00Z", value = "When the interview was ended.")
 
   public OffsetDateTime getEndAt() {
     return endAt;
@@ -283,7 +279,7 @@ public class ScheduledInterviewRequest {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's interview was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's interview was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -306,7 +302,7 @@ public class ScheduledInterviewRequest {
    * @return remoteUpdatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's interview was updated.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's interview was updated.")
 
   public OffsetDateTime getRemoteUpdatedAt() {
     return remoteUpdatedAt;
@@ -315,29 +311,6 @@ public class ScheduledInterviewRequest {
 
   public void setRemoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
     this.remoteUpdatedAt = remoteUpdatedAt;
-  }
-
-
-  public ScheduledInterviewRequest status(ScheduledInterviewStatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * The interview&#39;s status.
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "SCHEDULED", value = "The interview's status.")
-
-  public ScheduledInterviewStatusEnum getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(ScheduledInterviewStatusEnum status) {
-    this.status = status;
   }
 
 
@@ -359,13 +332,23 @@ public class ScheduledInterviewRequest {
         Objects.equals(this.startAt, scheduledInterviewRequest.startAt) &&
         Objects.equals(this.endAt, scheduledInterviewRequest.endAt) &&
         Objects.equals(this.remoteCreatedAt, scheduledInterviewRequest.remoteCreatedAt) &&
-        Objects.equals(this.remoteUpdatedAt, scheduledInterviewRequest.remoteUpdatedAt) &&
-        Objects.equals(this.status, scheduledInterviewRequest.status);
+        Objects.equals(this.remoteUpdatedAt, scheduledInterviewRequest.remoteUpdatedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, application, jobInterviewStage, organizer, interviewers, location, startAt, endAt, remoteCreatedAt, remoteUpdatedAt, status);
+    return Objects.hash(remoteId, application, jobInterviewStage, organizer, interviewers, location, startAt, endAt, remoteCreatedAt, remoteUpdatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -382,7 +365,6 @@ public class ScheduledInterviewRequest {
     sb.append("    endAt: ").append(toIndentedString(endAt)).append("\n");
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt)).append("\n");
     sb.append("    remoteUpdatedAt: ").append(toIndentedString(remoteUpdatedAt)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

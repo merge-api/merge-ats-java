@@ -13,25 +13,6 @@
 
 package merge_ats_client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import merge_ats_client.model.DisabilityStatusEnum;
-import merge_ats_client.model.GenderEnum;
-import merge_ats_client.model.RaceEnum;
-import merge_ats_client.model.RemoteData;
-import merge_ats_client.model.VeteranStatusEnum;
-import org.threeten.bp.OffsetDateTime;
-import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 

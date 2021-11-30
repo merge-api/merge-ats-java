@@ -60,6 +60,7 @@ public class JobsApi {
     /**
      * Build call for jobsList
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -78,7 +79,7 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobsListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call jobsListCall(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -89,6 +90,10 @@ public class JobsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (code != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("code", code));
+        }
 
         if (createdAfter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("created_after", createdAfter));
@@ -149,7 +154,7 @@ public class JobsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call jobsListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call jobsListValidateBeforeCall(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -157,7 +162,7 @@ public class JobsApi {
         }
         
 
-        okhttp3.Call localVarCall = jobsListCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
+        okhttp3.Call localVarCall = jobsListCall(xAccountToken, code, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
         return localVarCall;
 
     }
@@ -166,6 +171,7 @@ public class JobsApi {
      * 
      * Returns a list of &#x60;Job&#x60; objects.
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -183,8 +189,8 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedJobList jobsList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
-        ApiResponse<PaginatedJobList> localVarResp = jobsListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
+    public PaginatedJobList jobsList(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
+        ApiResponse<PaginatedJobList> localVarResp = jobsListWithHttpInfo(xAccountToken, code, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
         return localVarResp.getData();
     }
 
@@ -192,6 +198,7 @@ public class JobsApi {
      * 
      * Returns a list of &#x60;Job&#x60; objects.
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -209,8 +216,8 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedJobList> jobsListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
-        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, null);
+    public ApiResponse<PaginatedJobList> jobsListWithHttpInfo(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status) throws ApiException {
+        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, code, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, null);
         Type localVarReturnType = new TypeToken<PaginatedJobList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -219,6 +226,7 @@ public class JobsApi {
      *  (asynchronously)
      * Returns a list of &#x60;Job&#x60; objects.
      * @param xAccountToken Token identifying the end user. (required)
+     * @param code If provided, will only return jobs with this code. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -237,9 +245,9 @@ public class JobsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobsListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback<PaginatedJobList> _callback) throws ApiException {
+    public okhttp3.Call jobsListAsync(String xAccountToken, String code, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, String status, final ApiCallback<PaginatedJobList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
+        okhttp3.Call localVarCall = jobsListValidateBeforeCall(xAccountToken, code, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status, _callback);
         Type localVarReturnType = new TypeToken<PaginatedJobList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

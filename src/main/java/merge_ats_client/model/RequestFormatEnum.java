@@ -24,26 +24,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets UrlTypeEnum
+ * Gets or Sets RequestFormatEnum
  */
-@JsonAdapter(UrlTypeEnum.Adapter.class)
-public enum UrlTypeEnum {
+@JsonAdapter(RequestFormatEnum.Adapter.class)
+public enum RequestFormatEnum {
   
-  PERSONAL("PERSONAL"),
+  JSON("JSON"),
   
-  COMPANY("COMPANY"),
-  
-  PORTFOLIO("PORTFOLIO"),
-  
-  BLOG("BLOG"),
-  
-  SOCIAL_MEDIA("SOCIAL_MEDIA"),
-  
-  OTHER("OTHER");
+  XML("XML");
 
   private String value;
 
-  UrlTypeEnum(String value) {
+  RequestFormatEnum(String value) {
     this.value = value;
   }
 
@@ -56,8 +48,8 @@ public enum UrlTypeEnum {
     return String.valueOf(value);
   }
 
-  public static UrlTypeEnum fromValue(String value) {
-    for (UrlTypeEnum b : UrlTypeEnum.values()) {
+  public static RequestFormatEnum fromValue(String value) {
+    for (RequestFormatEnum b : RequestFormatEnum.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -65,16 +57,16 @@ public enum UrlTypeEnum {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<UrlTypeEnum> {
+  public static class Adapter extends TypeAdapter<RequestFormatEnum> {
     @Override
-    public void write(final JsonWriter jsonWriter, final UrlTypeEnum enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final RequestFormatEnum enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public UrlTypeEnum read(final JsonReader jsonReader) throws IOException {
+    public RequestFormatEnum read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return UrlTypeEnum.fromValue(value);
+      return RequestFormatEnum.fromValue(value);
     }
   }
 }

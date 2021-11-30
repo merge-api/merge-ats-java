@@ -39,7 +39,7 @@ public class Example {
 
     SyncStatusApi apiInstance = new SyncStatusApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    Integer cursor = 56; // Integer | The pagination cursor value.
+    String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     try {
       PaginatedSyncStatusList result = apiInstance.syncStatusList(xAccountToken, cursor, pageSize);
@@ -60,7 +60,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **cursor** | **Integer**| The pagination cursor value. | [optional]
+ **cursor** | **String**| The pagination cursor value. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
 
 ### Return type
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 
 
-Force resync of all models.
+Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
 
 ### Example
 ```java

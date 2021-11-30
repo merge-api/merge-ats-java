@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **tags** | **List&lt;String&gt;** | Array of &#x60;Tag&#x60; names as strings. |  [optional]
 **applications** | **List&lt;UUID&gt;** | Array of &#x60;Application&#x60; object IDs. |  [optional]
 **attachments** | **List&lt;UUID&gt;** | Array of &#x60;Attachment&#x60; object IDs. |  [optional]
+**customFields** | **Map&lt;String, Object&gt;** | Custom fields configured for a given model. |  [optional]
 
 
 

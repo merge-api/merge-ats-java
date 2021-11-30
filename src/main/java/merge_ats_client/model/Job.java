@@ -26,15 +26,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.JobStatusEnum;
 import merge_ats_client.model.RemoteData;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company.  ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company.  ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:04:55.643109-05:00[America/New_York]")
 public class Job {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -52,9 +52,13 @@ public class Job {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private String code;
+
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private JobStatusEnum status;
+  private String status;
 
   public static final String SERIALIZED_NAME_REMOTE_CREATED_AT = "remote_created_at";
   @SerializedName(SERIALIZED_NAME_REMOTE_CREATED_AT)
@@ -156,7 +160,7 @@ public class Job {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "If you're reading this documentation. You might be a good fit!", value = "The job's description.")
+  @ApiModelProperty(example = "<b>If you're reading this documentation, you might be a good fit for Merge!</b>", value = "The job's description.")
 
   public String getDescription() {
     return description;
@@ -168,27 +172,41 @@ public class Job {
   }
 
 
-  public Job status(JobStatusEnum status) {
+  public Job code(String code) {
     
-    this.status = status;
+    this.code = code;
     return this;
   }
 
    /**
-   * The job&#39;s status.
+   * The job&#39;s code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.
+   * @return code
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "C0025", value = "The job's code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.")
+
+  public String getCode() {
+    return code;
+  }
+
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+
+   /**
+   * Get status
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "OPEN", value = "The job's status.")
+  @ApiModelProperty(example = "OPEN", value = "")
 
-  public JobStatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
 
-  public void setStatus(JobStatusEnum status) {
-    this.status = status;
-  }
 
 
   public Job remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
@@ -202,7 +220,7 @@ public class Job {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's job was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's job was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -225,7 +243,7 @@ public class Job {
    * @return remoteUpdatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's job was updated.")
+  @ApiModelProperty(example = "2021-10-16T00:00Z", value = "When the third party's job was updated.")
 
   public OffsetDateTime getRemoteUpdatedAt() {
     return remoteUpdatedAt;
@@ -380,6 +398,7 @@ public class Job {
         Objects.equals(this.remoteId, job.remoteId) &&
         Objects.equals(this.name, job.name) &&
         Objects.equals(this.description, job.description) &&
+        Objects.equals(this.code, job.code) &&
         Objects.equals(this.status, job.status) &&
         Objects.equals(this.remoteCreatedAt, job.remoteCreatedAt) &&
         Objects.equals(this.remoteUpdatedAt, job.remoteUpdatedAt) &&
@@ -390,9 +409,20 @@ public class Job {
         Objects.equals(this.remoteData, job.remoteData);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, description, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, remoteData);
+    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, remoteData);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -403,6 +433,7 @@ public class Job {
     sb.append("    remoteId: ").append(toIndentedString(remoteId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt)).append("\n");
     sb.append("    remoteUpdatedAt: ").append(toIndentedString(remoteUpdatedAt)).append("\n");

@@ -23,13 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import merge_ats_client.model.EmailAddressTypeEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
 @ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class EmailAddress {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -37,7 +37,7 @@ public class EmailAddress {
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS_TYPE = "email_address_type";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS_TYPE)
-  private EmailAddressTypeEnum emailAddressType;
+  private String emailAddressType;
 
 
   public EmailAddress value(String value) {
@@ -51,7 +51,7 @@ public class EmailAddress {
    * @return value
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "merge_is_hiring@gmail.com", value = "The email address.")
+  @ApiModelProperty(example = "merge_is_hiring@merge.dev", value = "The email address.")
 
   public String getValue() {
     return value;
@@ -63,27 +63,18 @@ public class EmailAddress {
   }
 
 
-  public EmailAddress emailAddressType(EmailAddressTypeEnum emailAddressType) {
-    
-    this.emailAddressType = emailAddressType;
-    return this;
-  }
-
    /**
-   * The type of email address.
+   * Get emailAddressType
    * @return emailAddressType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PERSONAL", value = "The type of email address.")
+  @ApiModelProperty(example = "PERSONAL", value = "")
 
-  public EmailAddressTypeEnum getEmailAddressType() {
+  public String getEmailAddressType() {
     return emailAddressType;
   }
 
 
-  public void setEmailAddressType(EmailAddressTypeEnum emailAddressType) {
-    this.emailAddressType = emailAddressType;
-  }
 
 
   @Override
@@ -99,9 +90,20 @@ public class EmailAddress {
         Objects.equals(this.emailAddressType, emailAddress.emailAddressType);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(value, emailAddressType);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

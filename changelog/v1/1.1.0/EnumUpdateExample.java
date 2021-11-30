@@ -5,7 +5,6 @@ import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.model.PaginatedOfferList;
 import merge_ats_client.api.OffersApi;
-import merge_ats_client.model.OfferStatusEnum;
 import merge_ats_client.model.Offer;
 
 

@@ -24,18 +24,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.EmailAddressRequest;
 import merge_ats_client.model.PhoneNumberRequest;
 import merge_ats_client.model.UrlRequest;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
 @ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class CandidateRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -104,6 +107,10 @@ public class CandidateRequest {
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
   private List<UUID> attachments = null;
+
+  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
+  private Map<String, Object> customFields = null;
 
 
   public CandidateRequest remoteId(String remoteId) {
@@ -232,7 +239,7 @@ public class CandidateRequest {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's candidate was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's candidate was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -255,7 +262,7 @@ public class CandidateRequest {
    * @return remoteUpdatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's candidate was updated.")
+  @ApiModelProperty(example = "2021-10-16T00:00Z", value = "When the third party's candidate was updated.")
 
   public OffsetDateTime getRemoteUpdatedAt() {
     return remoteUpdatedAt;
@@ -278,7 +285,7 @@ public class CandidateRequest {
    * @return lastInteractionAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the most recent candidate interaction occurred.")
+  @ApiModelProperty(example = "2021-10-17T00:00Z", value = "When the most recent candidate interaction occurred.")
 
   public OffsetDateTime getLastInteractionAt() {
     return lastInteractionAt;
@@ -553,6 +560,37 @@ public class CandidateRequest {
   }
 
 
+  public CandidateRequest customFields(Map<String, Object> customFields) {
+    
+    this.customFields = customFields;
+    return this;
+  }
+
+  public CandidateRequest putCustomFieldsItem(String key, Object customFieldsItem) {
+    if (this.customFields == null) {
+      this.customFields = new HashMap<String, Object>();
+    }
+    this.customFields.put(key, customFieldsItem);
+    return this;
+  }
+
+   /**
+   * Custom fields configured for a given model.
+   * @return customFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Custom fields configured for a given model.")
+
+  public Map<String, Object> getCustomFields() {
+    return customFields;
+  }
+
+
+  public void setCustomFields(Map<String, Object> customFields) {
+    this.customFields = customFields;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -578,12 +616,24 @@ public class CandidateRequest {
         Objects.equals(this.urls, candidateRequest.urls) &&
         Objects.equals(this.tags, candidateRequest.tags) &&
         Objects.equals(this.applications, candidateRequest.applications) &&
-        Objects.equals(this.attachments, candidateRequest.attachments);
+        Objects.equals(this.attachments, candidateRequest.attachments) &&
+        Objects.equals(this.customFields, candidateRequest.customFields);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments);
+    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, customFields);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -607,6 +657,7 @@ public class CandidateRequest {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    applications: ").append(toIndentedString(applications)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
+    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }

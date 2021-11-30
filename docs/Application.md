@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **currentStage** | **UUID** | The application&#39;s current stage. |  [optional]
 **rejectReason** | **UUID** | The application&#39;s reason for rejection. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**customFields** | **Map&lt;String, Object&gt;** | Custom fields configured for a given model. |  [optional]
 
 
 

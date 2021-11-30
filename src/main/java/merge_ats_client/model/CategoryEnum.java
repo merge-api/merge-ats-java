@@ -24,24 +24,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets JobStatusEnum
+ * Gets or Sets CategoryEnum
  */
-@JsonAdapter(JobStatusEnum.Adapter.class)
-public enum JobStatusEnum {
+@JsonAdapter(CategoryEnum.Adapter.class)
+public enum CategoryEnum {
   
-  OPEN("OPEN"),
+  HRIS("hris"),
   
-  CLOSED("CLOSED"),
+  ATS("ats"),
   
-  DRAFT("DRAFT"),
-  
-  ARCHIVED("ARCHIVED"),
-  
-  PENDING("PENDING");
+  ACCOUNTING("accounting");
 
   private String value;
 
-  JobStatusEnum(String value) {
+  CategoryEnum(String value) {
     this.value = value;
   }
 
@@ -54,8 +50,8 @@ public enum JobStatusEnum {
     return String.valueOf(value);
   }
 
-  public static JobStatusEnum fromValue(String value) {
-    for (JobStatusEnum b : JobStatusEnum.values()) {
+  public static CategoryEnum fromValue(String value) {
+    for (CategoryEnum b : CategoryEnum.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -63,16 +59,16 @@ public enum JobStatusEnum {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<JobStatusEnum> {
+  public static class Adapter extends TypeAdapter<CategoryEnum> {
     @Override
-    public void write(final JsonWriter jsonWriter, final JobStatusEnum enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final CategoryEnum enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public JobStatusEnum read(final JsonReader jsonReader) throws IOException {
+    public CategoryEnum read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return JobStatusEnum.fromValue(value);
+      return CategoryEnum.fromValue(value);
     }
   }
 }

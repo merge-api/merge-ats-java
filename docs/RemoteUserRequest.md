@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **email** | **String** | The user&#39;s email. |  [optional]
 **disabled** | **Boolean** | Whether the user&#39;s account had been disabled. |  [optional]
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s user was created. |  [optional]
-**accessRole** | [**AccessRoleEnum**](AccessRoleEnum.md) | The user&#39;s role. |  [optional]
 
 
 

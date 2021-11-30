@@ -26,15 +26,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.OfferStatusEnum;
 import merge_ats_client.model.RemoteData;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application.  ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
  */
 @ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application.  ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class Offer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -70,7 +70,7 @@ public class Offer {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private OfferStatusEnum status;
+  private String status;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -171,7 +171,7 @@ public class Offer {
    * @return remoteCreatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the third party's offer was created.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the third party's offer was created.")
 
   public OffsetDateTime getRemoteCreatedAt() {
     return remoteCreatedAt;
@@ -194,7 +194,7 @@ public class Offer {
    * @return closedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the offer was closed.")
+  @ApiModelProperty(example = "2021-10-16T00:00Z", value = "When the offer was closed.")
 
   public OffsetDateTime getClosedAt() {
     return closedAt;
@@ -217,7 +217,7 @@ public class Offer {
    * @return sentAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the offer was sent.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the offer was sent.")
 
   public OffsetDateTime getSentAt() {
     return sentAt;
@@ -240,7 +240,7 @@ public class Offer {
    * @return startDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The employment start date on the offer.")
+  @ApiModelProperty(example = "2021-11-15T00:00Z", value = "The employment start date on the offer.")
 
   public OffsetDateTime getStartDate() {
     return startDate;
@@ -252,27 +252,18 @@ public class Offer {
   }
 
 
-  public Offer status(OfferStatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
    /**
-   * The offer&#39;s status.
+   * Get status
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "SENT", value = "The offer's status.")
+  @ApiModelProperty(example = "SENT", value = "")
 
-  public OfferStatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
 
-  public void setStatus(OfferStatusEnum status) {
-    this.status = status;
-  }
 
 
    /**
@@ -310,9 +301,20 @@ public class Offer {
         Objects.equals(this.remoteData, offer.remoteData);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, remoteId, application, creator, remoteCreatedAt, closedAt, sentAt, startDate, status, remoteData);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

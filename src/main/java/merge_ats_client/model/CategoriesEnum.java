@@ -24,20 +24,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets VisibilityEnum
+ * Gets or Sets CategoriesEnum
  */
-@JsonAdapter(VisibilityEnum.Adapter.class)
-public enum VisibilityEnum {
+@JsonAdapter(CategoriesEnum.Adapter.class)
+public enum CategoriesEnum {
   
-  ADMIN_ONLY("ADMIN_ONLY"),
+  HRIS("hris"),
   
-  PUBLIC("PUBLIC"),
+  ATS("ats"),
   
-  PRIVATE("PRIVATE");
+  ACCOUNTING("accounting");
 
   private String value;
 
-  VisibilityEnum(String value) {
+  CategoriesEnum(String value) {
     this.value = value;
   }
 
@@ -50,8 +50,8 @@ public enum VisibilityEnum {
     return String.valueOf(value);
   }
 
-  public static VisibilityEnum fromValue(String value) {
-    for (VisibilityEnum b : VisibilityEnum.values()) {
+  public static CategoriesEnum fromValue(String value) {
+    for (CategoriesEnum b : CategoriesEnum.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -59,16 +59,16 @@ public enum VisibilityEnum {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<VisibilityEnum> {
+  public static class Adapter extends TypeAdapter<CategoriesEnum> {
     @Override
-    public void write(final JsonWriter jsonWriter, final VisibilityEnum enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final CategoriesEnum enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public VisibilityEnum read(final JsonReader jsonReader) throws IOException {
+    public CategoriesEnum read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return VisibilityEnum.fromValue(value);
+      return CategoriesEnum.fromValue(value);
     }
   }
 }

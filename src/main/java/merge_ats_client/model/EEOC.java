@@ -26,18 +26,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.DisabilityStatusEnum;
-import merge_ats_client.model.GenderEnum;
-import merge_ats_client.model.RaceEnum;
 import merge_ats_client.model.RemoteData;
-import merge_ats_client.model.VeteranStatusEnum;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The EEOC Object ### Description The &#x60;EEOC&#x60; object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the &#x60;LIST EEOCs&#x60; endpoint and filter by &#x60;candidate&#x60; to show all EEOC information for a candidate.
  */
 @ApiModel(description = "# The EEOC Object ### Description The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-04T15:38:16.862482-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
 public class EEOC {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -57,19 +54,19 @@ public class EEOC {
 
   public static final String SERIALIZED_NAME_RACE = "race";
   @SerializedName(SERIALIZED_NAME_RACE)
-  private RaceEnum race;
+  private String race;
 
   public static final String SERIALIZED_NAME_GENDER = "gender";
   @SerializedName(SERIALIZED_NAME_GENDER)
-  private GenderEnum gender;
+  private String gender;
 
   public static final String SERIALIZED_NAME_VETERAN_STATUS = "veteran_status";
   @SerializedName(SERIALIZED_NAME_VETERAN_STATUS)
-  private VeteranStatusEnum veteranStatus;
+  private String veteranStatus;
 
   public static final String SERIALIZED_NAME_DISABILITY_STATUS = "disability_status";
   @SerializedName(SERIALIZED_NAME_DISABILITY_STATUS)
-  private DisabilityStatusEnum disabilityStatus;
+  private String disabilityStatus;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -147,7 +144,7 @@ public class EEOC {
    * @return submittedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the information was submitted.")
+  @ApiModelProperty(example = "2021-10-15T00:00Z", value = "When the information was submitted.")
 
   public OffsetDateTime getSubmittedAt() {
     return submittedAt;
@@ -159,96 +156,60 @@ public class EEOC {
   }
 
 
-  public EEOC race(RaceEnum race) {
-    
-    this.race = race;
-    return this;
-  }
-
    /**
-   * The candidate&#39;s race.
+   * Get race
    * @return race
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "HISPANIC_OR_LATINO", value = "The candidate's race.")
+  @ApiModelProperty(example = "HISPANIC_OR_LATINO", value = "")
 
-  public RaceEnum getRace() {
+  public String getRace() {
     return race;
   }
 
 
-  public void setRace(RaceEnum race) {
-    this.race = race;
-  }
 
-
-  public EEOC gender(GenderEnum gender) {
-    
-    this.gender = gender;
-    return this;
-  }
 
    /**
-   * The candidate&#39;s gender.
+   * Get gender
    * @return gender
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "FEMALE", value = "The candidate's gender.")
+  @ApiModelProperty(example = "FEMALE", value = "")
 
-  public GenderEnum getGender() {
+  public String getGender() {
     return gender;
   }
 
 
-  public void setGender(GenderEnum gender) {
-    this.gender = gender;
-  }
 
-
-  public EEOC veteranStatus(VeteranStatusEnum veteranStatus) {
-    
-    this.veteranStatus = veteranStatus;
-    return this;
-  }
 
    /**
-   * The candidate&#39;s veteran status.
+   * Get veteranStatus
    * @return veteranStatus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "I_AM_NOT_A_PROTECTED_VETERAN", value = "The candidate's veteran status.")
+  @ApiModelProperty(example = "I_AM_NOT_A_PROTECTED_VETERAN", value = "")
 
-  public VeteranStatusEnum getVeteranStatus() {
+  public String getVeteranStatus() {
     return veteranStatus;
   }
 
 
-  public void setVeteranStatus(VeteranStatusEnum veteranStatus) {
-    this.veteranStatus = veteranStatus;
-  }
 
-
-  public EEOC disabilityStatus(DisabilityStatusEnum disabilityStatus) {
-    
-    this.disabilityStatus = disabilityStatus;
-    return this;
-  }
 
    /**
-   * The candidate&#39;s disability status.
+   * Get disabilityStatus
    * @return disabilityStatus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "I_DONT_WISH_TO_ANSWER", value = "The candidate's disability status.")
+  @ApiModelProperty(example = "I_DONT_WISH_TO_ANSWER", value = "")
 
-  public DisabilityStatusEnum getDisabilityStatus() {
+  public String getDisabilityStatus() {
     return disabilityStatus;
   }
 
 
-  public void setDisabilityStatus(DisabilityStatusEnum disabilityStatus) {
-    this.disabilityStatus = disabilityStatus;
-  }
 
 
    /**
@@ -285,9 +246,20 @@ public class EEOC {
         Objects.equals(this.remoteData, EEOC.remoteData);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, remoteId, candidate, submittedAt, race, gender, veteranStatus, disabilityStatus, remoteData);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

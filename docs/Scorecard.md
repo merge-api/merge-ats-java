@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **interviewer** | **UUID** | The interviewer doing the scoring. |  [optional]
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s scorecard was created. |  [optional]
 **submittedAt** | **OffsetDateTime** | When the scorecard was submitted. |  [optional]
-**overallRecommendation** | [**OverallRecommendationEnum**](OverallRecommendationEnum.md) | The inteviewer&#39;s recommendation. |  [optional]
+**overallRecommendation** | **String** |  |  [optional] [readonly]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 
