@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2021-12-13T20:10:13.802800Z[Etc/UTC]
+  - Build date: 2021-12-13T23:13:49.108123Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -39,9 +39,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>dev.merge.ats</groupId>
+  <groupId>dev.merge</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.2.0</version>
+  <version>1.0.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.merge.ats:merge-ats-client:1.2.0"
+compile "dev.merge:merge-ats-client:1.0.0-SNAPSHOT"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.2.0.jar`
+* `target/merge-ats-client-1.0.0-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -140,6 +140,8 @@ Class | Method | HTTP request | Description
 *IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} | 
 *JobInterviewStagesApi* | [**jobInterviewStagesList**](docs/JobInterviewStagesApi.md#jobInterviewStagesList) | **GET** /job-interview-stages | 
 *JobInterviewStagesApi* | [**jobInterviewStagesRetrieve**](docs/JobInterviewStagesApi.md#jobInterviewStagesRetrieve) | **GET** /job-interview-stages/{id} | 
+*JobsApi* | [**jobsList**](docs/JobsApi.md#jobsList) | **GET** /jobs | 
+*JobsApi* | [**jobsRetrieve**](docs/JobsApi.md#jobsRetrieve) | **GET** /jobs/{id} | 
 *LinkTokenApi* | [**linkTokenCreate**](docs/LinkTokenApi.md#linkTokenCreate) | **POST** /link-token | 
 *LinkedAccountsApi* | [**linkedAccountsList**](docs/LinkedAccountsApi.md#linkedAccountsList) | **GET** /linked-accounts | 
 *OffersApi* | [**offersList**](docs/OffersApi.md#offersList) | **GET** /offers | 
@@ -161,6 +163,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AccessRoleEnum](docs/AccessRoleEnum.md)
  - [AccountDetails](docs/AccountDetails.md)
  - [AccountDetailsAndActions](docs/AccountDetailsAndActions.md)
  - [AccountDetailsAndActionsIntegration](docs/AccountDetailsAndActionsIntegration.md)
@@ -168,29 +171,45 @@ Class | Method | HTTP request | Description
  - [AccountIntegration](docs/AccountIntegration.md)
  - [AccountToken](docs/AccountToken.md)
  - [Activity](docs/Activity.md)
+ - [ActivityTypeEnum](docs/ActivityTypeEnum.md)
  - [Application](docs/Application.md)
+ - [ApplicationEndpointRequest](docs/ApplicationEndpointRequest.md)
  - [ApplicationRequest](docs/ApplicationRequest.md)
+ - [ApplicationResponse](docs/ApplicationResponse.md)
  - [Attachment](docs/Attachment.md)
+ - [AttachmentEndpointRequest](docs/AttachmentEndpointRequest.md)
  - [AttachmentRequest](docs/AttachmentRequest.md)
+ - [AttachmentResponse](docs/AttachmentResponse.md)
+ - [AttachmentTypeEnum](docs/AttachmentTypeEnum.md)
  - [AvailableActions](docs/AvailableActions.md)
  - [Candidate](docs/Candidate.md)
+ - [CandidateEndpointRequest](docs/CandidateEndpointRequest.md)
  - [CandidateRequest](docs/CandidateRequest.md)
+ - [CandidateResponse](docs/CandidateResponse.md)
  - [CategoriesEnum](docs/CategoriesEnum.md)
  - [CategoryEnum](docs/CategoryEnum.md)
  - [DataPassthroughRequest](docs/DataPassthroughRequest.md)
  - [Department](docs/Department.md)
+ - [DisabilityStatusEnum](docs/DisabilityStatusEnum.md)
  - [EEOC](docs/EEOC.md)
  - [EmailAddress](docs/EmailAddress.md)
  - [EmailAddressRequest](docs/EmailAddressRequest.md)
+ - [EmailAddressTypeEnum](docs/EmailAddressTypeEnum.md)
  - [EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
+ - [GenderEnum](docs/GenderEnum.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
  - [Issue](docs/Issue.md)
+ - [IssueStatusEnum](docs/IssueStatusEnum.md)
+ - [Job](docs/Job.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
+ - [JobStatusEnum](docs/JobStatusEnum.md)
  - [LinkToken](docs/LinkToken.md)
  - [MethodEnum](docs/MethodEnum.md)
  - [ModelOperation](docs/ModelOperation.md)
  - [Offer](docs/Offer.md)
+ - [OfferStatusEnum](docs/OfferStatusEnum.md)
  - [Office](docs/Office.md)
+ - [OverallRecommendationEnum](docs/OverallRecommendationEnum.md)
  - [PaginatedAccountDetailsAndActionsList](docs/PaginatedAccountDetailsAndActionsList.md)
  - [PaginatedActivityList](docs/PaginatedActivityList.md)
  - [PaginatedApplicationList](docs/PaginatedApplicationList.md)
@@ -200,6 +219,7 @@ Class | Method | HTTP request | Description
  - [PaginatedEEOCList](docs/PaginatedEEOCList.md)
  - [PaginatedIssueList](docs/PaginatedIssueList.md)
  - [PaginatedJobInterviewStageList](docs/PaginatedJobInterviewStageList.md)
+ - [PaginatedJobList](docs/PaginatedJobList.md)
  - [PaginatedOfferList](docs/PaginatedOfferList.md)
  - [PaginatedOfficeList](docs/PaginatedOfficeList.md)
  - [PaginatedRejectReasonList](docs/PaginatedRejectReasonList.md)
@@ -210,6 +230,8 @@ Class | Method | HTTP request | Description
  - [PaginatedTagList](docs/PaginatedTagList.md)
  - [PhoneNumber](docs/PhoneNumber.md)
  - [PhoneNumberRequest](docs/PhoneNumberRequest.md)
+ - [PhoneNumberTypeEnum](docs/PhoneNumberTypeEnum.md)
+ - [RaceEnum](docs/RaceEnum.md)
  - [RejectReason](docs/RejectReason.md)
  - [RemoteData](docs/RemoteData.md)
  - [RemoteDataRequest](docs/RemoteDataRequest.md)
@@ -219,12 +241,17 @@ Class | Method | HTTP request | Description
  - [RemoteUser](docs/RemoteUser.md)
  - [RequestFormatEnum](docs/RequestFormatEnum.md)
  - [ScheduledInterview](docs/ScheduledInterview.md)
+ - [ScheduledInterviewStatusEnum](docs/ScheduledInterviewStatusEnum.md)
  - [Scorecard](docs/Scorecard.md)
  - [SyncStatus](docs/SyncStatus.md)
  - [SyncStatusStatusEnum](docs/SyncStatusStatusEnum.md)
  - [Tag](docs/Tag.md)
  - [Url](docs/Url.md)
  - [UrlRequest](docs/UrlRequest.md)
+ - [UrlTypeEnum](docs/UrlTypeEnum.md)
+ - [ValidationProblem](docs/ValidationProblem.md)
+ - [VeteranStatusEnum](docs/VeteranStatusEnum.md)
+ - [VisibilityEnum](docs/VisibilityEnum.md)
 
 
 ## Documentation for Authorization

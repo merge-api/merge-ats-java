@@ -27,12 +27,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import merge_ats_client.model.IssueStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Issue
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:13:49.108123Z[Etc/UTC]")
 public class Issue {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -40,7 +41,7 @@ public class Issue {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  private IssueStatusEnum status;
 
   public static final String SERIALIZED_NAME_ERROR_DESCRIPTION = "error_description";
   @SerializedName(SERIALIZED_NAME_ERROR_DESCRIPTION)
@@ -77,6 +78,12 @@ public class Issue {
 
 
 
+  public Issue status(IssueStatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
    /**
    * Get status
    * @return status
@@ -84,11 +91,14 @@ public class Issue {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getStatus() {
+  public IssueStatusEnum getStatus() {
     return status;
   }
 
 
+  public void setStatus(IssueStatusEnum status) {
+    this.status = status;
+  }
 
 
   public Issue errorDescription(String errorDescription) {

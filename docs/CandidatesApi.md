@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="candidatesCreate"></a>
 # **candidatesCreate**
-> Candidate candidatesCreate(xAccountToken, remoteUserId, runAsync, candidateRequest)
+> CandidateResponse candidatesCreate(xAccountToken, candidateEndpointRequest, runAsync)
 
 
 
@@ -40,11 +40,10 @@ public class Example {
 
     CandidatesApi apiInstance = new CandidatesApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
+    CandidateEndpointRequest candidateEndpointRequest = new CandidateEndpointRequest(); // CandidateEndpointRequest | 
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
-    CandidateRequest candidateRequest = new CandidateRequest(); // CandidateRequest | 
     try {
-      Candidate result = apiInstance.candidatesCreate(xAccountToken, remoteUserId, runAsync, candidateRequest);
+      CandidateResponse result = apiInstance.candidatesCreate(xAccountToken, candidateEndpointRequest, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CandidatesApi#candidatesCreate");
@@ -62,13 +61,12 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **remoteUserId** | **String**| The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. | [optional]
+ **candidateEndpointRequest** | [**CandidateEndpointRequest**](CandidateEndpointRequest.md)|  |
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
- **candidateRequest** | [**CandidateRequest**](CandidateRequest.md)|  | [optional]
 
 ### Return type
 
-[**Candidate**](Candidate.md)
+[**CandidateResponse**](CandidateResponse.md)
 
 ### Authorization
 

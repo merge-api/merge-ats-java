@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
+import merge_ats_client.model.UrlTypeEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -47,6 +48,14 @@ public class UrlRequestTest {
     @Test
     public void valueTest() {
         // TODO: test value
+    }
+
+    /**
+     * Test the property 'urlType'
+     */
+    @Test
+    public void urlTypeTest() {
+        // TODO: test urlType
     }
 
 }

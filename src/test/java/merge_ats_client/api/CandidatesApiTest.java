@@ -15,7 +15,8 @@ package merge_ats_client.api;
 
 import merge_ats_client.ApiException;
 import merge_ats_client.model.Candidate;
-import merge_ats_client.model.CandidateRequest;
+import merge_ats_client.model.CandidateEndpointRequest;
+import merge_ats_client.model.CandidateResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedCandidateList;
 import java.util.UUID;
@@ -47,10 +48,9 @@ public class CandidatesApiTest {
     @Test
     public void candidatesCreateTest() throws ApiException {
         String xAccountToken = null;
-        String remoteUserId = null;
+        CandidateEndpointRequest candidateEndpointRequest = null;
         Boolean runAsync = null;
-        CandidateRequest candidateRequest = null;
-        Candidate response = api.candidatesCreate(xAccountToken, remoteUserId, runAsync, candidateRequest);
+        CandidateResponse response = api.candidatesCreate(xAccountToken, candidateEndpointRequest, runAsync);
 
         // TODO: test validations
     }

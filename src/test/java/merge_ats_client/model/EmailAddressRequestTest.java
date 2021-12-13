@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.EmailAddressTypeEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -46,6 +47,14 @@ public class EmailAddressRequestTest {
     @Test
     public void valueTest() {
         // TODO: test value
+    }
+
+    /**
+     * Test the property 'emailAddressType'
+     */
+    @Test
+    public void emailAddressTypeTest() {
+        // TODO: test emailAddressType
     }
 
 }

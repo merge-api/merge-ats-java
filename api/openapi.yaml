@@ -369,15 +369,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -390,19 +381,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ApplicationRequest'
+              $ref: '#/components/schemas/ApplicationEndpointRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ApplicationRequest'
+              $ref: '#/components/schemas/ApplicationEndpointRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/ApplicationRequest'
+              $ref: '#/components/schemas/ApplicationEndpointRequest'
+        required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/ApplicationResponse'
       security:
       - tokenAuth: []
       tags:
@@ -571,15 +563,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -592,19 +575,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentRequest'
+              $ref: '#/components/schemas/AttachmentEndpointRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/AttachmentRequest'
+              $ref: '#/components/schemas/AttachmentEndpointRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/AttachmentRequest'
+              $ref: '#/components/schemas/AttachmentEndpointRequest'
+        required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/AttachmentResponse'
       security:
       - tokenAuth: []
       tags:
@@ -804,15 +788,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -825,19 +800,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CandidateRequest'
+              $ref: '#/components/schemas/CandidateEndpointRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/CandidateRequest'
+              $ref: '#/components/schemas/CandidateEndpointRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/CandidateRequest'
+              $ref: '#/components/schemas/CandidateEndpointRequest'
+        required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Candidate'
+                $ref: '#/components/schemas/CandidateResponse'
       security:
       - tokenAuth: []
       tags:
@@ -1661,6 +1637,170 @@ paths:
       - tokenAuth: []
       tags:
       - job-interview-stages
+      x-accepts: application/json
+  /jobs:
+    get:
+      description: Returns a list of `Job` objects.
+      operationId: jobs_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return jobs with this code.
+        explode: true
+        in: query
+        name: code
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: 'If provided, will only return jobs with this status. Options:
+          (''OPEN'', ''CLOSED'', ''DRAFT'', ''ARCHIVED'', ''PENDING'')'
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - ARCHIVED
+          - CLOSED
+          - DRAFT
+          - OPEN
+          - PENDING
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobList'
+      security:
+      - tokenAuth: []
+      tags:
+      - jobs
+      x-accepts: application/json
+  /jobs/{id}:
+    get:
+      description: Returns a `Job` object with the given `id`.
+      operationId: jobs_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+      security:
+      - tokenAuth: []
+      tags:
+      - jobs
       x-accepts: application/json
   /link-token:
     post:
@@ -2804,6 +2944,14 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    AccessRoleEnum:
+      enum:
+      - SUPER_ADMIN
+      - ADMIN
+      - TEAM_MEMBER
+      - LIMITED_TEAM_MEMBER
+      - INTERVIEWER
+      type: string
     AccountDetails:
       example:
         integration: integration
@@ -3108,9 +3256,11 @@ components:
           nullable: true
           type: string
         activity_type:
+          allOf:
+          - $ref: '#/components/schemas/ActivityTypeEnum'
+          description: The activity's type.
           example: NOTE
-          readOnly: true
-          type: string
+          nullable: true
         subject:
           description: The activity's subject.
           example: Gil Feig's interview
@@ -3122,9 +3272,11 @@ components:
           nullable: true
           type: string
         visibility:
+          allOf:
+          - $ref: '#/components/schemas/VisibilityEnum'
+          description: The activity's visibility.
           example: PRIVATE
-          readOnly: true
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /actions
@@ -3136,6 +3288,12 @@ components:
           readOnly: true
           type: array
       type: object
+    ActivityTypeEnum:
+      enum:
+      - NOTE
+      - EMAIL
+      - OTHER
+      type: string
     Application:
       description: |-
         # The Application Object
@@ -3235,6 +3393,30 @@ components:
           nullable: true
           type: object
       type: object
+    ApplicationEndpointRequest:
+      example:
+        remote_user_id: remote_user_id
+        model:
+          applied_at: 2021-10-15T00:00:00Z
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          rejected_at: 2021-11-15T00:00:00Z
+          custom_fields:
+            key: ""
+          remote_id: "98796"
+          source: Campus recruiting event
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+      properties:
+        model:
+          $ref: '#/components/schemas/ApplicationRequest'
+        remote_user_id:
+          type: string
+      required:
+      - model
+      - remote_user_id
+      type: object
     ApplicationRequest:
       description: |-
         # The Application Object
@@ -3314,6 +3496,59 @@ components:
           nullable: true
           type: object
       type: object
+    ApplicationResponse:
+      example:
+        warnings:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        model:
+          applied_at: 2021-10-15T00:00:00Z
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          rejected_at: 2021-11-15T00:00:00Z
+          custom_fields:
+            key: ""
+          remote_id: "98796"
+          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          source: Campus recruiting event
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          remote_data:
+          - path: /candidacies
+            data:
+            - Varies by platform
+        errors:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        model:
+          $ref: '#/components/schemas/Application'
+      required:
+      - errors
+      - model
+      - warnings
+      type: object
     Attachment:
       description: |-
         # The Attachment Object
@@ -3362,9 +3597,11 @@ components:
           nullable: true
           type: string
         attachment_type:
+          allOf:
+          - $ref: '#/components/schemas/AttachmentTypeEnum'
+          description: The attachment's type.
           example: RESUME
-          readOnly: true
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /attachments
@@ -3375,6 +3612,24 @@ components:
           nullable: true
           readOnly: true
           type: array
+      type: object
+    AttachmentEndpointRequest:
+      example:
+        remote_user_id: remote_user_id
+        model:
+          file_url: http://alturl.com/p749b
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          attachment_type: RESUME
+          file_name: Candidate Resume
+          remote_id: "11167"
+      properties:
+        model:
+          $ref: '#/components/schemas/AttachmentRequest'
+        remote_user_id:
+          type: string
+      required:
+      - model
+      - remote_user_id
       type: object
     AttachmentRequest:
       description: |-
@@ -3387,6 +3642,7 @@ components:
       example:
         file_url: http://alturl.com/p749b
         candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        attachment_type: RESUME
         file_name: Candidate Resume
         remote_id: "11167"
       properties:
@@ -3412,7 +3668,67 @@ components:
           format: uuid
           nullable: true
           type: string
+        attachment_type:
+          allOf:
+          - $ref: '#/components/schemas/AttachmentTypeEnum'
+          description: The attachment's type.
+          example: RESUME
+          nullable: true
       type: object
+    AttachmentResponse:
+      example:
+        warnings:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        model:
+          file_url: http://alturl.com/p749b
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          attachment_type: RESUME
+          file_name: Candidate Resume
+          remote_id: "11167"
+          id: c640b80b-fac9-409f-aa19-1f9221aec445
+          remote_data:
+          - path: /attachments
+            data:
+            - Varies by platform
+        errors:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        model:
+          $ref: '#/components/schemas/Attachment'
+      required:
+      - errors
+      - model
+      - warnings
+      type: object
+    AttachmentTypeEnum:
+      enum:
+      - RESUME
+      - COVER_LETTER
+      - OFFER_LETTER
+      - OTHER
+      type: string
     AvailableActions:
       description: |-
         # The AvailableActions Object
@@ -3650,6 +3966,52 @@ components:
           nullable: true
           type: object
       type: object
+    CandidateEndpointRequest:
+      example:
+        remote_user_id: remote_user_id
+        model:
+          is_private: true
+          email_addresses:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          attachments:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          custom_fields:
+            key: ""
+          remote_id: "21198"
+          last_name: Feig
+          title: Software Engineer
+          remote_updated_at: 2021-10-16T00:00:00Z
+          tags:
+          - High-Priority
+          phone_numbers:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          urls:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          last_interaction_at: 2021-10-17T00:00:00Z
+          can_email: true
+          company: Columbia Dining App.
+          locations:
+          - San Francisco
+          - New York
+          - Miami
+          remote_created_at: 2021-10-15T00:00:00Z
+          first_name: Gil
+          applications:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+      properties:
+        model:
+          $ref: '#/components/schemas/CandidateRequest'
+        remote_user_id:
+          type: string
+      required:
+      - model
+      - remote_user_id
+      type: object
     CandidateRequest:
       description: |-
         # The Candidate Object
@@ -3810,6 +4172,81 @@ components:
           nullable: true
           type: object
       type: object
+    CandidateResponse:
+      example:
+        warnings:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        model:
+          is_private: true
+          email_addresses:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          attachments:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          custom_fields:
+            key: ""
+          remote_id: "21198"
+          last_name: Feig
+          title: Software Engineer
+          remote_updated_at: 2021-10-16T00:00:00Z
+          tags:
+          - High-Priority
+          remote_data:
+          - path: /candidates
+            data:
+            - Varies by platform
+          phone_numbers:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          urls:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          last_interaction_at: 2021-10-17T00:00:00Z
+          can_email: true
+          company: Columbia Dining App.
+          locations:
+          - San Francisco
+          - New York
+          - Miami
+          id: 521b18c2-4d01-4297-b451-19858d07c133
+          remote_created_at: 2021-10-15T00:00:00Z
+          first_name: Gil
+          applications:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+        errors:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        model:
+          $ref: '#/components/schemas/Candidate'
+      required:
+      - errors
+      - model
+      - warnings
+      type: object
     CategoriesEnum:
       enum:
       - hris
@@ -3914,6 +4351,12 @@ components:
           readOnly: true
           type: array
       type: object
+    DisabilityStatusEnum:
+      enum:
+      - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+      - NO_I_DONT_HAVE_A_DISABILITY
+      - I_DONT_WISH_TO_ANSWER
+      type: string
     EEOC:
       description: |-
         # The EEOC Object
@@ -3959,21 +4402,29 @@ components:
           nullable: true
           type: string
         race:
+          allOf:
+          - $ref: '#/components/schemas/RaceEnum'
+          description: The candidate's race.
           example: HISPANIC_OR_LATINO
-          readOnly: true
-          type: string
+          nullable: true
         gender:
+          allOf:
+          - $ref: '#/components/schemas/GenderEnum'
+          description: The candidate's gender.
           example: FEMALE
-          readOnly: true
-          type: string
+          nullable: true
         veteran_status:
+          allOf:
+          - $ref: '#/components/schemas/VeteranStatusEnum'
+          description: The candidate's veteran status.
           example: I_AM_NOT_A_PROTECTED_VETERAN
-          readOnly: true
-          type: string
+          nullable: true
         disability_status:
+          allOf:
+          - $ref: '#/components/schemas/DisabilityStatusEnum'
+          description: The candidate's disability status.
           example: I_DONT_WISH_TO_ANSWER
-          readOnly: true
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /eeoc
@@ -4002,9 +4453,11 @@ components:
           nullable: true
           type: string
         email_address_type:
+          allOf:
+          - $ref: '#/components/schemas/EmailAddressTypeEnum'
+          description: The type of email address.
           example: PERSONAL
-          readOnly: true
-          type: string
+          nullable: true
       type: object
     EmailAddressRequest:
       description: |-
@@ -4022,7 +4475,19 @@ components:
           maxLength: 254
           nullable: true
           type: string
+        email_address_type:
+          allOf:
+          - $ref: '#/components/schemas/EmailAddressTypeEnum'
+          description: The type of email address.
+          example: PERSONAL
+          nullable: true
       type: object
+    EmailAddressTypeEnum:
+      enum:
+      - PERSONAL
+      - WORK
+      - OTHER
+      type: string
     EndUserDetailsRequest:
       example:
         end_user_organization_name: end_user_organization_name
@@ -4055,6 +4520,14 @@ components:
       - end_user_organization_name
       - end_user_origin_id
       type: object
+    GenderEnum:
+      enum:
+      - MALE
+      - FEMALE
+      - NON-BINARY
+      - OTHER
+      - DECLINE_TO_SELF_IDENTIFY
+      type: string
     GenerateRemoteKeyRequest:
       description: |-
         # The GenerateRemoteKey Object
@@ -4081,7 +4554,6 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         is_muted: true
         last_incident_time: 2000-01-23T04:56:07.000+00:00
-        status: status
         first_incident_time: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -4089,8 +4561,7 @@ components:
           readOnly: true
           type: string
         status:
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/IssueStatusEnum'
         error_description:
           type: string
         end_user:
@@ -4111,6 +4582,137 @@ components:
       required:
       - error_description
       type: object
+    IssueStatusEnum:
+      enum:
+      - ONGOING
+      - RESOLVED
+      type: string
+    Job:
+      description: |-
+        # The Job Object
+        ### Description
+        The `Job` object is used to represent a Job offering at a company.
+
+        ### Usage Example
+        Fetch from the `LIST Jobs` endpoint to show all job postings.
+      example:
+        code: C0025
+        remote_id: "8765432"
+        offices:
+        - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+        description: <b>If you're reading this documentation, you might be a good
+          fit for Merge!</b>
+        remote_updated_at: 2021-10-16T00:00:00Z
+        remote_data:
+        - path: /positions
+          data:
+          - Varies by platform
+        hiring_managers:
+        - 787ed912-33ec-444e-a215-8d71cc42fc12
+        name: Software Engineer (Merge is actually hiring btw)
+        id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+        departments:
+        - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+        - d6e687d6-0c36-48a1-8114-35324b5cb38f
+        remote_created_at: 2021-10-15T00:00:00Z
+        status: OPEN
+        confidential: true
+      properties:
+        id:
+          example: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "8765432"
+          nullable: true
+          type: string
+        name:
+          description: The job's name.
+          example: Software Engineer (Merge is actually hiring btw)
+          nullable: true
+          type: string
+        description:
+          description: The job's description.
+          example: <b>If you're reading this documentation, you might be a good fit
+            for Merge!</b>
+          nullable: true
+          type: string
+        code:
+          description: The job's code. Typically an additional identifier used to
+            reference the particular job that is displayed on the ATS.
+          example: C0025
+          nullable: true
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/JobStatusEnum'
+          description: The job's status.
+          example: OPEN
+          nullable: true
+        remote_created_at:
+          description: When the third party's job was created.
+          example: 2021-10-15T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        remote_updated_at:
+          description: When the third party's job was updated.
+          example: 2021-10-16T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        confidential:
+          description: Whether the job is confidential.
+          example: true
+          nullable: true
+          type: boolean
+        departments:
+          description: IDs of `Department` objects for this `Job`.
+          example:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          items:
+            format: uuid
+            type: string
+          type: array
+        offices:
+          description: IDs of `Office` objects for this `Job`.
+          example:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          items:
+            format: uuid
+            type: string
+          type: array
+        hiring_managers:
+          description: IDs of `RemoteUser` objects that serve as hiring managers for
+            this `Job`.
+          example:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          items:
+            format: uuid
+            type: string
+          type: array
+        remote_data:
+          example:
+          - path: /positions
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+      x-merge-sample-json: '{"id": "022a2bef-57e5-4def-8ed2-7c41bd9a5ed8", "remote_id":
+        "8765432", "name": "Software Engineer (Merge is actually hiring btw)", "description":
+        "<b>If you''re reading this documentation, you might be a good fit for Merge!</b>",
+        "code": "C0025", "status": "OPEN", "remote_created_at": "2021-10-15T00:00:00Z",
+        "remote_updated_at": "2021-10-16T00:00:00Z", "confidential": true, "departments":
+        ["5b3c1341-a20f-4e51-b72c-f3830a16c97b", "d6e687d6-0c36-48a1-8114-35324b5cb38f"],
+        "offices": ["9871b4a9-f5d2-4f3b-a66b-dfedbed42c46"], "hiring_managers": ["787ed912-33ec-444e-a215-8d71cc42fc12"],
+        "remote_data": [{"path": "/positions", "data": {"example": "Varies by platform"}}]}'
     JobInterviewStage:
       description: |-
         # The JobInterviewStage Object
@@ -4162,6 +4764,14 @@ components:
           readOnly: true
           type: array
       type: object
+    JobStatusEnum:
+      enum:
+      - OPEN
+      - CLOSED
+      - DRAFT
+      - ARCHIVED
+      - PENDING
+      type: string
     LinkToken:
       example:
         integration_name: Lever
@@ -4309,9 +4919,11 @@ components:
           nullable: true
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/OfferStatusEnum'
+          description: The offer's status.
           example: SENT
-          readOnly: true
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /offers
@@ -4323,6 +4935,18 @@ components:
           readOnly: true
           type: array
       type: object
+    OfferStatusEnum:
+      enum:
+      - DRAFT
+      - APPROVAL-SENT
+      - APPROVED
+      - SENT
+      - SENT-MANUALLY
+      - OPENED
+      - DENIED
+      - SIGNED
+      - DEPRECATED
+      type: string
     Office:
       description: |-
         # The Office Object
@@ -4375,6 +4999,14 @@ components:
       x-merge-sample-json: '{"id": "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46", "remote_id":
         "876556788", "name": "SF Office", "location": "Embarcadero Center 2", "remote_data":
         [{"path": "/locations", "data": {"example": "Varies by platform"}}]}'
+    OverallRecommendationEnum:
+      enum:
+      - DEFINITELY_NO
+      - "NO"
+      - "YES"
+      - STRONG_YES
+      - NO_DECISION
+      type: string
     PaginatedAccountDetailsAndActionsList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -4789,7 +5421,6 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           is_muted: true
           last_incident_time: 2000-01-23T04:56:07.000+00:00
-          status: status
           first_incident_time: 2000-01-23T04:56:07.000+00:00
         - end_user:
             key: ""
@@ -4797,7 +5428,6 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           is_muted: true
           last_incident_time: 2000-01-23T04:56:07.000+00:00
-          status: status
           first_incident_time: 2000-01-23T04:56:07.000+00:00
       properties:
         next:
@@ -4846,6 +5476,67 @@ components:
         results:
           items:
             $ref: '#/components/schemas/JobInterviewStage'
+          type: array
+      type: object
+    PaginatedJobList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - code: C0025
+          remote_id: "8765432"
+          offices:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          description: <b>If you're reading this documentation, you might be a good
+            fit for Merge!</b>
+          remote_updated_at: 2021-10-16T00:00:00Z
+          remote_data:
+          - path: /positions
+            data:
+            - Varies by platform
+          hiring_managers:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          name: Software Engineer (Merge is actually hiring btw)
+          id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          departments:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          remote_created_at: 2021-10-15T00:00:00Z
+          status: OPEN
+          confidential: true
+        - code: C0025
+          remote_id: "8765432"
+          offices:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          description: <b>If you're reading this documentation, you might be a good
+            fit for Merge!</b>
+          remote_updated_at: 2021-10-16T00:00:00Z
+          remote_data:
+          - path: /positions
+            data:
+            - Varies by platform
+          hiring_managers:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          name: Software Engineer (Merge is actually hiring btw)
+          id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          departments:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          remote_created_at: 2021-10-15T00:00:00Z
+          status: OPEN
+          confidential: true
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Job'
           type: array
       type: object
     PaginatedOfferList:
@@ -5179,9 +5870,11 @@ components:
           nullable: true
           type: string
         phone_number_type:
+          allOf:
+          - $ref: '#/components/schemas/PhoneNumberTypeEnum'
+          description: The type of phone number.
           example: HOME
-          readOnly: true
-          type: string
+          nullable: true
       type: object
     PhoneNumberRequest:
       description: |-
@@ -5197,7 +5890,32 @@ components:
           example: +3198675309
           nullable: true
           type: string
+        phone_number_type:
+          allOf:
+          - $ref: '#/components/schemas/PhoneNumberTypeEnum'
+          description: The type of phone number.
+          example: HOME
+          nullable: true
       type: object
+    PhoneNumberTypeEnum:
+      enum:
+      - HOME
+      - WORK
+      - MOBILE
+      - SKYPE
+      - OTHER
+      type: string
+    RaceEnum:
+      enum:
+      - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+      - ASIAN
+      - BLACK_OR_AFRICAN_AMERICAN
+      - HISPANIC_OR_LATINO
+      - WHITE
+      - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+      - TWO_OR_MORE_RACES
+      - DECLINE_TO_SELF_IDENTIFY
+      type: string
     RejectReason:
       description: |-
         # The RejectReason Object
@@ -5414,9 +6132,11 @@ components:
           nullable: true
           type: string
         access_role:
+          allOf:
+          - $ref: '#/components/schemas/AccessRoleEnum'
+          description: The user's role.
           example: SUPER_ADMIN
-          readOnly: true
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /users
@@ -5533,9 +6253,11 @@ components:
           nullable: true
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/ScheduledInterviewStatusEnum'
+          description: The interview's status.
           example: SCHEDULED
-          readOnly: true
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /interviews
@@ -5547,6 +6269,12 @@ components:
           readOnly: true
           type: array
       type: object
+    ScheduledInterviewStatusEnum:
+      enum:
+      - SCHEDULED
+      - AWAITING_FEEDBACK
+      - COMPLETE
+      type: string
     Scorecard:
       description: |-
         # The Scorecard Object
@@ -5610,9 +6338,11 @@ components:
           nullable: true
           type: string
         overall_recommendation:
+          allOf:
+          - $ref: '#/components/schemas/OverallRecommendationEnum'
+          description: The inteviewer's recommendation.
           example: STRONG_YES
-          readOnly: true
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /ratings
@@ -5735,9 +6465,11 @@ components:
           nullable: true
           type: string
         url_type:
+          allOf:
+          - $ref: '#/components/schemas/UrlTypeEnum'
+          description: The type of site.
           example: PERSONAL
-          readOnly: true
-          type: string
+          nullable: true
       type: object
     UrlRequest:
       description: |-
@@ -5755,7 +6487,55 @@ components:
           maxLength: 2000
           nullable: true
           type: string
+        url_type:
+          allOf:
+          - $ref: '#/components/schemas/UrlTypeEnum'
+          description: The type of site.
+          example: PERSONAL
+          nullable: true
       type: object
+    UrlTypeEnum:
+      enum:
+      - PERSONAL
+      - COMPANY
+      - PORTFOLIO
+      - BLOG
+      - SOCIAL_MEDIA
+      - OTHER
+      type: string
+    ValidationProblem:
+      example:
+        problem_type: problem_type
+        source: source
+        detail: detail
+        title: title
+      properties:
+        source:
+          readOnly: true
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+        problem_type:
+          type: string
+      required:
+      - detail
+      - problem_type
+      - title
+      type: object
+    VeteranStatusEnum:
+      enum:
+      - I_AM_NOT_A_PROTECTED_VETERAN
+      - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
+      - I_DONT_WISH_TO_ANSWER
+      type: string
+    VisibilityEnum:
+      enum:
+      - ADMIN_ONLY
+      - PUBLIC
+      - PRIVATE
+      type: string
   securitySchemes:
     tokenAuth:
       description: Token-based authentication with required prefix "Token"

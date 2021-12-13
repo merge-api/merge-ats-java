@@ -9,7 +9,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **value** | **String** | The email address. |  [optional]
-**emailAddressType** | **String** |  |  [optional] [readonly]
+**emailAddressType** | [**EmailAddressTypeEnum**](EmailAddressTypeEnum.md) | The type of email address. |  [optional]
 
 
 

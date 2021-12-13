@@ -23,16 +23,21 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.EmailAddressTypeEnum;
 
 /**
  * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
 @ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:13:49.108123Z[Etc/UTC]")
 public class EmailAddressRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
+
+  public static final String SERIALIZED_NAME_EMAIL_ADDRESS_TYPE = "email_address_type";
+  @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS_TYPE)
+  private EmailAddressTypeEnum emailAddressType;
 
 
   public EmailAddressRequest value(String value) {
@@ -58,6 +63,29 @@ public class EmailAddressRequest {
   }
 
 
+  public EmailAddressRequest emailAddressType(EmailAddressTypeEnum emailAddressType) {
+    
+    this.emailAddressType = emailAddressType;
+    return this;
+  }
+
+   /**
+   * The type of email address.
+   * @return emailAddressType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "PERSONAL", value = "The type of email address.")
+
+  public EmailAddressTypeEnum getEmailAddressType() {
+    return emailAddressType;
+  }
+
+
+  public void setEmailAddressType(EmailAddressTypeEnum emailAddressType) {
+    this.emailAddressType = emailAddressType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,12 +95,13 @@ public class EmailAddressRequest {
       return false;
     }
     EmailAddressRequest emailAddressRequest = (EmailAddressRequest) o;
-    return Objects.equals(this.value, emailAddressRequest.value);
+    return Objects.equals(this.value, emailAddressRequest.value) &&
+        Objects.equals(this.emailAddressType, emailAddressRequest.emailAddressType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value);
+    return Objects.hash(value, emailAddressType);
   }
 
   @Override
@@ -80,6 +109,7 @@ public class EmailAddressRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class EmailAddressRequest {\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    emailAddressType: ").append(toIndentedString(emailAddressType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import merge_ats_client.model.OverallRecommendationEnum;
 import merge_ats_client.model.RemoteData;
 import org.threeten.bp.OffsetDateTime;
 
@@ -33,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
 @ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:13:49.108123Z[Etc/UTC]")
 public class Scorecard {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -65,7 +66,7 @@ public class Scorecard {
 
   public static final String SERIALIZED_NAME_OVERALL_RECOMMENDATION = "overall_recommendation";
   @SerializedName(SERIALIZED_NAME_OVERALL_RECOMMENDATION)
-  private String overallRecommendation;
+  private OverallRecommendationEnum overallRecommendation;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -224,18 +225,27 @@ public class Scorecard {
   }
 
 
+  public Scorecard overallRecommendation(OverallRecommendationEnum overallRecommendation) {
+    
+    this.overallRecommendation = overallRecommendation;
+    return this;
+  }
+
    /**
-   * Get overallRecommendation
+   * The inteviewer&#39;s recommendation.
    * @return overallRecommendation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "STRONG_YES", value = "")
+  @ApiModelProperty(example = "STRONG_YES", value = "The inteviewer's recommendation.")
 
-  public String getOverallRecommendation() {
+  public OverallRecommendationEnum getOverallRecommendation() {
     return overallRecommendation;
   }
 
 
+  public void setOverallRecommendation(OverallRecommendationEnum overallRecommendation) {
+    this.overallRecommendation = overallRecommendation;
+  }
 
 
    /**

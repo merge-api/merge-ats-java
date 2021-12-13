@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="applicationsCreate"></a>
 # **applicationsCreate**
-> Application applicationsCreate(xAccountToken, remoteUserId, runAsync, applicationRequest)
+> ApplicationResponse applicationsCreate(xAccountToken, applicationEndpointRequest, runAsync)
 
 
 
@@ -40,11 +40,10 @@ public class Example {
 
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
+    ApplicationEndpointRequest applicationEndpointRequest = new ApplicationEndpointRequest(); // ApplicationEndpointRequest | 
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
-    ApplicationRequest applicationRequest = new ApplicationRequest(); // ApplicationRequest | 
     try {
-      Application result = apiInstance.applicationsCreate(xAccountToken, remoteUserId, runAsync, applicationRequest);
+      ApplicationResponse result = apiInstance.applicationsCreate(xAccountToken, applicationEndpointRequest, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsCreate");
@@ -62,13 +61,12 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **remoteUserId** | **String**| The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. | [optional]
+ **applicationEndpointRequest** | [**ApplicationEndpointRequest**](ApplicationEndpointRequest.md)|  |
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
- **applicationRequest** | [**ApplicationRequest**](ApplicationRequest.md)|  | [optional]
 
 ### Return type
 
-[**Application**](Application.md)
+[**ApplicationResponse**](ApplicationResponse.md)
 
 ### Authorization
 

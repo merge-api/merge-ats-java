@@ -28,7 +28,8 @@ import java.io.IOException;
 
 
 import merge_ats_client.model.Candidate;
-import merge_ats_client.model.CandidateRequest;
+import merge_ats_client.model.CandidateEndpointRequest;
+import merge_ats_client.model.CandidateResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedCandidateList;
 import java.util.UUID;
@@ -61,9 +62,8 @@ public class CandidatesApi {
     /**
      * Build call for candidatesCreate
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param candidateEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param candidateRequest  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -73,8 +73,8 @@ public class CandidatesApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call candidatesCreateCall(String xAccountToken, String remoteUserId, Boolean runAsync, CandidateRequest candidateRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = candidateRequest;
+    public okhttp3.Call candidatesCreateCall(String xAccountToken, CandidateEndpointRequest candidateEndpointRequest, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = candidateEndpointRequest;
 
         // create path and map variables
         String localVarPath = "/candidates";
@@ -84,10 +84,6 @@ public class CandidatesApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (remoteUserId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_user_id", remoteUserId));
-        }
 
         if (runAsync != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
@@ -116,15 +112,20 @@ public class CandidatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call candidatesCreateValidateBeforeCall(String xAccountToken, String remoteUserId, Boolean runAsync, CandidateRequest candidateRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call candidatesCreateValidateBeforeCall(String xAccountToken, CandidateEndpointRequest candidateEndpointRequest, Boolean runAsync, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
             throw new ApiException("Missing the required parameter 'xAccountToken' when calling candidatesCreate(Async)");
         }
         
+        // verify the required parameter 'candidateEndpointRequest' is set
+        if (candidateEndpointRequest == null) {
+            throw new ApiException("Missing the required parameter 'candidateEndpointRequest' when calling candidatesCreate(Async)");
+        }
+        
 
-        okhttp3.Call localVarCall = candidatesCreateCall(xAccountToken, remoteUserId, runAsync, candidateRequest, _callback);
+        okhttp3.Call localVarCall = candidatesCreateCall(xAccountToken, candidateEndpointRequest, runAsync, _callback);
         return localVarCall;
 
     }
@@ -133,10 +134,9 @@ public class CandidatesApi {
      * 
      * Creates a &#x60;Candidate&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param candidateEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param candidateRequest  (optional)
-     * @return Candidate
+     * @return CandidateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -144,8 +144,8 @@ public class CandidatesApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Candidate candidatesCreate(String xAccountToken, String remoteUserId, Boolean runAsync, CandidateRequest candidateRequest) throws ApiException {
-        ApiResponse<Candidate> localVarResp = candidatesCreateWithHttpInfo(xAccountToken, remoteUserId, runAsync, candidateRequest);
+    public CandidateResponse candidatesCreate(String xAccountToken, CandidateEndpointRequest candidateEndpointRequest, Boolean runAsync) throws ApiException {
+        ApiResponse<CandidateResponse> localVarResp = candidatesCreateWithHttpInfo(xAccountToken, candidateEndpointRequest, runAsync);
         return localVarResp.getData();
     }
 
@@ -153,10 +153,9 @@ public class CandidatesApi {
      * 
      * Creates a &#x60;Candidate&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param candidateEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param candidateRequest  (optional)
-     * @return ApiResponse&lt;Candidate&gt;
+     * @return ApiResponse&lt;CandidateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -164,9 +163,9 @@ public class CandidatesApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Candidate> candidatesCreateWithHttpInfo(String xAccountToken, String remoteUserId, Boolean runAsync, CandidateRequest candidateRequest) throws ApiException {
-        okhttp3.Call localVarCall = candidatesCreateValidateBeforeCall(xAccountToken, remoteUserId, runAsync, candidateRequest, null);
-        Type localVarReturnType = new TypeToken<Candidate>(){}.getType();
+    public ApiResponse<CandidateResponse> candidatesCreateWithHttpInfo(String xAccountToken, CandidateEndpointRequest candidateEndpointRequest, Boolean runAsync) throws ApiException {
+        okhttp3.Call localVarCall = candidatesCreateValidateBeforeCall(xAccountToken, candidateEndpointRequest, runAsync, null);
+        Type localVarReturnType = new TypeToken<CandidateResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -174,9 +173,8 @@ public class CandidatesApi {
      *  (asynchronously)
      * Creates a &#x60;Candidate&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param candidateEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param candidateRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -186,10 +184,10 @@ public class CandidatesApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call candidatesCreateAsync(String xAccountToken, String remoteUserId, Boolean runAsync, CandidateRequest candidateRequest, final ApiCallback<Candidate> _callback) throws ApiException {
+    public okhttp3.Call candidatesCreateAsync(String xAccountToken, CandidateEndpointRequest candidateEndpointRequest, Boolean runAsync, final ApiCallback<CandidateResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = candidatesCreateValidateBeforeCall(xAccountToken, remoteUserId, runAsync, candidateRequest, _callback);
-        Type localVarReturnType = new TypeToken<Candidate>(){}.getType();
+        okhttp3.Call localVarCall = candidatesCreateValidateBeforeCall(xAccountToken, candidateEndpointRequest, runAsync, _callback);
+        Type localVarReturnType = new TypeToken<CandidateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

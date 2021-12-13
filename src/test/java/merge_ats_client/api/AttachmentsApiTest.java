@@ -15,7 +15,8 @@ package merge_ats_client.api;
 
 import merge_ats_client.ApiException;
 import merge_ats_client.model.Attachment;
-import merge_ats_client.model.AttachmentRequest;
+import merge_ats_client.model.AttachmentEndpointRequest;
+import merge_ats_client.model.AttachmentResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedAttachmentList;
 import java.util.UUID;
@@ -47,10 +48,9 @@ public class AttachmentsApiTest {
     @Test
     public void attachmentsCreateTest() throws ApiException {
         String xAccountToken = null;
-        String remoteUserId = null;
+        AttachmentEndpointRequest attachmentEndpointRequest = null;
         Boolean runAsync = null;
-        AttachmentRequest attachmentRequest = null;
-        Attachment response = api.attachmentsCreate(xAccountToken, remoteUserId, runAsync, attachmentRequest);
+        AttachmentResponse response = api.attachmentsCreate(xAccountToken, attachmentEndpointRequest, runAsync);
 
         // TODO: test validations
     }

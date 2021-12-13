@@ -25,12 +25,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
 import java.util.UUID;
+import merge_ats_client.model.AttachmentTypeEnum;
 
 /**
  * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
 @ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:13:49.108123Z[Etc/UTC]")
 public class AttachmentRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -47,6 +48,10 @@ public class AttachmentRequest {
   public static final String SERIALIZED_NAME_CANDIDATE = "candidate";
   @SerializedName(SERIALIZED_NAME_CANDIDATE)
   private UUID candidate;
+
+  public static final String SERIALIZED_NAME_ATTACHMENT_TYPE = "attachment_type";
+  @SerializedName(SERIALIZED_NAME_ATTACHMENT_TYPE)
+  private AttachmentTypeEnum attachmentType;
 
 
   public AttachmentRequest remoteId(String remoteId) {
@@ -141,6 +146,29 @@ public class AttachmentRequest {
   }
 
 
+  public AttachmentRequest attachmentType(AttachmentTypeEnum attachmentType) {
+    
+    this.attachmentType = attachmentType;
+    return this;
+  }
+
+   /**
+   * The attachment&#39;s type.
+   * @return attachmentType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "RESUME", value = "The attachment's type.")
+
+  public AttachmentTypeEnum getAttachmentType() {
+    return attachmentType;
+  }
+
+
+  public void setAttachmentType(AttachmentTypeEnum attachmentType) {
+    this.attachmentType = attachmentType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -153,12 +181,13 @@ public class AttachmentRequest {
     return Objects.equals(this.remoteId, attachmentRequest.remoteId) &&
         Objects.equals(this.fileName, attachmentRequest.fileName) &&
         Objects.equals(this.fileUrl, attachmentRequest.fileUrl) &&
-        Objects.equals(this.candidate, attachmentRequest.candidate);
+        Objects.equals(this.candidate, attachmentRequest.candidate) &&
+        Objects.equals(this.attachmentType, attachmentRequest.attachmentType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, fileName, fileUrl, candidate);
+    return Objects.hash(remoteId, fileName, fileUrl, candidate, attachmentType);
   }
 
   @Override
@@ -169,6 +198,7 @@ public class AttachmentRequest {
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
     sb.append("    candidate: ").append(toIndentedString(candidate)).append("\n");
+    sb.append("    attachmentType: ").append(toIndentedString(attachmentType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

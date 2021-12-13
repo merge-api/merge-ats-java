@@ -23,12 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.EmailAddressTypeEnum;
 
 /**
  * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
 @ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:13:49.108123Z[Etc/UTC]")
 public class EmailAddress {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -36,7 +37,7 @@ public class EmailAddress {
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS_TYPE = "email_address_type";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS_TYPE)
-  private String emailAddressType;
+  private EmailAddressTypeEnum emailAddressType;
 
 
   public EmailAddress value(String value) {
@@ -62,18 +63,27 @@ public class EmailAddress {
   }
 
 
+  public EmailAddress emailAddressType(EmailAddressTypeEnum emailAddressType) {
+    
+    this.emailAddressType = emailAddressType;
+    return this;
+  }
+
    /**
-   * Get emailAddressType
+   * The type of email address.
    * @return emailAddressType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PERSONAL", value = "")
+  @ApiModelProperty(example = "PERSONAL", value = "The type of email address.")
 
-  public String getEmailAddressType() {
+  public EmailAddressTypeEnum getEmailAddressType() {
     return emailAddressType;
   }
 
 
+  public void setEmailAddressType(EmailAddressTypeEnum emailAddressType) {
+    this.emailAddressType = emailAddressType;
+  }
 
 
   @Override
