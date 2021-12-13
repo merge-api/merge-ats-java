@@ -37,13 +37,13 @@ public class Example {
     //tokenAuth.setApiKeyPrefix("Token");
 
     LinkedAccountsApi apiInstance = new LinkedAccountsApi(defaultClient);
-    String category = "accounting"; // String | 
+    String category = "category_example"; // String | 
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     String endUserEmailAddress = "endUserEmailAddress_example"; // String | 
     String endUserOrganizationName = "endUserOrganizationName_example"; // String | 
     String endUserOriginId = "endUserOriginId_example"; // String | 
     String endUserOriginIds = "endUserOriginIds_example"; // String | Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once
-    UUID id = UUID.randomUUID(); // UUID | 
+    UUID id = new UUID(); // UUID | 
     String ids = "ids_example"; // String | Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once
     String integrationName = "integrationName_example"; // String | 
     String isTestAccount = "isTestAccount_example"; // String | If included, will only include test linked accounts. If not included, will only include non-test linked accounts
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
  **endUserOrganizationName** | **String**|  | [optional]
  **endUserOriginId** | **String**|  | [optional]
  **endUserOriginIds** | **String**| Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once | [optional]
- **id** | **UUID**|  | [optional]
+ **id** | [**UUID**](.md)|  | [optional]
  **ids** | **String**| Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once | [optional]
  **integrationName** | **String**|  | [optional]
  **isTestAccount** | **String**| If included, will only include test linked accounts. If not included, will only include non-test linked accounts | [optional]

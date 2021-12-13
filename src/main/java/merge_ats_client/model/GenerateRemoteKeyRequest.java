@@ -28,7 +28,7 @@ import java.io.IOException;
  * # The GenerateRemoteKey Object ### Description The &#x60;GenerateRemoteKey&#x60; object is used to represent a request for a new remote key.  ### Usage Example Post a &#x60;GenerateRemoteKey&#x60; to create a new remote key.
  */
 @ApiModel(description = "# The GenerateRemoteKey Object ### Description The `GenerateRemoteKey` object is used to represent a request for a new remote key.  ### Usage Example Post a `GenerateRemoteKey` to create a new remote key.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
 public class GenerateRemoteKeyRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -45,7 +45,6 @@ public class GenerateRemoteKeyRequest {
    * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "Remote Deployment Key 1", required = true, value = "")
 
   public String getName() {

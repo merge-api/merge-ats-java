@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * LinkToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
 public class LinkToken {
   public static final String SERIALIZED_NAME_LINK_TOKEN = "link_token";
   @SerializedName(SERIALIZED_NAME_LINK_TOKEN)
@@ -48,7 +48,6 @@ public class LinkToken {
    * Get linkToken
    * @return linkToken
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "necdP7FtdASl1fQwm62be2_dM4wBG8_GactqoUV0", required = true, value = "")
 
   public String getLinkToken() {
@@ -71,7 +70,6 @@ public class LinkToken {
    * Get integrationName
    * @return integrationName
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "Lever", required = true, value = "")
 
   public String getIntegrationName() {

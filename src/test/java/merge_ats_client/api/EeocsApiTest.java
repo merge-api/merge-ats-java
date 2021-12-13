@@ -50,7 +50,6 @@ public class EeocsApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
@@ -73,7 +72,6 @@ public class EeocsApiTest {
     public void eeocsRetrieveTest() throws ApiException {
         String xAccountToken = null;
         UUID id = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         EEOC response = api.eeocsRetrieve(xAccountToken, id, includeRemoteData);
 

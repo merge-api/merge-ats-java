@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * RemoteData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
 public class RemoteData {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -51,7 +51,6 @@ public class RemoteData {
    * Get path
    * @return path
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getPath() {

@@ -31,7 +31,7 @@ import java.util.Map;
  * # The RemoteResponse Object ### Description The &#x60;RemoteResponse&#x60; object is used to represent information returned from a third-party endpoint.  ### Usage Example View the &#x60;RemoteResponse&#x60; returned from your &#x60;DataPassthrough&#x60;.
  */
 @ApiModel(description = "# The RemoteResponse Object ### Description The `RemoteResponse` object is used to represent information returned from a third-party endpoint.  ### Usage Example View the `RemoteResponse` returned from your `DataPassthrough`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
 public class RemoteResponse {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -64,7 +64,6 @@ public class RemoteResponse {
    * Get method
    * @return method
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "GET", required = true, value = "")
 
   public String getMethod() {
@@ -87,7 +86,6 @@ public class RemoteResponse {
    * Get path
    * @return path
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "/scooters", required = true, value = "")
 
   public String getPath() {
@@ -110,7 +108,6 @@ public class RemoteResponse {
    * Get status
    * @return status
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "200", required = true, value = "")
 
   public Integer getStatus() {
@@ -138,7 +135,6 @@ public class RemoteResponse {
    * Get response
    * @return response
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "{\"scooters\":[{\"company\":\"Lime\",\"model\":\"Gen 2.5\"},{\"company\":\"Bird\",\"model\":\"Bird Zero\"}]}", required = true, value = "")
 
   public Map<String, Object> getResponse() {

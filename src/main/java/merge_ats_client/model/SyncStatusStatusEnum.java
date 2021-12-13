@@ -33,7 +33,9 @@ public enum SyncStatusStatusEnum {
   
   DONE("DONE"),
   
-  FAILED("FAILED");
+  FAILED("FAILED"),
+  
+  DISABLED("DISABLED");
 
   private String value;
 

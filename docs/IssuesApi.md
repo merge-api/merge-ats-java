@@ -46,7 +46,7 @@ public class Example {
     String integrationName = "integrationName_example"; // String | 
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String startDate = "startDate_example"; // String | If included, will only include issues whose most recent action occurred after this time
-    String status = "ONGOING"; // String | 
+    String status = "status_example"; // String | 
     try {
       PaginatedIssueList result = apiInstance.issuesList(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status);
       System.out.println(result);
@@ -123,7 +123,7 @@ public class Example {
     //tokenAuth.setApiKeyPrefix("Token");
 
     IssuesApi apiInstance = new IssuesApi(defaultClient);
-    UUID id = UUID.randomUUID(); // UUID | 
+    UUID id = new UUID(); // UUID | 
     try {
       Issue result = apiInstance.issuesRetrieve(id);
       System.out.println(result);
@@ -142,7 +142,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **UUID**|  |
+ **id** | [**UUID**](.md)|  |
 
 ### Return type
 

@@ -28,13 +28,12 @@ import java.util.List;
 import java.util.Map;
 import merge_ats_client.model.MethodEnum;
 import merge_ats_client.model.RequestFormatEnum;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T20:10:13.802800Z[Etc/UTC]")
 public class DataPassthroughRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -71,7 +70,6 @@ public class DataPassthroughRequest {
    * Get method
    * @return method
   **/
-  @javax.annotation.Nullable
   @ApiModelProperty(example = "POST", required = true, value = "")
 
   public MethodEnum getMethod() {
@@ -94,7 +92,6 @@ public class DataPassthroughRequest {
    * Get path
    * @return path
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "/scooters", required = true, value = "")
 
   public String getPath() {
@@ -224,20 +221,9 @@ public class DataPassthroughRequest {
         Objects.equals(this.requestFormat, dataPassthroughRequest.requestFormat);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(method, path, baseUrlOverride, data, headers, requestFormat);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

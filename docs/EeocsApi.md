@@ -126,7 +126,7 @@ public class Example {
 
     EeocsApi apiInstance = new EeocsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    UUID id = UUID.randomUUID(); // UUID | 
+    UUID id = new UUID(); // UUID | 
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
       EEOC result = apiInstance.eeocsRetrieve(xAccountToken, id, includeRemoteData);
@@ -147,7 +147,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **id** | **UUID**|  |
+ **id** | [**UUID**](.md)|  |
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

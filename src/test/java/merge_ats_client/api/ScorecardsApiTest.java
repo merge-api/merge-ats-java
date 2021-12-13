@@ -50,7 +50,6 @@ public class ScorecardsApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         String interviewId = null;
         String interviewerId = null;
@@ -75,7 +74,6 @@ public class ScorecardsApiTest {
     public void scorecardsRetrieveTest() throws ApiException {
         String xAccountToken = null;
         UUID id = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         Scorecard response = api.scorecardsRetrieve(xAccountToken, id, includeRemoteData);
 
