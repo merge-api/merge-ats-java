@@ -32,7 +32,7 @@ import merge_ats_client.model.RemoteData;
  * # The Department Object ### Description The &#x60;Department&#x60; object is used to represent a department within a company.  ### Usage Example Fetch from the &#x60;LIST Departments&#x60; endpoint and view the departments within a company.
  */
 @ApiModel(description = "# The Department Object ### Description The `Department` object is used to represent a department within a company.  ### Usage Example Fetch from the `LIST Departments` endpoint and view the departments within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:13:49.108123Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:26:10.470036Z[Etc/UTC]")
 public class Department {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

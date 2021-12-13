@@ -1,8 +1,8 @@
 lazy val root = (project in file(".")).
   settings(
-    organization := "dev.merge",
+    organization := "dev.merge.ats",
     name := "merge-ats-client",
-    version := "1.0.0-SNAPSHOT",
+    version := "1.2.0",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
