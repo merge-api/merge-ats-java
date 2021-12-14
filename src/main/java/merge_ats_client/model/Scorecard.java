@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
 @ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class Scorecard {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -224,18 +224,26 @@ public class Scorecard {
   }
 
 
+  public Scorecard overallRecommendation(String overallRecommendation) {
+    
+    this.overallRecommendation = overallRecommendation;
+    return this;
+  }
+
    /**
    * Get overallRecommendation
    * @return overallRecommendation
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "STRONG_YES", value = "")
+  @ApiModelProperty(example = "STRONG_YES", required = true, value = "")
 
   public String getOverallRecommendation() {
     return overallRecommendation;
   }
 
 
+  public void setOverallRecommendation(String overallRecommendation) {
+    this.overallRecommendation = overallRecommendation;
+  }
 
 
    /**

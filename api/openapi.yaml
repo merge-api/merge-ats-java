@@ -3085,7 +3085,6 @@ components:
           type: string
         activity_type:
           example: NOTE
-          readOnly: true
           type: string
         subject:
           description: The activity's subject.
@@ -3099,7 +3098,6 @@ components:
           type: string
         visibility:
           example: PRIVATE
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -3111,6 +3109,9 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - activity_type
+      - visibility
       type: object
     Application:
       description: |-
@@ -3416,7 +3417,6 @@ components:
           type: string
         attachment_type:
           example: RESUME
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -3428,6 +3428,8 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - attachment_type
       type: object
     AttachmentEndpointRequest:
       example:
@@ -3435,6 +3437,7 @@ components:
         model:
           file_url: http://alturl.com/p749b
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          attachment_type: RESUME
           file_name: Candidate Resume
           remote_id: "11167"
       properties:
@@ -3457,6 +3460,7 @@ components:
       example:
         file_url: http://alturl.com/p749b
         candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        attachment_type: RESUME
         file_name: Candidate Resume
         remote_id: "11167"
       properties:
@@ -3482,6 +3486,12 @@ components:
           format: uuid
           nullable: true
           type: string
+        attachment_type:
+          example: RESUME
+          minLength: 1
+          type: string
+      required:
+      - attachment_type
       type: object
     AttachmentResponse:
       example:
@@ -4198,19 +4208,15 @@ components:
           type: string
         race:
           example: HISPANIC_OR_LATINO
-          readOnly: true
           type: string
         gender:
           example: FEMALE
-          readOnly: true
           type: string
         veteran_status:
           example: I_AM_NOT_A_PROTECTED_VETERAN
-          readOnly: true
           type: string
         disability_status:
           example: I_DONT_WISH_TO_ANSWER
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -4222,6 +4228,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - disability_status
+      - gender
+      - race
+      - veteran_status
       type: object
     EmailAddress:
       description: |-
@@ -4241,8 +4252,9 @@ components:
           type: string
         email_address_type:
           example: PERSONAL
-          readOnly: true
           type: string
+      required:
+      - email_address_type
       type: object
     EmailAddressRequest:
       description: |-
@@ -4260,6 +4272,12 @@ components:
           maxLength: 254
           nullable: true
           type: string
+        email_address_type:
+          example: PERSONAL
+          minLength: 1
+          type: string
+      required:
+      - email_address_type
       type: object
     EndUserDetailsRequest:
       example:
@@ -4548,7 +4566,6 @@ components:
           type: string
         status:
           example: SENT
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -4560,6 +4577,8 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - status
       type: object
     Office:
       description: |-
@@ -5418,8 +5437,9 @@ components:
           type: string
         phone_number_type:
           example: HOME
-          readOnly: true
           type: string
+      required:
+      - phone_number_type
       type: object
     PhoneNumberRequest:
       description: |-
@@ -5435,6 +5455,12 @@ components:
           example: +3198675309
           nullable: true
           type: string
+        phone_number_type:
+          example: HOME
+          minLength: 1
+          type: string
+      required:
+      - phone_number_type
       type: object
     RejectReason:
       description: |-
@@ -5653,7 +5679,6 @@ components:
           type: string
         access_role:
           example: SUPER_ADMIN
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -5665,6 +5690,8 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - access_role
       type: object
       x-merge-sample-json: '{"id": "b82302de-852e-4e60-b050-edf9da3b7c02", "remote_id":
         "344321", "first_name": "Shensi", "last_name": "Ding", "email": "hello@merge.dev",
@@ -5772,7 +5799,6 @@ components:
           type: string
         status:
           example: SCHEDULED
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -5784,6 +5810,8 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - status
       type: object
     Scorecard:
       description: |-
@@ -5849,7 +5877,6 @@ components:
           type: string
         overall_recommendation:
           example: STRONG_YES
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -5861,6 +5888,8 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - overall_recommendation
       type: object
     SyncStatus:
       description: |-
@@ -5974,8 +6003,9 @@ components:
           type: string
         url_type:
           example: PERSONAL
-          readOnly: true
           type: string
+      required:
+      - url_type
       type: object
     UrlRequest:
       description: |-
@@ -5993,6 +6023,12 @@ components:
           maxLength: 2000
           nullable: true
           type: string
+        url_type:
+          example: PERSONAL
+          minLength: 1
+          type: string
+      required:
+      - url_type
       type: object
     ValidationProblem:
       example:

@@ -48,4 +48,12 @@ public class PhoneNumberRequestTest {
         // TODO: test value
     }
 
+    /**
+     * Test the property 'phoneNumberType'
+     */
+    @Test
+    public void phoneNumberTypeTest() {
+        // TODO: test phoneNumberType
+    }
+
 }

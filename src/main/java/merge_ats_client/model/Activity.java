@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Activity Object ### Description The &#x60;Activity&#x60; object is used to represent an activity performed by a user.  ### Usage Example Fetch from the &#x60;LIST Activities&#x60; endpoint and filter by &#x60;ID&#x60; to show all activities.
  */
 @ApiModel(description = "# The Activity Object ### Description The `Activity` object is used to represent an activity performed by a user.  ### Usage Example Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class Activity {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -155,18 +155,26 @@ public class Activity {
   }
 
 
+  public Activity activityType(String activityType) {
+    
+    this.activityType = activityType;
+    return this;
+  }
+
    /**
    * Get activityType
    * @return activityType
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "NOTE", value = "")
+  @ApiModelProperty(example = "NOTE", required = true, value = "")
 
   public String getActivityType() {
     return activityType;
   }
 
 
+  public void setActivityType(String activityType) {
+    this.activityType = activityType;
+  }
 
 
   public Activity subject(String subject) {
@@ -215,18 +223,26 @@ public class Activity {
   }
 
 
+  public Activity visibility(String visibility) {
+    
+    this.visibility = visibility;
+    return this;
+  }
+
    /**
    * Get visibility
    * @return visibility
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "PRIVATE", value = "")
+  @ApiModelProperty(example = "PRIVATE", required = true, value = "")
 
   public String getVisibility() {
     return visibility;
   }
 
 
+  public void setVisibility(String visibility) {
+    this.visibility = visibility;
+  }
 
 
    /**

@@ -74,4 +74,12 @@ public class AttachmentRequestTest {
         // TODO: test candidate
     }
 
+    /**
+     * Test the property 'attachmentType'
+     */
+    @Test
+    public void attachmentTypeTest() {
+        // TODO: test attachmentType
+    }
+
 }

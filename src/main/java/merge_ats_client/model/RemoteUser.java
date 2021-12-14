@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The RemoteUser Object ### Description The &#x60;RemoteUser&#x60; object is used to represent a third party user.  ### Usage Example Fetch from the &#x60;LIST RemoteUsers&#x60; endpoint to show all users for a third party.
  */
 @ApiModel(description = "# The RemoteUser Object ### Description The `RemoteUser` object is used to represent a third party user.  ### Usage Example Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class RemoteUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -224,18 +224,26 @@ public class RemoteUser {
   }
 
 
+  public RemoteUser accessRole(String accessRole) {
+    
+    this.accessRole = accessRole;
+    return this;
+  }
+
    /**
    * Get accessRole
    * @return accessRole
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "SUPER_ADMIN", value = "")
+  @ApiModelProperty(example = "SUPER_ADMIN", required = true, value = "")
 
   public String getAccessRole() {
     return accessRole;
   }
 
 
+  public void setAccessRole(String accessRole) {
+    this.accessRole = accessRole;
+  }
 
 
    /**

@@ -33,7 +33,7 @@ import merge_ats_client.model.RemoteData;
  * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
 @ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class Attachment {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -170,18 +170,26 @@ public class Attachment {
   }
 
 
+  public Attachment attachmentType(String attachmentType) {
+    
+    this.attachmentType = attachmentType;
+    return this;
+  }
+
    /**
    * Get attachmentType
    * @return attachmentType
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "RESUME", value = "")
+  @ApiModelProperty(example = "RESUME", required = true, value = "")
 
   public String getAttachmentType() {
     return attachmentType;
   }
 
 
+  public void setAttachmentType(String attachmentType) {
+    this.attachmentType = attachmentType;
+  }
 
 
    /**

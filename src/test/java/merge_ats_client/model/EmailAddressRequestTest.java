@@ -48,4 +48,12 @@ public class EmailAddressRequestTest {
         // TODO: test value
     }
 
+    /**
+     * Test the property 'emailAddressType'
+     */
+    @Test
+    public void emailAddressTypeTest() {
+        // TODO: test emailAddressType
+    }
+
 }

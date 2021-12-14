@@ -29,11 +29,15 @@ import java.net.URI;
  * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent a candidate&#39;s website.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.
  */
 @ApiModel(description = "# The Url Object ### Description The `Url` object is used to represent a candidate's website.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their website urls.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class UrlRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
   private URI value;
+
+  public static final String SERIALIZED_NAME_URL_TYPE = "url_type";
+  @SerializedName(SERIALIZED_NAME_URL_TYPE)
+  private String urlType;
 
 
   public UrlRequest value(URI value) {
@@ -59,6 +63,28 @@ public class UrlRequest {
   }
 
 
+  public UrlRequest urlType(String urlType) {
+    
+    this.urlType = urlType;
+    return this;
+  }
+
+   /**
+   * Get urlType
+   * @return urlType
+  **/
+  @ApiModelProperty(example = "PERSONAL", required = true, value = "")
+
+  public String getUrlType() {
+    return urlType;
+  }
+
+
+  public void setUrlType(String urlType) {
+    this.urlType = urlType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -68,12 +94,13 @@ public class UrlRequest {
       return false;
     }
     UrlRequest urlRequest = (UrlRequest) o;
-    return Objects.equals(this.value, urlRequest.value);
+    return Objects.equals(this.value, urlRequest.value) &&
+        Objects.equals(this.urlType, urlRequest.urlType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value);
+    return Objects.hash(value, urlType);
   }
 
   @Override
@@ -81,6 +108,7 @@ public class UrlRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class UrlRequest {\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    urlType: ").append(toIndentedString(urlType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

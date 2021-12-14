@@ -28,7 +28,7 @@ import java.io.IOException;
  * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
 @ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class EmailAddress {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -62,18 +62,26 @@ public class EmailAddress {
   }
 
 
+  public EmailAddress emailAddressType(String emailAddressType) {
+    
+    this.emailAddressType = emailAddressType;
+    return this;
+  }
+
    /**
    * Get emailAddressType
    * @return emailAddressType
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "PERSONAL", value = "")
+  @ApiModelProperty(example = "PERSONAL", required = true, value = "")
 
   public String getEmailAddressType() {
     return emailAddressType;
   }
 
 
+  public void setEmailAddressType(String emailAddressType) {
+    this.emailAddressType = emailAddressType;
+  }
 
 
   @Override

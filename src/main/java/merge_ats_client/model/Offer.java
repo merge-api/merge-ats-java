@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application.  ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
  */
 @ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application.  ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class Offer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -251,18 +251,26 @@ public class Offer {
   }
 
 
+  public Offer status(String status) {
+    
+    this.status = status;
+    return this;
+  }
+
    /**
    * Get status
    * @return status
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "SENT", value = "")
+  @ApiModelProperty(example = "SENT", required = true, value = "")
 
   public String getStatus() {
     return status;
   }
 
 
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
 
    /**

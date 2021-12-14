@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **fileName** | **String** | The attachment&#39;s name. |  [optional]
 **fileUrl** | **URI** | The attachment&#39;s url. |  [optional]
 **candidate** | **UUID** |  |  [optional]
-**attachmentType** | **String** |  |  [optional] [readonly]
+**attachmentType** | **String** |  | 
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

@@ -9,6 +9,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **value** | **String** | The email address. |  [optional]
+**emailAddressType** | **String** |  | 
 
 
 

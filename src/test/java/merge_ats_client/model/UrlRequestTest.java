@@ -49,4 +49,12 @@ public class UrlRequestTest {
         // TODO: test value
     }
 
+    /**
+     * Test the property 'urlType'
+     */
+    @Test
+    public void urlTypeTest() {
+        // TODO: test urlType
+    }
+
 }
