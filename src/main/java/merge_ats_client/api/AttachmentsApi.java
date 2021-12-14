@@ -28,7 +28,8 @@ import java.io.IOException;
 
 
 import merge_ats_client.model.Attachment;
-import merge_ats_client.model.AttachmentRequest;
+import merge_ats_client.model.AttachmentEndpointRequest;
+import merge_ats_client.model.AttachmentResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedAttachmentList;
 import java.util.UUID;
@@ -61,9 +62,8 @@ public class AttachmentsApi {
     /**
      * Build call for attachmentsCreate
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param attachmentEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param attachmentRequest  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -73,8 +73,8 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsCreateCall(String xAccountToken, String remoteUserId, Boolean runAsync, AttachmentRequest attachmentRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = attachmentRequest;
+    public okhttp3.Call attachmentsCreateCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = attachmentEndpointRequest;
 
         // create path and map variables
         String localVarPath = "/attachments";
@@ -84,10 +84,6 @@ public class AttachmentsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (remoteUserId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_user_id", remoteUserId));
-        }
 
         if (runAsync != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
@@ -116,15 +112,20 @@ public class AttachmentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call attachmentsCreateValidateBeforeCall(String xAccountToken, String remoteUserId, Boolean runAsync, AttachmentRequest attachmentRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call attachmentsCreateValidateBeforeCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
             throw new ApiException("Missing the required parameter 'xAccountToken' when calling attachmentsCreate(Async)");
         }
         
+        // verify the required parameter 'attachmentEndpointRequest' is set
+        if (attachmentEndpointRequest == null) {
+            throw new ApiException("Missing the required parameter 'attachmentEndpointRequest' when calling attachmentsCreate(Async)");
+        }
+        
 
-        okhttp3.Call localVarCall = attachmentsCreateCall(xAccountToken, remoteUserId, runAsync, attachmentRequest, _callback);
+        okhttp3.Call localVarCall = attachmentsCreateCall(xAccountToken, attachmentEndpointRequest, runAsync, _callback);
         return localVarCall;
 
     }
@@ -133,10 +134,9 @@ public class AttachmentsApi {
      * 
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param attachmentEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param attachmentRequest  (optional)
-     * @return Attachment
+     * @return AttachmentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -144,8 +144,8 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Attachment attachmentsCreate(String xAccountToken, String remoteUserId, Boolean runAsync, AttachmentRequest attachmentRequest) throws ApiException {
-        ApiResponse<Attachment> localVarResp = attachmentsCreateWithHttpInfo(xAccountToken, remoteUserId, runAsync, attachmentRequest);
+    public AttachmentResponse attachmentsCreate(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync) throws ApiException {
+        ApiResponse<AttachmentResponse> localVarResp = attachmentsCreateWithHttpInfo(xAccountToken, attachmentEndpointRequest, runAsync);
         return localVarResp.getData();
     }
 
@@ -153,10 +153,9 @@ public class AttachmentsApi {
      * 
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param attachmentEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param attachmentRequest  (optional)
-     * @return ApiResponse&lt;Attachment&gt;
+     * @return ApiResponse&lt;AttachmentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -164,9 +163,9 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Attachment> attachmentsCreateWithHttpInfo(String xAccountToken, String remoteUserId, Boolean runAsync, AttachmentRequest attachmentRequest) throws ApiException {
-        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, remoteUserId, runAsync, attachmentRequest, null);
-        Type localVarReturnType = new TypeToken<Attachment>(){}.getType();
+    public ApiResponse<AttachmentResponse> attachmentsCreateWithHttpInfo(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync) throws ApiException {
+        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, runAsync, null);
+        Type localVarReturnType = new TypeToken<AttachmentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -174,9 +173,8 @@ public class AttachmentsApi {
      *  (asynchronously)
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
-     * @param remoteUserId The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. (optional)
+     * @param attachmentEndpointRequest  (required)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
-     * @param attachmentRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -186,10 +184,10 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsCreateAsync(String xAccountToken, String remoteUserId, Boolean runAsync, AttachmentRequest attachmentRequest, final ApiCallback<Attachment> _callback) throws ApiException {
+    public okhttp3.Call attachmentsCreateAsync(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync, final ApiCallback<AttachmentResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, remoteUserId, runAsync, attachmentRequest, _callback);
-        Type localVarReturnType = new TypeToken<Attachment>(){}.getType();
+        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, runAsync, _callback);
+        Type localVarReturnType = new TypeToken<AttachmentResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

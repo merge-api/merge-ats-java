@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
 **user** | **UUID** | The user the performed the action. |  [optional]
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s activity was created. |  [optional]
-**activityType** | **String** |  |  [optional] [readonly]
+**activityType** | **String** |  | 
 **subject** | **String** | The activity&#39;s subject. |  [optional]
 **body** | **String** | The activity&#39;s body. |  [optional]
-**visibility** | **String** |  |  [optional] [readonly]
+**visibility** | **String** |  | 
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

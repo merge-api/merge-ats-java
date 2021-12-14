@@ -51,7 +51,6 @@ public class OffersApiTest {
         OffsetDateTime createdBefore = null;
         String creatorId = null;
         String cursor = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
@@ -74,7 +73,6 @@ public class OffersApiTest {
     public void offersRetrieveTest() throws ApiException {
         String xAccountToken = null;
         UUID id = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         Offer response = api.offersRetrieve(xAccountToken, id, includeRemoteData);
 

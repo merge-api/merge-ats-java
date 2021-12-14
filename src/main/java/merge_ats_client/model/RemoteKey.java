@@ -28,7 +28,7 @@ import java.io.IOException;
  * # The RemoteKey Object ### Description The &#x60;RemoteKey&#x60; object is used to represent a request for a new remote key.  ### Usage Example Post a &#x60;GenerateRemoteKey&#x60; to receive a new &#x60;RemoteKey&#x60;.
  */
 @ApiModel(description = "# The RemoteKey Object ### Description The `RemoteKey` object is used to represent a request for a new remote key.  ### Usage Example Post a `GenerateRemoteKey` to receive a new `RemoteKey`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class RemoteKey {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -49,7 +49,6 @@ public class RemoteKey {
    * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "Remote Deployment Key 1", required = true, value = "")
 
   public String getName() {
@@ -72,7 +71,6 @@ public class RemoteKey {
    * Get key
    * @return key
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "hXY57W0g0WkdRHjCaPvwijK63fwfN-o_Wh7f30SLTq_uPCOLo-WFcA", required = true, value = "")
 
   public String getKey() {

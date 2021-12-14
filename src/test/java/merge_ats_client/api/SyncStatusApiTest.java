@@ -14,6 +14,7 @@
 package merge_ats_client.api;
 
 import merge_ats_client.ApiException;
+import merge_ats_client.model.PaginatedSyncStatusList;
 import merge_ats_client.model.SyncStatus;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -29,39 +30,41 @@ import java.util.Map;
 @Ignore
 public class SyncStatusApiTest {
 
-    // private final SyncStatusApi api = new SyncStatusApiTest();
+    private final SyncStatusApi api = new SyncStatusApi();
 
     
-//    /**
-//     *
-//     *
-//     * Force resync of all models.
-//     *
-//     * @throws ApiException
-//     *          if the Api call fails
-//     */
-//    @Test
-//    public void syncStatusResyncCreateTest() throws ApiException {
-//        String xAccountToken = null;
-//        SyncStatus response = api.syncStatusResyncCreate(xAccountToken);
-//
-//        // TODO: test validations
-//    }
-//
-//    /**
-//     *
-//     *
-//     * Get syncing status.
-//     *
-//     * @throws ApiException
-//     *          if the Api call fails
-//     */
-//    @Test
-//    public void syncStatusRetrieveTest() throws ApiException {
-//        String xAccountToken = null;
-//        SyncStatus response = api.syncStatusRetrieve(xAccountToken);
-//
-//        // TODO: test validations
-//    }
+    /**
+     * 
+     *
+     * Get syncing status.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void syncStatusListTest() throws ApiException {
+        String xAccountToken = null;
+        String cursor = null;
+        Integer pageSize = null;
+        PaginatedSyncStatusList response = api.syncStatusList(xAccountToken, cursor, pageSize);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void syncStatusResyncCreateTest() throws ApiException {
+        String xAccountToken = null;
+        SyncStatus response = api.syncStatusResyncCreate(xAccountToken);
+
+        // TODO: test validations
+    }
     
 }

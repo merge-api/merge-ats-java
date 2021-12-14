@@ -369,15 +369,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -390,19 +381,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ApplicationRequest'
+              $ref: '#/components/schemas/ApplicationEndpointRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ApplicationRequest'
+              $ref: '#/components/schemas/ApplicationEndpointRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/ApplicationRequest'
+              $ref: '#/components/schemas/ApplicationEndpointRequest'
+        required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/ApplicationResponse'
       security:
       - tokenAuth: []
       tags:
@@ -571,15 +563,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -592,19 +575,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentRequest'
+              $ref: '#/components/schemas/AttachmentEndpointRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/AttachmentRequest'
+              $ref: '#/components/schemas/AttachmentEndpointRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/AttachmentRequest'
+              $ref: '#/components/schemas/AttachmentEndpointRequest'
+        required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/AttachmentResponse'
       security:
       - tokenAuth: []
       tags:
@@ -804,15 +788,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -825,19 +800,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CandidateRequest'
+              $ref: '#/components/schemas/CandidateEndpointRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/CandidateRequest'
+              $ref: '#/components/schemas/CandidateEndpointRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/CandidateRequest'
+              $ref: '#/components/schemas/CandidateEndpointRequest'
+        required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Candidate'
+                $ref: '#/components/schemas/CandidateResponse'
       security:
       - tokenAuth: []
       tags:
@@ -1353,58 +1329,6 @@ paths:
       - tokenAuth: []
       tags:
       - interviews
-      x-accepts: application/json
-    post:
-      description: Creates a `ScheduledInterview` object with the given values.
-      operationId: interviews_create
-      parameters:
-      - description: Token identifying the end user.
-        explode: false
-        in: header
-        name: X-Account-Token
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Whether or not third-party updates should be run asynchronously.
-        explode: true
-        in: query
-        name: run_async
-        required: false
-        schema:
-          type: boolean
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ScheduledInterviewRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ScheduledInterviewRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ScheduledInterviewRequest'
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ScheduledInterview'
-      security:
-      - tokenAuth: []
-      tags:
-      - interviews
-      x-contentType: application/json
       x-accepts: application/json
   /interviews/{id}:
     get:
@@ -2496,58 +2420,6 @@ paths:
       tags:
       - scorecards
       x-accepts: application/json
-    post:
-      description: Creates a `Scorecard` object with the given values.
-      operationId: scorecards_create
-      parameters:
-      - description: Token identifying the end user.
-        explode: false
-        in: header
-        name: X-Account-Token
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Whether or not third-party updates should be run asynchronously.
-        explode: true
-        in: query
-        name: run_async
-        required: false
-        schema:
-          type: boolean
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ScorecardRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ScorecardRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ScorecardRequest'
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Scorecard'
-      security:
-      - tokenAuth: []
-      tags:
-      - scorecards
-      x-contentType: application/json
-      x-accepts: application/json
   /scorecards/{id}:
     get:
       description: Returns a `Scorecard` object with the given `id`.
@@ -2865,58 +2737,6 @@ paths:
       tags:
       - users
       x-accepts: application/json
-    post:
-      description: Creates a `RemoteUser` object with the given values.
-      operationId: users_create
-      parameters:
-      - description: Token identifying the end user.
-        explode: false
-        in: header
-        name: X-Account-Token
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The ID of the RemoteUser modifying the resource. This can be
-          found in the ID field (not remote_id) in the RemoteUser table.
-        explode: true
-        in: query
-        name: remote_user_id
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Whether or not third-party updates should be run asynchronously.
-        explode: true
-        in: query
-        name: run_async
-        required: false
-        schema:
-          type: boolean
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RemoteUserRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RemoteUserRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RemoteUserRequest'
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RemoteUser'
-      security:
-      - tokenAuth: []
-      tags:
-      - users
-      x-contentType: application/json
-      x-accepts: application/json
   /users/{id}:
     get:
       description: Returns a `RemoteUser` object with the given `id`.
@@ -3074,6 +2894,16 @@ components:
       - id
       - status
       type: object
+      x-merge-sample-json: '{"id": "e59b1821-f85c-4e28-a6b3-1804156f3563", "category":
+        "hris", "status": "COMPLETE", "status_detail": null, "end_user_origin_id":
+        "3ac95cde-6c7f-4eef-afec-be710b42308d", "end_user_organization_name": "Foo
+        Bar, LLC", "end_user_email_address": "hradmin@foobar.dev", "integration":
+        {"name": "SAP SuccessFactors", "categories": ["hris", "ats"], "image": "https://cdn.merge.dev/SuccessFactors_Logo.png",
+        "square_image": "https://cdn.merge.dev/SuccessFactors_Square_Logo.jpg", "color":
+        "#F6A704", "slug": "sap-successfactors", "passthrough_available": true, "available_model_operations":
+        [{"model_name": "Candidate", "available_operations": ["FETCH", "CREATE"],
+        "required_post_parameters": ["remote_user_id"], "supported_fields": ["first_name",
+        "last_name", "company", "title"]}]}}'
     AccountDetailsAndActionsIntegration:
       example:
         image: image
@@ -3255,7 +3085,6 @@ components:
           type: string
         activity_type:
           example: NOTE
-          readOnly: true
           type: string
         subject:
           description: The activity's subject.
@@ -3269,7 +3098,6 @@ components:
           type: string
         visibility:
           example: PRIVATE
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -3281,6 +3109,9 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - activity_type
+      - visibility
       type: object
     Application:
       description: |-
@@ -3381,6 +3212,30 @@ components:
           nullable: true
           type: object
       type: object
+    ApplicationEndpointRequest:
+      example:
+        remote_user_id: remote_user_id
+        model:
+          applied_at: 2021-10-15T00:00:00Z
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          rejected_at: 2021-11-15T00:00:00Z
+          custom_fields:
+            key: ""
+          remote_id: "98796"
+          source: Campus recruiting event
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+      properties:
+        model:
+          $ref: '#/components/schemas/ApplicationRequest'
+        remote_user_id:
+          type: string
+      required:
+      - model
+      - remote_user_id
+      type: object
     ApplicationRequest:
       description: |-
         # The Application Object
@@ -3460,6 +3315,59 @@ components:
           nullable: true
           type: object
       type: object
+    ApplicationResponse:
+      example:
+        warnings:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        model:
+          applied_at: 2021-10-15T00:00:00Z
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          rejected_at: 2021-11-15T00:00:00Z
+          custom_fields:
+            key: ""
+          remote_id: "98796"
+          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          source: Campus recruiting event
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          remote_data:
+          - path: /candidacies
+            data:
+            - Varies by platform
+        errors:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        model:
+          $ref: '#/components/schemas/Application'
+      required:
+      - errors
+      - model
+      - warnings
+      type: object
     Attachment:
       description: |-
         # The Attachment Object
@@ -3509,7 +3417,6 @@ components:
           type: string
         attachment_type:
           example: RESUME
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -3521,6 +3428,26 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - attachment_type
+      type: object
+    AttachmentEndpointRequest:
+      example:
+        remote_user_id: remote_user_id
+        model:
+          file_url: http://alturl.com/p749b
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          attachment_type: RESUME
+          file_name: Candidate Resume
+          remote_id: "11167"
+      properties:
+        model:
+          $ref: '#/components/schemas/AttachmentRequest'
+        remote_user_id:
+          type: string
+      required:
+      - model
+      - remote_user_id
       type: object
     AttachmentRequest:
       description: |-
@@ -3533,6 +3460,7 @@ components:
       example:
         file_url: http://alturl.com/p749b
         candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        attachment_type: RESUME
         file_name: Candidate Resume
         remote_id: "11167"
       properties:
@@ -3558,6 +3486,59 @@ components:
           format: uuid
           nullable: true
           type: string
+        attachment_type:
+          example: RESUME
+          minLength: 1
+          type: string
+      required:
+      - attachment_type
+      type: object
+    AttachmentResponse:
+      example:
+        warnings:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        model:
+          file_url: http://alturl.com/p749b
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          attachment_type: RESUME
+          file_name: Candidate Resume
+          remote_id: "11167"
+          id: c640b80b-fac9-409f-aa19-1f9221aec445
+          remote_data:
+          - path: /attachments
+            data:
+            - Varies by platform
+        errors:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        model:
+          $ref: '#/components/schemas/Attachment'
+      required:
+      - errors
+      - model
+      - warnings
       type: object
     AvailableActions:
       description: |-
@@ -3796,6 +3777,52 @@ components:
           nullable: true
           type: object
       type: object
+    CandidateEndpointRequest:
+      example:
+        remote_user_id: remote_user_id
+        model:
+          is_private: true
+          email_addresses:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          attachments:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          custom_fields:
+            key: ""
+          remote_id: "21198"
+          last_name: Feig
+          title: Software Engineer
+          remote_updated_at: 2021-10-16T00:00:00Z
+          tags:
+          - High-Priority
+          phone_numbers:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          urls:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          last_interaction_at: 2021-10-17T00:00:00Z
+          can_email: true
+          company: Columbia Dining App.
+          locations:
+          - San Francisco
+          - New York
+          - Miami
+          remote_created_at: 2021-10-15T00:00:00Z
+          first_name: Gil
+          applications:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+      properties:
+        model:
+          $ref: '#/components/schemas/CandidateRequest'
+        remote_user_id:
+          type: string
+      required:
+      - model
+      - remote_user_id
+      type: object
     CandidateRequest:
       description: |-
         # The Candidate Object
@@ -3956,6 +3983,81 @@ components:
           nullable: true
           type: object
       type: object
+    CandidateResponse:
+      example:
+        warnings:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        model:
+          is_private: true
+          email_addresses:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          attachments:
+          - bea08964-32b4-4a20-8bb4-2612ba09de1d
+          custom_fields:
+            key: ""
+          remote_id: "21198"
+          last_name: Feig
+          title: Software Engineer
+          remote_updated_at: 2021-10-16T00:00:00Z
+          tags:
+          - High-Priority
+          remote_data:
+          - path: /candidates
+            data:
+            - Varies by platform
+          phone_numbers:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          urls:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          last_interaction_at: 2021-10-17T00:00:00Z
+          can_email: true
+          company: Columbia Dining App.
+          locations:
+          - San Francisco
+          - New York
+          - Miami
+          id: 521b18c2-4d01-4297-b451-19858d07c133
+          remote_created_at: 2021-10-15T00:00:00Z
+          first_name: Gil
+          applications:
+          - 29eb9867-ce2a-403f-b8ce-f2844b89f078
+          - b4d08e5c-de00-4d64-a29f-66addac9af99
+          - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+        errors:
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+        - problem_type: problem_type
+          source: source
+          detail: detail
+          title: title
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationProblem'
+          type: array
+        model:
+          $ref: '#/components/schemas/Candidate'
+      required:
+      - errors
+      - model
+      - warnings
+      type: object
     CategoriesEnum:
       enum:
       - hris
@@ -4106,19 +4208,15 @@ components:
           type: string
         race:
           example: HISPANIC_OR_LATINO
-          readOnly: true
           type: string
         gender:
           example: FEMALE
-          readOnly: true
           type: string
         veteran_status:
           example: I_AM_NOT_A_PROTECTED_VETERAN
-          readOnly: true
           type: string
         disability_status:
           example: I_DONT_WISH_TO_ANSWER
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -4130,6 +4228,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - disability_status
+      - gender
+      - race
+      - veteran_status
       type: object
     EmailAddress:
       description: |-
@@ -4149,8 +4252,9 @@ components:
           type: string
         email_address_type:
           example: PERSONAL
-          readOnly: true
           type: string
+      required:
+      - email_address_type
       type: object
     EmailAddressRequest:
       description: |-
@@ -4168,6 +4272,12 @@ components:
           maxLength: 254
           nullable: true
           type: string
+        email_address_type:
+          example: PERSONAL
+          minLength: 1
+          type: string
+      required:
+      - email_address_type
       type: object
     EndUserDetailsRequest:
       example:
@@ -4456,7 +4566,6 @@ components:
           type: string
         status:
           example: SENT
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -4468,6 +4577,8 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - status
       type: object
     Office:
       description: |-
@@ -4518,6 +4629,9 @@ components:
           readOnly: true
           type: array
       type: object
+      x-merge-sample-json: '{"id": "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46", "remote_id":
+        "876556788", "name": "SF Office", "location": "Embarcadero Center 2", "remote_data":
+        [{"path": "/locations", "data": {"example": "Varies by platform"}}]}'
     PaginatedAccountDetailsAndActionsList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -5323,8 +5437,9 @@ components:
           type: string
         phone_number_type:
           example: HOME
-          readOnly: true
           type: string
+      required:
+      - phone_number_type
       type: object
     PhoneNumberRequest:
       description: |-
@@ -5340,6 +5455,12 @@ components:
           example: +3198675309
           nullable: true
           type: string
+        phone_number_type:
+          example: HOME
+          minLength: 1
+          type: string
+      required:
+      - phone_number_type
       type: object
     RejectReason:
       description: |-
@@ -5558,7 +5679,6 @@ components:
           type: string
         access_role:
           example: SUPER_ADMIN
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -5570,56 +5690,14 @@ components:
           nullable: true
           readOnly: true
           type: array
+      required:
+      - access_role
       type: object
-    RemoteUserRequest:
-      description: |-
-        # The RemoteUser Object
-        ### Description
-        The `RemoteUser` object is used to represent a third party user.
-
-        ### Usage Example
-        Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.
-      example:
-        remote_id: "344321"
-        last_name: Ding
-        disabled: true
-        remote_created_at: 2020-11-10T00:00:00Z
-        first_name: Shensi
-        email: hello@merge.dev
-      properties:
-        remote_id:
-          description: The third-party API ID of the matching object.
-          example: "344321"
-          nullable: true
-          type: string
-        first_name:
-          description: The user's first name.
-          example: Shensi
-          nullable: true
-          type: string
-        last_name:
-          description: The user's last name.
-          example: Ding
-          nullable: true
-          type: string
-        email:
-          description: The user's email.
-          example: hello@merge.dev
-          format: email
-          maxLength: 254
-          nullable: true
-          type: string
-        disabled:
-          description: Whether the user's account had been disabled.
-          nullable: true
-          type: boolean
-        remote_created_at:
-          description: When the third party's user was created.
-          example: 2020-11-10T00:00:00Z
-          format: date-time
-          nullable: true
-          type: string
-      type: object
+      x-merge-sample-json: '{"id": "b82302de-852e-4e60-b050-edf9da3b7c02", "remote_id":
+        "344321", "first_name": "Shensi", "last_name": "Ding", "email": "hello@merge.dev",
+        "disabled": false, "remote_created_at": "2020-11-10T00:00:00Z", "access_role":
+        "SUPER_ADMIN", "remote_data": [{"path": "/users", "data": {"example": "Varies
+        by platform"}}]}'
     RequestFormatEnum:
       enum:
       - JSON
@@ -5721,7 +5799,6 @@ components:
           type: string
         status:
           example: SCHEDULED
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -5733,90 +5810,8 @@ components:
           nullable: true
           readOnly: true
           type: array
-      type: object
-    ScheduledInterviewRequest:
-      description: |-
-        # The ScheduledInterview Object
-        ### Description
-        The `ScheduledInterview` object is used to represent an interview
-
-        ### Usage Example
-        Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.
-      example:
-        end_at: 2021-10-15T02:00:00Z
-        job_interview_stage: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
-        application: 92e8a369-fffe-430d-b93a-f7e8a16563f1
-        interviewers:
-        - f9813dd5-e70b-484c-91d8-00acd6065b07
-        - 89a86fcf-d540-4e6b-ac3d-ce07c4ec9b3c
-        organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
-        remote_id: "3"
-        location: Embarcadero Center 2
-        start_at: 2021-10-15T00:00:00Z
-        remote_created_at: 2021-10-15T00:00:00Z
-        remote_updated_at: 2021-10-15T00:00:00Z
-      properties:
-        remote_id:
-          description: The third-party API ID of the matching object.
-          example: "3"
-          nullable: true
-          type: string
-        application:
-          description: The application being interviewed.
-          example: 92e8a369-fffe-430d-b93a-f7e8a16563f1
-          format: uuid
-          nullable: true
-          type: string
-        job_interview_stage:
-          description: The stage of the interview.
-          example: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
-          format: uuid
-          nullable: true
-          type: string
-        organizer:
-          description: The user organizing the interview.
-          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
-          format: uuid
-          nullable: true
-          type: string
-        interviewers:
-          description: Array of `RemoteUser` IDs.
-          example:
-          - f9813dd5-e70b-484c-91d8-00acd6065b07
-          - 89a86fcf-d540-4e6b-ac3d-ce07c4ec9b3c
-          items:
-            format: uuid
-            type: string
-          type: array
-        location:
-          description: The interview's location.
-          example: Embarcadero Center 2
-          nullable: true
-          type: string
-        start_at:
-          description: When the interview was started.
-          example: 2021-10-15T00:00:00Z
-          format: date-time
-          nullable: true
-          type: string
-        end_at:
-          description: When the interview was ended.
-          example: 2021-10-15T02:00:00Z
-          format: date-time
-          nullable: true
-          type: string
-        remote_created_at:
-          description: When the third party's interview was created.
-          example: 2021-10-15T00:00:00Z
-          format: date-time
-          nullable: true
-          type: string
-        remote_updated_at:
-          description: When the third party's interview was updated.
-          example: 2021-10-15T00:00:00Z
-          format: date-time
-          nullable: true
-          type: string
+      required:
+      - status
       type: object
     Scorecard:
       description: |-
@@ -5882,7 +5877,6 @@ components:
           type: string
         overall_recommendation:
           example: STRONG_YES
-          readOnly: true
           type: string
         remote_data:
           example:
@@ -5894,58 +5888,8 @@ components:
           nullable: true
           readOnly: true
           type: array
-      type: object
-    ScorecardRequest:
-      description: |-
-        # The Scorecard Object
-        ### Description
-        The `Scorecard` object is used to represent a Scorecard for an interview
-
-        ### Usage Example
-        Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.
-      example:
-        interviewer: bbb519a3-246e-4b95-b6b3-dba16107ba6b
-        application: 2872ba14-4084-492b-be96-e5eee6fc33ef
-        submitted_at: 2021-10-15T00:00:00Z
-        remote_id: "22234"
-        remote_created_at: 2021-10-15T00:00:00Z
-        interview: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
-      properties:
-        remote_id:
-          description: The third-party API ID of the matching object.
-          example: "22234"
-          nullable: true
-          type: string
-        application:
-          description: The application being scored.
-          example: 2872ba14-4084-492b-be96-e5eee6fc33ef
-          format: uuid
-          nullable: true
-          type: string
-        interview:
-          description: The interview being scored.
-          example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
-          format: uuid
-          nullable: true
-          type: string
-        interviewer:
-          description: The interviewer doing the scoring.
-          example: bbb519a3-246e-4b95-b6b3-dba16107ba6b
-          format: uuid
-          nullable: true
-          type: string
-        remote_created_at:
-          description: When the third party's scorecard was created.
-          example: 2021-10-15T00:00:00Z
-          format: date-time
-          nullable: true
-          type: string
-        submitted_at:
-          description: When the scorecard was submitted.
-          example: 2021-10-15T00:00:00Z
-          format: date-time
-          nullable: true
-          type: string
+      required:
+      - overall_recommendation
       type: object
     SyncStatus:
       description: |-
@@ -5992,11 +5936,15 @@ components:
       - next_sync_start
       - status
       type: object
+      x-merge-sample-json: '{"model_name": "Candidate", "model_id": "ats.Candidate",
+        "last_sync_start": "2021-03-30T19:44:18.695973Z", "next_sync_start": "2021-03-30T20:44:18.662942Z",
+        "status": "SYNCING", "is_initial_sync": true}'
     SyncStatusStatusEnum:
       enum:
       - SYNCING
       - DONE
       - FAILED
+      - DISABLED
       type: string
     Tag:
       description: |-
@@ -6055,8 +6003,9 @@ components:
           type: string
         url_type:
           example: PERSONAL
-          readOnly: true
           type: string
+      required:
+      - url_type
       type: object
     UrlRequest:
       description: |-
@@ -6074,6 +6023,33 @@ components:
           maxLength: 2000
           nullable: true
           type: string
+        url_type:
+          example: PERSONAL
+          minLength: 1
+          type: string
+      required:
+      - url_type
+      type: object
+    ValidationProblem:
+      example:
+        problem_type: problem_type
+        source: source
+        detail: detail
+        title: title
+      properties:
+        source:
+          readOnly: true
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+        problem_type:
+          type: string
+      required:
+      - detail
+      - problem_type
+      - title
       type: object
   securitySchemes:
     tokenAuth:

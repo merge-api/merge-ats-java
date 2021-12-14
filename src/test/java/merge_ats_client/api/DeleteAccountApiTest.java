@@ -42,7 +42,8 @@ public class DeleteAccountApiTest {
     @Test
     public void deleteAccountCreateTest() throws ApiException {
         String xAccountToken = null;
-                api.deleteAccountCreate(xAccountToken);
+        api.deleteAccountCreate(xAccountToken);
+
         // TODO: test validations
     }
     

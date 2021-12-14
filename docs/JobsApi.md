@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="jobsList"></a>
 # **jobsList**
-> PaginatedJobList jobsList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedJobList jobsList(xAccountToken, code, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status)
 
 
 
@@ -39,6 +39,7 @@ public class Example {
 
     JobsApi apiInstance = new JobsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
+    String code = "code_example"; // String | If provided, will only return jobs with this code.
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
@@ -47,8 +48,9 @@ public class Example {
     OffsetDateTime modifiedBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified before this datetime.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
+    String status = "status_example"; // String | If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')
     try {
-      PaginatedJobList result = apiInstance.jobsList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedJobList result = apiInstance.jobsList(xAccountToken, code, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling JobsApi#jobsList");
@@ -66,6 +68,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
+ **code** | **String**| If provided, will only return jobs with this code. | [optional]
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
@@ -74,6 +77,7 @@ Name | Type | Description  | Notes
  **modifiedBefore** | **OffsetDateTime**| If provided, will only return objects modified before this datetime. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
  **remoteId** | **String**| The API provider&#39;s ID for the given object. | [optional]
+ **status** | **String**| If provided, will only return jobs with this status. Options: (&#39;OPEN&#39;, &#39;CLOSED&#39;, &#39;DRAFT&#39;, &#39;ARCHIVED&#39;, &#39;PENDING&#39;) | [optional] [enum: ARCHIVED, CLOSED, DRAFT, OPEN, PENDING]
 
 ### Return type
 

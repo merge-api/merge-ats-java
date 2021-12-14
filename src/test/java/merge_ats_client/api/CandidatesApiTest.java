@@ -15,7 +15,8 @@ package merge_ats_client.api;
 
 import merge_ats_client.ApiException;
 import merge_ats_client.model.Candidate;
-import merge_ats_client.model.CandidateRequest;
+import merge_ats_client.model.CandidateEndpointRequest;
+import merge_ats_client.model.CandidateResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedCandidateList;
 import java.util.UUID;
@@ -47,10 +48,9 @@ public class CandidatesApiTest {
     @Test
     public void candidatesCreateTest() throws ApiException {
         String xAccountToken = null;
-        String remoteUserId = null;
+        CandidateEndpointRequest candidateEndpointRequest = null;
         Boolean runAsync = null;
-        CandidateRequest candidateRequest = null;
-        Candidate response = api.candidatesCreate(xAccountToken, remoteUserId, runAsync, candidateRequest);
+        CandidateResponse response = api.candidatesCreate(xAccountToken, candidateEndpointRequest, runAsync);
 
         // TODO: test validations
     }
@@ -69,13 +69,14 @@ public class CandidatesApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
-        String expand = null;
+        String firstName = null;
         Boolean includeRemoteData = null;
+        String lastName = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        // PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -92,7 +93,6 @@ public class CandidatesApiTest {
     public void candidatesRetrieveTest() throws ApiException {
         String xAccountToken = null;
         UUID id = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         Candidate response = api.candidatesRetrieve(xAccountToken, id, includeRemoteData);
 

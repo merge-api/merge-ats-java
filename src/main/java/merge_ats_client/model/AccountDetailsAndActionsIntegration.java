@@ -31,7 +31,7 @@ import merge_ats_client.model.ModelOperation;
 /**
  * AccountDetailsAndActionsIntegration
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class AccountDetailsAndActionsIntegration {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -76,7 +76,6 @@ public class AccountDetailsAndActionsIntegration {
    * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getName() {
@@ -104,7 +103,6 @@ public class AccountDetailsAndActionsIntegration {
    * Get categories
    * @return categories
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<CategoriesEnum> getCategories() {
@@ -173,7 +171,6 @@ public class AccountDetailsAndActionsIntegration {
    * Get color
    * @return color
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getColor() {
@@ -196,7 +193,6 @@ public class AccountDetailsAndActionsIntegration {
    * Get slug
    * @return slug
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getSlug() {
@@ -219,7 +215,6 @@ public class AccountDetailsAndActionsIntegration {
    * Get passthroughAvailable
    * @return passthroughAvailable
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Boolean getPassthroughAvailable() {

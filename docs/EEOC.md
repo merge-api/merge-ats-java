@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
 **candidate** | **UUID** | The candidate being represented. |  [optional]
 **submittedAt** | **OffsetDateTime** | When the information was submitted. |  [optional]
-**race** | **String** |  |  [optional] [readonly]
-**gender** | **String** |  |  [optional] [readonly]
-**veteranStatus** | **String** |  |  [optional] [readonly]
-**disabilityStatus** | **String** |  |  [optional] [readonly]
+**race** | **String** |  | 
+**gender** | **String** |  | 
+**veteranStatus** | **String** |  | 
+**disabilityStatus** | **String** |  | 
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

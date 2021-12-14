@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="attachmentsCreate"></a>
 # **attachmentsCreate**
-> Attachment attachmentsCreate(xAccountToken, remoteUserId, runAsync, attachmentRequest)
+> AttachmentResponse attachmentsCreate(xAccountToken, attachmentEndpointRequest, runAsync)
 
 
 
@@ -40,11 +40,10 @@ public class Example {
 
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    String remoteUserId = "remoteUserId_example"; // String | The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table.
+    AttachmentEndpointRequest attachmentEndpointRequest = new AttachmentEndpointRequest(); // AttachmentEndpointRequest | 
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
-    AttachmentRequest attachmentRequest = new AttachmentRequest(); // AttachmentRequest | 
     try {
-      Attachment result = apiInstance.attachmentsCreate(xAccountToken, remoteUserId, runAsync, attachmentRequest);
+      AttachmentResponse result = apiInstance.attachmentsCreate(xAccountToken, attachmentEndpointRequest, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttachmentsApi#attachmentsCreate");
@@ -62,13 +61,12 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **remoteUserId** | **String**| The ID of the RemoteUser modifying the resource. This can be found in the ID field (not remote_id) in the RemoteUser table. | [optional]
+ **attachmentEndpointRequest** | [**AttachmentEndpointRequest**](AttachmentEndpointRequest.md)|  |
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
- **attachmentRequest** | [**AttachmentRequest**](AttachmentRequest.md)|  | [optional]
 
 ### Return type
 
-[**Attachment**](Attachment.md)
+[**AttachmentResponse**](AttachmentResponse.md)
 
 ### Authorization
 
@@ -202,7 +200,7 @@ public class Example {
 
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    UUID id = UUID.randomUUID(); // UUID | 
+    UUID id = new UUID(); // UUID | 
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
       Attachment result = apiInstance.attachmentsRetrieve(xAccountToken, id, includeRemoteData);
@@ -223,7 +221,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **id** | **UUID**|  |
+ **id** | [**UUID**](.md)|  |
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
 ### Return type

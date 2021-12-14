@@ -28,7 +28,7 @@ import merge_ats_client.model.AccountIntegration;
 /**
  * AccountToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class AccountToken {
   public static final String SERIALIZED_NAME_ACCOUNT_TOKEN = "account_token";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_TOKEN)
@@ -49,7 +49,6 @@ public class AccountToken {
    * Get accountToken
    * @return accountToken
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(example = "T9klMDQrcHdm9jrtHuOS2Nf06BIHwMNjpPXPMB", required = true, value = "")
 
   public String getAccountToken() {
@@ -72,7 +71,6 @@ public class AccountToken {
    * Get integration
    * @return integration
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public AccountIntegration getIntegration() {

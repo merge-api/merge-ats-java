@@ -55,7 +55,8 @@ public class LinkedAccountsApiTest {
         String isTestAccount = null;
         Integer pageSize = null;
         String status = null;
-                PaginatedAccountDetailsAndActionsList response = api.linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, integrationName, isTestAccount, pageSize, status);
+        PaginatedAccountDetailsAndActionsList response = api.linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, integrationName, isTestAccount, pageSize, status);
+
         // TODO: test validations
     }
     

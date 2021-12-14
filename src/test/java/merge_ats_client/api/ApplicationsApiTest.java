@@ -15,10 +15,10 @@ package merge_ats_client.api;
 
 import merge_ats_client.ApiException;
 import merge_ats_client.model.Application;
-import merge_ats_client.model.ApplicationRequest;
+import merge_ats_client.model.ApplicationEndpointRequest;
+import merge_ats_client.model.ApplicationResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedApplicationList;
-import merge_ats_client.model.PatchedApplicationRequest;
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -48,10 +48,9 @@ public class ApplicationsApiTest {
     @Test
     public void applicationsCreateTest() throws ApiException {
         String xAccountToken = null;
-        String remoteUserId = null;
+        ApplicationEndpointRequest applicationEndpointRequest = null;
         Boolean runAsync = null;
-        ApplicationRequest applicationRequest = null;
-        Application response = api.applicationsCreate(xAccountToken, remoteUserId, runAsync, applicationRequest);
+        ApplicationResponse response = api.applicationsCreate(xAccountToken, applicationEndpointRequest, runAsync);
 
         // TODO: test validations
     }
@@ -73,7 +72,6 @@ public class ApplicationsApiTest {
         String creditedToId = null;
         String currentStageId = null;
         String cursor = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         String jobId = null;
         OffsetDateTime modifiedAfter = null;
@@ -82,27 +80,6 @@ public class ApplicationsApiTest {
         String rejectReasonId = null;
         String remoteId = null;
         PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Updates an &#x60;Application&#x60; object with the given &#x60;id&#x60;.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void applicationsPartialUpdateTest() throws ApiException {
-        String xAccountToken = null;
-        UUID id = null;
-        String remoteUserId = null;
-        Boolean runAsync = null;
-        PatchedApplicationRequest patchedApplicationRequest = null;
-        // Application response = api.applicationsPartialUpdate(xAccountToken, id, remoteUserId, runAsync, patchedApplicationRequest);
-        // aApplication response = api.applicatiosP
 
         // TODO: test validations
     }
@@ -119,7 +96,6 @@ public class ApplicationsApiTest {
     public void applicationsRetrieveTest() throws ApiException {
         String xAccountToken = null;
         UUID id = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         Application response = api.applicationsRetrieve(xAccountToken, id, includeRemoteData);
 

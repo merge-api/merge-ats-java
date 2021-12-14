@@ -24,7 +24,6 @@ import java.io.IOException;
 import merge_ats_client.model.AccountDetailsAndActionsIntegration;
 import merge_ats_client.model.AccountDetailsAndActionsStatusEnum;
 import merge_ats_client.model.CategoryEnum;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

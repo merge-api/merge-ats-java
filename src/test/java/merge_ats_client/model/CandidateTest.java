@@ -22,7 +22,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.EmailAddress;
 import merge_ats_client.model.PhoneNumber;
@@ -198,6 +200,14 @@ public class CandidateTest {
     @Test
     public void remoteDataTest() {
         // TODO: test remoteData
+    }
+
+    /**
+     * Test the property 'customFields'
+     */
+    @Test
+    public void customFieldsTest() {
+        // TODO: test customFields
     }
 
 }

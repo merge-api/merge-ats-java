@@ -24,13 +24,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent a candidate&#39;s website.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.
  */
 @ApiModel(description = "# The Url Object ### Description The `Url` object is used to represent a candidate's website.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their website urls.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class Url {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -64,18 +63,26 @@ public class Url {
   }
 
 
+  public Url urlType(String urlType) {
+    
+    this.urlType = urlType;
+    return this;
+  }
+
    /**
    * Get urlType
    * @return urlType
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "PERSONAL", value = "")
+  @ApiModelProperty(example = "PERSONAL", required = true, value = "")
 
   public String getUrlType() {
     return urlType;
   }
 
 
+  public void setUrlType(String urlType) {
+    this.urlType = urlType;
+  }
 
 
   @Override
@@ -91,20 +98,9 @@ public class Url {
         Objects.equals(this.urlType, url.urlType);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(value, urlType);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -26,12 +26,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import merge_ats_client.model.CategoriesEnum;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * EndUserDetailsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class EndUserDetailsRequest {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
@@ -64,7 +63,6 @@ public class EndUserDetailsRequest {
    * Get endUserEmailAddress
    * @return endUserEmailAddress
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getEndUserEmailAddress() {
@@ -87,7 +85,6 @@ public class EndUserDetailsRequest {
    * Get endUserOrganizationName
    * @return endUserOrganizationName
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getEndUserOrganizationName() {
@@ -110,7 +107,6 @@ public class EndUserDetailsRequest {
    * Get endUserOriginId
    * @return endUserOriginId
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getEndUserOriginId() {
@@ -193,20 +189,9 @@ public class EndUserDetailsRequest {
         Objects.equals(this.integration, endUserDetailsRequest.integration);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

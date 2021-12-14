@@ -23,17 +23,20 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
 @ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T09:05:46.017673-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
 public class EmailAddressRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
+
+  public static final String SERIALIZED_NAME_EMAIL_ADDRESS_TYPE = "email_address_type";
+  @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS_TYPE)
+  private String emailAddressType;
 
 
   public EmailAddressRequest value(String value) {
@@ -59,6 +62,28 @@ public class EmailAddressRequest {
   }
 
 
+  public EmailAddressRequest emailAddressType(String emailAddressType) {
+    
+    this.emailAddressType = emailAddressType;
+    return this;
+  }
+
+   /**
+   * Get emailAddressType
+   * @return emailAddressType
+  **/
+  @ApiModelProperty(example = "PERSONAL", required = true, value = "")
+
+  public String getEmailAddressType() {
+    return emailAddressType;
+  }
+
+
+  public void setEmailAddressType(String emailAddressType) {
+    this.emailAddressType = emailAddressType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -68,23 +93,13 @@ public class EmailAddressRequest {
       return false;
     }
     EmailAddressRequest emailAddressRequest = (EmailAddressRequest) o;
-    return Objects.equals(this.value, emailAddressRequest.value);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    return Objects.equals(this.value, emailAddressRequest.value) &&
+        Objects.equals(this.emailAddressType, emailAddressRequest.emailAddressType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(value, emailAddressType);
   }
 
   @Override
@@ -92,6 +107,7 @@ public class EmailAddressRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class EmailAddressRequest {\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    emailAddressType: ").append(toIndentedString(emailAddressType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

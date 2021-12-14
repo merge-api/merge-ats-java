@@ -49,7 +49,6 @@ public class JobInterviewStagesApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         String jobId = null;
         OffsetDateTime modifiedAfter = null;
@@ -73,7 +72,6 @@ public class JobInterviewStagesApiTest {
     public void jobInterviewStagesRetrieveTest() throws ApiException {
         String xAccountToken = null;
         UUID id = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         JobInterviewStage response = api.jobInterviewStagesRetrieve(xAccountToken, id, includeRemoteData);
 

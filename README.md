@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2021-11-30T09:05:46.017673-05:00[America/New_York]
+  - Build date: 2021-12-14T17:46:21.413167Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -39,11 +39,19 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>dev.merge</groupId>
+  <groupId>dev.merge.ats</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <scope>compile</scope>
 </dependency>
+```
+
+### Gradle users
+
+Add this dependency to your project's build file:
+
+```groovy
+compile "dev.merge.ats:merge-ats-client:1.2.0"
 ```
 
 ### Others
@@ -56,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.1.0.jar`
+* `target/merge-ats-client-1.2.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -126,13 +134,10 @@ Class | Method | HTTP request | Description
 *EeocsApi* | [**eeocsList**](docs/EeocsApi.md#eeocsList) | **GET** /eeocs | 
 *EeocsApi* | [**eeocsRetrieve**](docs/EeocsApi.md#eeocsRetrieve) | **GET** /eeocs/{id} | 
 *GenerateKeyApi* | [**generateKeyCreate**](docs/GenerateKeyApi.md#generateKeyCreate) | **POST** /generate-key | 
-*InterviewsApi* | [**interviewsCreate**](docs/InterviewsApi.md#interviewsCreate) | **POST** /interviews | 
 *InterviewsApi* | [**interviewsList**](docs/InterviewsApi.md#interviewsList) | **GET** /interviews | 
 *InterviewsApi* | [**interviewsRetrieve**](docs/InterviewsApi.md#interviewsRetrieve) | **GET** /interviews/{id} | 
 *IssuesApi* | [**issuesList**](docs/IssuesApi.md#issuesList) | **GET** /issues | 
-*IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} |
-*JobsApi* | [**jobsList**](docs/JobsApi.md#jobsList) | **GET** /jobs |
-*JobsApi* | [**jobsRetrieve**](docs/JobsApi.md#jobsRetrieve) | **GET** /jobs/{id} |
+*IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} | 
 *JobInterviewStagesApi* | [**jobInterviewStagesList**](docs/JobInterviewStagesApi.md#jobInterviewStagesList) | **GET** /job-interview-stages | 
 *JobInterviewStagesApi* | [**jobInterviewStagesRetrieve**](docs/JobInterviewStagesApi.md#jobInterviewStagesRetrieve) | **GET** /job-interview-stages/{id} | 
 *LinkTokenApi* | [**linkTokenCreate**](docs/LinkTokenApi.md#linkTokenCreate) | **POST** /link-token | 
@@ -145,13 +150,11 @@ Class | Method | HTTP request | Description
 *RegenerateKeyApi* | [**regenerateKeyCreate**](docs/RegenerateKeyApi.md#regenerateKeyCreate) | **POST** /regenerate-key | 
 *RejectReasonsApi* | [**rejectReasonsList**](docs/RejectReasonsApi.md#rejectReasonsList) | **GET** /reject-reasons | 
 *RejectReasonsApi* | [**rejectReasonsRetrieve**](docs/RejectReasonsApi.md#rejectReasonsRetrieve) | **GET** /reject-reasons/{id} | 
-*ScorecardsApi* | [**scorecardsCreate**](docs/ScorecardsApi.md#scorecardsCreate) | **POST** /scorecards | 
 *ScorecardsApi* | [**scorecardsList**](docs/ScorecardsApi.md#scorecardsList) | **GET** /scorecards | 
 *ScorecardsApi* | [**scorecardsRetrieve**](docs/ScorecardsApi.md#scorecardsRetrieve) | **GET** /scorecards/{id} | 
 *SyncStatusApi* | [**syncStatusList**](docs/SyncStatusApi.md#syncStatusList) | **GET** /sync-status | 
 *SyncStatusApi* | [**syncStatusResyncCreate**](docs/SyncStatusApi.md#syncStatusResyncCreate) | **POST** /sync-status/resync | 
 *TagsApi* | [**tagsList**](docs/TagsApi.md#tagsList) | **GET** /tags | 
-*UsersApi* | [**usersCreate**](docs/UsersApi.md#usersCreate) | **POST** /users | 
 *UsersApi* | [**usersList**](docs/UsersApi.md#usersList) | **GET** /users | 
 *UsersApi* | [**usersRetrieve**](docs/UsersApi.md#usersRetrieve) | **GET** /users/{id} | 
 
@@ -166,12 +169,18 @@ Class | Method | HTTP request | Description
  - [AccountToken](docs/AccountToken.md)
  - [Activity](docs/Activity.md)
  - [Application](docs/Application.md)
+ - [ApplicationEndpointRequest](docs/ApplicationEndpointRequest.md)
  - [ApplicationRequest](docs/ApplicationRequest.md)
+ - [ApplicationResponse](docs/ApplicationResponse.md)
  - [Attachment](docs/Attachment.md)
+ - [AttachmentEndpointRequest](docs/AttachmentEndpointRequest.md)
  - [AttachmentRequest](docs/AttachmentRequest.md)
+ - [AttachmentResponse](docs/AttachmentResponse.md)
  - [AvailableActions](docs/AvailableActions.md)
  - [Candidate](docs/Candidate.md)
+ - [CandidateEndpointRequest](docs/CandidateEndpointRequest.md)
  - [CandidateRequest](docs/CandidateRequest.md)
+ - [CandidateResponse](docs/CandidateResponse.md)
  - [CategoriesEnum](docs/CategoriesEnum.md)
  - [CategoryEnum](docs/CategoryEnum.md)
  - [DataPassthroughRequest](docs/DataPassthroughRequest.md)
@@ -182,7 +191,6 @@ Class | Method | HTTP request | Description
  - [EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
  - [Issue](docs/Issue.md)
- - [Job](docs/Job.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
  - [LinkToken](docs/LinkToken.md)
  - [MethodEnum](docs/MethodEnum.md)
@@ -215,17 +223,15 @@ Class | Method | HTTP request | Description
  - [RemoteKeyForRegenerationRequest](docs/RemoteKeyForRegenerationRequest.md)
  - [RemoteResponse](docs/RemoteResponse.md)
  - [RemoteUser](docs/RemoteUser.md)
- - [RemoteUserRequest](docs/RemoteUserRequest.md)
  - [RequestFormatEnum](docs/RequestFormatEnum.md)
  - [ScheduledInterview](docs/ScheduledInterview.md)
- - [ScheduledInterviewRequest](docs/ScheduledInterviewRequest.md)
  - [Scorecard](docs/Scorecard.md)
- - [ScorecardRequest](docs/ScorecardRequest.md)
  - [SyncStatus](docs/SyncStatus.md)
  - [SyncStatusStatusEnum](docs/SyncStatusStatusEnum.md)
  - [Tag](docs/Tag.md)
  - [Url](docs/Url.md)
  - [UrlRequest](docs/UrlRequest.md)
+ - [ValidationProblem](docs/ValidationProblem.md)
 
 
 ## Documentation for Authorization

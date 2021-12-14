@@ -49,7 +49,6 @@ public class ActivitiesApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
@@ -73,7 +72,6 @@ public class ActivitiesApiTest {
     public void activitiesRetrieveTest() throws ApiException {
         String xAccountToken = null;
         UUID id = null;
-        String expand = null;
         Boolean includeRemoteData = null;
         Activity response = api.activitiesRetrieve(xAccountToken, id, includeRemoteData);
 

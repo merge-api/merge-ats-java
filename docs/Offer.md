@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **closedAt** | **OffsetDateTime** | When the offer was closed. |  [optional]
 **sentAt** | **OffsetDateTime** | When the offer was sent. |  [optional]
 **startDate** | **OffsetDateTime** | The employment start date on the offer. |  [optional]
-**status** | **String** |  |  [optional] [readonly]
+**status** | **String** |  | 
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

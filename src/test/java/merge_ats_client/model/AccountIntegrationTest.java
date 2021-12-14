@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import merge_ats_client.model.CategoriesEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
