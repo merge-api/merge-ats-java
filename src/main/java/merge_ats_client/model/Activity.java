@@ -26,16 +26,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.ActivityTypeEnum;
 import merge_ats_client.model.RemoteData;
-import merge_ats_client.model.VisibilityEnum;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Activity Object ### Description The &#x60;Activity&#x60; object is used to represent an activity performed by a user.  ### Usage Example Fetch from the &#x60;LIST Activities&#x60; endpoint and filter by &#x60;ID&#x60; to show all activities.
  */
 @ApiModel(description = "# The Activity Object ### Description The `Activity` object is used to represent an activity performed by a user.  ### Usage Example Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:26:10.470036Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
 public class Activity {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -55,7 +53,7 @@ public class Activity {
 
   public static final String SERIALIZED_NAME_ACTIVITY_TYPE = "activity_type";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_TYPE)
-  private ActivityTypeEnum activityType;
+  private String activityType;
 
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
@@ -67,7 +65,7 @@ public class Activity {
 
   public static final String SERIALIZED_NAME_VISIBILITY = "visibility";
   @SerializedName(SERIALIZED_NAME_VISIBILITY)
-  private VisibilityEnum visibility;
+  private String visibility;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -157,27 +155,18 @@ public class Activity {
   }
 
 
-  public Activity activityType(ActivityTypeEnum activityType) {
-    
-    this.activityType = activityType;
-    return this;
-  }
-
    /**
-   * The activity&#39;s type.
+   * Get activityType
    * @return activityType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "NOTE", value = "The activity's type.")
+  @ApiModelProperty(example = "NOTE", value = "")
 
-  public ActivityTypeEnum getActivityType() {
+  public String getActivityType() {
     return activityType;
   }
 
 
-  public void setActivityType(ActivityTypeEnum activityType) {
-    this.activityType = activityType;
-  }
 
 
   public Activity subject(String subject) {
@@ -226,27 +215,18 @@ public class Activity {
   }
 
 
-  public Activity visibility(VisibilityEnum visibility) {
-    
-    this.visibility = visibility;
-    return this;
-  }
-
    /**
-   * The activity&#39;s visibility.
+   * Get visibility
    * @return visibility
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PRIVATE", value = "The activity's visibility.")
+  @ApiModelProperty(example = "PRIVATE", value = "")
 
-  public VisibilityEnum getVisibility() {
+  public String getVisibility() {
     return visibility;
   }
 
 
-  public void setVisibility(VisibilityEnum visibility) {
-    this.visibility = visibility;
-  }
 
 
    /**

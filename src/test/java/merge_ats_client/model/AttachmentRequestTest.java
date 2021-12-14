@@ -23,7 +23,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
 import java.util.UUID;
-import merge_ats_client.model.AttachmentTypeEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -73,14 +72,6 @@ public class AttachmentRequestTest {
     @Test
     public void candidateTest() {
         // TODO: test candidate
-    }
-
-    /**
-     * Test the property 'attachmentType'
-     */
-    @Test
-    public void attachmentTypeTest() {
-        // TODO: test attachmentType
     }
 
 }

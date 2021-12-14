@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.AccessRoleEnum;
 import merge_ats_client.model.RemoteData;
 import org.threeten.bp.OffsetDateTime;
 
@@ -34,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The RemoteUser Object ### Description The &#x60;RemoteUser&#x60; object is used to represent a third party user.  ### Usage Example Fetch from the &#x60;LIST RemoteUsers&#x60; endpoint to show all users for a third party.
  */
 @ApiModel(description = "# The RemoteUser Object ### Description The `RemoteUser` object is used to represent a third party user.  ### Usage Example Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:26:10.470036Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
 public class RemoteUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -66,7 +65,7 @@ public class RemoteUser {
 
   public static final String SERIALIZED_NAME_ACCESS_ROLE = "access_role";
   @SerializedName(SERIALIZED_NAME_ACCESS_ROLE)
-  private AccessRoleEnum accessRole;
+  private String accessRole;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -225,27 +224,18 @@ public class RemoteUser {
   }
 
 
-  public RemoteUser accessRole(AccessRoleEnum accessRole) {
-    
-    this.accessRole = accessRole;
-    return this;
-  }
-
    /**
-   * The user&#39;s role.
+   * Get accessRole
    * @return accessRole
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "SUPER_ADMIN", value = "The user's role.")
+  @ApiModelProperty(example = "SUPER_ADMIN", value = "")
 
-  public AccessRoleEnum getAccessRole() {
+  public String getAccessRole() {
     return accessRole;
   }
 
 
-  public void setAccessRole(AccessRoleEnum accessRole) {
-    this.accessRole = accessRole;
-  }
 
 
    /**

@@ -27,14 +27,13 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import merge_ats_client.model.AttachmentTypeEnum;
 import merge_ats_client.model.RemoteData;
 
 /**
  * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
 @ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:26:10.470036Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
 public class Attachment {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -58,7 +57,7 @@ public class Attachment {
 
   public static final String SERIALIZED_NAME_ATTACHMENT_TYPE = "attachment_type";
   @SerializedName(SERIALIZED_NAME_ATTACHMENT_TYPE)
-  private AttachmentTypeEnum attachmentType;
+  private String attachmentType;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -171,27 +170,18 @@ public class Attachment {
   }
 
 
-  public Attachment attachmentType(AttachmentTypeEnum attachmentType) {
-    
-    this.attachmentType = attachmentType;
-    return this;
-  }
-
    /**
-   * The attachment&#39;s type.
+   * Get attachmentType
    * @return attachmentType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "RESUME", value = "The attachment's type.")
+  @ApiModelProperty(example = "RESUME", value = "")
 
-  public AttachmentTypeEnum getAttachmentType() {
+  public String getAttachmentType() {
     return attachmentType;
   }
 
 
-  public void setAttachmentType(AttachmentTypeEnum attachmentType) {
-    this.attachmentType = attachmentType;
-  }
 
 
    /**

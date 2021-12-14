@@ -23,13 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import merge_ats_client.model.PhoneNumberTypeEnum;
 
 /**
  * # The PhoneNumber Object ### Description The &#x60;PhoneNumber&#x60; object is used to represent a candidate&#39;s phone number.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their phone numbers.
  */
 @ApiModel(description = "# The PhoneNumber Object ### Description The `PhoneNumber` object is used to represent a candidate's phone number.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their phone numbers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-13T23:26:10.470036Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T00:33:16.748520Z[Etc/UTC]")
 public class PhoneNumber {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -37,7 +36,7 @@ public class PhoneNumber {
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER_TYPE = "phone_number_type";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER_TYPE)
-  private PhoneNumberTypeEnum phoneNumberType;
+  private String phoneNumberType;
 
 
   public PhoneNumber value(String value) {
@@ -63,27 +62,18 @@ public class PhoneNumber {
   }
 
 
-  public PhoneNumber phoneNumberType(PhoneNumberTypeEnum phoneNumberType) {
-    
-    this.phoneNumberType = phoneNumberType;
-    return this;
-  }
-
    /**
-   * The type of phone number.
+   * Get phoneNumberType
    * @return phoneNumberType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "HOME", value = "The type of phone number.")
+  @ApiModelProperty(example = "HOME", value = "")
 
-  public PhoneNumberTypeEnum getPhoneNumberType() {
+  public String getPhoneNumberType() {
     return phoneNumberType;
   }
 
 
-  public void setPhoneNumberType(PhoneNumberTypeEnum phoneNumberType) {
-    this.phoneNumberType = phoneNumberType;
-  }
 
 
   @Override
