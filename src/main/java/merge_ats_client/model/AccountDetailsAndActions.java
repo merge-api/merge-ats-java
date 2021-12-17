@@ -24,14 +24,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import merge_ats_client.model.AccountDetailsAndActionsIntegration;
-import merge_ats_client.model.AccountDetailsAndActionsStatusEnum;
-import merge_ats_client.model.CategoryEnum;
 
 /**
  * # The LinkedAccount Object ### Description The &#x60;LinkedAccount&#x60; object is used to represent an end user&#39;s link with a specific integration.  ### Usage Example View a list of your organization&#39;s &#x60;LinkedAccount&#x60; objects.
  */
 @ApiModel(description = "# The LinkedAccount Object ### Description The `LinkedAccount` object is used to represent an end user's link with a specific integration.  ### Usage Example View a list of your organization's `LinkedAccount` objects.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T17:46:21.413167Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T20:24:40.629470Z[Etc/UTC]")
 public class AccountDetailsAndActions {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -39,11 +37,11 @@ public class AccountDetailsAndActions {
 
   public static final String SERIALIZED_NAME_CATEGORY = "category";
   @SerializedName(SERIALIZED_NAME_CATEGORY)
-  private CategoryEnum category;
+  private String category;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private AccountDetailsAndActionsStatusEnum status;
+  private String status;
 
   public static final String SERIALIZED_NAME_STATUS_DETAIL = "status_detail";
   @SerializedName(SERIALIZED_NAME_STATUS_DETAIL)
@@ -88,7 +86,7 @@ public class AccountDetailsAndActions {
   }
 
 
-  public AccountDetailsAndActions category(CategoryEnum category) {
+  public AccountDetailsAndActions category(String category) {
     
     this.category = category;
     return this;
@@ -101,17 +99,17 @@ public class AccountDetailsAndActions {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "hris", value = "")
 
-  public CategoryEnum getCategory() {
+  public String getCategory() {
     return category;
   }
 
 
-  public void setCategory(CategoryEnum category) {
+  public void setCategory(String category) {
     this.category = category;
   }
 
 
-  public AccountDetailsAndActions status(AccountDetailsAndActionsStatusEnum status) {
+  public AccountDetailsAndActions status(String status) {
     
     this.status = status;
     return this;
@@ -123,12 +121,12 @@ public class AccountDetailsAndActions {
   **/
   @ApiModelProperty(example = "COMPLETE", required = true, value = "")
 
-  public AccountDetailsAndActionsStatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
 
-  public void setStatus(AccountDetailsAndActionsStatusEnum status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 

@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2021-12-14T17:46:21.413167Z[Etc/UTC]
+  - Build date: 2021-12-17T20:24:40.629470Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.merge.ats</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.merge.ats:merge-ats-client:1.2.0"
+compile "dev.merge.ats:merge-ats-client:1.2.1"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.2.0.jar`
+* `target/merge-ats-client-1.2.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -164,7 +164,6 @@ Class | Method | HTTP request | Description
  - [AccountDetails](docs/AccountDetails.md)
  - [AccountDetailsAndActions](docs/AccountDetailsAndActions.md)
  - [AccountDetailsAndActionsIntegration](docs/AccountDetailsAndActionsIntegration.md)
- - [AccountDetailsAndActionsStatusEnum](docs/AccountDetailsAndActionsStatusEnum.md)
  - [AccountIntegration](docs/AccountIntegration.md)
  - [AccountToken](docs/AccountToken.md)
  - [Activity](docs/Activity.md)
@@ -193,7 +192,6 @@ Class | Method | HTTP request | Description
  - [Issue](docs/Issue.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
  - [LinkToken](docs/LinkToken.md)
- - [MethodEnum](docs/MethodEnum.md)
  - [ModelOperation](docs/ModelOperation.md)
  - [Offer](docs/Offer.md)
  - [Office](docs/Office.md)
@@ -223,11 +221,9 @@ Class | Method | HTTP request | Description
  - [RemoteKeyForRegenerationRequest](docs/RemoteKeyForRegenerationRequest.md)
  - [RemoteResponse](docs/RemoteResponse.md)
  - [RemoteUser](docs/RemoteUser.md)
- - [RequestFormatEnum](docs/RequestFormatEnum.md)
  - [ScheduledInterview](docs/ScheduledInterview.md)
  - [Scorecard](docs/Scorecard.md)
  - [SyncStatus](docs/SyncStatus.md)
- - [SyncStatusStatusEnum](docs/SyncStatusStatusEnum.md)
  - [Tag](docs/Tag.md)
  - [Url](docs/Url.md)
  - [UrlRequest](docs/UrlRequest.md)

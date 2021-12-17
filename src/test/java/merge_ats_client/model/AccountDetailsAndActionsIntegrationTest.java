@@ -23,7 +23,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import merge_ats_client.model.CategoriesEnum;
 import merge_ats_client.model.ModelOperation;
 import org.junit.Assert;
 import org.junit.Ignore;
