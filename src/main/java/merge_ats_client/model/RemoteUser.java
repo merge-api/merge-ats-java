@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The RemoteUser Object ### Description The &#x60;RemoteUser&#x60; object is used to represent a third party user.  ### Usage Example Fetch from the &#x60;LIST RemoteUsers&#x60; endpoint to show all users for a third party.
  */
 @ApiModel(description = "# The RemoteUser Object ### Description The `RemoteUser` object is used to represent a third party user.  ### Usage Example Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T20:24:40.629470Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T21:09:25.697907Z[Etc/UTC]")
 public class RemoteUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

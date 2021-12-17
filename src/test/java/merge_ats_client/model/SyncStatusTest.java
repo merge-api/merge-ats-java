@@ -13,14 +13,17 @@
 
 package merge_ats_client.model;
 
-import java.net.URI;
-import java.util.List;
-
-import merge_ats_client.ApiClient;
-import merge_ats_client.ApiException;
-import merge_ats_client.Configuration;
-import merge_ats_client.api.CandidatesApi;
-import merge_ats_client.auth.ApiKeyAuth;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.io.IOException;
+import org.threeten.bp.OffsetDateTime;
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
