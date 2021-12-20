@@ -9,8 +9,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**category** | [**CategoryEnum**](CategoryEnum.md) |  |  [optional]
-**status** | [**AccountDetailsAndActionsStatusEnum**](AccountDetailsAndActionsStatusEnum.md) |  | 
+**category** | **String** |  |  [optional]
+**status** | **String** |  | 
 **statusDetail** | **String** |  |  [optional]
 **endUserOriginId** | **String** |  |  [optional]
 **endUserOrganizationName** | **String** |  | 

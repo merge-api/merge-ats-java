@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
-**categories** | **List&lt;CategoriesEnum&gt;** |  | 
+**categories** | **List&lt;String&gt;** |  | 
 **image** | **String** |  |  [optional]
 **squareImage** | **String** |  |  [optional]
 **color** | **String** |  | 

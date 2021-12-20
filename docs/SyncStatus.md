@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **modelId** | **String** |  | 
 **lastSyncStart** | **OffsetDateTime** |  | 
 **nextSyncStart** | **OffsetDateTime** |  | 
-**status** | [**SyncStatusStatusEnum**](SyncStatusStatusEnum.md) |  | 
+**status** | **String** |  | 
 **isInitialSync** | **Boolean** |  | 
 
 

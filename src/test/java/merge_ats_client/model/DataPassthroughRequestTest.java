@@ -24,8 +24,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import merge_ats_client.model.MethodEnum;
-import merge_ats_client.model.RequestFormatEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
