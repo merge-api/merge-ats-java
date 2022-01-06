@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'dev.merge.ats'
-version = '1.2.2'
+version = '1.2.3'
 
 buildscript {
     repositories {
@@ -113,5 +113,3 @@ dependencies {
 javadoc {
     options.tags = [ "http.response.details:a:Http Response Details" ]
 }
-sourceCompatibility = JavaVersion.VERSION_1_9
-targetCompatibility = JavaVersion.VERSION_1_9
