@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2021-12-17T21:09:25.697907Z[Etc/UTC]
+  - Build date: 2022-01-06T15:56:50.758120Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -133,6 +133,7 @@ Class | Method | HTTP request | Description
 *DepartmentsApi* | [**departmentsRetrieve**](docs/DepartmentsApi.md#departmentsRetrieve) | **GET** /departments/{id} | 
 *EeocsApi* | [**eeocsList**](docs/EeocsApi.md#eeocsList) | **GET** /eeocs | 
 *EeocsApi* | [**eeocsRetrieve**](docs/EeocsApi.md#eeocsRetrieve) | **GET** /eeocs/{id} | 
+*ForceResyncApi* | [**syncStatusResyncCreate**](docs/ForceResyncApi.md#syncStatusResyncCreate) | **POST** /sync-status/resync | 
 *GenerateKeyApi* | [**generateKeyCreate**](docs/GenerateKeyApi.md#generateKeyCreate) | **POST** /generate-key | 
 *InterviewsApi* | [**interviewsList**](docs/InterviewsApi.md#interviewsList) | **GET** /interviews | 
 *InterviewsApi* | [**interviewsRetrieve**](docs/InterviewsApi.md#interviewsRetrieve) | **GET** /interviews/{id} | 
@@ -153,7 +154,6 @@ Class | Method | HTTP request | Description
 *ScorecardsApi* | [**scorecardsList**](docs/ScorecardsApi.md#scorecardsList) | **GET** /scorecards | 
 *ScorecardsApi* | [**scorecardsRetrieve**](docs/ScorecardsApi.md#scorecardsRetrieve) | **GET** /scorecards/{id} | 
 *SyncStatusApi* | [**syncStatusList**](docs/SyncStatusApi.md#syncStatusList) | **GET** /sync-status | 
-*SyncStatusApi* | [**syncStatusResyncCreate**](docs/SyncStatusApi.md#syncStatusResyncCreate) | **POST** /sync-status/resync | 
 *TagsApi* | [**tagsList**](docs/TagsApi.md#tagsList) | **GET** /tags | 
 *UsersApi* | [**usersList**](docs/UsersApi.md#usersList) | **GET** /users | 
 *UsersApi* | [**usersRetrieve**](docs/UsersApi.md#usersRetrieve) | **GET** /users/{id} | 

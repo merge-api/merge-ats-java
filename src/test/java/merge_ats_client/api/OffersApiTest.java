@@ -51,12 +51,13 @@ public class OffersApiTest {
         OffsetDateTime createdBefore = null;
         String creatorId = null;
         String cursor = null;
+        Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedOfferList response = api.offersList(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedOfferList response = api.offersList(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }

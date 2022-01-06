@@ -113,3 +113,5 @@ dependencies {
 javadoc {
     options.tags = [ "http.response.details:a:Http Response Details" ]
 }
+sourceCompatibility = JavaVersion.VERSION_1_9
+targetCompatibility = JavaVersion.VERSION_1_9

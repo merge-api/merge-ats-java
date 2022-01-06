@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="scorecardsList"></a>
 # **scorecardsList**
-> PaginatedScorecardList scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedScorecardList scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId)
 
 
 
@@ -43,6 +43,7 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
+    Boolean includeDeletedData = true; // Boolean | Whether to include data that was deleted in the third-party service.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String interviewId = "interviewId_example"; // String | If provided, will only return scorecards for this interview.
     String interviewerId = "interviewerId_example"; // String | If provided, will only return scorecards for this interviewer.
@@ -51,7 +52,7 @@ public class Example {
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedScorecardList result = apiInstance.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedScorecardList result = apiInstance.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ScorecardsApi#scorecardsList");
@@ -73,6 +74,7 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
+ **includeDeletedData** | **Boolean**| Whether to include data that was deleted in the third-party service. | [optional]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **interviewId** | **String**| If provided, will only return scorecards for this interview. | [optional]
  **interviewerId** | **String**| If provided, will only return scorecards for this interviewer. | [optional]

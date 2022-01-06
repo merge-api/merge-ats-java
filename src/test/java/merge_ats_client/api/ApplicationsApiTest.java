@@ -72,6 +72,7 @@ public class ApplicationsApiTest {
         String creditedToId = null;
         String currentStageId = null;
         String cursor = null;
+        Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
         String jobId = null;
         OffsetDateTime modifiedAfter = null;
@@ -79,7 +80,7 @@ public class ApplicationsApiTest {
         Integer pageSize = null;
         String rejectReasonId = null;
         String remoteId = null;
-        PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
+        PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
 
         // TODO: test validations
     }

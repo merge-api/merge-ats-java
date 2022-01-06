@@ -49,13 +49,14 @@ public class JobInterviewStagesApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
+        Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
         String jobId = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedJobInterviewStageList response = api.jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedJobInterviewStageList response = api.jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }

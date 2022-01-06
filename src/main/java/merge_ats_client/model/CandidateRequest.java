@@ -15,6 +15,7 @@ package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.google.gson.JsonElement;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,6 +29,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import merge_ats_client.JSON;
 import merge_ats_client.model.EmailAddressRequest;
 import merge_ats_client.model.PhoneNumberRequest;
 import merge_ats_client.model.UrlRequest;
@@ -37,7 +40,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
 @ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T21:09:25.697907Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-06T15:56:50.758120Z[Etc/UTC]")
 public class CandidateRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -105,7 +108,7 @@ public class CandidateRequest {
 
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
-  private List<UUID> attachments = null;
+  private JsonElement attachments = null;
 
   public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
   @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
@@ -528,17 +531,8 @@ public class CandidateRequest {
   }
 
 
-  public CandidateRequest attachments(List<UUID> attachments) {
-    
-    this.attachments = attachments;
-    return this;
-  }
-
-  public CandidateRequest addAttachmentsItem(UUID attachmentsItem) {
-    if (this.attachments == null) {
-      this.attachments = new ArrayList<UUID>();
-    }
-    this.attachments.add(attachmentsItem);
+  public CandidateRequest attachments(List<UUID> attachments, JSON json) {
+    this.attachments = json.getGson().toJsonTree(attachments);
     return this;
   }
 
@@ -549,12 +543,12 @@ public class CandidateRequest {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "[\"bea08964-32b4-4a20-8bb4-2612ba09de1d\"]", value = "Array of `Attachment` object IDs.")
 
-  public List<UUID> getAttachments() {
+  public JsonElement getAttachments() {
     return attachments;
   }
 
 
-  public void setAttachments(List<UUID> attachments) {
+  public void setAttachments(JsonElement attachments) {
     this.attachments = attachments;
   }
 

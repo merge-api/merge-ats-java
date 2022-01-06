@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 <a name="candidatesList"></a>
 # **candidatesList**
-> PaginatedCandidateList candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedCandidateList candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId)
 
 
 
@@ -117,6 +117,7 @@ public class Example {
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     String firstName = "firstName_example"; // String | If provided, will only return candidates with this first name.
+    Boolean includeDeletedData = true; // Boolean | Whether to include data that was deleted in the third-party service.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String lastName = "lastName_example"; // String | If provided, will only return candidates with this last name.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
@@ -124,7 +125,7 @@ public class Example {
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedCandidateList result = apiInstance.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedCandidateList result = apiInstance.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CandidatesApi#candidatesList");
@@ -146,6 +147,7 @@ Name | Type | Description  | Notes
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
  **firstName** | **String**| If provided, will only return candidates with this first name. | [optional]
+ **includeDeletedData** | **Boolean**| Whether to include data that was deleted in the third-party service. | [optional]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **lastName** | **String**| If provided, will only return candidates with this last name. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]

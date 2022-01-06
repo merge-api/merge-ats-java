@@ -64,6 +64,7 @@ public class InterviewsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobInterviewStageId If provided, will only return interviews at this stage. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -80,7 +81,7 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call interviewsListCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call interviewsListCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -106,6 +107,10 @@ public class InterviewsApi {
 
         if (cursor != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
+        }
+
+        if (includeDeletedData != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_deleted_data", includeDeletedData));
         }
 
         if (includeRemoteData != null) {
@@ -159,7 +164,7 @@ public class InterviewsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call interviewsListValidateBeforeCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call interviewsListValidateBeforeCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -167,7 +172,7 @@ public class InterviewsApi {
         }
         
 
-        okhttp3.Call localVarCall = interviewsListCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = interviewsListCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId, _callback);
         return localVarCall;
 
     }
@@ -180,6 +185,7 @@ public class InterviewsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobInterviewStageId If provided, will only return interviews at this stage. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -195,8 +201,8 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedScheduledInterviewList interviewsList(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId) throws ApiException {
-        ApiResponse<PaginatedScheduledInterviewList> localVarResp = interviewsListWithHttpInfo(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
+    public PaginatedScheduledInterviewList interviewsList(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId) throws ApiException {
+        ApiResponse<PaginatedScheduledInterviewList> localVarResp = interviewsListWithHttpInfo(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
         return localVarResp.getData();
     }
 
@@ -208,6 +214,7 @@ public class InterviewsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobInterviewStageId If provided, will only return interviews at this stage. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -223,8 +230,8 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedScheduledInterviewList> interviewsListWithHttpInfo(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId, null);
+    public ApiResponse<PaginatedScheduledInterviewList> interviewsListWithHttpInfo(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedScheduledInterviewList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -237,6 +244,7 @@ public class InterviewsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobInterviewStageId If provided, will only return interviews at this stage. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -253,9 +261,9 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call interviewsListAsync(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId, final ApiCallback<PaginatedScheduledInterviewList> _callback) throws ApiException {
+    public okhttp3.Call interviewsListAsync(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteId, final ApiCallback<PaginatedScheduledInterviewList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedScheduledInterviewList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

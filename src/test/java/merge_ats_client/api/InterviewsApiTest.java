@@ -50,6 +50,7 @@ public class InterviewsApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
+        Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
         String jobInterviewStageId = null;
         OffsetDateTime modifiedAfter = null;
@@ -57,7 +58,7 @@ public class InterviewsApiTest {
         String organizerId = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedScheduledInterviewList response = api.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
+        PaginatedScheduledInterviewList response = api.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
 
         // TODO: test validations
     }

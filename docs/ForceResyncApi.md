@@ -1,19 +1,19 @@
-# SyncStatusApi
+# ForceResyncApi
 
 All URIs are relative to *https://api.merge.dev/api/ats/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**syncStatusList**](SyncStatusApi.md#syncStatusList) | **GET** /sync-status | 
+[**syncStatusResyncCreate**](ForceResyncApi.md#syncStatusResyncCreate) | **POST** /sync-status/resync | 
 
 
-<a name="syncStatusList"></a>
-# **syncStatusList**
-> PaginatedSyncStatusList syncStatusList(xAccountToken, cursor, pageSize)
+<a name="syncStatusResyncCreate"></a>
+# **syncStatusResyncCreate**
+> SyncStatus syncStatusResyncCreate(xAccountToken)
 
 
 
-Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
+Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
 
 ### Example
 ```java
@@ -23,7 +23,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.Configuration;
 import merge_ats_client.auth.*;
 import merge_ats_client.models.*;
-import merge_ats_client.api.SyncStatusApi;
+import merge_ats_client.api.ForceResyncApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -36,15 +36,13 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //tokenAuth.setApiKeyPrefix("Token");
 
-    SyncStatusApi apiInstance = new SyncStatusApi(defaultClient);
+    ForceResyncApi apiInstance = new ForceResyncApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
-    String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
-    Integer pageSize = 56; // Integer | Number of results to return per page.
     try {
-      PaginatedSyncStatusList result = apiInstance.syncStatusList(xAccountToken, cursor, pageSize);
+      SyncStatus result = apiInstance.syncStatusResyncCreate(xAccountToken);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SyncStatusApi#syncStatusList");
+      System.err.println("Exception when calling ForceResyncApi#syncStatusResyncCreate");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -59,12 +57,10 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
- **cursor** | **String**| The pagination cursor value. | [optional]
- **pageSize** | **Integer**| Number of results to return per page. | [optional]
 
 ### Return type
 
-[**PaginatedSyncStatusList**](PaginatedSyncStatusList.md)
+[**SyncStatus**](SyncStatus.md)
 
 ### Authorization
 
