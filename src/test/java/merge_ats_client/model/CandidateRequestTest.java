@@ -191,7 +191,9 @@ public class CandidateRequestTest {
 
         CandidateRequest testIdModel = new CandidateRequest();
         UUID testId = UUID.randomUUID();
-        testIdModel.attachments(List.of(testId), serializer);
+        List<UUID> idList = new ArrayList<>();
+        idList.add(testId);
+        testIdModel.attachments(idList, serializer);
 
         String expected = String.format("{\"attachments\":[\"%s\"]}", testId);
         assertEquals(expected, serializer.serialize(testIdModel));
@@ -200,7 +202,9 @@ public class CandidateRequestTest {
         AttachmentRequest testAttachmentModel = new AttachmentRequest();
         testAttachmentModel.fileName("example.com/resume.txt");
         testAttachmentModel.attachmentType("TEXT");
-        testObjModel.setAttachments(serializer.getGson().toJsonTree(List.of(testAttachmentModel)));
+        List<AttachmentRequest> attachList = new ArrayList<>();
+        attachList.add(testAttachmentModel);
+        testObjModel.setAttachments(serializer.getGson().toJsonTree(attachList));
 
         String objExpected =
                 "{\"attachments\":[{\"file_name\":\"example.com/resume.txt\",\"attachment_type\":\"TEXT\"}]}";
