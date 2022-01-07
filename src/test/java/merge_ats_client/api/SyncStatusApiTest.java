@@ -15,7 +15,6 @@ package merge_ats_client.api;
 
 import merge_ats_client.ApiException;
 import merge_ats_client.model.PaginatedSyncStatusList;
-import merge_ats_client.model.SyncStatus;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -36,7 +35,7 @@ public class SyncStatusApiTest {
     /**
      * 
      *
-     * Get syncing status.
+     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
      *
      * @throws ApiException
      *          if the Api call fails
@@ -47,22 +46,6 @@ public class SyncStatusApiTest {
         String cursor = null;
         Integer pageSize = null;
         PaginatedSyncStatusList response = api.syncStatusList(xAccountToken, cursor, pageSize);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void syncStatusResyncCreateTest() throws ApiException {
-        String xAccountToken = null;
-        SyncStatus response = api.syncStatusResyncCreate(xAccountToken);
 
         // TODO: test validations
     }

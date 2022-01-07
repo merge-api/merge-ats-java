@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="usersList"></a>
 # **usersList**
-> PaginatedRemoteUserList usersList(xAccountToken, createdAfter, createdBefore, cursor, email, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedRemoteUserList usersList(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId)
 
 
 
@@ -43,13 +43,14 @@ public class Example {
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     String email = "email_example"; // String | If provided, will only return remote users with the given email address
+    Boolean includeDeletedData = true; // Boolean | Whether to include data that was deleted in the third-party service.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
     OffsetDateTime modifiedBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified before this datetime.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedRemoteUserList result = apiInstance.usersList(xAccountToken, createdAfter, createdBefore, cursor, email, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedRemoteUserList result = apiInstance.usersList(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersList");
@@ -71,6 +72,7 @@ Name | Type | Description  | Notes
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
  **email** | [**String**](.md)| If provided, will only return remote users with the given email address | [optional]
+ **includeDeletedData** | **Boolean**| Whether to include data that was deleted in the third-party service. | [optional]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
  **modifiedBefore** | **OffsetDateTime**| If provided, will only return objects modified before this datetime. | [optional]

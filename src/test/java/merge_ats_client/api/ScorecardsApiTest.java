@@ -50,6 +50,7 @@ public class ScorecardsApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
+        Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
         String interviewId = null;
         String interviewerId = null;
@@ -57,7 +58,7 @@ public class ScorecardsApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedScorecardList response = api.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedScorecardList response = api.scorecardsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }

@@ -64,6 +64,7 @@ public class UsersApi {
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param email If provided, will only return remote users with the given email address (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -78,7 +79,7 @@ public class UsersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call usersListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -104,6 +105,10 @@ public class UsersApi {
 
         if (email != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("email", email));
+        }
+
+        if (includeDeletedData != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_deleted_data", includeDeletedData));
         }
 
         if (includeRemoteData != null) {
@@ -149,7 +154,7 @@ public class UsersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -157,7 +162,7 @@ public class UsersApi {
         }
         
 
-        okhttp3.Call localVarCall = usersListCall(xAccountToken, createdAfter, createdBefore, cursor, email, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = usersListCall(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         return localVarCall;
 
     }
@@ -170,6 +175,7 @@ public class UsersApi {
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param email If provided, will only return remote users with the given email address (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -183,8 +189,8 @@ public class UsersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedRemoteUserList usersList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        ApiResponse<PaginatedRemoteUserList> localVarResp = usersListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, email, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+    public PaginatedRemoteUserList usersList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        ApiResponse<PaginatedRemoteUserList> localVarResp = usersListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
         return localVarResp.getData();
     }
 
@@ -196,6 +202,7 @@ public class UsersApi {
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param email If provided, will only return remote users with the given email address (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -209,8 +216,8 @@ public class UsersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedRemoteUserList> usersListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = usersListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, email, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
+    public ApiResponse<PaginatedRemoteUserList> usersListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = usersListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedRemoteUserList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -223,6 +230,7 @@ public class UsersApi {
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param email If provided, will only return remote users with the given email address (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -237,9 +245,9 @@ public class UsersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedRemoteUserList> _callback) throws ApiException {
+    public okhttp3.Call usersListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, String email, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedRemoteUserList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, email, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = usersListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedRemoteUserList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

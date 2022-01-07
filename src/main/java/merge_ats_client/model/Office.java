@@ -32,7 +32,7 @@ import merge_ats_client.model.RemoteData;
  * # The Office Object ### Description The &#x60;Office&#x60; object is used to represent an office within a company.  ### Usage Example Fetch from the &#x60;LIST Offices&#x60; endpoint and view the offices within a company.
  */
 @ApiModel(description = "# The Office Object ### Description The `Office` object is used to represent an office within a company.  ### Usage Example Fetch from the `LIST Offices` endpoint and view the offices within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T21:09:25.697907Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
 public class Office {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import merge_ats_client.JSON;
 import merge_ats_client.model.EmailAddressRequest;
 import merge_ats_client.model.PhoneNumberRequest;
 import merge_ats_client.model.UrlRequest;
@@ -33,6 +35,9 @@ import org.threeten.bp.OffsetDateTime;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 
 /**
@@ -182,7 +187,28 @@ public class CandidateRequestTest {
      */
     @Test
     public void attachmentsTest() {
-        // TODO: test attachments
+        JSON serializer = new JSON();
+
+        CandidateRequestRawJson testIdModel = new CandidateRequestRawJson(serializer);
+        UUID testId = UUID.randomUUID();
+        List<UUID> idList = new ArrayList<>();
+        idList.add(testId);
+        testIdModel.attachments(idList);
+
+        String expected = String.format("{\"attachments\":[\"%s\"]}", testId);
+        assertEquals(expected, serializer.serialize(testIdModel));
+
+        CandidateRequestRawJson testObjModel = new CandidateRequestRawJson(serializer);
+        AttachmentRequest testAttachmentModel = new AttachmentRequest();
+        testAttachmentModel.fileName("example.com/resume.txt");
+        testAttachmentModel.attachmentType("TEXT");
+        List<AttachmentRequest> attachList = new ArrayList<>();
+        attachList.add(testAttachmentModel);
+        testObjModel.setAttachments(serializer.getGson().toJsonTree(attachList));
+
+        String objExpected =
+                "{\"attachments\":[{\"file_name\":\"example.com/resume.txt\",\"attachment_type\":\"TEXT\"}]}";
+        assertEquals(objExpected, serializer.serialize(testObjModel));
     }
 
     /**

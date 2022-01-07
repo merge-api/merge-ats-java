@@ -198,6 +198,7 @@ public class AttachmentsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -212,7 +213,7 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsListCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call attachmentsListCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -238,6 +239,10 @@ public class AttachmentsApi {
 
         if (cursor != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
+        }
+
+        if (includeDeletedData != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_deleted_data", includeDeletedData));
         }
 
         if (includeRemoteData != null) {
@@ -283,7 +288,7 @@ public class AttachmentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call attachmentsListValidateBeforeCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call attachmentsListValidateBeforeCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -291,7 +296,7 @@ public class AttachmentsApi {
         }
         
 
-        okhttp3.Call localVarCall = attachmentsListCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = attachmentsListCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         return localVarCall;
 
     }
@@ -304,6 +309,7 @@ public class AttachmentsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -317,8 +323,8 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedAttachmentList attachmentsList(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        ApiResponse<PaginatedAttachmentList> localVarResp = attachmentsListWithHttpInfo(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+    public PaginatedAttachmentList attachmentsList(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        ApiResponse<PaginatedAttachmentList> localVarResp = attachmentsListWithHttpInfo(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
         return localVarResp.getData();
     }
 
@@ -330,6 +336,7 @@ public class AttachmentsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -343,8 +350,8 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedAttachmentList> attachmentsListWithHttpInfo(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
+    public ApiResponse<PaginatedAttachmentList> attachmentsListWithHttpInfo(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedAttachmentList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -357,6 +364,7 @@ public class AttachmentsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
+     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
@@ -371,9 +379,9 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsListAsync(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedAttachmentList> _callback) throws ApiException {
+    public okhttp3.Call attachmentsListAsync(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedAttachmentList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedAttachmentList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

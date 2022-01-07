@@ -50,12 +50,13 @@ public class EeocsApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
+        Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedEEOCList response = api.eeocsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedEEOCList response = api.eeocsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }

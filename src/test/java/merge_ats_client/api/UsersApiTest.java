@@ -50,12 +50,13 @@ public class UsersApiTest {
         OffsetDateTime createdBefore = null;
         String cursor = null;
         String email = null;
+        Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedRemoteUserList response = api.usersList(xAccountToken, createdAfter, createdBefore, cursor, email, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedRemoteUserList response = api.usersList(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
