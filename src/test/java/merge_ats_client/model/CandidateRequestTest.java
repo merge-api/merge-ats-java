@@ -189,16 +189,16 @@ public class CandidateRequestTest {
     public void attachmentsTest() {
         JSON serializer = new JSON();
 
-        CandidateRequest testIdModel = new CandidateRequest();
+        CandidateRequestRawJson testIdModel = new CandidateRequestRawJson(serializer);
         UUID testId = UUID.randomUUID();
         List<UUID> idList = new ArrayList<>();
         idList.add(testId);
-        testIdModel.attachments(idList, serializer);
+        testIdModel.attachments(idList);
 
         String expected = String.format("{\"attachments\":[\"%s\"]}", testId);
         assertEquals(expected, serializer.serialize(testIdModel));
 
-        CandidateRequest testObjModel = new CandidateRequest();
+        CandidateRequestRawJson testObjModel = new CandidateRequestRawJson(serializer);
         AttachmentRequest testAttachmentModel = new AttachmentRequest();
         testAttachmentModel.fileName("example.com/resume.txt");
         testAttachmentModel.attachmentType("TEXT");

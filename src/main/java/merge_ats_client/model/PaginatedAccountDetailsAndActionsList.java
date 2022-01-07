@@ -30,7 +30,7 @@ import merge_ats_client.model.AccountDetailsAndActions;
 /**
  * PaginatedAccountDetailsAndActionsList
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-06T18:40:10.538858Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
 public class PaginatedAccountDetailsAndActionsList {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
