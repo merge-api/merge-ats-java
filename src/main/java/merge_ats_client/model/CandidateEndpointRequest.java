@@ -15,6 +15,7 @@ package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.google.gson.JsonElement;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,27 +24,28 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import merge_ats_client.JSON;
 import merge_ats_client.model.CandidateRequest;
 
 /**
  * CandidateEndpointRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
 public class CandidateEndpointRequest {
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
-  private CandidateRequest model;
+  private JsonElement model;
 
   public static final String SERIALIZED_NAME_REMOTE_USER_ID = "remote_user_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_USER_ID)
   private String remoteUserId;
 
 
-  public CandidateEndpointRequest model(CandidateRequest model) {
-    
-    this.model = model;
+  public CandidateEndpointRequest model(CandidateRequest model, JSON serializer) {
+    this.model = serializer.getGson().toJsonTree(model);
     return this;
-  }
+}
 
    /**
    * Get model
@@ -51,12 +53,12 @@ public class CandidateEndpointRequest {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public CandidateRequest getModel() {
+  public JsonElement getModel() {
     return model;
   }
 
 
-  public void setModel(CandidateRequest model) {
+  public void setModel(JsonElement model) {
     this.model = model;
   }
 

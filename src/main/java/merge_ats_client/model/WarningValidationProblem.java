@@ -23,15 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.ValidationProblemSource;
 
 /**
- * ValidationProblem
+ * WarningValidationProblem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
-public class ValidationProblem {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
+public class WarningValidationProblem {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private String source;
+  private ValidationProblemSource source;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
@@ -46,6 +47,12 @@ public class ValidationProblem {
   private String problemType;
 
 
+  public WarningValidationProblem source(ValidationProblemSource source) {
+    
+    this.source = source;
+    return this;
+  }
+
    /**
    * Get source
    * @return source
@@ -53,14 +60,17 @@ public class ValidationProblem {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getSource() {
+  public ValidationProblemSource getSource() {
     return source;
   }
 
 
+  public void setSource(ValidationProblemSource source) {
+    this.source = source;
+  }
 
 
-  public ValidationProblem title(String title) {
+  public WarningValidationProblem title(String title) {
     
     this.title = title;
     return this;
@@ -70,7 +80,7 @@ public class ValidationProblem {
    * Get title
    * @return title
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Unrecognized Field", required = true, value = "")
 
   public String getTitle() {
     return title;
@@ -82,7 +92,7 @@ public class ValidationProblem {
   }
 
 
-  public ValidationProblem detail(String detail) {
+  public WarningValidationProblem detail(String detail) {
     
     this.detail = detail;
     return this;
@@ -92,7 +102,7 @@ public class ValidationProblem {
    * Get detail
    * @return detail
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "An unrecognized field, age, was passed in with request data.", required = true, value = "")
 
   public String getDetail() {
     return detail;
@@ -104,7 +114,7 @@ public class ValidationProblem {
   }
 
 
-  public ValidationProblem problemType(String problemType) {
+  public WarningValidationProblem problemType(String problemType) {
     
     this.problemType = problemType;
     return this;
@@ -114,7 +124,7 @@ public class ValidationProblem {
    * Get problemType
    * @return problemType
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "UNRECOGNIZED_FIELD", required = true, value = "")
 
   public String getProblemType() {
     return problemType;
@@ -134,11 +144,11 @@ public class ValidationProblem {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ValidationProblem validationProblem = (ValidationProblem) o;
-    return Objects.equals(this.source, validationProblem.source) &&
-        Objects.equals(this.title, validationProblem.title) &&
-        Objects.equals(this.detail, validationProblem.detail) &&
-        Objects.equals(this.problemType, validationProblem.problemType);
+    WarningValidationProblem warningValidationProblem = (WarningValidationProblem) o;
+    return Objects.equals(this.source, warningValidationProblem.source) &&
+        Objects.equals(this.title, warningValidationProblem.title) &&
+        Objects.equals(this.detail, warningValidationProblem.detail) &&
+        Objects.equals(this.problemType, warningValidationProblem.problemType);
   }
 
   @Override
@@ -149,7 +159,7 @@ public class ValidationProblem {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ValidationProblem {\n");
+    sb.append("class WarningValidationProblem {\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");

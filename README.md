@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2022-01-07T18:32:11.741718Z[Etc/UTC]
+  - Build date: 2022-01-11T15:52:25.875887Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.merge.ats</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.2.3</version>
+  <version>1.2.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.merge.ats:merge-ats-client:1.2.3"
+compile "dev.merge.ats:merge-ats-client:1.2.4"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.2.3.jar`
+* `target/merge-ats-client-1.2.4.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -188,6 +188,7 @@ Class | Method | HTTP request | Description
  - [EmailAddress](docs/EmailAddress.md)
  - [EmailAddressRequest](docs/EmailAddressRequest.md)
  - [EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
+ - [ErrorValidationProblem](docs/ErrorValidationProblem.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
  - [Issue](docs/Issue.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
@@ -227,7 +228,8 @@ Class | Method | HTTP request | Description
  - [Tag](docs/Tag.md)
  - [Url](docs/Url.md)
  - [UrlRequest](docs/UrlRequest.md)
- - [ValidationProblem](docs/ValidationProblem.md)
+ - [ValidationProblemSource](docs/ValidationProblemSource.md)
+ - [WarningValidationProblem](docs/WarningValidationProblem.md)
 
 
 ## Documentation for Authorization

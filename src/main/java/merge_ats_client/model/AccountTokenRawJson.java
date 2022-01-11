@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * AccountTokenRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
 public class AccountTokenRawJson {
   public static final String SERIALIZED_NAME_ACCOUNT_TOKEN = "account_token";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_TOKEN)

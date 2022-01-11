@@ -34,63 +34,25 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * ApplicationResponseRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
 public class ApplicationResponseRawJson {
-  public static final String SERIALIZED_NAME_ERRORS = "errors";
-  @SerializedName(SERIALIZED_NAME_ERRORS)
-  private JsonElement errors;
+  public static final String SERIALIZED_NAME_MODEL = "model";
+  @SerializedName(SERIALIZED_NAME_MODEL)
+  private JsonElement model;
 
   public static final String SERIALIZED_NAME_WARNINGS = "warnings";
   @SerializedName(SERIALIZED_NAME_WARNINGS)
   private JsonElement warnings;
 
-  public static final String SERIALIZED_NAME_MODEL = "model";
-  @SerializedName(SERIALIZED_NAME_MODEL)
-  private JsonElement model;
+  public static final String SERIALIZED_NAME_ERRORS = "errors";
+  @SerializedName(SERIALIZED_NAME_ERRORS)
+  private JsonElement errors;
 
   private transient JSON serializer;
 
   public ApplicationResponseRawJson(JSON srlzer) { 
     
     this.serializer = srlzer;
-  }
-
-  public ApplicationResponseRawJson errors(List<ValidationProblem> errors) {
-    this.errors = this.serializer.getGson().toJsonTree(errors);
-    return this;
-  }
-
-   /**
-   * Get errors
-   * @return errors
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public JsonElement getErrors() {
-    return errors;
-  }
-  public void setErrors(JsonElement errors) {
-    this.errors = errors;
-  }
-
-  public ApplicationResponseRawJson warnings(List<ValidationProblem> warnings) {
-    this.warnings = this.serializer.getGson().toJsonTree(warnings);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public JsonElement getWarnings() {
-    return warnings;
-  }
-  public void setWarnings(JsonElement warnings) {
-    this.warnings = warnings;
   }
 
   public ApplicationResponseRawJson model(Application model) {
@@ -111,6 +73,44 @@ public class ApplicationResponseRawJson {
   public void setModel(JsonElement model) {
     this.model = model;
   }
+
+  public ApplicationResponseRawJson warnings(List<WarningValidationProblem> warnings) {
+    this.warnings = this.serializer.getGson().toJsonTree(warnings);
+    return this;
+  }
+
+   /**
+   * Get warnings
+   * @return warnings
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public JsonElement getWarnings() {
+    return warnings;
+  }
+  public void setWarnings(JsonElement warnings) {
+    this.warnings = warnings;
+  }
+
+  public ApplicationResponseRawJson errors(List<ErrorValidationProblem> errors) {
+    this.errors = this.serializer.getGson().toJsonTree(errors);
+    return this;
+  }
+
+   /**
+   * Get errors
+   * @return errors
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public JsonElement getErrors() {
+    return errors;
+  }
+  public void setErrors(JsonElement errors) {
+    this.errors = errors;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -120,21 +120,21 @@ public class ApplicationResponseRawJson {
       return false;
     }
     ApplicationResponseRawJson applicationResponse = (ApplicationResponseRawJson) o;
-    return Objects.equals(this.errors.getAsString(), applicationResponse.errors.getAsString()) &&
+    return Objects.equals(this.model.getAsString(), applicationResponse.model.getAsString()) &&
         Objects.equals(this.warnings.getAsString(), applicationResponse.warnings.getAsString()) &&
-        Objects.equals(this.model.getAsString(), applicationResponse.model.getAsString());
+        Objects.equals(this.errors.getAsString(), applicationResponse.errors.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(errors, warnings, model);
+    return Objects.hash(model, warnings, errors);
   }
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApplicationResponseRawJson {\n");
-    sb.append("    errors: ").append(toIndentedString(errors.getAsString())).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings.getAsString())).append("\n");
     sb.append("    model: ").append(toIndentedString(model.getAsString())).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings.getAsString())).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

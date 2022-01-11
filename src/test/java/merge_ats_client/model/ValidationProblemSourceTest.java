@@ -27,49 +27,25 @@ import org.junit.Test;
 
 
 /**
- * Model tests for ValidationProblem
+ * Model tests for ValidationProblemSource
  */
-public class ValidationProblemTest {
-    private final ValidationProblem model = new ValidationProblem();
+public class ValidationProblemSourceTest {
+    private final ValidationProblemSource model = new ValidationProblemSource();
 
     /**
-     * Model tests for ValidationProblem
+     * Model tests for ValidationProblemSource
      */
     @Test
-    public void testValidationProblem() {
-        // TODO: test ValidationProblem
+    public void testValidationProblemSource() {
+        // TODO: test ValidationProblemSource
     }
 
     /**
-     * Test the property 'source'
+     * Test the property 'pointer'
      */
     @Test
-    public void sourceTest() {
-        // TODO: test source
-    }
-
-    /**
-     * Test the property 'title'
-     */
-    @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
-     * Test the property 'detail'
-     */
-    @Test
-    public void detailTest() {
-        // TODO: test detail
-    }
-
-    /**
-     * Test the property 'problemType'
-     */
-    @Test
-    public void problemTypeTest() {
-        // TODO: test problemType
+    public void pointerTest() {
+        // TODO: test pointer
     }
 
 }

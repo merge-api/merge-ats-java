@@ -26,78 +26,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import merge_ats_client.model.Candidate;
-import merge_ats_client.model.ValidationProblem;
+import merge_ats_client.model.ErrorValidationProblem;
+import merge_ats_client.model.WarningValidationProblem;
 
 /**
  * CandidateResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
 public class CandidateResponse {
-  public static final String SERIALIZED_NAME_ERRORS = "errors";
-  @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<ValidationProblem> errors = new ArrayList<ValidationProblem>();
-
-  public static final String SERIALIZED_NAME_WARNINGS = "warnings";
-  @SerializedName(SERIALIZED_NAME_WARNINGS)
-  private List<ValidationProblem> warnings = new ArrayList<ValidationProblem>();
-
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
   private Candidate model;
 
+  public static final String SERIALIZED_NAME_WARNINGS = "warnings";
+  @SerializedName(SERIALIZED_NAME_WARNINGS)
+  private List<WarningValidationProblem> warnings = new ArrayList<WarningValidationProblem>();
 
-  public CandidateResponse errors(List<ValidationProblem> errors) {
-    
-    this.errors = errors;
-    return this;
-  }
-
-  public CandidateResponse addErrorsItem(ValidationProblem errorsItem) {
-    this.errors.add(errorsItem);
-    return this;
-  }
-
-   /**
-   * Get errors
-   * @return errors
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public List<ValidationProblem> getErrors() {
-    return errors;
-  }
-
-
-  public void setErrors(List<ValidationProblem> errors) {
-    this.errors = errors;
-  }
-
-
-  public CandidateResponse warnings(List<ValidationProblem> warnings) {
-    
-    this.warnings = warnings;
-    return this;
-  }
-
-  public CandidateResponse addWarningsItem(ValidationProblem warningsItem) {
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public List<ValidationProblem> getWarnings() {
-    return warnings;
-  }
-
-
-  public void setWarnings(List<ValidationProblem> warnings) {
-    this.warnings = warnings;
-  }
+  public static final String SERIALIZED_NAME_ERRORS = "errors";
+  @SerializedName(SERIALIZED_NAME_ERRORS)
+  private List<ErrorValidationProblem> errors = new ArrayList<ErrorValidationProblem>();
 
 
   public CandidateResponse model(Candidate model) {
@@ -122,6 +69,60 @@ public class CandidateResponse {
   }
 
 
+  public CandidateResponse warnings(List<WarningValidationProblem> warnings) {
+    
+    this.warnings = warnings;
+    return this;
+  }
+
+  public CandidateResponse addWarningsItem(WarningValidationProblem warningsItem) {
+    this.warnings.add(warningsItem);
+    return this;
+  }
+
+   /**
+   * Get warnings
+   * @return warnings
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public List<WarningValidationProblem> getWarnings() {
+    return warnings;
+  }
+
+
+  public void setWarnings(List<WarningValidationProblem> warnings) {
+    this.warnings = warnings;
+  }
+
+
+  public CandidateResponse errors(List<ErrorValidationProblem> errors) {
+    
+    this.errors = errors;
+    return this;
+  }
+
+  public CandidateResponse addErrorsItem(ErrorValidationProblem errorsItem) {
+    this.errors.add(errorsItem);
+    return this;
+  }
+
+   /**
+   * Get errors
+   * @return errors
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public List<ErrorValidationProblem> getErrors() {
+    return errors;
+  }
+
+
+  public void setErrors(List<ErrorValidationProblem> errors) {
+    this.errors = errors;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -131,23 +132,23 @@ public class CandidateResponse {
       return false;
     }
     CandidateResponse candidateResponse = (CandidateResponse) o;
-    return Objects.equals(this.errors, candidateResponse.errors) &&
+    return Objects.equals(this.model, candidateResponse.model) &&
         Objects.equals(this.warnings, candidateResponse.warnings) &&
-        Objects.equals(this.model, candidateResponse.model);
+        Objects.equals(this.errors, candidateResponse.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors, warnings, model);
+    return Objects.hash(model, warnings, errors);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CandidateResponse {\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }

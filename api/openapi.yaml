@@ -3423,14 +3423,16 @@ components:
     ApplicationResponse:
       example:
         warnings:
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
+        - problem_type: UNRECOGNIZED_FIELD
+          source:
+            pointer: pointer
+          detail: An unrecognized field, age, was passed in with request data.
+          title: Unrecognized Field
+        - problem_type: UNRECOGNIZED_FIELD
+          source:
+            pointer: pointer
+          detail: An unrecognized field, age, was passed in with request data.
+          title: Unrecognized Field
         model:
           applied_at: 2021-10-15T00:00:00Z
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
@@ -3449,25 +3451,27 @@ components:
             data:
             - Varies by platform
         errors:
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
+        - problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: pointer
+          detail: custom_fields is a required field on model.
+          title: Missing Required Field
+        - problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: pointer
+          detail: custom_fields is a required field on model.
+          title: Missing Required Field
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ValidationProblem'
-          type: array
-        warnings:
-          items:
-            $ref: '#/components/schemas/ValidationProblem'
-          type: array
         model:
           $ref: '#/components/schemas/Application'
+        warnings:
+          items:
+            $ref: '#/components/schemas/WarningValidationProblem'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorValidationProblem'
+          type: array
       required:
       - errors
       - model
@@ -3601,14 +3605,16 @@ components:
     AttachmentResponse:
       example:
         warnings:
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
+        - problem_type: UNRECOGNIZED_FIELD
+          source:
+            pointer: pointer
+          detail: An unrecognized field, age, was passed in with request data.
+          title: Unrecognized Field
+        - problem_type: UNRECOGNIZED_FIELD
+          source:
+            pointer: pointer
+          detail: An unrecognized field, age, was passed in with request data.
+          title: Unrecognized Field
         model:
           file_url: http://alturl.com/p749b
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
@@ -3621,25 +3627,27 @@ components:
             data:
             - Varies by platform
         errors:
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
+        - problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: pointer
+          detail: custom_fields is a required field on model.
+          title: Missing Required Field
+        - problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: pointer
+          detail: custom_fields is a required field on model.
+          title: Missing Required Field
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ValidationProblem'
-          type: array
-        warnings:
-          items:
-            $ref: '#/components/schemas/ValidationProblem'
-          type: array
         model:
           $ref: '#/components/schemas/Attachment'
+        warnings:
+          items:
+            $ref: '#/components/schemas/WarningValidationProblem'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorValidationProblem'
+          type: array
       required:
       - errors
       - model
@@ -4091,14 +4099,16 @@ components:
     CandidateResponse:
       example:
         warnings:
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
+        - problem_type: UNRECOGNIZED_FIELD
+          source:
+            pointer: pointer
+          detail: An unrecognized field, age, was passed in with request data.
+          title: Unrecognized Field
+        - problem_type: UNRECOGNIZED_FIELD
+          source:
+            pointer: pointer
+          detail: An unrecognized field, age, was passed in with request data.
+          title: Unrecognized Field
         model:
           is_private: true
           email_addresses:
@@ -4139,25 +4149,27 @@ components:
           - b4d08e5c-de00-4d64-a29f-66addac9af99
           - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
         errors:
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
-        - problem_type: problem_type
-          source: source
-          detail: detail
-          title: title
+        - problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: pointer
+          detail: custom_fields is a required field on model.
+          title: Missing Required Field
+        - problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: pointer
+          detail: custom_fields is a required field on model.
+          title: Missing Required Field
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ValidationProblem'
-          type: array
-        warnings:
-          items:
-            $ref: '#/components/schemas/ValidationProblem'
-          type: array
         model:
           $ref: '#/components/schemas/Candidate'
+        warnings:
+          items:
+            $ref: '#/components/schemas/WarningValidationProblem'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorValidationProblem'
+          type: array
       required:
       - errors
       - model
@@ -4414,6 +4426,30 @@ components:
       - end_user_email_address
       - end_user_organization_name
       - end_user_origin_id
+      type: object
+    ErrorValidationProblem:
+      example:
+        problem_type: MISSING_REQUIRED_FIELD
+        source:
+          pointer: pointer
+        detail: custom_fields is a required field on model.
+        title: Missing Required Field
+      properties:
+        source:
+          $ref: '#/components/schemas/ValidationProblemSource'
+        title:
+          example: Missing Required Field
+          type: string
+        detail:
+          example: custom_fields is a required field on model.
+          type: string
+        problem_type:
+          example: MISSING_REQUIRED_FIELD
+          type: string
+      required:
+      - detail
+      - problem_type
+      - title
       type: object
     GenerateRemoteKeyRequest:
       description: |-
@@ -6111,21 +6147,33 @@ components:
       required:
       - url_type
       type: object
-    ValidationProblem:
+    ValidationProblemSource:
       example:
-        problem_type: problem_type
-        source: source
-        detail: detail
-        title: title
+        pointer: pointer
+      properties:
+        pointer:
+          type: string
+      required:
+      - pointer
+      type: object
+    WarningValidationProblem:
+      example:
+        problem_type: UNRECOGNIZED_FIELD
+        source:
+          pointer: pointer
+        detail: An unrecognized field, age, was passed in with request data.
+        title: Unrecognized Field
       properties:
         source:
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/ValidationProblemSource'
         title:
+          example: Unrecognized Field
           type: string
         detail:
+          example: An unrecognized field, age, was passed in with request data.
           type: string
         problem_type:
+          example: UNRECOGNIZED_FIELD
           type: string
       required:
       - detail
