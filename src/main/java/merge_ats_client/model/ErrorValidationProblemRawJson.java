@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * ValidationProblemRawJson
+ * ErrorValidationProblemRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
-public class ValidationProblemRawJson {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
+public class ErrorValidationProblemRawJson {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private JsonElement source;
@@ -54,9 +54,14 @@ public class ValidationProblemRawJson {
 
   private transient JSON serializer;
 
-  public ValidationProblemRawJson(JSON srlzer) { 
+  public ErrorValidationProblemRawJson(JSON srlzer) { 
     
     this.serializer = srlzer;
+  }
+
+  public ErrorValidationProblemRawJson source(ValidationProblemSource source) {
+    this.source = this.serializer.getGson().toJsonTree(source);
+    return this;
   }
 
    /**
@@ -69,8 +74,11 @@ public class ValidationProblemRawJson {
   public JsonElement getSource() {
     return source;
   }
+  public void setSource(JsonElement source) {
+    this.source = source;
+  }
 
-  public ValidationProblemRawJson title(String title) {
+  public ErrorValidationProblemRawJson title(String title) {
     this.title = this.serializer.getGson().toJsonTree(title);
     return this;
   }
@@ -80,7 +88,7 @@ public class ValidationProblemRawJson {
    * @return title
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Missing Required Field", required = true, value = "")
 
   public JsonElement getTitle() {
     return title;
@@ -89,7 +97,7 @@ public class ValidationProblemRawJson {
     this.title = title;
   }
 
-  public ValidationProblemRawJson detail(String detail) {
+  public ErrorValidationProblemRawJson detail(String detail) {
     this.detail = this.serializer.getGson().toJsonTree(detail);
     return this;
   }
@@ -99,7 +107,7 @@ public class ValidationProblemRawJson {
    * @return detail
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "custom_fields is a required field on model.", required = true, value = "")
 
   public JsonElement getDetail() {
     return detail;
@@ -108,7 +116,7 @@ public class ValidationProblemRawJson {
     this.detail = detail;
   }
 
-  public ValidationProblemRawJson problemType(String problemType) {
+  public ErrorValidationProblemRawJson problemType(String problemType) {
     this.problemType = this.serializer.getGson().toJsonTree(problemType);
     return this;
   }
@@ -118,7 +126,7 @@ public class ValidationProblemRawJson {
    * @return problemType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "MISSING_REQUIRED_FIELD", required = true, value = "")
 
   public JsonElement getProblemType() {
     return problemType;
@@ -134,11 +142,11 @@ public class ValidationProblemRawJson {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ValidationProblemRawJson validationProblem = (ValidationProblemRawJson) o;
-    return Objects.equals(this.source.getAsString(), validationProblem.source.getAsString()) &&
-        Objects.equals(this.title.getAsString(), validationProblem.title.getAsString()) &&
-        Objects.equals(this.detail.getAsString(), validationProblem.detail.getAsString()) &&
-        Objects.equals(this.problemType.getAsString(), validationProblem.problemType.getAsString());
+    ErrorValidationProblemRawJson errorValidationProblem = (ErrorValidationProblemRawJson) o;
+    return Objects.equals(this.source.getAsString(), errorValidationProblem.source.getAsString()) &&
+        Objects.equals(this.title.getAsString(), errorValidationProblem.title.getAsString()) &&
+        Objects.equals(this.detail.getAsString(), errorValidationProblem.detail.getAsString()) &&
+        Objects.equals(this.problemType.getAsString(), errorValidationProblem.problemType.getAsString());
   }
   @Override
   public int hashCode() {
@@ -147,7 +155,7 @@ public class ValidationProblemRawJson {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ValidationProblemRawJson {\n");
+    sb.append("class ErrorValidationProblemRawJson {\n");
     sb.append("    source: ").append(toIndentedString(source.getAsString())).append("\n");
     sb.append("    title: ").append(toIndentedString(title.getAsString())).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail.getAsString())).append("\n");

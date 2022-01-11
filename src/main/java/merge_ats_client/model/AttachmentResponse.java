@@ -26,78 +26,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import merge_ats_client.model.Attachment;
-import merge_ats_client.model.ValidationProblem;
+import merge_ats_client.model.ErrorValidationProblem;
+import merge_ats_client.model.WarningValidationProblem;
 
 /**
  * AttachmentResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-07T18:32:11.741718Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
 public class AttachmentResponse {
-  public static final String SERIALIZED_NAME_ERRORS = "errors";
-  @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<ValidationProblem> errors = new ArrayList<ValidationProblem>();
-
-  public static final String SERIALIZED_NAME_WARNINGS = "warnings";
-  @SerializedName(SERIALIZED_NAME_WARNINGS)
-  private List<ValidationProblem> warnings = new ArrayList<ValidationProblem>();
-
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
   private Attachment model;
 
+  public static final String SERIALIZED_NAME_WARNINGS = "warnings";
+  @SerializedName(SERIALIZED_NAME_WARNINGS)
+  private List<WarningValidationProblem> warnings = new ArrayList<WarningValidationProblem>();
 
-  public AttachmentResponse errors(List<ValidationProblem> errors) {
-    
-    this.errors = errors;
-    return this;
-  }
-
-  public AttachmentResponse addErrorsItem(ValidationProblem errorsItem) {
-    this.errors.add(errorsItem);
-    return this;
-  }
-
-   /**
-   * Get errors
-   * @return errors
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public List<ValidationProblem> getErrors() {
-    return errors;
-  }
-
-
-  public void setErrors(List<ValidationProblem> errors) {
-    this.errors = errors;
-  }
-
-
-  public AttachmentResponse warnings(List<ValidationProblem> warnings) {
-    
-    this.warnings = warnings;
-    return this;
-  }
-
-  public AttachmentResponse addWarningsItem(ValidationProblem warningsItem) {
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public List<ValidationProblem> getWarnings() {
-    return warnings;
-  }
-
-
-  public void setWarnings(List<ValidationProblem> warnings) {
-    this.warnings = warnings;
-  }
+  public static final String SERIALIZED_NAME_ERRORS = "errors";
+  @SerializedName(SERIALIZED_NAME_ERRORS)
+  private List<ErrorValidationProblem> errors = new ArrayList<ErrorValidationProblem>();
 
 
   public AttachmentResponse model(Attachment model) {
@@ -122,6 +69,60 @@ public class AttachmentResponse {
   }
 
 
+  public AttachmentResponse warnings(List<WarningValidationProblem> warnings) {
+    
+    this.warnings = warnings;
+    return this;
+  }
+
+  public AttachmentResponse addWarningsItem(WarningValidationProblem warningsItem) {
+    this.warnings.add(warningsItem);
+    return this;
+  }
+
+   /**
+   * Get warnings
+   * @return warnings
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public List<WarningValidationProblem> getWarnings() {
+    return warnings;
+  }
+
+
+  public void setWarnings(List<WarningValidationProblem> warnings) {
+    this.warnings = warnings;
+  }
+
+
+  public AttachmentResponse errors(List<ErrorValidationProblem> errors) {
+    
+    this.errors = errors;
+    return this;
+  }
+
+  public AttachmentResponse addErrorsItem(ErrorValidationProblem errorsItem) {
+    this.errors.add(errorsItem);
+    return this;
+  }
+
+   /**
+   * Get errors
+   * @return errors
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public List<ErrorValidationProblem> getErrors() {
+    return errors;
+  }
+
+
+  public void setErrors(List<ErrorValidationProblem> errors) {
+    this.errors = errors;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -131,23 +132,23 @@ public class AttachmentResponse {
       return false;
     }
     AttachmentResponse attachmentResponse = (AttachmentResponse) o;
-    return Objects.equals(this.errors, attachmentResponse.errors) &&
+    return Objects.equals(this.model, attachmentResponse.model) &&
         Objects.equals(this.warnings, attachmentResponse.warnings) &&
-        Objects.equals(this.model, attachmentResponse.model);
+        Objects.equals(this.errors, attachmentResponse.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors, warnings, model);
+    return Objects.hash(model, warnings, errors);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentResponse {\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }

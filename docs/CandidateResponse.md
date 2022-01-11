@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | [**List&lt;ValidationProblem&gt;**](ValidationProblem.md) |  | 
-**warnings** | [**List&lt;ValidationProblem&gt;**](ValidationProblem.md) |  | 
 **model** | [**Candidate**](Candidate.md) |  | 
+**warnings** | [**List&lt;WarningValidationProblem&gt;**](WarningValidationProblem.md) |  | 
+**errors** | [**List&lt;ErrorValidationProblem&gt;**](ErrorValidationProblem.md) |  | 
 
 
 
