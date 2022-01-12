@@ -1702,6 +1702,178 @@ paths:
       tags:
       - job-interview-stages
       x-accepts: application/json
+  /jobs:
+    get:
+      description: Returns a list of `Job` objects.
+      operationId: jobs_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: If provided, will only return jobs with this code.
+        explode: true
+        in: query
+        name: code
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: If provided, will only return objects created after this datetime.
+        explode: true
+        in: query
+        name: created_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects created before this datetime.
+        explode: true
+        in: query
+        name: created_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include data that was deleted in the third-party service.
+        explode: true
+        in: query
+        name: include_deleted_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: If provided, will only return objects modified after this datetime.
+        explode: true
+        in: query
+        name: modified_after
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: If provided, will only return objects modified before this datetime.
+        explode: true
+        in: query
+        name: modified_before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The API provider's ID for the given object.
+        explode: true
+        in: query
+        name: remote_id
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: 'If provided, will only return jobs with this status. Options:
+          (''OPEN'', ''CLOSED'', ''DRAFT'', ''ARCHIVED'', ''PENDING'')'
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - ARCHIVED
+          - CLOSED
+          - DRAFT
+          - OPEN
+          - PENDING
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobList'
+      security:
+      - tokenAuth: []
+      tags:
+      - jobs
+      x-accepts: application/json
+  /jobs/{id}:
+    get:
+      description: Returns a `Job` object with the given `id`.
+      operationId: jobs_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include the original data Merge fetched from the third-party
+          to produce these models.
+        explode: true
+        in: query
+        name: include_remote_data
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+      security:
+      - tokenAuth: []
+      tags:
+      - jobs
+      x-accepts: application/json
   /link-token:
     post:
       description: Creates a link token to be used when linking a new end user.
@@ -2895,35 +3067,42 @@ components:
   schemas:
     AccountDetails:
       example:
-        integration: integration
-        end_user_organization_name: end_user_organization_name
-        end_user_email_address: end_user_email_address
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        category: ""
-        end_user_origin_id: end_user_origin_id
-        status: status
+        integration: BambooHR
+        end_user_organization_name: Waystar Royco
+        end_user_email_address: kendall.roy@waystar-royco.com
+        id: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd
+        category: hris
+        end_user_origin_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        status: COMPLETE
       properties:
         id:
+          example: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd
           format: uuid
           readOnly: true
           type: string
         integration:
+          example: BambooHR
           readOnly: true
           type: string
         category:
           allOf:
           - $ref: '#/components/schemas/CategoryEnum'
+          example: hris
           nullable: true
         end_user_origin_id:
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
           readOnly: true
           type: string
         end_user_organization_name:
+          example: Waystar Royco
           readOnly: true
           type: string
         end_user_email_address:
+          example: kendall.roy@waystar-royco.com
           readOnly: true
           type: string
         status:
+          example: COMPLETE
           readOnly: true
           type: string
       type: object
@@ -4507,6 +4686,131 @@ components:
       required:
       - error_description
       type: object
+    Job:
+      description: |-
+        # The Job Object
+        ### Description
+        The `Job` object is used to represent a Job offering at a company.
+
+        ### Usage Example
+        Fetch from the `LIST Jobs` endpoint to show all job postings.
+      example:
+        code: C0025
+        remote_id: "8765432"
+        offices:
+        - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+        description: <b>If you're reading this documentation, you might be a good
+          fit for Merge!</b>
+        remote_updated_at: 2021-10-16T00:00:00Z
+        remote_data:
+        - path: /positions
+          data:
+          - Varies by platform
+        hiring_managers:
+        - 787ed912-33ec-444e-a215-8d71cc42fc12
+        name: Software Engineer (Merge is actually hiring btw)
+        id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+        departments:
+        - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+        - d6e687d6-0c36-48a1-8114-35324b5cb38f
+        remote_created_at: 2021-10-15T00:00:00Z
+        status: OPEN
+        confidential: true
+      properties:
+        id:
+          example: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          format: uuid
+          readOnly: true
+          type: string
+        remote_id:
+          description: The third-party API ID of the matching object.
+          example: "8765432"
+          nullable: true
+          type: string
+        name:
+          description: The job's name.
+          example: Software Engineer (Merge is actually hiring btw)
+          nullable: true
+          type: string
+        description:
+          description: The job's description.
+          example: <b>If you're reading this documentation, you might be a good fit
+            for Merge!</b>
+          nullable: true
+          type: string
+        code:
+          description: The job's code. Typically an additional identifier used to
+            reference the particular job that is displayed on the ATS.
+          example: C0025
+          nullable: true
+          type: string
+        status:
+          example: OPEN
+          type: string
+        remote_created_at:
+          description: When the third party's job was created.
+          example: 2021-10-15T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        remote_updated_at:
+          description: When the third party's job was updated.
+          example: 2021-10-16T00:00:00Z
+          format: date-time
+          nullable: true
+          type: string
+        confidential:
+          description: Whether the job is confidential.
+          example: true
+          nullable: true
+          type: boolean
+        departments:
+          description: IDs of `Department` objects for this `Job`.
+          example:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          items:
+            format: uuid
+            type: string
+          type: array
+        offices:
+          description: IDs of `Office` objects for this `Job`.
+          example:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          items:
+            format: uuid
+            type: string
+          type: array
+        hiring_managers:
+          description: IDs of `RemoteUser` objects that serve as hiring managers for
+            this `Job`.
+          example:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          items:
+            format: uuid
+            type: string
+          type: array
+        remote_data:
+          example:
+          - path: /positions
+            data:
+            - Varies by platform
+          items:
+            $ref: '#/components/schemas/RemoteData'
+          nullable: true
+          readOnly: true
+          type: array
+      required:
+      - status
+      type: object
+      x-merge-sample-json: '{"id": "022a2bef-57e5-4def-8ed2-7c41bd9a5ed8", "remote_id":
+        "8765432", "name": "Software Engineer (Merge is actually hiring btw)", "description":
+        "<b>If you''re reading this documentation, you might be a good fit for Merge!</b>",
+        "code": "C0025", "status": "OPEN", "remote_created_at": "2021-10-15T00:00:00Z",
+        "remote_updated_at": "2021-10-16T00:00:00Z", "confidential": true, "departments":
+        ["5b3c1341-a20f-4e51-b72c-f3830a16c97b", "d6e687d6-0c36-48a1-8114-35324b5cb38f"],
+        "offices": ["9871b4a9-f5d2-4f3b-a66b-dfedbed42c46"], "hiring_managers": ["787ed912-33ec-444e-a215-8d71cc42fc12"],
+        "remote_data": [{"path": "/positions", "data": {"example": "Varies by platform"}}]}'
     JobInterviewStage:
       description: |-
         # The JobInterviewStage Object
@@ -5233,6 +5537,67 @@ components:
         results:
           items:
             $ref: '#/components/schemas/JobInterviewStage'
+          type: array
+      type: object
+    PaginatedJobList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - code: C0025
+          remote_id: "8765432"
+          offices:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          description: <b>If you're reading this documentation, you might be a good
+            fit for Merge!</b>
+          remote_updated_at: 2021-10-16T00:00:00Z
+          remote_data:
+          - path: /positions
+            data:
+            - Varies by platform
+          hiring_managers:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          name: Software Engineer (Merge is actually hiring btw)
+          id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          departments:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          remote_created_at: 2021-10-15T00:00:00Z
+          status: OPEN
+          confidential: true
+        - code: C0025
+          remote_id: "8765432"
+          offices:
+          - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          description: <b>If you're reading this documentation, you might be a good
+            fit for Merge!</b>
+          remote_updated_at: 2021-10-16T00:00:00Z
+          remote_data:
+          - path: /positions
+            data:
+            - Varies by platform
+          hiring_managers:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          name: Software Engineer (Merge is actually hiring btw)
+          id: 022a2bef-57e5-4def-8ed2-7c41bd9a5ed8
+          departments:
+          - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          remote_created_at: 2021-10-15T00:00:00Z
+          status: OPEN
+          confidential: true
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/Job'
           type: array
       type: object
     PaginatedOfferList:

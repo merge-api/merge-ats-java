@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2022-01-11T15:52:25.875887Z[Etc/UTC]
+  - Build date: 2022-01-12T18:46:24.846598Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.merge.ats</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.2.4</version>
+  <version>1.2.5</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.merge.ats:merge-ats-client:1.2.4"
+compile "dev.merge.ats:merge-ats-client:1.2.5"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.2.4.jar`
+* `target/merge-ats-client-1.2.5.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -141,6 +141,8 @@ Class | Method | HTTP request | Description
 *IssuesApi* | [**issuesRetrieve**](docs/IssuesApi.md#issuesRetrieve) | **GET** /issues/{id} | 
 *JobInterviewStagesApi* | [**jobInterviewStagesList**](docs/JobInterviewStagesApi.md#jobInterviewStagesList) | **GET** /job-interview-stages | 
 *JobInterviewStagesApi* | [**jobInterviewStagesRetrieve**](docs/JobInterviewStagesApi.md#jobInterviewStagesRetrieve) | **GET** /job-interview-stages/{id} | 
+*JobsApi* | [**jobsList**](docs/JobsApi.md#jobsList) | **GET** /jobs | 
+*JobsApi* | [**jobsRetrieve**](docs/JobsApi.md#jobsRetrieve) | **GET** /jobs/{id} | 
 *LinkTokenApi* | [**linkTokenCreate**](docs/LinkTokenApi.md#linkTokenCreate) | **POST** /link-token | 
 *LinkedAccountsApi* | [**linkedAccountsList**](docs/LinkedAccountsApi.md#linkedAccountsList) | **GET** /linked-accounts | 
 *OffersApi* | [**offersList**](docs/OffersApi.md#offersList) | **GET** /offers | 
@@ -191,6 +193,7 @@ Class | Method | HTTP request | Description
  - [ErrorValidationProblem](docs/ErrorValidationProblem.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
  - [Issue](docs/Issue.md)
+ - [Job](docs/Job.md)
  - [JobInterviewStage](docs/JobInterviewStage.md)
  - [LinkToken](docs/LinkToken.md)
  - [ModelOperation](docs/ModelOperation.md)
@@ -205,6 +208,7 @@ Class | Method | HTTP request | Description
  - [PaginatedEEOCList](docs/PaginatedEEOCList.md)
  - [PaginatedIssueList](docs/PaginatedIssueList.md)
  - [PaginatedJobInterviewStageList](docs/PaginatedJobInterviewStageList.md)
+ - [PaginatedJobList](docs/PaginatedJobList.md)
  - [PaginatedOfferList](docs/PaginatedOfferList.md)
  - [PaginatedOfficeList](docs/PaginatedOfficeList.md)
  - [PaginatedRejectReasonList](docs/PaginatedRejectReasonList.md)
