@@ -29,7 +29,7 @@ import merge_ats_client.model.CategoryEnum;
 /**
  * AccountDetails
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
 public class AccountDetails {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -65,7 +65,7 @@ public class AccountDetails {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "0496d4c2-42e6-4072-80b3-7b69bfdc76fd", value = "")
 
   public UUID getId() {
     return id;
@@ -79,7 +79,7 @@ public class AccountDetails {
    * @return integration
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "BambooHR", value = "")
 
   public String getIntegration() {
     return integration;
@@ -99,7 +99,7 @@ public class AccountDetails {
    * @return category
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "hris", value = "")
 
   public CategoryEnum getCategory() {
     return category;
@@ -116,7 +116,7 @@ public class AccountDetails {
    * @return endUserOriginId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "3fa85f64-5717-4562-b3fc-2c963f66afa6", value = "")
 
   public String getEndUserOriginId() {
     return endUserOriginId;
@@ -130,7 +130,7 @@ public class AccountDetails {
    * @return endUserOrganizationName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "Waystar Royco", value = "")
 
   public String getEndUserOrganizationName() {
     return endUserOrganizationName;
@@ -144,7 +144,7 @@ public class AccountDetails {
    * @return endUserEmailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "kendall.roy@waystar-royco.com", value = "")
 
   public String getEndUserEmailAddress() {
     return endUserEmailAddress;
@@ -158,7 +158,7 @@ public class AccountDetails {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "COMPLETE", value = "")
 
   public String getStatus() {
     return status;

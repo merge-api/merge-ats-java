@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ValidationProblemSource
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
 public class ValidationProblemSource {
   public static final String SERIALIZED_NAME_POINTER = "pointer";
   @SerializedName(SERIALIZED_NAME_POINTER)

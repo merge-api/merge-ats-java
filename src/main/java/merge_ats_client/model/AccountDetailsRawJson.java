@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * AccountDetailsRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T15:52:25.875887Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
 public class AccountDetailsRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -76,7 +76,7 @@ public class AccountDetailsRawJson {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "0496d4c2-42e6-4072-80b3-7b69bfdc76fd", value = "")
 
   public JsonElement getId() {
     return id;
@@ -87,7 +87,7 @@ public class AccountDetailsRawJson {
    * @return integration
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "BambooHR", value = "")
 
   public JsonElement getIntegration() {
     return integration;
@@ -103,7 +103,7 @@ public class AccountDetailsRawJson {
    * @return category
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "hris", value = "")
 
   public JsonElement getCategory() {
     return category;
@@ -117,7 +117,7 @@ public class AccountDetailsRawJson {
    * @return endUserOriginId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "3fa85f64-5717-4562-b3fc-2c963f66afa6", value = "")
 
   public JsonElement getEndUserOriginId() {
     return endUserOriginId;
@@ -128,7 +128,7 @@ public class AccountDetailsRawJson {
    * @return endUserOrganizationName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "Waystar Royco", value = "")
 
   public JsonElement getEndUserOrganizationName() {
     return endUserOrganizationName;
@@ -139,7 +139,7 @@ public class AccountDetailsRawJson {
    * @return endUserEmailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "kendall.roy@waystar-royco.com", value = "")
 
   public JsonElement getEndUserEmailAddress() {
     return endUserEmailAddress;
@@ -150,7 +150,7 @@ public class AccountDetailsRawJson {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "COMPLETE", value = "")
 
   public JsonElement getStatus() {
     return status;
