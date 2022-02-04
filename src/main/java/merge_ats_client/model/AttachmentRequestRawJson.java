@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
+ * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate. ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
-@ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate. ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class AttachmentRequestRawJson {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -56,6 +56,14 @@ public class AttachmentRequestRawJson {
   public static final String SERIALIZED_NAME_ATTACHMENT_TYPE = "attachment_type";
   @SerializedName(SERIALIZED_NAME_ATTACHMENT_TYPE)
   private JsonElement attachmentType;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private JsonElement integrationParams;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private JsonElement linkedAccountParams;
 
   private transient JSON serializer;
 
@@ -140,23 +148,61 @@ public class AttachmentRequestRawJson {
     this.candidate = candidate;
   }
 
-  public AttachmentRequestRawJson attachmentType(String attachmentType) {
+  public AttachmentRequestRawJson attachmentType(AttachmentTypeEnum attachmentType) {
     this.attachmentType = this.serializer.getGson().toJsonTree(attachmentType);
     return this;
   }
 
    /**
-   * Get attachmentType
+   * The attachment&#39;s type.
    * @return attachmentType
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "RESUME", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "RESUME", value = "The attachment's type.")
 
   public JsonElement getAttachmentType() {
     return attachmentType;
   }
   public void setAttachmentType(JsonElement attachmentType) {
     this.attachmentType = attachmentType;
+  }
+
+  public AttachmentRequestRawJson integrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = this.serializer.getGson().toJsonTree(integrationParams);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public JsonElement getIntegrationParams() {
+    return integrationParams;
+  }
+  public void setIntegrationParams(JsonElement integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+  public AttachmentRequestRawJson linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = this.serializer.getGson().toJsonTree(linkedAccountParams);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public JsonElement getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+  public void setLinkedAccountParams(JsonElement linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
   }
   @Override
   public boolean equals(Object o) {
@@ -171,11 +217,13 @@ public class AttachmentRequestRawJson {
         Objects.equals(this.fileName.getAsString(), attachmentRequest.fileName.getAsString()) &&
         Objects.equals(this.fileUrl.getAsString(), attachmentRequest.fileUrl.getAsString()) &&
         Objects.equals(this.candidate.getAsString(), attachmentRequest.candidate.getAsString()) &&
-        Objects.equals(this.attachmentType.getAsString(), attachmentRequest.attachmentType.getAsString());
+        Objects.equals(this.attachmentType.getAsString(), attachmentRequest.attachmentType.getAsString()) &&
+        Objects.equals(this.integrationParams.getAsString(), attachmentRequest.integrationParams.getAsString()) &&
+        Objects.equals(this.linkedAccountParams.getAsString(), attachmentRequest.linkedAccountParams.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, fileName, fileUrl, candidate, attachmentType);
+    return Objects.hash(remoteId, fileName, fileUrl, candidate, attachmentType, integrationParams, linkedAccountParams);
   }
   @Override
   public String toString() {
@@ -186,6 +234,8 @@ public class AttachmentRequestRawJson {
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl.getAsString())).append("\n");
     sb.append("    candidate: ").append(toIndentedString(candidate.getAsString())).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType.getAsString())).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams.getAsString())).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

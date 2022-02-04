@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
+ * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address. ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
-@ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address. ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class EmailAddressRequestRawJson {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -71,17 +71,17 @@ public class EmailAddressRequestRawJson {
     this.value = value;
   }
 
-  public EmailAddressRequestRawJson emailAddressType(String emailAddressType) {
+  public EmailAddressRequestRawJson emailAddressType(EmailAddressTypeEnum emailAddressType) {
     this.emailAddressType = this.serializer.getGson().toJsonTree(emailAddressType);
     return this;
   }
 
    /**
-   * Get emailAddressType
+   * The type of email address.
    * @return emailAddressType
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "PERSONAL", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "PERSONAL", value = "The type of email address.")
 
   public JsonElement getEmailAddressType() {
     return emailAddressType;

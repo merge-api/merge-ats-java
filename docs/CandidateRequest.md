@@ -2,7 +2,7 @@
 
 # CandidateRequest
 
-# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.
+# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions. ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.
 
 ## Properties
 
@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 **isPrivate** | **Boolean** | Whether or not the candidate is private. |  [optional]
 **canEmail** | **Boolean** | Whether or not the candidate can be emailed. |  [optional]
 **locations** | **List&lt;String&gt;** | The candidate&#39;s locations. |  [optional]
-**phoneNumbers** | [**List&lt;PhoneNumberRequest&gt;**](PhoneNumberRequest.md) |  |  [optional]
-**emailAddresses** | [**List&lt;EmailAddressRequest&gt;**](EmailAddressRequest.md) |  |  [optional]
-**urls** | [**List&lt;UrlRequest&gt;**](UrlRequest.md) |  |  [optional]
 **tags** | **List&lt;String&gt;** | Array of &#x60;Tag&#x60; names as strings. |  [optional]
 **applications** | **List&lt;UUID&gt;** | Array of &#x60;Application&#x60; object IDs. |  [optional]
 **attachments** | **List&lt;UUID&gt;** | Array of &#x60;Attachment&#x60; object IDs. |  [optional]
 **customFields** | **Map&lt;String, Object&gt;** | Custom fields configured for a given model. |  [optional]
+**remoteTemplateId** | **String** |  |  [optional]
+**integrationParams** | **Map&lt;String, Object&gt;** |  |  [optional]
+**linkedAccountParams** | **Map&lt;String, Object&gt;** |  |  [optional]
 
 
 

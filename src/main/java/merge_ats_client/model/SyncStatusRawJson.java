@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The SyncStatus Object ### Description The &#x60;SyncStatus&#x60; object is used to represent the syncing state of an account  ### Usage Example View the &#x60;SyncStatus&#x60; for an account to see how recently its models were synced.
  */
 @ApiModel(description = "# The SyncStatus Object ### Description The `SyncStatus` object is used to represent the syncing state of an account  ### Usage Example View the `SyncStatus` for an account to see how recently its models were synced.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class SyncStatusRawJson {
   public static final String SERIALIZED_NAME_MODEL_NAME = "model_name";
   @SerializedName(SERIALIZED_NAME_MODEL_NAME)
@@ -144,7 +144,7 @@ public class SyncStatusRawJson {
     this.nextSyncStart = nextSyncStart;
   }
 
-  public SyncStatusRawJson status(String status) {
+  public SyncStatusRawJson status(SyncStatusStatusEnum status) {
     this.status = this.serializer.getGson().toJsonTree(status);
     return this;
   }

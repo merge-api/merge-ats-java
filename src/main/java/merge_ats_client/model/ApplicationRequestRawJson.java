@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
+ * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position. ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
-@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position. ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class ApplicationRequestRawJson {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -77,6 +77,18 @@ public class ApplicationRequestRawJson {
   @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
   private JsonElement customFields;
 
+  public static final String SERIALIZED_NAME_REMOTE_TEMPLATE_ID = "remote_template_id";
+  @SerializedName(SERIALIZED_NAME_REMOTE_TEMPLATE_ID)
+  private JsonElement remoteTemplateId;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private JsonElement integrationParams;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private JsonElement linkedAccountParams;
+
   private transient JSON serializer;
 
   public ApplicationRequestRawJson(JSON srlzer) { 
@@ -109,11 +121,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * The candidate applying.
+   * Get candidate
    * @return candidate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The candidate applying.")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
 
   public JsonElement getCandidate() {
     return candidate;
@@ -128,11 +140,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * The job being applied for.
+   * Get job
    * @return job
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The job being applied for.")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
 
   public JsonElement getJob() {
     return job;
@@ -223,11 +235,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * The application&#39;s current stage.
+   * Get currentStage
    * @return currentStage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "The application's current stage.")
+  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "")
 
   public JsonElement getCurrentStage() {
     return currentStage;
@@ -242,11 +254,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * The application&#39;s reason for rejection.
+   * Get rejectReason
    * @return rejectReason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "The application's reason for rejection.")
+  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "")
 
   public JsonElement getRejectReason() {
     return rejectReason;
@@ -273,6 +285,63 @@ public class ApplicationRequestRawJson {
   public void setCustomFields(JsonElement customFields) {
     this.customFields = customFields;
   }
+
+  public ApplicationRequestRawJson remoteTemplateId(String remoteTemplateId) {
+    this.remoteTemplateId = this.serializer.getGson().toJsonTree(remoteTemplateId);
+    return this;
+  }
+
+   /**
+   * Get remoteTemplateId
+   * @return remoteTemplateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "92830948203", value = "")
+
+  public JsonElement getRemoteTemplateId() {
+    return remoteTemplateId;
+  }
+  public void setRemoteTemplateId(JsonElement remoteTemplateId) {
+    this.remoteTemplateId = remoteTemplateId;
+  }
+
+  public ApplicationRequestRawJson integrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = this.serializer.getGson().toJsonTree(integrationParams);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public JsonElement getIntegrationParams() {
+    return integrationParams;
+  }
+  public void setIntegrationParams(JsonElement integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+  public ApplicationRequestRawJson linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = this.serializer.getGson().toJsonTree(linkedAccountParams);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public JsonElement getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+  public void setLinkedAccountParams(JsonElement linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -291,11 +360,14 @@ public class ApplicationRequestRawJson {
         Objects.equals(this.creditedTo.getAsString(), applicationRequest.creditedTo.getAsString()) &&
         Objects.equals(this.currentStage.getAsString(), applicationRequest.currentStage.getAsString()) &&
         Objects.equals(this.rejectReason.getAsString(), applicationRequest.rejectReason.getAsString()) &&
-        Objects.equals(this.customFields.getAsString(), applicationRequest.customFields.getAsString());
+        Objects.equals(this.customFields.getAsString(), applicationRequest.customFields.getAsString()) &&
+        Objects.equals(this.remoteTemplateId.getAsString(), applicationRequest.remoteTemplateId.getAsString()) &&
+        Objects.equals(this.integrationParams.getAsString(), applicationRequest.integrationParams.getAsString()) &&
+        Objects.equals(this.linkedAccountParams.getAsString(), applicationRequest.linkedAccountParams.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, customFields);
+    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, customFields, remoteTemplateId, integrationParams, linkedAccountParams);
   }
   @Override
   public String toString() {
@@ -311,6 +383,9 @@ public class ApplicationRequestRawJson {
     sb.append("    currentStage: ").append(toIndentedString(currentStage.getAsString())).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason.getAsString())).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields.getAsString())).append("\n");
+    sb.append("    remoteTemplateId: ").append(toIndentedString(remoteTemplateId.getAsString())).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams.getAsString())).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

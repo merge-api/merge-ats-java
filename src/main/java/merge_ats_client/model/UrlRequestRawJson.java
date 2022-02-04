@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent a candidate&#39;s website.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.
+ * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent a candidate&#39;s website. ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.
  */
-@ApiModel(description = "# The Url Object ### Description The `Url` object is used to represent a candidate's website.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their website urls.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Url Object ### Description The `Url` object is used to represent a candidate's website. ### Usage Example Fetch from the `GET Candidate` endpoint and view their website urls.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class UrlRequestRawJson {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -71,17 +71,17 @@ public class UrlRequestRawJson {
     this.value = value;
   }
 
-  public UrlRequestRawJson urlType(String urlType) {
+  public UrlRequestRawJson urlType(UrlTypeEnum urlType) {
     this.urlType = this.serializer.getGson().toJsonTree(urlType);
     return this;
   }
 
    /**
-   * Get urlType
+   * The type of site.
    * @return urlType
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "PERSONAL", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "PERSONAL", value = "The type of site.")
 
   public JsonElement getUrlType() {
     return urlType;

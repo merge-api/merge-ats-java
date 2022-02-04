@@ -26,14 +26,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import merge_ats_client.model.OfferStatusEnum;
 import merge_ats_client.model.RemoteData;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application.  ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
+ * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application. ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
  */
-@ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application.  ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application. ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class Offer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -69,7 +70,7 @@ public class Offer {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  private OfferStatusEnum status;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -120,11 +121,11 @@ public class Offer {
   }
 
    /**
-   * The application who is receiving the offer.
+   * Get application
    * @return application
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The application who is receiving the offer.")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
 
   public UUID getApplication() {
     return application;
@@ -143,11 +144,11 @@ public class Offer {
   }
 
    /**
-   * The user who created the offer.
+   * Get creator
    * @return creator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The user who created the offer.")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
 
   public UUID getCreator() {
     return creator;
@@ -251,24 +252,25 @@ public class Offer {
   }
 
 
-  public Offer status(String status) {
+  public Offer status(OfferStatusEnum status) {
     
     this.status = status;
     return this;
   }
 
    /**
-   * Get status
+   * The offer&#39;s status.
    * @return status
   **/
-  @ApiModelProperty(example = "SENT", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "SENT", value = "The offer's status.")
 
-  public String getStatus() {
+  public OfferStatusEnum getStatus() {
     return status;
   }
 
 
-  public void setStatus(String status) {
+  public void setStatus(OfferStatusEnum status) {
     this.status = status;
   }
 

@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The RemoteUser Object ### Description The &#x60;RemoteUser&#x60; object is used to represent a third party user.  ### Usage Example Fetch from the &#x60;LIST RemoteUsers&#x60; endpoint to show all users for a third party.
+ * # The RemoteUser Object ### Description The &#x60;RemoteUser&#x60; object is used to represent a third party user. ### Usage Example Fetch from the &#x60;LIST RemoteUsers&#x60; endpoint to show all users for a third party.
  */
-@ApiModel(description = "# The RemoteUser Object ### Description The `RemoteUser` object is used to represent a third party user.  ### Usage Example Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The RemoteUser Object ### Description The `RemoteUser` object is used to represent a third party user. ### Usage Example Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class RemoteUserRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -205,17 +205,17 @@ public class RemoteUserRawJson {
     this.remoteCreatedAt = remoteCreatedAt;
   }
 
-  public RemoteUserRawJson accessRole(String accessRole) {
+  public RemoteUserRawJson accessRole(AccessRoleEnum accessRole) {
     this.accessRole = this.serializer.getGson().toJsonTree(accessRole);
     return this;
   }
 
    /**
-   * Get accessRole
+   * The user&#39;s role.
    * @return accessRole
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "SUPER_ADMIN", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "SUPER_ADMIN", value = "The user's role.")
 
   public JsonElement getAccessRole() {
     return accessRole;

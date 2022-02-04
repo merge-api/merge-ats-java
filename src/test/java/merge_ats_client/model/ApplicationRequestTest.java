@@ -125,4 +125,28 @@ public class ApplicationRequestTest {
         // TODO: test customFields
     }
 
+    /**
+     * Test the property 'remoteTemplateId'
+     */
+    @Test
+    public void remoteTemplateIdTest() {
+        // TODO: test remoteTemplateId
+    }
+
+    /**
+     * Test the property 'integrationParams'
+     */
+    @Test
+    public void integrationParamsTest() {
+        // TODO: test integrationParams
+    }
+
+    /**
+     * Test the property 'linkedAccountParams'
+     */
+    @Test
+    public void linkedAccountParamsTest() {
+        // TODO: test linkedAccountParams
+    }
+
 }

@@ -30,10 +30,10 @@ import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
+ * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position. ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
-@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position. ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class ApplicationRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -75,6 +75,18 @@ public class ApplicationRequest {
   @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
   private Map<String, Object> customFields = null;
 
+  public static final String SERIALIZED_NAME_REMOTE_TEMPLATE_ID = "remote_template_id";
+  @SerializedName(SERIALIZED_NAME_REMOTE_TEMPLATE_ID)
+  private String remoteTemplateId;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private Map<String, Object> integrationParams = null;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private Map<String, Object> linkedAccountParams = null;
+
 
   public ApplicationRequest remoteId(String remoteId) {
     
@@ -106,11 +118,11 @@ public class ApplicationRequest {
   }
 
    /**
-   * The candidate applying.
+   * Get candidate
    * @return candidate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The candidate applying.")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
 
   public UUID getCandidate() {
     return candidate;
@@ -129,11 +141,11 @@ public class ApplicationRequest {
   }
 
    /**
-   * The job being applied for.
+   * Get job
    * @return job
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The job being applied for.")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
 
   public UUID getJob() {
     return job;
@@ -244,11 +256,11 @@ public class ApplicationRequest {
   }
 
    /**
-   * The application&#39;s current stage.
+   * Get currentStage
    * @return currentStage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "The application's current stage.")
+  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "")
 
   public UUID getCurrentStage() {
     return currentStage;
@@ -267,11 +279,11 @@ public class ApplicationRequest {
   }
 
    /**
-   * The application&#39;s reason for rejection.
+   * Get rejectReason
    * @return rejectReason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "The application's reason for rejection.")
+  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "")
 
   public UUID getRejectReason() {
     return rejectReason;
@@ -314,6 +326,91 @@ public class ApplicationRequest {
   }
 
 
+  public ApplicationRequest remoteTemplateId(String remoteTemplateId) {
+    
+    this.remoteTemplateId = remoteTemplateId;
+    return this;
+  }
+
+   /**
+   * Get remoteTemplateId
+   * @return remoteTemplateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "92830948203", value = "")
+
+  public String getRemoteTemplateId() {
+    return remoteTemplateId;
+  }
+
+
+  public void setRemoteTemplateId(String remoteTemplateId) {
+    this.remoteTemplateId = remoteTemplateId;
+  }
+
+
+  public ApplicationRequest integrationParams(Map<String, Object> integrationParams) {
+    
+    this.integrationParams = integrationParams;
+    return this;
+  }
+
+  public ApplicationRequest putIntegrationParamsItem(String key, Object integrationParamsItem) {
+    if (this.integrationParams == null) {
+      this.integrationParams = new HashMap<String, Object>();
+    }
+    this.integrationParams.put(key, integrationParamsItem);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public Map<String, Object> getIntegrationParams() {
+    return integrationParams;
+  }
+
+
+  public void setIntegrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+
+  public ApplicationRequest linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    
+    this.linkedAccountParams = linkedAccountParams;
+    return this;
+  }
+
+  public ApplicationRequest putLinkedAccountParamsItem(String key, Object linkedAccountParamsItem) {
+    if (this.linkedAccountParams == null) {
+      this.linkedAccountParams = new HashMap<String, Object>();
+    }
+    this.linkedAccountParams.put(key, linkedAccountParamsItem);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public Map<String, Object> getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+
+
+  public void setLinkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -332,12 +429,15 @@ public class ApplicationRequest {
         Objects.equals(this.creditedTo, applicationRequest.creditedTo) &&
         Objects.equals(this.currentStage, applicationRequest.currentStage) &&
         Objects.equals(this.rejectReason, applicationRequest.rejectReason) &&
-        Objects.equals(this.customFields, applicationRequest.customFields);
+        Objects.equals(this.customFields, applicationRequest.customFields) &&
+        Objects.equals(this.remoteTemplateId, applicationRequest.remoteTemplateId) &&
+        Objects.equals(this.integrationParams, applicationRequest.integrationParams) &&
+        Objects.equals(this.linkedAccountParams, applicationRequest.linkedAccountParams);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, customFields);
+    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, customFields, remoteTemplateId, integrationParams, linkedAccountParams);
   }
 
   @Override
@@ -354,6 +454,9 @@ public class ApplicationRequest {
     sb.append("    currentStage: ").append(toIndentedString(currentStage)).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
+    sb.append("    remoteTemplateId: ").append(toIndentedString(remoteTemplateId)).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams)).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * IssueRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class IssueRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -82,6 +82,11 @@ public class IssueRawJson {
     return id;
   }
 
+  public IssueRawJson status(IssueStatusEnum status) {
+    this.status = this.serializer.getGson().toJsonTree(status);
+    return this;
+  }
+
    /**
    * Get status
    * @return status
@@ -91,6 +96,9 @@ public class IssueRawJson {
 
   public JsonElement getStatus() {
     return status;
+  }
+  public void setStatus(JsonElement status) {
+    this.status = status;
   }
 
   public IssueRawJson errorDescription(String errorDescription) {

@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company.  ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
+ * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company. ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
-@ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company.  ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company. ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class JobRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -183,17 +183,17 @@ public class JobRawJson {
     this.code = code;
   }
 
-  public JobRawJson status(String status) {
+  public JobRawJson status(JobStatusEnum status) {
     this.status = this.serializer.getGson().toJsonTree(status);
     return this;
   }
 
    /**
-   * Get status
+   * The job&#39;s status.
    * @return status
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "OPEN", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "OPEN", value = "The job's status.")
 
   public JsonElement getStatus() {
     return status;

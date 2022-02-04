@@ -28,16 +28,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import merge_ats_client.model.EmailAddressRequest;
-import merge_ats_client.model.PhoneNumberRequest;
-import merge_ats_client.model.UrlRequest;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
+ * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions. ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
-@ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions. ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class CandidateRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -83,18 +80,6 @@ public class CandidateRequest {
   @SerializedName(SERIALIZED_NAME_LOCATIONS)
   private List<String> locations = null;
 
-  public static final String SERIALIZED_NAME_PHONE_NUMBERS = "phone_numbers";
-  @SerializedName(SERIALIZED_NAME_PHONE_NUMBERS)
-  private List<PhoneNumberRequest> phoneNumbers = null;
-
-  public static final String SERIALIZED_NAME_EMAIL_ADDRESSES = "email_addresses";
-  @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESSES)
-  private List<EmailAddressRequest> emailAddresses = null;
-
-  public static final String SERIALIZED_NAME_URLS = "urls";
-  @SerializedName(SERIALIZED_NAME_URLS)
-  private List<UrlRequest> urls = null;
-
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private List<String> tags = null;
@@ -110,6 +95,18 @@ public class CandidateRequest {
   public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
   @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
   private Map<String, Object> customFields = null;
+
+  public static final String SERIALIZED_NAME_REMOTE_TEMPLATE_ID = "remote_template_id";
+  @SerializedName(SERIALIZED_NAME_REMOTE_TEMPLATE_ID)
+  private String remoteTemplateId;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private Map<String, Object> integrationParams = null;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private Map<String, Object> linkedAccountParams = null;
 
 
   public CandidateRequest remoteId(String remoteId) {
@@ -373,99 +370,6 @@ public class CandidateRequest {
   }
 
 
-  public CandidateRequest phoneNumbers(List<PhoneNumberRequest> phoneNumbers) {
-    
-    this.phoneNumbers = phoneNumbers;
-    return this;
-  }
-
-  public CandidateRequest addPhoneNumbersItem(PhoneNumberRequest phoneNumbersItem) {
-    if (this.phoneNumbers == null) {
-      this.phoneNumbers = new ArrayList<PhoneNumberRequest>();
-    }
-    this.phoneNumbers.add(phoneNumbersItem);
-    return this;
-  }
-
-   /**
-   * Get phoneNumbers
-   * @return phoneNumbers
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[{\"value\":\"+1234567890\",\"phone_number_type\":\"MOBILE\"}]", value = "")
-
-  public List<PhoneNumberRequest> getPhoneNumbers() {
-    return phoneNumbers;
-  }
-
-
-  public void setPhoneNumbers(List<PhoneNumberRequest> phoneNumbers) {
-    this.phoneNumbers = phoneNumbers;
-  }
-
-
-  public CandidateRequest emailAddresses(List<EmailAddressRequest> emailAddresses) {
-    
-    this.emailAddresses = emailAddresses;
-    return this;
-  }
-
-  public CandidateRequest addEmailAddressesItem(EmailAddressRequest emailAddressesItem) {
-    if (this.emailAddresses == null) {
-      this.emailAddresses = new ArrayList<EmailAddressRequest>();
-    }
-    this.emailAddresses.add(emailAddressesItem);
-    return this;
-  }
-
-   /**
-   * Get emailAddresses
-   * @return emailAddresses
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[{\"value\":\"hello@merge.dev\",\"email_address_type\":\"PERSONAL\"}]", value = "")
-
-  public List<EmailAddressRequest> getEmailAddresses() {
-    return emailAddresses;
-  }
-
-
-  public void setEmailAddresses(List<EmailAddressRequest> emailAddresses) {
-    this.emailAddresses = emailAddresses;
-  }
-
-
-  public CandidateRequest urls(List<UrlRequest> urls) {
-    
-    this.urls = urls;
-    return this;
-  }
-
-  public CandidateRequest addUrlsItem(UrlRequest urlsItem) {
-    if (this.urls == null) {
-      this.urls = new ArrayList<UrlRequest>();
-    }
-    this.urls.add(urlsItem);
-    return this;
-  }
-
-   /**
-   * Get urls
-   * @return urls
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[{\"value\":\"http://alturl.com/p749b\",\"url_type\":\"BLOG\"}]", value = "")
-
-  public List<UrlRequest> getUrls() {
-    return urls;
-  }
-
-
-  public void setUrls(List<UrlRequest> urls) {
-    this.urls = urls;
-  }
-
-
   public CandidateRequest tags(List<String> tags) {
     
     this.tags = tags;
@@ -590,6 +494,91 @@ public class CandidateRequest {
   }
 
 
+  public CandidateRequest remoteTemplateId(String remoteTemplateId) {
+    
+    this.remoteTemplateId = remoteTemplateId;
+    return this;
+  }
+
+   /**
+   * Get remoteTemplateId
+   * @return remoteTemplateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "92830948203", value = "")
+
+  public String getRemoteTemplateId() {
+    return remoteTemplateId;
+  }
+
+
+  public void setRemoteTemplateId(String remoteTemplateId) {
+    this.remoteTemplateId = remoteTemplateId;
+  }
+
+
+  public CandidateRequest integrationParams(Map<String, Object> integrationParams) {
+    
+    this.integrationParams = integrationParams;
+    return this;
+  }
+
+  public CandidateRequest putIntegrationParamsItem(String key, Object integrationParamsItem) {
+    if (this.integrationParams == null) {
+      this.integrationParams = new HashMap<String, Object>();
+    }
+    this.integrationParams.put(key, integrationParamsItem);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public Map<String, Object> getIntegrationParams() {
+    return integrationParams;
+  }
+
+
+  public void setIntegrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+
+  public CandidateRequest linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    
+    this.linkedAccountParams = linkedAccountParams;
+    return this;
+  }
+
+  public CandidateRequest putLinkedAccountParamsItem(String key, Object linkedAccountParamsItem) {
+    if (this.linkedAccountParams == null) {
+      this.linkedAccountParams = new HashMap<String, Object>();
+    }
+    this.linkedAccountParams.put(key, linkedAccountParamsItem);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public Map<String, Object> getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+
+
+  public void setLinkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -610,18 +599,18 @@ public class CandidateRequest {
         Objects.equals(this.isPrivate, candidateRequest.isPrivate) &&
         Objects.equals(this.canEmail, candidateRequest.canEmail) &&
         Objects.equals(this.locations, candidateRequest.locations) &&
-        Objects.equals(this.phoneNumbers, candidateRequest.phoneNumbers) &&
-        Objects.equals(this.emailAddresses, candidateRequest.emailAddresses) &&
-        Objects.equals(this.urls, candidateRequest.urls) &&
         Objects.equals(this.tags, candidateRequest.tags) &&
         Objects.equals(this.applications, candidateRequest.applications) &&
         Objects.equals(this.attachments, candidateRequest.attachments) &&
-        Objects.equals(this.customFields, candidateRequest.customFields);
+        Objects.equals(this.customFields, candidateRequest.customFields) &&
+        Objects.equals(this.remoteTemplateId, candidateRequest.remoteTemplateId) &&
+        Objects.equals(this.integrationParams, candidateRequest.integrationParams) &&
+        Objects.equals(this.linkedAccountParams, candidateRequest.linkedAccountParams);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, customFields);
+    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, tags, applications, attachments, customFields, remoteTemplateId, integrationParams, linkedAccountParams);
   }
 
   @Override
@@ -639,13 +628,13 @@ public class CandidateRequest {
     sb.append("    isPrivate: ").append(toIndentedString(isPrivate)).append("\n");
     sb.append("    canEmail: ").append(toIndentedString(canEmail)).append("\n");
     sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
-    sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
-    sb.append("    emailAddresses: ").append(toIndentedString(emailAddresses)).append("\n");
-    sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    applications: ").append(toIndentedString(applications)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
+    sb.append("    remoteTemplateId: ").append(toIndentedString(remoteTemplateId)).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams)).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams)).append("\n");
     sb.append("}");
     return sb.toString();
   }

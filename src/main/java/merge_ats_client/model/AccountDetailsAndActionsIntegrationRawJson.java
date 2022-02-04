@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * AccountDetailsAndActionsIntegrationRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class AccountDetailsAndActionsIntegrationRawJson {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -94,7 +94,7 @@ public class AccountDetailsAndActionsIntegrationRawJson {
     this.name = name;
   }
 
-  public AccountDetailsAndActionsIntegrationRawJson categories(List<String> categories) {
+  public AccountDetailsAndActionsIntegrationRawJson categories(List<CategoriesEnum> categories) {
     this.categories = this.serializer.getGson().toJsonTree(categories);
     return this;
   }

@@ -35,10 +35,10 @@ import merge_ats_client.model.Url;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
+ * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions. ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
-@ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions. ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class Candidate {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -396,20 +396,6 @@ public class Candidate {
   }
 
 
-  public Candidate phoneNumbers(List<PhoneNumber> phoneNumbers) {
-    
-    this.phoneNumbers = phoneNumbers;
-    return this;
-  }
-
-  public Candidate addPhoneNumbersItem(PhoneNumber phoneNumbersItem) {
-    if (this.phoneNumbers == null) {
-      this.phoneNumbers = new ArrayList<PhoneNumber>();
-    }
-    this.phoneNumbers.add(phoneNumbersItem);
-    return this;
-  }
-
    /**
    * Get phoneNumbers
    * @return phoneNumbers
@@ -422,24 +408,7 @@ public class Candidate {
   }
 
 
-  public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-    this.phoneNumbers = phoneNumbers;
-  }
 
-
-  public Candidate emailAddresses(List<EmailAddress> emailAddresses) {
-    
-    this.emailAddresses = emailAddresses;
-    return this;
-  }
-
-  public Candidate addEmailAddressesItem(EmailAddress emailAddressesItem) {
-    if (this.emailAddresses == null) {
-      this.emailAddresses = new ArrayList<EmailAddress>();
-    }
-    this.emailAddresses.add(emailAddressesItem);
-    return this;
-  }
 
    /**
    * Get emailAddresses
@@ -453,24 +422,7 @@ public class Candidate {
   }
 
 
-  public void setEmailAddresses(List<EmailAddress> emailAddresses) {
-    this.emailAddresses = emailAddresses;
-  }
 
-
-  public Candidate urls(List<Url> urls) {
-    
-    this.urls = urls;
-    return this;
-  }
-
-  public Candidate addUrlsItem(Url urlsItem) {
-    if (this.urls == null) {
-      this.urls = new ArrayList<Url>();
-    }
-    this.urls.add(urlsItem);
-    return this;
-  }
 
    /**
    * Get urls
@@ -484,9 +436,6 @@ public class Candidate {
   }
 
 
-  public void setUrls(List<Url> urls) {
-    this.urls = urls;
-  }
 
 
   public Candidate tags(List<String> tags) {

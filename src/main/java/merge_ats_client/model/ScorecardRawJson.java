@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
+ * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
-@ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class ScorecardRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -116,11 +116,11 @@ public class ScorecardRawJson {
   }
 
    /**
-   * The application being scored.
+   * Get application
    * @return application
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The application being scored.")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
 
   public JsonElement getApplication() {
     return application;
@@ -135,11 +135,11 @@ public class ScorecardRawJson {
   }
 
    /**
-   * The interview being scored.
+   * Get interview
    * @return interview
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The interview being scored.")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
 
   public JsonElement getInterview() {
     return interview;
@@ -154,11 +154,11 @@ public class ScorecardRawJson {
   }
 
    /**
-   * The interviewer doing the scoring.
+   * Get interviewer
    * @return interviewer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "bbb519a3-246e-4b95-b6b3-dba16107ba6b", value = "The interviewer doing the scoring.")
+  @ApiModelProperty(example = "bbb519a3-246e-4b95-b6b3-dba16107ba6b", value = "")
 
   public JsonElement getInterviewer() {
     return interviewer;
@@ -205,17 +205,17 @@ public class ScorecardRawJson {
     this.submittedAt = submittedAt;
   }
 
-  public ScorecardRawJson overallRecommendation(String overallRecommendation) {
+  public ScorecardRawJson overallRecommendation(OverallRecommendationEnum overallRecommendation) {
     this.overallRecommendation = this.serializer.getGson().toJsonTree(overallRecommendation);
     return this;
   }
 
    /**
-   * Get overallRecommendation
+   * The inteviewer&#39;s recommendation.
    * @return overallRecommendation
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "STRONG_YES", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "STRONG_YES", value = "The inteviewer's recommendation.")
 
   public JsonElement getOverallRecommendation() {
     return overallRecommendation;

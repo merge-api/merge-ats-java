@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
+ * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position. ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
-@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position. ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class ApplicationRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -128,11 +128,11 @@ public class ApplicationRawJson {
   }
 
    /**
-   * The candidate applying.
+   * Get candidate
    * @return candidate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The candidate applying.")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
 
   public JsonElement getCandidate() {
     return candidate;
@@ -147,11 +147,11 @@ public class ApplicationRawJson {
   }
 
    /**
-   * The job being applied for.
+   * Get job
    * @return job
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The job being applied for.")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
 
   public JsonElement getJob() {
     return job;
@@ -242,11 +242,11 @@ public class ApplicationRawJson {
   }
 
    /**
-   * The application&#39;s current stage.
+   * Get currentStage
    * @return currentStage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "The application's current stage.")
+  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "")
 
   public JsonElement getCurrentStage() {
     return currentStage;
@@ -261,11 +261,11 @@ public class ApplicationRawJson {
   }
 
    /**
-   * The application&#39;s reason for rejection.
+   * Get rejectReason
    * @return rejectReason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "The application's reason for rejection.")
+  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "")
 
   public JsonElement getRejectReason() {
     return rejectReason;

@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview  ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
+ * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
  */
-@ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview  ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class ScheduledInterviewRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -132,11 +132,11 @@ public class ScheduledInterviewRawJson {
   }
 
    /**
-   * The application being interviewed.
+   * Get application
    * @return application
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "92e8a369-fffe-430d-b93a-f7e8a16563f1", value = "The application being interviewed.")
+  @ApiModelProperty(example = "92e8a369-fffe-430d-b93a-f7e8a16563f1", value = "")
 
   public JsonElement getApplication() {
     return application;
@@ -151,11 +151,11 @@ public class ScheduledInterviewRawJson {
   }
 
    /**
-   * The stage of the interview.
+   * Get jobInterviewStage
    * @return jobInterviewStage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2f7adb59-3fe6-4b5b-aef6-563f72bd13dc", value = "The stage of the interview.")
+  @ApiModelProperty(example = "2f7adb59-3fe6-4b5b-aef6-563f72bd13dc", value = "")
 
   public JsonElement getJobInterviewStage() {
     return jobInterviewStage;
@@ -170,11 +170,11 @@ public class ScheduledInterviewRawJson {
   }
 
    /**
-   * The user organizing the interview.
+   * Get organizer
    * @return organizer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The user organizing the interview.")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
 
   public JsonElement getOrganizer() {
     return organizer;
@@ -297,17 +297,17 @@ public class ScheduledInterviewRawJson {
     this.remoteUpdatedAt = remoteUpdatedAt;
   }
 
-  public ScheduledInterviewRawJson status(String status) {
+  public ScheduledInterviewRawJson status(ScheduledInterviewStatusEnum status) {
     this.status = this.serializer.getGson().toJsonTree(status);
     return this;
   }
 
    /**
-   * Get status
+   * The interview&#39;s status.
    * @return status
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "SCHEDULED", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "SCHEDULED", value = "The interview's status.")
 
   public JsonElement getStatus() {
     return status;

@@ -17,6 +17,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.model.Candidate;
 import merge_ats_client.model.CandidateEndpointRequest;
 import merge_ats_client.model.CandidateResponse;
+import merge_ats_client.model.IgnoreCommonModelRequest;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedCandidateList;
 import java.util.UUID;
@@ -49,8 +50,26 @@ public class CandidatesApiTest {
     public void candidatesCreateTest() throws ApiException {
         String xAccountToken = null;
         CandidateEndpointRequest candidateEndpointRequest = null;
+        Boolean isDebugMode = null;
         Boolean runAsync = null;
-        CandidateResponse response = api.candidatesCreate(xAccountToken, candidateEndpointRequest, runAsync);
+        CandidateResponse response = api.candidatesCreate(xAccountToken, candidateEndpointRequest, isDebugMode, runAsync);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Ignores a specific row based on the &#x60;model_id&#x60; in the url. These records will have their properties set to null, and will not be updated in future syncs. The \&quot;reason\&quot; and \&quot;message\&quot; fields in the request body will be stored for audit purposes.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void candidatesIgnoreCreateTest() throws ApiException {
+        UUID modelId = null;
+        IgnoreCommonModelRequest ignoreCommonModelRequest = null;
+        api.candidatesIgnoreCreate(modelId, ignoreCommonModelRequest);
 
         // TODO: test validations
     }

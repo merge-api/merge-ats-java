@@ -23,12 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.EmailAddressTypeEnum;
 
 /**
- * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address.  ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
+ * # The EmailAddress Object ### Description The &#x60;EmailAddress&#x60; object is used to represent a candidate&#39;s email address. ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their email addresses.
  */
-@ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address.  ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The EmailAddress Object ### Description The `EmailAddress` object is used to represent a candidate's email address. ### Usage Example Fetch from the `GET Candidate` endpoint and view their email addresses.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class EmailAddressRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -36,7 +37,7 @@ public class EmailAddressRequest {
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS_TYPE = "email_address_type";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS_TYPE)
-  private String emailAddressType;
+  private EmailAddressTypeEnum emailAddressType;
 
 
   public EmailAddressRequest value(String value) {
@@ -62,24 +63,25 @@ public class EmailAddressRequest {
   }
 
 
-  public EmailAddressRequest emailAddressType(String emailAddressType) {
+  public EmailAddressRequest emailAddressType(EmailAddressTypeEnum emailAddressType) {
     
     this.emailAddressType = emailAddressType;
     return this;
   }
 
    /**
-   * Get emailAddressType
+   * The type of email address.
    * @return emailAddressType
   **/
-  @ApiModelProperty(example = "PERSONAL", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "PERSONAL", value = "The type of email address.")
 
-  public String getEmailAddressType() {
+  public EmailAddressTypeEnum getEmailAddressType() {
     return emailAddressType;
   }
 
 
-  public void setEmailAddressType(String emailAddressType) {
+  public void setEmailAddressType(EmailAddressTypeEnum emailAddressType) {
     this.emailAddressType = emailAddressType;
   }
 

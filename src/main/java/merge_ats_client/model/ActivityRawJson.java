@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Activity Object ### Description The &#x60;Activity&#x60; object is used to represent an activity performed by a user.  ### Usage Example Fetch from the &#x60;LIST Activities&#x60; endpoint and filter by &#x60;ID&#x60; to show all activities.
+ * # The Activity Object ### Description The &#x60;Activity&#x60; object is used to represent an activity performed by a user. ### Usage Example Fetch from the &#x60;LIST Activities&#x60; endpoint and filter by &#x60;ID&#x60; to show all activities.
  */
-@ApiModel(description = "# The Activity Object ### Description The `Activity` object is used to represent an activity performed by a user.  ### Usage Example Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Activity Object ### Description The `Activity` object is used to represent an activity performed by a user. ### Usage Example Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class ActivityRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -116,11 +116,11 @@ public class ActivityRawJson {
   }
 
    /**
-   * The user the performed the action.
+   * Get user
    * @return user
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "9d892439-5fab-4dbb-8bd8-34f7f96c7912", value = "The user the performed the action.")
+  @ApiModelProperty(example = "9d892439-5fab-4dbb-8bd8-34f7f96c7912", value = "")
 
   public JsonElement getUser() {
     return user;
@@ -148,17 +148,17 @@ public class ActivityRawJson {
     this.remoteCreatedAt = remoteCreatedAt;
   }
 
-  public ActivityRawJson activityType(String activityType) {
+  public ActivityRawJson activityType(ActivityTypeEnum activityType) {
     this.activityType = this.serializer.getGson().toJsonTree(activityType);
     return this;
   }
 
    /**
-   * Get activityType
+   * The activity&#39;s type.
    * @return activityType
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "NOTE", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "NOTE", value = "The activity's type.")
 
   public JsonElement getActivityType() {
     return activityType;
@@ -205,17 +205,17 @@ public class ActivityRawJson {
     this.body = body;
   }
 
-  public ActivityRawJson visibility(String visibility) {
+  public ActivityRawJson visibility(VisibilityEnum visibility) {
     this.visibility = this.serializer.getGson().toJsonTree(visibility);
     return this;
   }
 
    /**
-   * Get visibility
+   * The activity&#39;s visibility.
    * @return visibility
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "PRIVATE", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "PRIVATE", value = "The activity's visibility.")
 
   public JsonElement getVisibility() {
     return visibility;

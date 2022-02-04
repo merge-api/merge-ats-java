@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class DataPassthroughRequestRawJson {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -68,7 +68,7 @@ public class DataPassthroughRequestRawJson {
     this.serializer = srlzer;
   }
 
-  public DataPassthroughRequestRawJson method(String method) {
+  public DataPassthroughRequestRawJson method(MethodEnum method) {
     this.method = this.serializer.getGson().toJsonTree(method);
     return this;
   }
@@ -163,7 +163,7 @@ public class DataPassthroughRequestRawJson {
     this.headers = headers;
   }
 
-  public DataPassthroughRequestRawJson requestFormat(String requestFormat) {
+  public DataPassthroughRequestRawJson requestFormat(RequestFormatEnum requestFormat) {
     this.requestFormat = this.serializer.getGson().toJsonTree(requestFormat);
     return this;
   }

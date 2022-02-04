@@ -26,14 +26,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import merge_ats_client.model.OverallRecommendationEnum;
 import merge_ats_client.model.RemoteData;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
+ * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
-@ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview  ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class Scorecard {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -65,7 +66,7 @@ public class Scorecard {
 
   public static final String SERIALIZED_NAME_OVERALL_RECOMMENDATION = "overall_recommendation";
   @SerializedName(SERIALIZED_NAME_OVERALL_RECOMMENDATION)
-  private String overallRecommendation;
+  private OverallRecommendationEnum overallRecommendation;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -116,11 +117,11 @@ public class Scorecard {
   }
 
    /**
-   * The application being scored.
+   * Get application
    * @return application
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The application being scored.")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
 
   public UUID getApplication() {
     return application;
@@ -139,11 +140,11 @@ public class Scorecard {
   }
 
    /**
-   * The interview being scored.
+   * Get interview
    * @return interview
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The interview being scored.")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
 
   public UUID getInterview() {
     return interview;
@@ -162,11 +163,11 @@ public class Scorecard {
   }
 
    /**
-   * The interviewer doing the scoring.
+   * Get interviewer
    * @return interviewer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "bbb519a3-246e-4b95-b6b3-dba16107ba6b", value = "The interviewer doing the scoring.")
+  @ApiModelProperty(example = "bbb519a3-246e-4b95-b6b3-dba16107ba6b", value = "")
 
   public UUID getInterviewer() {
     return interviewer;
@@ -224,24 +225,25 @@ public class Scorecard {
   }
 
 
-  public Scorecard overallRecommendation(String overallRecommendation) {
+  public Scorecard overallRecommendation(OverallRecommendationEnum overallRecommendation) {
     
     this.overallRecommendation = overallRecommendation;
     return this;
   }
 
    /**
-   * Get overallRecommendation
+   * The inteviewer&#39;s recommendation.
    * @return overallRecommendation
   **/
-  @ApiModelProperty(example = "STRONG_YES", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "STRONG_YES", value = "The inteviewer's recommendation.")
 
-  public String getOverallRecommendation() {
+  public OverallRecommendationEnum getOverallRecommendation() {
     return overallRecommendation;
   }
 
 
-  public void setOverallRecommendation(String overallRecommendation) {
+  public void setOverallRecommendation(OverallRecommendationEnum overallRecommendation) {
     this.overallRecommendation = overallRecommendation;
   }
 

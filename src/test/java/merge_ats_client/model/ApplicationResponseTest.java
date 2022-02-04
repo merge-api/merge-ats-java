@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import merge_ats_client.model.Application;
@@ -67,6 +68,14 @@ public class ApplicationResponseTest {
     @Test
     public void errorsTest() {
         // TODO: test errors
+    }
+
+    /**
+     * Test the property 'logs'
+     */
+    @Test
+    public void logsTest() {
+        // TODO: test logs
     }
 
 }

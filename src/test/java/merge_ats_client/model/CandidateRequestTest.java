@@ -26,18 +26,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import merge_ats_client.JSON;
-import merge_ats_client.model.EmailAddressRequest;
-import merge_ats_client.model.PhoneNumberRequest;
-import merge_ats_client.model.UrlRequest;
 import org.threeten.bp.OffsetDateTime;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 
 /**
@@ -143,30 +135,6 @@ public class CandidateRequestTest {
     }
 
     /**
-     * Test the property 'phoneNumbers'
-     */
-    @Test
-    public void phoneNumbersTest() {
-        // TODO: test phoneNumbers
-    }
-
-    /**
-     * Test the property 'emailAddresses'
-     */
-    @Test
-    public void emailAddressesTest() {
-        // TODO: test emailAddresses
-    }
-
-    /**
-     * Test the property 'urls'
-     */
-    @Test
-    public void urlsTest() {
-        // TODO: test urls
-    }
-
-    /**
      * Test the property 'tags'
      */
     @Test
@@ -187,28 +155,7 @@ public class CandidateRequestTest {
      */
     @Test
     public void attachmentsTest() {
-        JSON serializer = new JSON();
-
-        CandidateRequestRawJson testIdModel = new CandidateRequestRawJson(serializer);
-        UUID testId = UUID.randomUUID();
-        List<UUID> idList = new ArrayList<>();
-        idList.add(testId);
-        testIdModel.attachments(idList);
-
-        String expected = String.format("{\"attachments\":[\"%s\"]}", testId);
-        assertEquals(expected, serializer.serialize(testIdModel));
-
-        CandidateRequestRawJson testObjModel = new CandidateRequestRawJson(serializer);
-        AttachmentRequest testAttachmentModel = new AttachmentRequest();
-        testAttachmentModel.fileName("example.com/resume.txt");
-        testAttachmentModel.attachmentType("TEXT");
-        List<AttachmentRequest> attachList = new ArrayList<>();
-        attachList.add(testAttachmentModel);
-        testObjModel.setAttachments(serializer.getGson().toJsonTree(attachList));
-
-        String objExpected =
-                "{\"attachments\":[{\"file_name\":\"example.com/resume.txt\",\"attachment_type\":\"TEXT\"}]}";
-        assertEquals(objExpected, serializer.serialize(testObjModel));
+        // TODO: test attachments
     }
 
     /**
@@ -217,6 +164,30 @@ public class CandidateRequestTest {
     @Test
     public void customFieldsTest() {
         // TODO: test customFields
+    }
+
+    /**
+     * Test the property 'remoteTemplateId'
+     */
+    @Test
+    public void remoteTemplateIdTest() {
+        // TODO: test remoteTemplateId
+    }
+
+    /**
+     * Test the property 'integrationParams'
+     */
+    @Test
+    public void integrationParamsTest() {
+        // TODO: test integrationParams
+    }
+
+    /**
+     * Test the property 'linkedAccountParams'
+     */
+    @Test
+    public void linkedAccountParamsTest() {
+        // TODO: test linkedAccountParams
     }
 
 }
