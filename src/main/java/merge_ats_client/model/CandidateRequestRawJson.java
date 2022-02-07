@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
+ * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions. ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
-@ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions.  ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions. ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class CandidateRequestRawJson {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -81,18 +81,6 @@ public class CandidateRequestRawJson {
   @SerializedName(SERIALIZED_NAME_LOCATIONS)
   private JsonElement locations;
 
-  public static final String SERIALIZED_NAME_PHONE_NUMBERS = "phone_numbers";
-  @SerializedName(SERIALIZED_NAME_PHONE_NUMBERS)
-  private JsonElement phoneNumbers;
-
-  public static final String SERIALIZED_NAME_EMAIL_ADDRESSES = "email_addresses";
-  @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESSES)
-  private JsonElement emailAddresses;
-
-  public static final String SERIALIZED_NAME_URLS = "urls";
-  @SerializedName(SERIALIZED_NAME_URLS)
-  private JsonElement urls;
-
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private JsonElement tags;
@@ -108,6 +96,18 @@ public class CandidateRequestRawJson {
   public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
   @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
   private JsonElement customFields;
+
+  public static final String SERIALIZED_NAME_REMOTE_TEMPLATE_ID = "remote_template_id";
+  @SerializedName(SERIALIZED_NAME_REMOTE_TEMPLATE_ID)
+  private JsonElement remoteTemplateId;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private JsonElement integrationParams;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private JsonElement linkedAccountParams;
 
   private transient JSON serializer;
 
@@ -325,63 +325,6 @@ public class CandidateRequestRawJson {
     this.locations = locations;
   }
 
-  public CandidateRequestRawJson phoneNumbers(List<PhoneNumberRequest> phoneNumbers) {
-    this.phoneNumbers = this.serializer.getGson().toJsonTree(phoneNumbers);
-    return this;
-  }
-
-   /**
-   * Get phoneNumbers
-   * @return phoneNumbers
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[{\"value\":\"+1234567890\",\"phone_number_type\":\"MOBILE\"}]", value = "")
-
-  public JsonElement getPhoneNumbers() {
-    return phoneNumbers;
-  }
-  public void setPhoneNumbers(JsonElement phoneNumbers) {
-    this.phoneNumbers = phoneNumbers;
-  }
-
-  public CandidateRequestRawJson emailAddresses(List<EmailAddressRequest> emailAddresses) {
-    this.emailAddresses = this.serializer.getGson().toJsonTree(emailAddresses);
-    return this;
-  }
-
-   /**
-   * Get emailAddresses
-   * @return emailAddresses
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[{\"value\":\"hello@merge.dev\",\"email_address_type\":\"PERSONAL\"}]", value = "")
-
-  public JsonElement getEmailAddresses() {
-    return emailAddresses;
-  }
-  public void setEmailAddresses(JsonElement emailAddresses) {
-    this.emailAddresses = emailAddresses;
-  }
-
-  public CandidateRequestRawJson urls(List<UrlRequest> urls) {
-    this.urls = this.serializer.getGson().toJsonTree(urls);
-    return this;
-  }
-
-   /**
-   * Get urls
-   * @return urls
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[{\"value\":\"http://alturl.com/p749b\",\"url_type\":\"BLOG\"}]", value = "")
-
-  public JsonElement getUrls() {
-    return urls;
-  }
-  public void setUrls(JsonElement urls) {
-    this.urls = urls;
-  }
-
   public CandidateRequestRawJson tags(List<String> tags) {
     this.tags = this.serializer.getGson().toJsonTree(tags);
     return this;
@@ -457,6 +400,63 @@ public class CandidateRequestRawJson {
   public void setCustomFields(JsonElement customFields) {
     this.customFields = customFields;
   }
+
+  public CandidateRequestRawJson remoteTemplateId(String remoteTemplateId) {
+    this.remoteTemplateId = this.serializer.getGson().toJsonTree(remoteTemplateId);
+    return this;
+  }
+
+   /**
+   * Get remoteTemplateId
+   * @return remoteTemplateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "92830948203", value = "")
+
+  public JsonElement getRemoteTemplateId() {
+    return remoteTemplateId;
+  }
+  public void setRemoteTemplateId(JsonElement remoteTemplateId) {
+    this.remoteTemplateId = remoteTemplateId;
+  }
+
+  public CandidateRequestRawJson integrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = this.serializer.getGson().toJsonTree(integrationParams);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public JsonElement getIntegrationParams() {
+    return integrationParams;
+  }
+  public void setIntegrationParams(JsonElement integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+  public CandidateRequestRawJson linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = this.serializer.getGson().toJsonTree(linkedAccountParams);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public JsonElement getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+  public void setLinkedAccountParams(JsonElement linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -477,17 +477,17 @@ public class CandidateRequestRawJson {
         Objects.equals(this.isPrivate.getAsString(), candidateRequest.isPrivate.getAsString()) &&
         Objects.equals(this.canEmail.getAsString(), candidateRequest.canEmail.getAsString()) &&
         Objects.equals(this.locations.getAsString(), candidateRequest.locations.getAsString()) &&
-        Objects.equals(this.phoneNumbers.getAsString(), candidateRequest.phoneNumbers.getAsString()) &&
-        Objects.equals(this.emailAddresses.getAsString(), candidateRequest.emailAddresses.getAsString()) &&
-        Objects.equals(this.urls.getAsString(), candidateRequest.urls.getAsString()) &&
         Objects.equals(this.tags.getAsString(), candidateRequest.tags.getAsString()) &&
         Objects.equals(this.applications.getAsString(), candidateRequest.applications.getAsString()) &&
         Objects.equals(this.attachments.getAsString(), candidateRequest.attachments.getAsString()) &&
-        Objects.equals(this.customFields.getAsString(), candidateRequest.customFields.getAsString());
+        Objects.equals(this.customFields.getAsString(), candidateRequest.customFields.getAsString()) &&
+        Objects.equals(this.remoteTemplateId.getAsString(), candidateRequest.remoteTemplateId.getAsString()) &&
+        Objects.equals(this.integrationParams.getAsString(), candidateRequest.integrationParams.getAsString()) &&
+        Objects.equals(this.linkedAccountParams.getAsString(), candidateRequest.linkedAccountParams.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, customFields);
+    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, tags, applications, attachments, customFields, remoteTemplateId, integrationParams, linkedAccountParams);
   }
   @Override
   public String toString() {
@@ -504,13 +504,13 @@ public class CandidateRequestRawJson {
     sb.append("    isPrivate: ").append(toIndentedString(isPrivate.getAsString())).append("\n");
     sb.append("    canEmail: ").append(toIndentedString(canEmail.getAsString())).append("\n");
     sb.append("    locations: ").append(toIndentedString(locations.getAsString())).append("\n");
-    sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers.getAsString())).append("\n");
-    sb.append("    emailAddresses: ").append(toIndentedString(emailAddresses.getAsString())).append("\n");
-    sb.append("    urls: ").append(toIndentedString(urls.getAsString())).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags.getAsString())).append("\n");
     sb.append("    applications: ").append(toIndentedString(applications.getAsString())).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments.getAsString())).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields.getAsString())).append("\n");
+    sb.append("    remoteTemplateId: ").append(toIndentedString(remoteTemplateId.getAsString())).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams.getAsString())).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

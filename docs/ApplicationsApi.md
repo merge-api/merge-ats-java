@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="applicationsCreate"></a>
 # **applicationsCreate**
-> ApplicationResponse applicationsCreate(xAccountToken, applicationEndpointRequest, runAsync)
+> ApplicationResponse applicationsCreate(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync)
 
 
 
@@ -41,9 +41,10 @@ public class Example {
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     ApplicationEndpointRequest applicationEndpointRequest = new ApplicationEndpointRequest(); // ApplicationEndpointRequest | 
+    Boolean isDebugMode = true; // Boolean | Whether to include debug fields (such as log file links) in the response.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     try {
-      ApplicationResponse result = apiInstance.applicationsCreate(xAccountToken, applicationEndpointRequest, runAsync);
+      ApplicationResponse result = apiInstance.applicationsCreate(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsCreate");
@@ -62,6 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **applicationEndpointRequest** | [**ApplicationEndpointRequest**](ApplicationEndpointRequest.md)|  |
+ **isDebugMode** | **Boolean**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
 
 ### Return type

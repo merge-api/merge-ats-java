@@ -49,8 +49,9 @@ public class AttachmentsApiTest {
     public void attachmentsCreateTest() throws ApiException {
         String xAccountToken = null;
         AttachmentEndpointRequest attachmentEndpointRequest = null;
+        Boolean isDebugMode = null;
         Boolean runAsync = null;
-        AttachmentResponse response = api.attachmentsCreate(xAccountToken, attachmentEndpointRequest, runAsync);
+        AttachmentResponse response = api.attachmentsCreate(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync);
 
         // TODO: test validations
     }

@@ -5,13 +5,14 @@ All URIs are relative to *https://api.merge.dev/api/ats/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**candidatesCreate**](CandidatesApi.md#candidatesCreate) | **POST** /candidates | 
+[**candidatesIgnoreCreate**](CandidatesApi.md#candidatesIgnoreCreate) | **POST** /candidates/ignore/{model_id} | 
 [**candidatesList**](CandidatesApi.md#candidatesList) | **GET** /candidates | 
 [**candidatesRetrieve**](CandidatesApi.md#candidatesRetrieve) | **GET** /candidates/{id} | 
 
 
 <a name="candidatesCreate"></a>
 # **candidatesCreate**
-> CandidateResponse candidatesCreate(xAccountToken, candidateEndpointRequest, runAsync)
+> CandidateResponse candidatesCreate(xAccountToken, candidateEndpointRequest, isDebugMode, runAsync)
 
 
 
@@ -41,9 +42,10 @@ public class Example {
     CandidatesApi apiInstance = new CandidatesApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     CandidateEndpointRequest candidateEndpointRequest = new CandidateEndpointRequest(); // CandidateEndpointRequest | 
+    Boolean isDebugMode = true; // Boolean | Whether to include debug fields (such as log file links) in the response.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     try {
-      CandidateResponse result = apiInstance.candidatesCreate(xAccountToken, candidateEndpointRequest, runAsync);
+      CandidateResponse result = apiInstance.candidatesCreate(xAccountToken, candidateEndpointRequest, isDebugMode, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CandidatesApi#candidatesCreate");
@@ -62,6 +64,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **candidateEndpointRequest** | [**CandidateEndpointRequest**](CandidateEndpointRequest.md)|  |
+ **isDebugMode** | **Boolean**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
 
 ### Return type
@@ -81,6 +84,76 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
+
+<a name="candidatesIgnoreCreate"></a>
+# **candidatesIgnoreCreate**
+> candidatesIgnoreCreate(modelId, ignoreCommonModelRequest)
+
+
+
+Ignores a specific row based on the &#x60;model_id&#x60; in the url. These records will have their properties set to null, and will not be updated in future syncs. The \&quot;reason\&quot; and \&quot;message\&quot; fields in the request body will be stored for audit purposes.
+
+### Example
+```java
+// Import classes:
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import merge_ats_client.api.CandidatesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //tokenAuth.setApiKeyPrefix("Token");
+
+    CandidatesApi apiInstance = new CandidatesApi(defaultClient);
+    UUID modelId = new UUID(); // UUID | 
+    IgnoreCommonModelRequest ignoreCommonModelRequest = new IgnoreCommonModelRequest(); // IgnoreCommonModelRequest | 
+    try {
+      apiInstance.candidatesIgnoreCreate(modelId, ignoreCommonModelRequest);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CandidatesApi#candidatesIgnoreCreate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **modelId** | [**UUID**](.md)|  |
+ **ignoreCommonModelRequest** | [**IgnoreCommonModelRequest**](IgnoreCommonModelRequest.md)|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
 
 <a name="candidatesList"></a>
 # **candidatesList**

@@ -26,16 +26,18 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import merge_ats_client.model.MethodEnum;
+import merge_ats_client.model.RequestFormatEnum;
 
 /**
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class DataPassthroughRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
-  private String method;
+  private MethodEnum method;
 
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -55,10 +57,10 @@ public class DataPassthroughRequest {
 
   public static final String SERIALIZED_NAME_REQUEST_FORMAT = "request_format";
   @SerializedName(SERIALIZED_NAME_REQUEST_FORMAT)
-  private String requestFormat;
+  private RequestFormatEnum requestFormat;
 
 
-  public DataPassthroughRequest method(String method) {
+  public DataPassthroughRequest method(MethodEnum method) {
     
     this.method = method;
     return this;
@@ -70,12 +72,12 @@ public class DataPassthroughRequest {
   **/
   @ApiModelProperty(example = "POST", required = true, value = "")
 
-  public String getMethod() {
+  public MethodEnum getMethod() {
     return method;
   }
 
 
-  public void setMethod(String method) {
+  public void setMethod(MethodEnum method) {
     this.method = method;
   }
 
@@ -179,7 +181,7 @@ public class DataPassthroughRequest {
   }
 
 
-  public DataPassthroughRequest requestFormat(String requestFormat) {
+  public DataPassthroughRequest requestFormat(RequestFormatEnum requestFormat) {
     
     this.requestFormat = requestFormat;
     return this;
@@ -192,12 +194,12 @@ public class DataPassthroughRequest {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "JSON", value = "")
 
-  public String getRequestFormat() {
+  public RequestFormatEnum getRequestFormat() {
     return requestFormat;
   }
 
 
-  public void setRequestFormat(String requestFormat) {
+  public void setRequestFormat(RequestFormatEnum requestFormat) {
     this.requestFormat = requestFormat;
   }
 

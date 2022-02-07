@@ -22,7 +22,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import merge_ats_client.model.AttachmentTypeEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -80,6 +84,22 @@ public class AttachmentRequestTest {
     @Test
     public void attachmentTypeTest() {
         // TODO: test attachmentType
+    }
+
+    /**
+     * Test the property 'integrationParams'
+     */
+    @Test
+    public void integrationParamsTest() {
+        // TODO: test integrationParams
+    }
+
+    /**
+     * Test the property 'linkedAccountParams'
+     */
+    @Test
+    public void linkedAccountParamsTest() {
+        // TODO: test linkedAccountParams
     }
 
 }

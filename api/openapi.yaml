@@ -385,6 +385,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Whether to include debug fields (such as log file links) in the
+          response.
+        explode: true
+        in: query
+        name: is_debug_mode
+        required: false
+        schema:
+          type: boolean
+        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -587,6 +596,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Whether to include debug fields (such as log file links) in the
+          response.
+        explode: true
+        in: query
+        name: is_debug_mode
+        required: false
+        schema:
+          type: boolean
+        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -820,6 +838,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Whether to include debug fields (such as log file links) in the
+          response.
+        explode: true
+        in: query
+        name: is_debug_mode
+        required: false
+        schema:
+          type: boolean
+        style: form
       - description: Whether or not third-party updates should be run asynchronously.
         explode: true
         in: query
@@ -892,6 +919,45 @@ paths:
       - tokenAuth: []
       tags:
       - candidates
+      x-accepts: application/json
+  /candidates/ignore/{model_id}:
+    post:
+      description: Ignores a specific row based on the `model_id` in the url. These
+        records will have their properties set to null, and will not be updated in
+        future syncs. The "reason" and "message" fields in the request body will be
+        stored for audit purposes.
+      operationId: candidates_ignore_create
+      parameters:
+      - explode: false
+        in: path
+        name: model_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IgnoreCommonModelRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IgnoreCommonModelRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IgnoreCommonModelRequest'
+        required: true
+      responses:
+        "200":
+          description: No response body
+      security:
+      - tokenAuth: []
+      tags:
+      - candidates
+      x-extra-tags:
+      - ignore-model
+      x-contentType: application/json
       x-accepts: application/json
   /delete-account:
     post:
@@ -3065,6 +3131,14 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    AccessRoleEnum:
+      enum:
+      - SUPER_ADMIN
+      - ADMIN
+      - TEAM_MEMBER
+      - LIMITED_TEAM_MEMBER
+      - INTERVIEWER
+      type: string
     AccountDetails:
       example:
         integration: BambooHR
@@ -3145,8 +3219,8 @@ components:
           name: name
           square_image: square_image
           categories:
-          - categories
-          - categories
+          - null
+          - null
           slug: slug
           passthrough_available: true
         end_user_email_address: hradmin@foobar.dev
@@ -3160,11 +3234,13 @@ components:
           example: e59b1821-f85c-4e28-a6b3-1804156f3563
           type: string
         category:
+          allOf:
+          - $ref: '#/components/schemas/CategoryEnum'
           example: hris
-          type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/AccountDetailsAndActionsStatusEnum'
           example: COMPLETE
-          type: string
         status_detail:
           type: string
         end_user_origin_id:
@@ -3224,8 +3300,8 @@ components:
         name: name
         square_image: square_image
         categories:
-        - categories
-        - categories
+        - null
+        - null
         slug: slug
         passthrough_available: true
       properties:
@@ -3233,7 +3309,7 @@ components:
           type: string
         categories:
           items:
-            type: string
+            $ref: '#/components/schemas/CategoriesEnum'
           type: array
         image:
           type: string
@@ -3256,6 +3332,12 @@ components:
       - passthrough_available
       - slug
       type: object
+    AccountDetailsAndActionsStatusEnum:
+      enum:
+      - COMPLETE
+      - INCOMPLETE
+      - RELINK_NEEDED
+      type: string
     AccountIntegration:
       example:
         image: https://openapi-generator.tech
@@ -3328,7 +3410,6 @@ components:
         # The Activity Object
         ### Description
         The `Activity` object is used to represent an activity performed by a user.
-
         ### Usage Example
         Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.
       example:
@@ -3356,10 +3437,8 @@ components:
           nullable: true
           type: string
         user:
-          description: The user the performed the action.
           example: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
           format: uuid
-          nullable: true
           type: string
         remote_created_at:
           description: When the third party's activity was created.
@@ -3368,8 +3447,11 @@ components:
           nullable: true
           type: string
         activity_type:
+          allOf:
+          - $ref: '#/components/schemas/ActivityTypeEnum'
+          description: The activity's type.
           example: NOTE
-          type: string
+          nullable: true
         subject:
           description: The activity's subject.
           example: Gil Feig's interview
@@ -3381,8 +3463,11 @@ components:
           nullable: true
           type: string
         visibility:
+          allOf:
+          - $ref: '#/components/schemas/VisibilityEnum'
+          description: The activity's visibility.
           example: PRIVATE
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /actions
@@ -3393,16 +3478,18 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - activity_type
-      - visibility
       type: object
+    ActivityTypeEnum:
+      enum:
+      - NOTE
+      - EMAIL
+      - OTHER
+      type: string
     Application:
       description: |-
         # The Application Object
         ### Description
         The `Application` object is used to represent an Application for a job position.
-
         ### Usage Example
         Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
       example:
@@ -3434,16 +3521,12 @@ components:
           nullable: true
           type: string
         candidate:
-          description: The candidate applying.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
-          nullable: true
           type: string
         job:
-          description: The job being applied for.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
-          nullable: true
           type: string
         applied_at:
           description: When the application was submitted.
@@ -3469,16 +3552,12 @@ components:
           nullable: true
           type: string
         current_stage:
-          description: The application's current stage.
           example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           format: uuid
-          nullable: true
           type: string
         reject_reason:
-          description: The application's reason for rejection.
           example: 59b25f2b-da02-40f5-9656-9fa0db555784
           format: uuid
-          nullable: true
           type: string
         remote_data:
           example:
@@ -3501,15 +3580,20 @@ components:
         remote_user_id: remote_user_id
         model:
           applied_at: 2021-10-15T00:00:00Z
-          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           rejected_at: 2021-11-15T00:00:00Z
           custom_fields:
             key: ""
           remote_id: "98796"
           source: Campus recruiting event
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          linked_account_params:
+            unique_linked_account_field: unique_linked_account_field_value
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          remote_template_id: "92830948203"
           credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
           current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
-          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+          integration_params:
+            unique_integration_field: unique_integration_field_value
           job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
       properties:
         model:
@@ -3525,20 +3609,24 @@ components:
         # The Application Object
         ### Description
         The `Application` object is used to represent an Application for a job position.
-
         ### Usage Example
         Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
       example:
         applied_at: 2021-10-15T00:00:00Z
-        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
         rejected_at: 2021-11-15T00:00:00Z
         custom_fields:
           key: ""
         remote_id: "98796"
         source: Campus recruiting event
+        reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+        linked_account_params:
+          unique_linked_account_field: unique_linked_account_field_value
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        remote_template_id: "92830948203"
         credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
         current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
-        reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
+        integration_params:
+          unique_integration_field: unique_integration_field_value
         job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
       properties:
         remote_id:
@@ -3547,16 +3635,12 @@ components:
           nullable: true
           type: string
         candidate:
-          description: The candidate applying.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
-          nullable: true
           type: string
         job:
-          description: The job being applied for.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
-          nullable: true
           type: string
         applied_at:
           description: When the application was submitted.
@@ -3582,22 +3666,38 @@ components:
           nullable: true
           type: string
         current_stage:
-          description: The application's current stage.
           example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           format: uuid
-          nullable: true
           type: string
         reject_reason:
-          description: The application's reason for rejection.
           example: 59b25f2b-da02-40f5-9656-9fa0db555784
           format: uuid
-          nullable: true
           type: string
         custom_fields:
           additionalProperties: {}
           description: Custom fields configured for a given model.
           nullable: true
           type: object
+        remote_template_id:
+          example: "92830948203"
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        integration_params:
+          additionalProperties: {}
+          example:
+            unique_integration_field: unique_integration_field_value
+          nullable: true
+          type: object
+          writeOnly: true
+        linked_account_params:
+          additionalProperties: {}
+          example:
+            unique_linked_account_field: unique_linked_account_field_value
+          nullable: true
+          type: object
+          writeOnly: true
       type: object
     ApplicationResponse:
       example:
@@ -3629,6 +3729,9 @@ components:
           - path: /candidacies
             data:
             - Varies by platform
+        logs:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
         errors:
         - problem_type: MISSING_REQUIRED_FIELD
           source:
@@ -3651,6 +3754,11 @@ components:
           items:
             $ref: '#/components/schemas/ErrorValidationProblem'
           type: array
+        logs:
+          items:
+            format: uri
+            type: string
+          type: array
       required:
       - errors
       - model
@@ -3661,7 +3769,6 @@ components:
         # The Attachment Object
         ### Description
         The `Attachment` object is used to represent a attachment for a candidate.
-
         ### Usage Example
         Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.
       example:
@@ -3701,11 +3808,13 @@ components:
         candidate:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
-          nullable: true
           type: string
         attachment_type:
+          allOf:
+          - $ref: '#/components/schemas/AttachmentTypeEnum'
+          description: The attachment's type.
           example: RESUME
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /attachments
@@ -3716,8 +3825,6 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - attachment_type
       type: object
     AttachmentEndpointRequest:
       example:
@@ -3728,6 +3835,10 @@ components:
           attachment_type: RESUME
           file_name: Candidate Resume
           remote_id: "11167"
+          integration_params:
+            unique_integration_field: unique_integration_field_value
+          linked_account_params:
+            unique_linked_account_field: unique_linked_account_field_value
       properties:
         model:
           $ref: '#/components/schemas/AttachmentRequest'
@@ -3742,7 +3853,6 @@ components:
         # The Attachment Object
         ### Description
         The `Attachment` object is used to represent a attachment for a candidate.
-
         ### Usage Example
         Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.
       example:
@@ -3751,6 +3861,10 @@ components:
         attachment_type: RESUME
         file_name: Candidate Resume
         remote_id: "11167"
+        integration_params:
+          unique_integration_field: unique_integration_field_value
+        linked_account_params:
+          unique_linked_account_field: unique_linked_account_field_value
       properties:
         remote_id:
           description: The third-party API ID of the matching object.
@@ -3772,14 +3886,27 @@ components:
         candidate:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
-          nullable: true
           type: string
         attachment_type:
+          allOf:
+          - $ref: '#/components/schemas/AttachmentTypeEnum'
+          description: The attachment's type.
           example: RESUME
-          minLength: 1
-          type: string
-      required:
-      - attachment_type
+          nullable: true
+        integration_params:
+          additionalProperties: {}
+          example:
+            unique_integration_field: unique_integration_field_value
+          nullable: true
+          type: object
+          writeOnly: true
+        linked_account_params:
+          additionalProperties: {}
+          example:
+            unique_linked_account_field: unique_linked_account_field_value
+          nullable: true
+          type: object
+          writeOnly: true
       type: object
     AttachmentResponse:
       example:
@@ -3805,6 +3932,9 @@ components:
           - path: /attachments
             data:
             - Varies by platform
+        logs:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
         errors:
         - problem_type: MISSING_REQUIRED_FIELD
           source:
@@ -3827,11 +3957,23 @@ components:
           items:
             $ref: '#/components/schemas/ErrorValidationProblem'
           type: array
+        logs:
+          items:
+            format: uri
+            type: string
+          type: array
       required:
       - errors
       - model
       - warnings
       type: object
+    AttachmentTypeEnum:
+      enum:
+      - RESUME
+      - COVER_LETTER
+      - OFFER_LETTER
+      - OTHER
+      type: string
     AvailableActions:
       description: |-
         # The AvailableActions Object
@@ -3894,7 +4036,6 @@ components:
         # The Candidate Object
         ### Description
         The `Candidate` object is used to represent a Candidate for various positions.
-
         ### Usage Example
         Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.
       example:
@@ -4013,6 +4154,7 @@ components:
             phone_number_type: MOBILE
           items:
             $ref: '#/components/schemas/PhoneNumber'
+          readOnly: true
           type: array
         email_addresses:
           example:
@@ -4020,6 +4162,7 @@ components:
             email_address_type: PERSONAL
           items:
             $ref: '#/components/schemas/EmailAddress'
+          readOnly: true
           type: array
         urls:
           example:
@@ -4027,6 +4170,7 @@ components:
             url_type: BLOG
           items:
             $ref: '#/components/schemas/Url'
+          readOnly: true
           type: array
         tags:
           description: Array of `Tag` names as strings.
@@ -4074,9 +4218,6 @@ components:
         remote_user_id: remote_user_id
         model:
           is_private: true
-          email_addresses:
-          - value: hello@merge.dev
-            email_address_type: PERSONAL
           attachments:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
           custom_fields:
@@ -4084,22 +4225,21 @@ components:
           remote_id: "21198"
           last_name: Feig
           title: Software Engineer
+          linked_account_params:
+            unique_linked_account_field: unique_linked_account_field_value
           remote_updated_at: 2021-10-16T00:00:00Z
           tags:
           - High-Priority
-          phone_numbers:
-          - value: +1234567890
-            phone_number_type: MOBILE
-          urls:
-          - value: http://alturl.com/p749b
-            url_type: BLOG
           last_interaction_at: 2021-10-17T00:00:00Z
+          remote_template_id: "92830948203"
           can_email: true
           company: Columbia Dining App.
           locations:
           - San Francisco
           - New York
           - Miami
+          integration_params:
+            unique_integration_field: unique_integration_field_value
           remote_created_at: 2021-10-15T00:00:00Z
           first_name: Gil
           applications:
@@ -4120,14 +4260,10 @@ components:
         # The Candidate Object
         ### Description
         The `Candidate` object is used to represent a Candidate for various positions.
-
         ### Usage Example
         Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.
       example:
         is_private: true
-        email_addresses:
-        - value: hello@merge.dev
-          email_address_type: PERSONAL
         attachments:
         - bea08964-32b4-4a20-8bb4-2612ba09de1d
         custom_fields:
@@ -4135,22 +4271,21 @@ components:
         remote_id: "21198"
         last_name: Feig
         title: Software Engineer
+        linked_account_params:
+          unique_linked_account_field: unique_linked_account_field_value
         remote_updated_at: 2021-10-16T00:00:00Z
         tags:
         - High-Priority
-        phone_numbers:
-        - value: +1234567890
-          phone_number_type: MOBILE
-        urls:
-        - value: http://alturl.com/p749b
-          url_type: BLOG
         last_interaction_at: 2021-10-17T00:00:00Z
+        remote_template_id: "92830948203"
         can_email: true
         company: Columbia Dining App.
         locations:
         - San Francisco
         - New York
         - Miami
+        integration_params:
+          unique_integration_field: unique_integration_field_value
         remote_created_at: 2021-10-15T00:00:00Z
         first_name: Gil
         applications:
@@ -4223,27 +4358,6 @@ components:
             type: string
           nullable: true
           type: array
-        phone_numbers:
-          example:
-          - value: +1234567890
-            phone_number_type: MOBILE
-          items:
-            $ref: '#/components/schemas/PhoneNumberRequest'
-          type: array
-        email_addresses:
-          example:
-          - value: hello@merge.dev
-            email_address_type: PERSONAL
-          items:
-            $ref: '#/components/schemas/EmailAddressRequest'
-          type: array
-        urls:
-          example:
-          - value: http://alturl.com/p749b
-            url_type: BLOG
-          items:
-            $ref: '#/components/schemas/UrlRequest'
-          type: array
         tags:
           description: Array of `Tag` names as strings.
           example:
@@ -4274,6 +4388,26 @@ components:
           description: Custom fields configured for a given model.
           nullable: true
           type: object
+        remote_template_id:
+          example: "92830948203"
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        integration_params:
+          additionalProperties: {}
+          example:
+            unique_integration_field: unique_integration_field_value
+          nullable: true
+          type: object
+          writeOnly: true
+        linked_account_params:
+          additionalProperties: {}
+          example:
+            unique_linked_account_field: unique_linked_account_field_value
+          nullable: true
+          type: object
+          writeOnly: true
       type: object
     CandidateResponse:
       example:
@@ -4327,6 +4461,9 @@ components:
           - 29eb9867-ce2a-403f-b8ce-f2844b89f078
           - b4d08e5c-de00-4d64-a29f-66addac9af99
           - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
+        logs:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
         errors:
         - problem_type: MISSING_REQUIRED_FIELD
           source:
@@ -4348,6 +4485,11 @@ components:
         errors:
           items:
             $ref: '#/components/schemas/ErrorValidationProblem'
+          type: array
+        logs:
+          items:
+            format: uri
+            type: string
           type: array
       required:
       - errors
@@ -4384,9 +4526,9 @@ components:
         base_url_override: base_url_override
       properties:
         method:
+          allOf:
+          - $ref: '#/components/schemas/MethodEnum'
           example: POST
-          minLength: 1
-          type: string
         path:
           example: /scooters
           minLength: 1
@@ -4407,9 +4549,10 @@ components:
           nullable: true
           type: object
         request_format:
+          allOf:
+          - $ref: '#/components/schemas/RequestFormatEnum'
           example: JSON
-          minLength: 1
-          type: string
+          nullable: true
       required:
       - method
       - path
@@ -4419,7 +4562,6 @@ components:
         # The Department Object
         ### Description
         The `Department` object is used to represent a department within a company.
-
         ### Usage Example
         Fetch from the `LIST Departments` endpoint and view the departments within a company.
       example:
@@ -4457,12 +4599,17 @@ components:
           readOnly: true
           type: array
       type: object
+    DisabilityStatusEnum:
+      enum:
+      - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
+      - NO_I_DONT_HAVE_A_DISABILITY
+      - I_DONT_WISH_TO_ANSWER
+      type: string
     EEOC:
       description: |-
         # The EEOC Object
         ### Description
         The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate.
-
         ### Usage Example
         Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.
       example:
@@ -4490,10 +4637,8 @@ components:
           nullable: true
           type: string
         candidate:
-          description: The candidate being represented.
           example: f963f34d-3d2f-4f77-b557-cf36bc7e6498
           format: uuid
-          nullable: true
           type: string
         submitted_at:
           description: When the information was submitted.
@@ -4502,17 +4647,29 @@ components:
           nullable: true
           type: string
         race:
+          allOf:
+          - $ref: '#/components/schemas/RaceEnum'
+          description: The candidate's race.
           example: HISPANIC_OR_LATINO
-          type: string
+          nullable: true
         gender:
+          allOf:
+          - $ref: '#/components/schemas/GenderEnum'
+          description: The candidate's gender.
           example: FEMALE
-          type: string
+          nullable: true
         veteran_status:
+          allOf:
+          - $ref: '#/components/schemas/VeteranStatusEnum'
+          description: The candidate's veteran status.
           example: I_AM_NOT_A_PROTECTED_VETERAN
-          type: string
+          nullable: true
         disability_status:
+          allOf:
+          - $ref: '#/components/schemas/DisabilityStatusEnum'
+          description: The candidate's disability status.
           example: I_DONT_WISH_TO_ANSWER
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /eeoc
@@ -4523,18 +4680,12 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - disability_status
-      - gender
-      - race
-      - veteran_status
       type: object
     EmailAddress:
       description: |-
         # The EmailAddress Object
         ### Description
         The `EmailAddress` object is used to represent a candidate's email address.
-
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their email addresses.
       properties:
@@ -4546,17 +4697,17 @@ components:
           nullable: true
           type: string
         email_address_type:
+          allOf:
+          - $ref: '#/components/schemas/EmailAddressTypeEnum'
+          description: The type of email address.
           example: PERSONAL
-          type: string
-      required:
-      - email_address_type
+          nullable: true
       type: object
     EmailAddressRequest:
       description: |-
         # The EmailAddress Object
         ### Description
         The `EmailAddress` object is used to represent a candidate's email address.
-
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their email addresses.
       properties:
@@ -4568,12 +4719,18 @@ components:
           nullable: true
           type: string
         email_address_type:
+          allOf:
+          - $ref: '#/components/schemas/EmailAddressTypeEnum'
+          description: The type of email address.
           example: PERSONAL
-          minLength: 1
-          type: string
-      required:
-      - email_address_type
+          nullable: true
       type: object
+    EmailAddressTypeEnum:
+      enum:
+      - PERSONAL
+      - WORK
+      - OTHER
+      type: string
     EndUserDetailsRequest:
       example:
         end_user_organization_name: end_user_organization_name
@@ -4630,6 +4787,14 @@ components:
       - problem_type
       - title
       type: object
+    GenderEnum:
+      enum:
+      - MALE
+      - FEMALE
+      - NON-BINARY
+      - OTHER
+      - DECLINE_TO_SELF_IDENTIFY
+      type: string
     GenerateRemoteKeyRequest:
       description: |-
         # The GenerateRemoteKey Object
@@ -4648,6 +4813,25 @@ components:
       required:
       - name
       type: object
+    IgnoreCommonModelRequest:
+      example:
+        reason: GENERAL_CUSTOMER_REQUEST
+        message: deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39
+      properties:
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/ReasonEnum'
+          example: GENERAL_CUSTOMER_REQUEST
+          writeOnly: true
+        message:
+          example: deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39
+          maxLength: 256
+          minLength: 1
+          type: string
+          writeOnly: true
+      required:
+      - reason
+      type: object
     Issue:
       example:
         end_user:
@@ -4656,7 +4840,6 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         is_muted: true
         last_incident_time: 2000-01-23T04:56:07.000+00:00
-        status: status
         first_incident_time: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -4664,8 +4847,7 @@ components:
           readOnly: true
           type: string
         status:
-          readOnly: true
-          type: string
+          $ref: '#/components/schemas/IssueStatusEnum'
         error_description:
           type: string
         end_user:
@@ -4686,12 +4868,16 @@ components:
       required:
       - error_description
       type: object
+    IssueStatusEnum:
+      enum:
+      - ONGOING
+      - RESOLVED
+      type: string
     Job:
       description: |-
         # The Job Object
         ### Description
         The `Job` object is used to represent a Job offering at a company.
-
         ### Usage Example
         Fetch from the `LIST Jobs` endpoint to show all job postings.
       example:
@@ -4745,8 +4931,11 @@ components:
           nullable: true
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/JobStatusEnum'
+          description: The job's status.
           example: OPEN
-          type: string
+          nullable: true
         remote_created_at:
           description: When the third party's job was created.
           example: 2021-10-15T00:00:00Z
@@ -4800,8 +4989,6 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - status
       type: object
       x-merge-sample-json: '{"id": "022a2bef-57e5-4def-8ed2-7c41bd9a5ed8", "remote_id":
         "8765432", "name": "Software Engineer (Merge is actually hiring btw)", "description":
@@ -4816,7 +5003,6 @@ components:
         # The JobInterviewStage Object
         ### Description
         The `JobInterviewStage` object is used to represent the stage of an interview
-
         ### Usage Example
         Fetch from the `LIST JobInterviewStages` endpoint and view the job interview stages used by a company.
       example:
@@ -4845,11 +5031,8 @@ components:
           nullable: true
           type: string
         job:
-          description: If stages are specific to a job, this is the job that this
-            stage belongs to.
           example: ba7d9648-5316-4a80-8d73-4e636cef5a90
           format: uuid
-          nullable: true
           type: string
         remote_data:
           example:
@@ -4862,6 +5045,14 @@ components:
           readOnly: true
           type: array
       type: object
+    JobStatusEnum:
+      enum:
+      - OPEN
+      - CLOSED
+      - DRAFT
+      - ARCHIVED
+      - PENDING
+      type: string
     LinkToken:
       example:
         integration_name: Lever
@@ -4877,6 +5068,16 @@ components:
       - integration_name
       - link_token
       type: object
+    MethodEnum:
+      enum:
+      - GET
+      - OPTIONS
+      - HEAD
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
+      type: string
     ModelOperation:
       description: |-
         # The ModelOperation Object
@@ -4934,7 +5135,6 @@ components:
         # The Offer Object
         ### Description
         The `Offer` object is used to represent an offer for an application.
-
         ### Usage Example
         Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.
       example:
@@ -4963,16 +5163,12 @@ components:
           nullable: true
           type: string
         application:
-          description: The application who is receiving the offer.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
-          nullable: true
           type: string
         creator:
-          description: The user who created the offer.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
-          nullable: true
           type: string
         remote_created_at:
           description: When the third party's offer was created.
@@ -4999,8 +5195,11 @@ components:
           nullable: true
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/OfferStatusEnum'
+          description: The offer's status.
           example: SENT
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /offers
@@ -5011,15 +5210,24 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - status
       type: object
+    OfferStatusEnum:
+      enum:
+      - DRAFT
+      - APPROVAL-SENT
+      - APPROVED
+      - SENT
+      - SENT-MANUALLY
+      - OPENED
+      - DENIED
+      - SIGNED
+      - DEPRECATED
+      type: string
     Office:
       description: |-
         # The Office Object
         ### Description
         The `Office` object is used to represent an office within a company.
-
         ### Usage Example
         Fetch from the `LIST Offices` endpoint and view the offices within a company.
       example:
@@ -5066,6 +5274,14 @@ components:
       x-merge-sample-json: '{"id": "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46", "remote_id":
         "876556788", "name": "SF Office", "location": "Embarcadero Center 2", "remote_data":
         [{"path": "/locations", "data": {"example": "Varies by platform"}}]}'
+    OverallRecommendationEnum:
+      enum:
+      - DEFINITELY_NO
+      - "NO"
+      - "YES"
+      - STRONG_YES
+      - NO_DECISION
+      type: string
     PaginatedAccountDetailsAndActionsList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -5101,8 +5317,8 @@ components:
             name: name
             square_image: square_image
             categories:
-            - categories
-            - categories
+            - null
+            - null
             slug: slug
             passthrough_available: true
           end_user_email_address: hradmin@foobar.dev
@@ -5141,8 +5357,8 @@ components:
             name: name
             square_image: square_image
             categories:
-            - categories
-            - categories
+            - null
+            - null
             slug: slug
             passthrough_available: true
           end_user_email_address: hradmin@foobar.dev
@@ -5480,7 +5696,6 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           is_muted: true
           last_incident_time: 2000-01-23T04:56:07.000+00:00
-          status: status
           first_incident_time: 2000-01-23T04:56:07.000+00:00
         - end_user:
             key: ""
@@ -5488,7 +5703,6 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           is_muted: true
           last_incident_time: 2000-01-23T04:56:07.000+00:00
-          status: status
           first_incident_time: 2000-01-23T04:56:07.000+00:00
       properties:
         next:
@@ -5921,7 +6135,6 @@ components:
         # The PhoneNumber Object
         ### Description
         The `PhoneNumber` object is used to represent a candidate's phone number.
-
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their phone numbers.
       properties:
@@ -5931,17 +6144,17 @@ components:
           nullable: true
           type: string
         phone_number_type:
+          allOf:
+          - $ref: '#/components/schemas/PhoneNumberTypeEnum'
+          description: The type of phone number.
           example: HOME
-          type: string
-      required:
-      - phone_number_type
+          nullable: true
       type: object
     PhoneNumberRequest:
       description: |-
         # The PhoneNumber Object
         ### Description
         The `PhoneNumber` object is used to represent a candidate's phone number.
-
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their phone numbers.
       properties:
@@ -5951,18 +6164,42 @@ components:
           nullable: true
           type: string
         phone_number_type:
+          allOf:
+          - $ref: '#/components/schemas/PhoneNumberTypeEnum'
+          description: The type of phone number.
           example: HOME
-          minLength: 1
-          type: string
-      required:
-      - phone_number_type
+          nullable: true
       type: object
+    PhoneNumberTypeEnum:
+      enum:
+      - HOME
+      - WORK
+      - MOBILE
+      - SKYPE
+      - OTHER
+      type: string
+    RaceEnum:
+      enum:
+      - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
+      - ASIAN
+      - BLACK_OR_AFRICAN_AMERICAN
+      - HISPANIC_OR_LATINO
+      - WHITE
+      - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER
+      - TWO_OR_MORE_RACES
+      - DECLINE_TO_SELF_IDENTIFY
+      type: string
+    ReasonEnum:
+      enum:
+      - GENERAL_CUSTOMER_REQUEST
+      - GDPR
+      - OTHER
+      type: string
     RejectReason:
       description: |-
         # The RejectReason Object
         ### Description
         The `RejectReason` object is used to represent a reason for rejecting an application.
-
         ### Usage Example
         Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.
       example:
@@ -6118,7 +6355,6 @@ components:
         # The RemoteUser Object
         ### Description
         The `RemoteUser` object is used to represent a third party user.
-
         ### Usage Example
         Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.
       example:
@@ -6173,8 +6409,11 @@ components:
           nullable: true
           type: string
         access_role:
+          allOf:
+          - $ref: '#/components/schemas/AccessRoleEnum'
+          description: The user's role.
           example: SUPER_ADMIN
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /users
@@ -6185,20 +6424,23 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - access_role
       type: object
       x-merge-sample-json: '{"id": "b82302de-852e-4e60-b050-edf9da3b7c02", "remote_id":
         "344321", "first_name": "Shensi", "last_name": "Ding", "email": "hello@merge.dev",
         "disabled": false, "remote_created_at": "2020-11-10T00:00:00Z", "access_role":
         "SUPER_ADMIN", "remote_data": [{"path": "/users", "data": {"example": "Varies
         by platform"}}]}'
+    RequestFormatEnum:
+      enum:
+      - JSON
+      - XML
+      - MULTIPART
+      type: string
     ScheduledInterview:
       description: |-
         # The ScheduledInterview Object
         ### Description
         The `ScheduledInterview` object is used to represent an interview
-
         ### Usage Example
         Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.
       example:
@@ -6232,22 +6474,16 @@ components:
           nullable: true
           type: string
         application:
-          description: The application being interviewed.
           example: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           format: uuid
-          nullable: true
           type: string
         job_interview_stage:
-          description: The stage of the interview.
           example: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
           format: uuid
-          nullable: true
           type: string
         organizer:
-          description: The user organizing the interview.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
-          nullable: true
           type: string
         interviewers:
           description: Array of `RemoteUser` IDs.
@@ -6288,8 +6524,11 @@ components:
           nullable: true
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/ScheduledInterviewStatusEnum'
+          description: The interview's status.
           example: SCHEDULED
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /interviews
@@ -6300,15 +6539,18 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - status
       type: object
+    ScheduledInterviewStatusEnum:
+      enum:
+      - SCHEDULED
+      - AWAITING_FEEDBACK
+      - COMPLETE
+      type: string
     Scorecard:
       description: |-
         # The Scorecard Object
         ### Description
         The `Scorecard` object is used to represent a Scorecard for an interview
-
         ### Usage Example
         Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.
       example:
@@ -6336,22 +6578,16 @@ components:
           nullable: true
           type: string
         application:
-          description: The application being scored.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
-          nullable: true
           type: string
         interview:
-          description: The interview being scored.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
-          nullable: true
           type: string
         interviewer:
-          description: The interviewer doing the scoring.
           example: bbb519a3-246e-4b95-b6b3-dba16107ba6b
           format: uuid
-          nullable: true
           type: string
         remote_created_at:
           description: When the third party's scorecard was created.
@@ -6366,8 +6602,11 @@ components:
           nullable: true
           type: string
         overall_recommendation:
+          allOf:
+          - $ref: '#/components/schemas/OverallRecommendationEnum'
+          description: The inteviewer's recommendation.
           example: STRONG_YES
-          type: string
+          nullable: true
         remote_data:
           example:
           - path: /ratings
@@ -6378,8 +6617,6 @@ components:
           nullable: true
           readOnly: true
           type: array
-      required:
-      - overall_recommendation
       type: object
     SyncStatus:
       description: |-
@@ -6412,8 +6649,9 @@ components:
           format: date-time
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/SyncStatusStatusEnum'
           example: SYNCING
-          type: string
         is_initial_sync:
           example: true
           type: boolean
@@ -6428,12 +6666,18 @@ components:
       x-merge-sample-json: '{"model_name": "Candidate", "model_id": "ats.Candidate",
         "last_sync_start": "2021-03-30T19:44:18.695973Z", "next_sync_start": "2021-03-30T20:44:18.662942Z",
         "status": "SYNCING", "is_initial_sync": true}'
+    SyncStatusStatusEnum:
+      enum:
+      - SYNCING
+      - DONE
+      - FAILED
+      - DISABLED
+      type: string
     Tag:
       description: |-
         # The Tag Object
         ### Description
         The `Tag` object is used to represent a tag for a candidate.
-
         ### Usage Example
         Fetch from the `LIST Tags` endpoint and view the tags used within a company.
       example:
@@ -6472,7 +6716,6 @@ components:
         # The Url Object
         ### Description
         The `Url` object is used to represent a candidate's website.
-
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their website urls.
       properties:
@@ -6484,17 +6727,17 @@ components:
           nullable: true
           type: string
         url_type:
+          allOf:
+          - $ref: '#/components/schemas/UrlTypeEnum'
+          description: The type of site.
           example: PERSONAL
-          type: string
-      required:
-      - url_type
+          nullable: true
       type: object
     UrlRequest:
       description: |-
         # The Url Object
         ### Description
         The `Url` object is used to represent a candidate's website.
-
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their website urls.
       properties:
@@ -6506,12 +6749,21 @@ components:
           nullable: true
           type: string
         url_type:
+          allOf:
+          - $ref: '#/components/schemas/UrlTypeEnum'
+          description: The type of site.
           example: PERSONAL
-          minLength: 1
-          type: string
-      required:
-      - url_type
+          nullable: true
       type: object
+    UrlTypeEnum:
+      enum:
+      - PERSONAL
+      - COMPANY
+      - PORTFOLIO
+      - BLOG
+      - SOCIAL_MEDIA
+      - OTHER
+      type: string
     ValidationProblemSource:
       example:
         pointer: pointer
@@ -6521,6 +6773,18 @@ components:
       required:
       - pointer
       type: object
+    VeteranStatusEnum:
+      enum:
+      - I_AM_NOT_A_PROTECTED_VETERAN
+      - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
+      - I_DONT_WISH_TO_ANSWER
+      type: string
+    VisibilityEnum:
+      enum:
+      - ADMIN_ONLY
+      - PUBLIC
+      - PRIVATE
+      type: string
     WarningValidationProblem:
       example:
         problem_type: UNRECOGNIZED_FIELD

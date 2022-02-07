@@ -24,13 +24,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import merge_ats_client.model.AttachmentTypeEnum;
 
 /**
- * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
+ * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate. ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
-@ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate. ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class AttachmentRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -50,7 +54,15 @@ public class AttachmentRequest {
 
   public static final String SERIALIZED_NAME_ATTACHMENT_TYPE = "attachment_type";
   @SerializedName(SERIALIZED_NAME_ATTACHMENT_TYPE)
-  private String attachmentType;
+  private AttachmentTypeEnum attachmentType;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private Map<String, Object> integrationParams = null;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private Map<String, Object> linkedAccountParams = null;
 
 
   public AttachmentRequest remoteId(String remoteId) {
@@ -145,25 +157,88 @@ public class AttachmentRequest {
   }
 
 
-  public AttachmentRequest attachmentType(String attachmentType) {
+  public AttachmentRequest attachmentType(AttachmentTypeEnum attachmentType) {
     
     this.attachmentType = attachmentType;
     return this;
   }
 
    /**
-   * Get attachmentType
+   * The attachment&#39;s type.
    * @return attachmentType
   **/
-  @ApiModelProperty(example = "RESUME", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "RESUME", value = "The attachment's type.")
 
-  public String getAttachmentType() {
+  public AttachmentTypeEnum getAttachmentType() {
     return attachmentType;
   }
 
 
-  public void setAttachmentType(String attachmentType) {
+  public void setAttachmentType(AttachmentTypeEnum attachmentType) {
     this.attachmentType = attachmentType;
+  }
+
+
+  public AttachmentRequest integrationParams(Map<String, Object> integrationParams) {
+    
+    this.integrationParams = integrationParams;
+    return this;
+  }
+
+  public AttachmentRequest putIntegrationParamsItem(String key, Object integrationParamsItem) {
+    if (this.integrationParams == null) {
+      this.integrationParams = new HashMap<String, Object>();
+    }
+    this.integrationParams.put(key, integrationParamsItem);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public Map<String, Object> getIntegrationParams() {
+    return integrationParams;
+  }
+
+
+  public void setIntegrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+
+  public AttachmentRequest linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    
+    this.linkedAccountParams = linkedAccountParams;
+    return this;
+  }
+
+  public AttachmentRequest putLinkedAccountParamsItem(String key, Object linkedAccountParamsItem) {
+    if (this.linkedAccountParams == null) {
+      this.linkedAccountParams = new HashMap<String, Object>();
+    }
+    this.linkedAccountParams.put(key, linkedAccountParamsItem);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public Map<String, Object> getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+
+
+  public void setLinkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
   }
 
 
@@ -180,12 +255,14 @@ public class AttachmentRequest {
         Objects.equals(this.fileName, attachmentRequest.fileName) &&
         Objects.equals(this.fileUrl, attachmentRequest.fileUrl) &&
         Objects.equals(this.candidate, attachmentRequest.candidate) &&
-        Objects.equals(this.attachmentType, attachmentRequest.attachmentType);
+        Objects.equals(this.attachmentType, attachmentRequest.attachmentType) &&
+        Objects.equals(this.integrationParams, attachmentRequest.integrationParams) &&
+        Objects.equals(this.linkedAccountParams, attachmentRequest.linkedAccountParams);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, fileName, fileUrl, candidate, attachmentType);
+    return Objects.hash(remoteId, fileName, fileUrl, candidate, attachmentType, integrationParams, linkedAccountParams);
   }
 
   @Override
@@ -197,6 +274,8 @@ public class AttachmentRequest {
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
     sb.append("    candidate: ").append(toIndentedString(candidate)).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType)).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams)).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -49,8 +49,9 @@ public class ApplicationsApiTest {
     public void applicationsCreateTest() throws ApiException {
         String xAccountToken = null;
         ApplicationEndpointRequest applicationEndpointRequest = null;
+        Boolean isDebugMode = null;
         Boolean runAsync = null;
-        ApplicationResponse response = api.applicationsCreate(xAccountToken, applicationEndpointRequest, runAsync);
+        ApplicationResponse response = api.applicationsCreate(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync);
 
         // TODO: test validations
     }

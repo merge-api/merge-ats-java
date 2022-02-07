@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **UUID** |  |  [optional] [readonly]
-**status** | **String** |  |  [optional] [readonly]
+**status** | **IssueStatusEnum** |  |  [optional]
 **errorDescription** | **String** |  | 
 **endUser** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly]
 **firstIncidentTime** | **OffsetDateTime** |  |  [optional]

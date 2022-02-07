@@ -25,12 +25,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import merge_ats_client.model.CategoriesEnum;
 import merge_ats_client.model.ModelOperation;
 
 /**
  * AccountDetailsAndActionsIntegration
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class AccountDetailsAndActionsIntegration {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -38,7 +39,7 @@ public class AccountDetailsAndActionsIntegration {
 
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
   @SerializedName(SERIALIZED_NAME_CATEGORIES)
-  private List<String> categories = new ArrayList<String>();
+  private List<CategoriesEnum> categories = new ArrayList<CategoriesEnum>();
 
   public static final String SERIALIZED_NAME_IMAGE = "image";
   @SerializedName(SERIALIZED_NAME_IMAGE)
@@ -87,13 +88,13 @@ public class AccountDetailsAndActionsIntegration {
   }
 
 
-  public AccountDetailsAndActionsIntegration categories(List<String> categories) {
+  public AccountDetailsAndActionsIntegration categories(List<CategoriesEnum> categories) {
     
     this.categories = categories;
     return this;
   }
 
-  public AccountDetailsAndActionsIntegration addCategoriesItem(String categoriesItem) {
+  public AccountDetailsAndActionsIntegration addCategoriesItem(CategoriesEnum categoriesItem) {
     this.categories.add(categoriesItem);
     return this;
   }
@@ -104,12 +105,12 @@ public class AccountDetailsAndActionsIntegration {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<String> getCategories() {
+  public List<CategoriesEnum> getCategories() {
     return categories;
   }
 
 
-  public void setCategories(List<String> categories) {
+  public void setCategories(List<CategoriesEnum> categories) {
     this.categories = categories;
   }
 

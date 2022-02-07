@@ -28,6 +28,12 @@ import com.google.gson.stream.JsonWriter;
  */
 @JsonAdapter(CategoriesEnum.Adapter.class)
 public enum CategoriesEnum {
+  /**
+  * Merge maps most values from all integrations to a single set of CommonModel enum options. However, in the event
+  * Merge encounters an unrecognized value, it will be returned as-is in the api response, and this SDK will interpret
+  * that as this default MERGE_NONSTANDARD_VALUE option.
+  */
+  MERGE_NONSTANDARD_VALUE("MERGE_NONSTANDARD_VALUE"),
   
   HRIS("hris"),
   
@@ -56,7 +62,7 @@ public enum CategoriesEnum {
         return b;
       }
     }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    return CategoriesEnum.MERGE_NONSTANDARD_VALUE;
   }
 
   public static class Adapter extends TypeAdapter<CategoriesEnum> {

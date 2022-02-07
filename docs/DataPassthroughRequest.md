@@ -8,12 +8,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**method** | **String** |  | 
+**method** | [**MethodEnum**](MethodEnum.md) |  | 
 **path** | **String** |  | 
 **baseUrlOverride** | **String** |  |  [optional]
 **data** | **String** |  |  [optional]
 **headers** | **Map&lt;String, Object&gt;** |  |  [optional]
-**requestFormat** | **String** |  |  [optional]
+**requestFormat** | [**RequestFormatEnum**](RequestFormatEnum.md) |  |  [optional]
 
 
 

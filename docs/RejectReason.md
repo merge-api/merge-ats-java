@@ -2,7 +2,7 @@
 
 # RejectReason
 
-# The RejectReason Object ### Description The `RejectReason` object is used to represent a reason for rejecting an application.  ### Usage Example Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.
+# The RejectReason Object ### Description The `RejectReason` object is used to represent a reason for rejecting an application. ### Usage Example Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.
 
 ## Properties
 

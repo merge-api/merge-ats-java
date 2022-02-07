@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * CandidateResponseRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class CandidateResponseRawJson {
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
@@ -47,6 +47,10 @@ public class CandidateResponseRawJson {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
   private JsonElement errors;
+
+  public static final String SERIALIZED_NAME_LOGS = "logs";
+  @SerializedName(SERIALIZED_NAME_LOGS)
+  private JsonElement logs;
 
   private transient JSON serializer;
 
@@ -111,6 +115,25 @@ public class CandidateResponseRawJson {
   public void setErrors(JsonElement errors) {
     this.errors = errors;
   }
+
+  public CandidateResponseRawJson logs(List<URI> logs) {
+    this.logs = this.serializer.getGson().toJsonTree(logs);
+    return this;
+  }
+
+   /**
+   * Get logs
+   * @return logs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public JsonElement getLogs() {
+    return logs;
+  }
+  public void setLogs(JsonElement logs) {
+    this.logs = logs;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -122,11 +145,12 @@ public class CandidateResponseRawJson {
     CandidateResponseRawJson candidateResponse = (CandidateResponseRawJson) o;
     return Objects.equals(this.model.getAsString(), candidateResponse.model.getAsString()) &&
         Objects.equals(this.warnings.getAsString(), candidateResponse.warnings.getAsString()) &&
-        Objects.equals(this.errors.getAsString(), candidateResponse.errors.getAsString());
+        Objects.equals(this.errors.getAsString(), candidateResponse.errors.getAsString()) &&
+        Objects.equals(this.logs.getAsString(), candidateResponse.logs.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(model, warnings, errors);
+    return Objects.hash(model, warnings, errors, logs);
   }
   @Override
   public String toString() {
@@ -135,6 +159,7 @@ public class CandidateResponseRawJson {
     sb.append("    model: ").append(toIndentedString(model.getAsString())).append("\n");
     sb.append("    warnings: ").append(toIndentedString(warnings.getAsString())).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors.getAsString())).append("\n");
+    sb.append("    logs: ").append(toIndentedString(logs.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

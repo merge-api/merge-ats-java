@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The EEOC Object ### Description The &#x60;EEOC&#x60; object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the &#x60;LIST EEOCs&#x60; endpoint and filter by &#x60;candidate&#x60; to show all EEOC information for a candidate.
+ * # The EEOC Object ### Description The &#x60;EEOC&#x60; object is used to represent the Equal Employment Opportunity Commission information for a candidate. ### Usage Example Fetch from the &#x60;LIST EEOCs&#x60; endpoint and filter by &#x60;candidate&#x60; to show all EEOC information for a candidate.
  */
-@ApiModel(description = "# The EEOC Object ### Description The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate.  ### Usage Example Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The EEOC Object ### Description The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate. ### Usage Example Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class EEOCRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -116,11 +116,11 @@ public class EEOCRawJson {
   }
 
    /**
-   * The candidate being represented.
+   * Get candidate
    * @return candidate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "f963f34d-3d2f-4f77-b557-cf36bc7e6498", value = "The candidate being represented.")
+  @ApiModelProperty(example = "f963f34d-3d2f-4f77-b557-cf36bc7e6498", value = "")
 
   public JsonElement getCandidate() {
     return candidate;
@@ -148,17 +148,17 @@ public class EEOCRawJson {
     this.submittedAt = submittedAt;
   }
 
-  public EEOCRawJson race(String race) {
+  public EEOCRawJson race(RaceEnum race) {
     this.race = this.serializer.getGson().toJsonTree(race);
     return this;
   }
 
    /**
-   * Get race
+   * The candidate&#39;s race.
    * @return race
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "HISPANIC_OR_LATINO", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "HISPANIC_OR_LATINO", value = "The candidate's race.")
 
   public JsonElement getRace() {
     return race;
@@ -167,17 +167,17 @@ public class EEOCRawJson {
     this.race = race;
   }
 
-  public EEOCRawJson gender(String gender) {
+  public EEOCRawJson gender(GenderEnum gender) {
     this.gender = this.serializer.getGson().toJsonTree(gender);
     return this;
   }
 
    /**
-   * Get gender
+   * The candidate&#39;s gender.
    * @return gender
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "FEMALE", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "FEMALE", value = "The candidate's gender.")
 
   public JsonElement getGender() {
     return gender;
@@ -186,17 +186,17 @@ public class EEOCRawJson {
     this.gender = gender;
   }
 
-  public EEOCRawJson veteranStatus(String veteranStatus) {
+  public EEOCRawJson veteranStatus(VeteranStatusEnum veteranStatus) {
     this.veteranStatus = this.serializer.getGson().toJsonTree(veteranStatus);
     return this;
   }
 
    /**
-   * Get veteranStatus
+   * The candidate&#39;s veteran status.
    * @return veteranStatus
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "I_AM_NOT_A_PROTECTED_VETERAN", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "I_AM_NOT_A_PROTECTED_VETERAN", value = "The candidate's veteran status.")
 
   public JsonElement getVeteranStatus() {
     return veteranStatus;
@@ -205,17 +205,17 @@ public class EEOCRawJson {
     this.veteranStatus = veteranStatus;
   }
 
-  public EEOCRawJson disabilityStatus(String disabilityStatus) {
+  public EEOCRawJson disabilityStatus(DisabilityStatusEnum disabilityStatus) {
     this.disabilityStatus = this.serializer.getGson().toJsonTree(disabilityStatus);
     return this;
   }
 
    /**
-   * Get disabilityStatus
+   * The candidate&#39;s disability status.
    * @return disabilityStatus
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "I_DONT_WISH_TO_ANSWER", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "I_DONT_WISH_TO_ANSWER", value = "The candidate's disability status.")
 
   public JsonElement getDisabilityStatus() {
     return disabilityStatus;

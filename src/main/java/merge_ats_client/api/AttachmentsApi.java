@@ -63,6 +63,7 @@ public class AttachmentsApi {
      * Build call for attachmentsCreate
      * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -73,7 +74,7 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsCreateCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call attachmentsCreateCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = attachmentEndpointRequest;
 
         // create path and map variables
@@ -84,6 +85,10 @@ public class AttachmentsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (isDebugMode != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("is_debug_mode", isDebugMode));
+        }
 
         if (runAsync != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
@@ -112,7 +117,7 @@ public class AttachmentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call attachmentsCreateValidateBeforeCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call attachmentsCreateValidateBeforeCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -125,7 +130,7 @@ public class AttachmentsApi {
         }
         
 
-        okhttp3.Call localVarCall = attachmentsCreateCall(xAccountToken, attachmentEndpointRequest, runAsync, _callback);
+        okhttp3.Call localVarCall = attachmentsCreateCall(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync, _callback);
         return localVarCall;
 
     }
@@ -135,6 +140,7 @@ public class AttachmentsApi {
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @return AttachmentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -144,8 +150,8 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public AttachmentResponse attachmentsCreate(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync) throws ApiException {
-        ApiResponse<AttachmentResponse> localVarResp = attachmentsCreateWithHttpInfo(xAccountToken, attachmentEndpointRequest, runAsync);
+    public AttachmentResponse attachmentsCreate(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
+        ApiResponse<AttachmentResponse> localVarResp = attachmentsCreateWithHttpInfo(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync);
         return localVarResp.getData();
     }
 
@@ -154,6 +160,7 @@ public class AttachmentsApi {
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @return ApiResponse&lt;AttachmentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -163,8 +170,8 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttachmentResponse> attachmentsCreateWithHttpInfo(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync) throws ApiException {
-        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, runAsync, null);
+    public ApiResponse<AttachmentResponse> attachmentsCreateWithHttpInfo(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
+        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync, null);
         Type localVarReturnType = new TypeToken<AttachmentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -174,6 +181,7 @@ public class AttachmentsApi {
      * Creates an &#x60;Attachment&#x60; object with the given values.
      * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -184,9 +192,9 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsCreateAsync(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean runAsync, final ApiCallback<AttachmentResponse> _callback) throws ApiException {
+    public okhttp3.Call attachmentsCreateAsync(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback<AttachmentResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, runAsync, _callback);
+        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync, _callback);
         Type localVarReturnType = new TypeToken<AttachmentResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

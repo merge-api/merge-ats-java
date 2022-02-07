@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="attachmentsCreate"></a>
 # **attachmentsCreate**
-> AttachmentResponse attachmentsCreate(xAccountToken, attachmentEndpointRequest, runAsync)
+> AttachmentResponse attachmentsCreate(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync)
 
 
 
@@ -41,9 +41,10 @@ public class Example {
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     AttachmentEndpointRequest attachmentEndpointRequest = new AttachmentEndpointRequest(); // AttachmentEndpointRequest | 
+    Boolean isDebugMode = true; // Boolean | Whether to include debug fields (such as log file links) in the response.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     try {
-      AttachmentResponse result = apiInstance.attachmentsCreate(xAccountToken, attachmentEndpointRequest, runAsync);
+      AttachmentResponse result = apiInstance.attachmentsCreate(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttachmentsApi#attachmentsCreate");
@@ -62,6 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **String**| Token identifying the end user. |
  **attachmentEndpointRequest** | [**AttachmentEndpointRequest**](AttachmentEndpointRequest.md)|  |
+ **isDebugMode** | **Boolean**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
 
 ### Return type

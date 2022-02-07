@@ -32,10 +32,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
+ * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate. ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
-@ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate.  ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-12T18:46:24.846598Z[Etc/UTC]")
+@ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate. ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
 public class AttachmentRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -159,17 +159,17 @@ public class AttachmentRawJson {
     this.candidate = candidate;
   }
 
-  public AttachmentRawJson attachmentType(String attachmentType) {
+  public AttachmentRawJson attachmentType(AttachmentTypeEnum attachmentType) {
     this.attachmentType = this.serializer.getGson().toJsonTree(attachmentType);
     return this;
   }
 
    /**
-   * Get attachmentType
+   * The attachment&#39;s type.
    * @return attachmentType
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "RESUME", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "RESUME", value = "The attachment's type.")
 
   public JsonElement getAttachmentType() {
     return attachmentType;
