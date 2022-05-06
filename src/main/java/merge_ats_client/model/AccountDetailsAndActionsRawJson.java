@@ -21,7 +21,6 @@ import com.google.gson.annotations.SerializedName;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The LinkedAccount Object ### Description The &#x60;LinkedAccount&#x60; object is used to represent an end user&#39;s link with a specific integration.  ### Usage Example View a list of your organization&#39;s &#x60;LinkedAccount&#x60; objects.
  */
 @ApiModel(description = "# The LinkedAccount Object ### Description The `LinkedAccount` object is used to represent an end user's link with a specific integration.  ### Usage Example View a list of your organization's `LinkedAccount` objects.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class AccountDetailsAndActionsRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -64,6 +63,10 @@ public class AccountDetailsAndActionsRawJson {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
   private JsonElement endUserEmailAddress;
+
+  public static final String SERIALIZED_NAME_WEBHOOK_LISTENER_URL = "webhook_listener_url";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_LISTENER_URL)
+  private JsonElement webhookListenerUrl;
 
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
@@ -209,6 +212,25 @@ public class AccountDetailsAndActionsRawJson {
     this.endUserEmailAddress = endUserEmailAddress;
   }
 
+  public AccountDetailsAndActionsRawJson webhookListenerUrl(String webhookListenerUrl) {
+    this.webhookListenerUrl = this.serializer.getGson().toJsonTree(webhookListenerUrl);
+    return this;
+  }
+
+   /**
+   * Get webhookListenerUrl
+   * @return webhookListenerUrl
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4", required = true, value = "")
+
+  public JsonElement getWebhookListenerUrl() {
+    return webhookListenerUrl;
+  }
+  public void setWebhookListenerUrl(JsonElement webhookListenerUrl) {
+    this.webhookListenerUrl = webhookListenerUrl;
+  }
+
   public AccountDetailsAndActionsRawJson integration(AccountDetailsAndActionsIntegration integration) {
     this.integration = this.serializer.getGson().toJsonTree(integration);
     return this;
@@ -243,11 +265,12 @@ public class AccountDetailsAndActionsRawJson {
         Objects.equals(this.endUserOriginId.getAsString(), accountDetailsAndActions.endUserOriginId.getAsString()) &&
         Objects.equals(this.endUserOrganizationName.getAsString(), accountDetailsAndActions.endUserOrganizationName.getAsString()) &&
         Objects.equals(this.endUserEmailAddress.getAsString(), accountDetailsAndActions.endUserEmailAddress.getAsString()) &&
+        Objects.equals(this.webhookListenerUrl.getAsString(), accountDetailsAndActions.webhookListenerUrl.getAsString()) &&
         Objects.equals(this.integration.getAsString(), accountDetailsAndActions.integration.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, integration);
+    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, webhookListenerUrl, integration);
   }
   @Override
   public String toString() {
@@ -260,6 +283,7 @@ public class AccountDetailsAndActionsRawJson {
     sb.append("    endUserOriginId: ").append(toIndentedString(endUserOriginId.getAsString())).append("\n");
     sb.append("    endUserOrganizationName: ").append(toIndentedString(endUserOrganizationName.getAsString())).append("\n");
     sb.append("    endUserEmailAddress: ").append(toIndentedString(endUserEmailAddress.getAsString())).append("\n");
+    sb.append("    webhookListenerUrl: ").append(toIndentedString(webhookListenerUrl.getAsString())).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();

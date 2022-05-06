@@ -2,7 +2,7 @@
 
 # Application
 
-# The Application Object ### Description The `Application` object is used to represent an Application for a job position. ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
+# The Application Object ### Description The `Application` object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.  Please note: Application objects are constructed if the object does not exist in the remote system.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
 
 ## Properties
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **appliedAt** | **OffsetDateTime** | When the application was submitted. |  [optional]
 **rejectedAt** | **OffsetDateTime** | When the application was rejected. |  [optional]
 **source** | **String** | The application&#39;s source. |  [optional]
-**creditedTo** | **UUID** | The user credited for this application. |  [optional]
+**creditedTo** | **UUID** |  |  [optional]
 **currentStage** | **UUID** |  |  [optional]
 **rejectReason** | **UUID** |  |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]

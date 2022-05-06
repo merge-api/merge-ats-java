@@ -23,7 +23,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +33,7 @@ import merge_ats_client.model.AttachmentTypeEnum;
  * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate. ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
 @ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate. ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class AttachmentRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -46,7 +45,7 @@ public class AttachmentRequest {
 
   public static final String SERIALIZED_NAME_FILE_URL = "file_url";
   @SerializedName(SERIALIZED_NAME_FILE_URL)
-  private URI fileUrl;
+  private String fileUrl;
 
   public static final String SERIALIZED_NAME_CANDIDATE = "candidate";
   @SerializedName(SERIALIZED_NAME_CANDIDATE)
@@ -111,7 +110,7 @@ public class AttachmentRequest {
   }
 
 
-  public AttachmentRequest fileUrl(URI fileUrl) {
+  public AttachmentRequest fileUrl(String fileUrl) {
     
     this.fileUrl = fileUrl;
     return this;
@@ -124,12 +123,12 @@ public class AttachmentRequest {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "http://alturl.com/p749b", value = "The attachment's url.")
 
-  public URI getFileUrl() {
+  public String getFileUrl() {
     return fileUrl;
   }
 
 
-  public void setFileUrl(URI fileUrl) {
+  public void setFileUrl(String fileUrl) {
     this.fileUrl = fileUrl;
   }
 

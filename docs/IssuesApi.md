@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="issuesList"></a>
 # **issuesList**
-> PaginatedIssueList issuesList(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status)
+> PaginatedIssueList issuesList(accountToken, cursor, endDate, endUserOrganizationName, firstIncidentTimeAfter, firstIncidentTimeBefore, includeMuted, integrationName, lastIncidentTimeAfter, lastIncidentTimeBefore, pageSize, startDate, status)
 
 
 
@@ -42,13 +42,17 @@ public class Example {
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     String endDate = "endDate_example"; // String | If included, will only include issues whose most recent action occurred before this time
     String endUserOrganizationName = "endUserOrganizationName_example"; // String | 
+    OffsetDateTime firstIncidentTimeAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return issues whose first incident time was after this datetime.
+    OffsetDateTime firstIncidentTimeBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return issues whose first incident time was before this datetime.
     String includeMuted = "includeMuted_example"; // String | If True, will include muted issues
     String integrationName = "integrationName_example"; // String | 
+    OffsetDateTime lastIncidentTimeAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return issues whose first incident time was after this datetime.
+    OffsetDateTime lastIncidentTimeBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return issues whose first incident time was before this datetime.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String startDate = "startDate_example"; // String | If included, will only include issues whose most recent action occurred after this time
     String status = "status_example"; // String | 
     try {
-      PaginatedIssueList result = apiInstance.issuesList(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status);
+      PaginatedIssueList result = apiInstance.issuesList(accountToken, cursor, endDate, endUserOrganizationName, firstIncidentTimeAfter, firstIncidentTimeBefore, includeMuted, integrationName, lastIncidentTimeAfter, lastIncidentTimeBefore, pageSize, startDate, status);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IssuesApi#issuesList");
@@ -69,8 +73,12 @@ Name | Type | Description  | Notes
  **cursor** | **String**| The pagination cursor value. | [optional]
  **endDate** | **String**| If included, will only include issues whose most recent action occurred before this time | [optional]
  **endUserOrganizationName** | **String**|  | [optional]
+ **firstIncidentTimeAfter** | **OffsetDateTime**| If provided, will only return issues whose first incident time was after this datetime. | [optional]
+ **firstIncidentTimeBefore** | **OffsetDateTime**| If provided, will only return issues whose first incident time was before this datetime. | [optional]
  **includeMuted** | **String**| If True, will include muted issues | [optional]
  **integrationName** | **String**|  | [optional]
+ **lastIncidentTimeAfter** | **OffsetDateTime**| If provided, will only return issues whose first incident time was after this datetime. | [optional]
+ **lastIncidentTimeBefore** | **OffsetDateTime**| If provided, will only return issues whose first incident time was before this datetime. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
  **startDate** | **String**| If included, will only include issues whose most recent action occurred after this time | [optional]
  **status** | **String**|  | [optional] [enum: ONGOING, RESOLVED]

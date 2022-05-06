@@ -15,6 +15,7 @@ package merge_ats_client.api;
 
 import merge_ats_client.ApiException;
 import merge_ats_client.model.Issue;
+import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedIssueList;
 import java.util.UUID;
 import org.junit.Test;
@@ -48,12 +49,16 @@ public class IssuesApiTest {
         String cursor = null;
         String endDate = null;
         String endUserOrganizationName = null;
+        OffsetDateTime firstIncidentTimeAfter = null;
+        OffsetDateTime firstIncidentTimeBefore = null;
         String includeMuted = null;
         String integrationName = null;
+        OffsetDateTime lastIncidentTimeAfter = null;
+        OffsetDateTime lastIncidentTimeBefore = null;
         Integer pageSize = null;
         String startDate = null;
         String status = null;
-        PaginatedIssueList response = api.issuesList(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status);
+        PaginatedIssueList response = api.issuesList(accountToken, cursor, endDate, endUserOrganizationName, firstIncidentTimeAfter, firstIncidentTimeBefore, includeMuted, integrationName, lastIncidentTimeAfter, lastIncidentTimeBefore, pageSize, startDate, status);
 
         // TODO: test validations
     }

@@ -29,7 +29,7 @@ import merge_ats_client.model.CategoryEnum;
 /**
  * AccountDetails
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class AccountDetails {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -38,6 +38,10 @@ public class AccountDetails {
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
   private String integration;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_SLUG = "integration_slug";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_SLUG)
+  private String integrationSlug;
 
   public static final String SERIALIZED_NAME_CATEGORY = "category";
   @SerializedName(SERIALIZED_NAME_CATEGORY)
@@ -58,6 +62,10 @@ public class AccountDetails {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private String status;
+
+  public static final String SERIALIZED_NAME_WEBHOOK_LISTENER_URL = "webhook_listener_url";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_LISTENER_URL)
+  private String webhookListenerUrl;
 
 
    /**
@@ -83,6 +91,20 @@ public class AccountDetails {
 
   public String getIntegration() {
     return integration;
+  }
+
+
+
+
+   /**
+   * Get integrationSlug
+   * @return integrationSlug
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "bamboohr", value = "")
+
+  public String getIntegrationSlug() {
+    return integrationSlug;
   }
 
 
@@ -167,6 +189,20 @@ public class AccountDetails {
 
 
 
+   /**
+   * Get webhookListenerUrl
+   * @return webhookListenerUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4", value = "")
+
+  public String getWebhookListenerUrl() {
+    return webhookListenerUrl;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -178,16 +214,18 @@ public class AccountDetails {
     AccountDetails accountDetails = (AccountDetails) o;
     return Objects.equals(this.id, accountDetails.id) &&
         Objects.equals(this.integration, accountDetails.integration) &&
+        Objects.equals(this.integrationSlug, accountDetails.integrationSlug) &&
         Objects.equals(this.category, accountDetails.category) &&
         Objects.equals(this.endUserOriginId, accountDetails.endUserOriginId) &&
         Objects.equals(this.endUserOrganizationName, accountDetails.endUserOrganizationName) &&
         Objects.equals(this.endUserEmailAddress, accountDetails.endUserEmailAddress) &&
-        Objects.equals(this.status, accountDetails.status);
+        Objects.equals(this.status, accountDetails.status) &&
+        Objects.equals(this.webhookListenerUrl, accountDetails.webhookListenerUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, integration, category, endUserOriginId, endUserOrganizationName, endUserEmailAddress, status);
+    return Objects.hash(id, integration, integrationSlug, category, endUserOriginId, endUserOrganizationName, endUserEmailAddress, status, webhookListenerUrl);
   }
 
   @Override
@@ -196,11 +234,13 @@ public class AccountDetails {
     sb.append("class AccountDetails {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration)).append("\n");
+    sb.append("    integrationSlug: ").append(toIndentedString(integrationSlug)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    endUserOriginId: ").append(toIndentedString(endUserOriginId)).append("\n");
     sb.append("    endUserOrganizationName: ").append(toIndentedString(endUserOrganizationName)).append("\n");
     sb.append("    endUserEmailAddress: ").append(toIndentedString(endUserEmailAddress)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    webhookListenerUrl: ").append(toIndentedString(webhookListenerUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

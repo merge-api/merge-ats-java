@@ -2,7 +2,7 @@
 
 Merge ATS API
 - API version: 1.0
-  - Build date: 2022-02-04T15:32:36.773068Z[Etc/UTC]
+  - Build date: 2022-05-06T21:17:34.959180Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.merge.ats</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.3.0</version>
+  <version>1.4.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.merge.ats:merge-ats-client:1.3.0"
+compile "dev.merge.ats:merge-ats-client:1.4.0"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.3.0.jar`
+* `target/merge-ats-client-1.4.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -93,8 +93,9 @@ public class Example {
     //tokenAuth.setApiKeyPrefix("Token");
 
     AccountDetailsApi apiInstance = new AccountDetailsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      AccountDetails result = apiInstance.accountDetailsRetrieve();
+      AccountDetails result = apiInstance.accountDetailsRetrieve(xAccountToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AccountDetailsApi#accountDetailsRetrieve");
@@ -120,14 +121,17 @@ Class | Method | HTTP request | Description
 *ActivitiesApi* | [**activitiesRetrieve**](docs/ActivitiesApi.md#activitiesRetrieve) | **GET** /activities/{id} | 
 *ApplicationsApi* | [**applicationsCreate**](docs/ApplicationsApi.md#applicationsCreate) | **POST** /applications | 
 *ApplicationsApi* | [**applicationsList**](docs/ApplicationsApi.md#applicationsList) | **GET** /applications | 
+*ApplicationsApi* | [**applicationsMetaPostRetrieve**](docs/ApplicationsApi.md#applicationsMetaPostRetrieve) | **GET** /applications/meta/post | 
 *ApplicationsApi* | [**applicationsRetrieve**](docs/ApplicationsApi.md#applicationsRetrieve) | **GET** /applications/{id} | 
 *AttachmentsApi* | [**attachmentsCreate**](docs/AttachmentsApi.md#attachmentsCreate) | **POST** /attachments | 
 *AttachmentsApi* | [**attachmentsList**](docs/AttachmentsApi.md#attachmentsList) | **GET** /attachments | 
+*AttachmentsApi* | [**attachmentsMetaPostRetrieve**](docs/AttachmentsApi.md#attachmentsMetaPostRetrieve) | **GET** /attachments/meta/post | 
 *AttachmentsApi* | [**attachmentsRetrieve**](docs/AttachmentsApi.md#attachmentsRetrieve) | **GET** /attachments/{id} | 
 *AvailableActionsApi* | [**availableActionsRetrieve**](docs/AvailableActionsApi.md#availableActionsRetrieve) | **GET** /available-actions | 
 *CandidatesApi* | [**candidatesCreate**](docs/CandidatesApi.md#candidatesCreate) | **POST** /candidates | 
 *CandidatesApi* | [**candidatesIgnoreCreate**](docs/CandidatesApi.md#candidatesIgnoreCreate) | **POST** /candidates/ignore/{model_id} | 
 *CandidatesApi* | [**candidatesList**](docs/CandidatesApi.md#candidatesList) | **GET** /candidates | 
+*CandidatesApi* | [**candidatesMetaPostRetrieve**](docs/CandidatesApi.md#candidatesMetaPostRetrieve) | **GET** /candidates/meta/post | 
 *CandidatesApi* | [**candidatesRetrieve**](docs/CandidatesApi.md#candidatesRetrieve) | **GET** /candidates/{id} | 
 *DeleteAccountApi* | [**deleteAccountCreate**](docs/DeleteAccountApi.md#deleteAccountCreate) | **POST** /delete-account | 
 *DepartmentsApi* | [**departmentsList**](docs/DepartmentsApi.md#departmentsList) | **GET** /departments | 
@@ -160,6 +164,8 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**tagsList**](docs/TagsApi.md#tagsList) | **GET** /tags | 
 *UsersApi* | [**usersList**](docs/UsersApi.md#usersList) | **GET** /users | 
 *UsersApi* | [**usersRetrieve**](docs/UsersApi.md#usersRetrieve) | **GET** /users/{id} | 
+*WebhookReceiversApi* | [**webhookReceiversCreate**](docs/WebhookReceiversApi.md#webhookReceiversCreate) | **POST** /webhook-receivers | 
+*WebhookReceiversApi* | [**webhookReceiversList**](docs/WebhookReceiversApi.md#webhookReceiversList) | **GET** /webhook-receivers | 
 
 
 ## Documentation for Models
@@ -190,16 +196,20 @@ Class | Method | HTTP request | Description
  - [CategoriesEnum](docs/CategoriesEnum.md)
  - [CategoryEnum](docs/CategoryEnum.md)
  - [DataPassthroughRequest](docs/DataPassthroughRequest.md)
+ - [DebugModeLog](docs/DebugModeLog.md)
+ - [DebugModelLogSummary](docs/DebugModelLogSummary.md)
  - [Department](docs/Department.md)
  - [DisabilityStatusEnum](docs/DisabilityStatusEnum.md)
  - [EEOC](docs/EEOC.md)
  - [EmailAddress](docs/EmailAddress.md)
  - [EmailAddressRequest](docs/EmailAddressRequest.md)
  - [EmailAddressTypeEnum](docs/EmailAddressTypeEnum.md)
+ - [EncodingEnum](docs/EncodingEnum.md)
  - [EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
  - [ErrorValidationProblem](docs/ErrorValidationProblem.md)
  - [GenderEnum](docs/GenderEnum.md)
  - [GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
+ - [IgnoreCommonModel](docs/IgnoreCommonModel.md)
  - [IgnoreCommonModelRequest](docs/IgnoreCommonModelRequest.md)
  - [Issue](docs/Issue.md)
  - [IssueStatusEnum](docs/IssueStatusEnum.md)
@@ -207,8 +217,11 @@ Class | Method | HTTP request | Description
  - [JobInterviewStage](docs/JobInterviewStage.md)
  - [JobStatusEnum](docs/JobStatusEnum.md)
  - [LinkToken](docs/LinkToken.md)
+ - [LinkedAccountStatus](docs/LinkedAccountStatus.md)
+ - [MetaResponse](docs/MetaResponse.md)
  - [MethodEnum](docs/MethodEnum.md)
  - [ModelOperation](docs/ModelOperation.md)
+ - [MultipartFormFieldRequest](docs/MultipartFormFieldRequest.md)
  - [Offer](docs/Offer.md)
  - [OfferStatusEnum](docs/OfferStatusEnum.md)
  - [Office](docs/Office.md)
@@ -257,6 +270,8 @@ Class | Method | HTTP request | Description
  - [VeteranStatusEnum](docs/VeteranStatusEnum.md)
  - [VisibilityEnum](docs/VisibilityEnum.md)
  - [WarningValidationProblem](docs/WarningValidationProblem.md)
+ - [WebhookReceiver](docs/WebhookReceiver.md)
+ - [WebhookReceiverRequest](docs/WebhookReceiverRequest.md)
 
 
 ## Documentation for Authorization

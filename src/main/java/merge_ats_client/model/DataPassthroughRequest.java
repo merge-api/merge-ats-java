@@ -23,17 +23,19 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import merge_ats_client.model.MethodEnum;
+import merge_ats_client.model.MultipartFormFieldRequest;
 import merge_ats_client.model.RequestFormatEnum;
 
 /**
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class DataPassthroughRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -50,6 +52,10 @@ public class DataPassthroughRequest {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
   private String data;
+
+  public static final String SERIALIZED_NAME_MULTIPART_FORM_DATA = "multipart_form_data";
+  @SerializedName(SERIALIZED_NAME_MULTIPART_FORM_DATA)
+  private List<MultipartFormFieldRequest> multipartFormData = null;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
@@ -150,6 +156,37 @@ public class DataPassthroughRequest {
   }
 
 
+  public DataPassthroughRequest multipartFormData(List<MultipartFormFieldRequest> multipartFormData) {
+    
+    this.multipartFormData = multipartFormData;
+    return this;
+  }
+
+  public DataPassthroughRequest addMultipartFormDataItem(MultipartFormFieldRequest multipartFormDataItem) {
+    if (this.multipartFormData == null) {
+      this.multipartFormData = new ArrayList<MultipartFormFieldRequest>();
+    }
+    this.multipartFormData.add(multipartFormDataItem);
+    return this;
+  }
+
+   /**
+   * Pass an array of &#x60;MultipartFormField&#x60; objects in here instead of using the &#x60;data&#x60; param if &#x60;request_format&#x60; is set to &#x60;MULTIPART&#x60;.
+   * @return multipartFormData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`.")
+
+  public List<MultipartFormFieldRequest> getMultipartFormData() {
+    return multipartFormData;
+  }
+
+
+  public void setMultipartFormData(List<MultipartFormFieldRequest> multipartFormData) {
+    this.multipartFormData = multipartFormData;
+  }
+
+
   public DataPassthroughRequest headers(Map<String, Object> headers) {
     
     this.headers = headers;
@@ -165,11 +202,11 @@ public class DataPassthroughRequest {
   }
 
    /**
-   * Get headers
+   * The headers to use for the request (Merge will handle the account&#39;s authorization headers). &#x60;Content-Type&#x60; header is required for passthrough. Choose content type corresponding to expected format of receiving server.
    * @return headers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"EXTRA-HEADER\":\"value\"}", value = "")
+  @ApiModelProperty(example = "{\"EXTRA-HEADER\":\"value\"}", value = "The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.")
 
   public Map<String, Object> getHeaders() {
     return headers;
@@ -217,13 +254,14 @@ public class DataPassthroughRequest {
         Objects.equals(this.path, dataPassthroughRequest.path) &&
         Objects.equals(this.baseUrlOverride, dataPassthroughRequest.baseUrlOverride) &&
         Objects.equals(this.data, dataPassthroughRequest.data) &&
+        Objects.equals(this.multipartFormData, dataPassthroughRequest.multipartFormData) &&
         Objects.equals(this.headers, dataPassthroughRequest.headers) &&
         Objects.equals(this.requestFormat, dataPassthroughRequest.requestFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, path, baseUrlOverride, data, headers, requestFormat);
+    return Objects.hash(method, path, baseUrlOverride, data, multipartFormData, headers, requestFormat);
   }
 
   @Override
@@ -234,6 +272,7 @@ public class DataPassthroughRequest {
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    baseUrlOverride: ").append(toIndentedString(baseUrlOverride)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    multipartFormData: ").append(toIndentedString(multipartFormData)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    requestFormat: ").append(toIndentedString(requestFormat)).append("\n");
     sb.append("}");

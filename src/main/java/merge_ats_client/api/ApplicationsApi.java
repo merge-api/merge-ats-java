@@ -30,6 +30,7 @@ import java.io.IOException;
 import merge_ats_client.model.Application;
 import merge_ats_client.model.ApplicationEndpointRequest;
 import merge_ats_client.model.ApplicationResponse;
+import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedApplicationList;
 import java.util.UUID;
@@ -423,6 +424,129 @@ public class ApplicationsApi {
 
         okhttp3.Call localVarCall = applicationsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedApplicationList>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for applicationsMetaPostRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call applicationsMetaPostRetrieveCall(String xAccountToken, String applicationRemoteTemplateId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/applications/meta/post";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (applicationRemoteTemplateId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("application_remote_template_id", applicationRemoteTemplateId));
+        }
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call applicationsMetaPostRetrieveValidateBeforeCall(String xAccountToken, String applicationRemoteTemplateId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling applicationsMetaPostRetrieve(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = applicationsMetaPostRetrieveCall(xAccountToken, applicationRemoteTemplateId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Returns metadata for &#x60;Application&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
+     * @return MetaResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public MetaResponse applicationsMetaPostRetrieve(String xAccountToken, String applicationRemoteTemplateId) throws ApiException {
+        ApiResponse<MetaResponse> localVarResp = applicationsMetaPostRetrieveWithHttpInfo(xAccountToken, applicationRemoteTemplateId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Returns metadata for &#x60;Application&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
+     * @return ApiResponse&lt;MetaResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<MetaResponse> applicationsMetaPostRetrieveWithHttpInfo(String xAccountToken, String applicationRemoteTemplateId) throws ApiException {
+        okhttp3.Call localVarCall = applicationsMetaPostRetrieveValidateBeforeCall(xAccountToken, applicationRemoteTemplateId, null);
+        Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Returns metadata for &#x60;Application&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call applicationsMetaPostRetrieveAsync(String xAccountToken, String applicationRemoteTemplateId, final ApiCallback<MetaResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = applicationsMetaPostRetrieveValidateBeforeCall(xAccountToken, applicationRemoteTemplateId, _callback);
+        Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

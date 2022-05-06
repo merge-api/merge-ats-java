@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="syncStatusResyncCreate"></a>
 # **syncStatusResyncCreate**
-> SyncStatus syncStatusResyncCreate(xAccountToken)
+> List&lt;SyncStatus&gt; syncStatusResyncCreate(xAccountToken)
 
 
 
@@ -39,7 +39,7 @@ public class Example {
     ForceResyncApi apiInstance = new ForceResyncApi(defaultClient);
     String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      SyncStatus result = apiInstance.syncStatusResyncCreate(xAccountToken);
+      List<SyncStatus> result = apiInstance.syncStatusResyncCreate(xAccountToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ForceResyncApi#syncStatusResyncCreate");
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SyncStatus**](SyncStatus.md)
+[**List&lt;SyncStatus&gt;**](SyncStatus.md)
 
 ### Authorization
 

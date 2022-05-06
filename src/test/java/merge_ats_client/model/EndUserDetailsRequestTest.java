@@ -83,4 +83,12 @@ public class EndUserDetailsRequestTest {
         // TODO: test integration
     }
 
+    /**
+     * Test the property 'linkExpiryMins'
+     */
+    @Test
+    public void linkExpiryMinsTest() {
+        // TODO: test linkExpiryMins
+    }
+
 }

@@ -11,5 +11,9 @@
 
 * `ACCOUNTING` (value: `"accounting"`)
 
+* `TICKETING` (value: `"ticketing"`)
+
+* `CRM` (value: `"crm"`)
+
 
 

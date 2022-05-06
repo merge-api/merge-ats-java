@@ -21,10 +21,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import merge_ats_client.model.MethodEnum;
+import merge_ats_client.model.MultipartFormFieldRequest;
 import merge_ats_client.model.RequestFormatEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -75,6 +77,14 @@ public class DataPassthroughRequestTest {
     @Test
     public void dataTest() {
         // TODO: test data
+    }
+
+    /**
+     * Test the property 'multipartFormData'
+     */
+    @Test
+    public void multipartFormDataTest() {
+        // TODO: test multipartFormData
     }
 
     /**

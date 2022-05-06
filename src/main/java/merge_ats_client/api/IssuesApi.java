@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import merge_ats_client.model.Issue;
+import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedIssueList;
 import java.util.UUID;
 
@@ -62,8 +63,12 @@ public class IssuesApi {
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
      * @param endUserOrganizationName  (optional)
+     * @param firstIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param firstIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param includeMuted If True, will include muted issues (optional)
      * @param integrationName  (optional)
+     * @param lastIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param lastIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
      * @param status  (optional)
@@ -76,7 +81,7 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call issuesListCall(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call issuesListCall(String accountToken, String cursor, String endDate, String endUserOrganizationName, OffsetDateTime firstIncidentTimeAfter, OffsetDateTime firstIncidentTimeBefore, String includeMuted, String integrationName, OffsetDateTime lastIncidentTimeAfter, OffsetDateTime lastIncidentTimeBefore, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -104,12 +109,28 @@ public class IssuesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_user_organization_name", endUserOrganizationName));
         }
 
+        if (firstIncidentTimeAfter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("first_incident_time_after", firstIncidentTimeAfter));
+        }
+
+        if (firstIncidentTimeBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("first_incident_time_before", firstIncidentTimeBefore));
+        }
+
         if (includeMuted != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_muted", includeMuted));
         }
 
         if (integrationName != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("integration_name", integrationName));
+        }
+
+        if (lastIncidentTimeAfter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("last_incident_time_after", lastIncidentTimeAfter));
+        }
+
+        if (lastIncidentTimeBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("last_incident_time_before", lastIncidentTimeBefore));
         }
 
         if (pageSize != null) {
@@ -143,10 +164,10 @@ public class IssuesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call issuesListValidateBeforeCall(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call issuesListValidateBeforeCall(String accountToken, String cursor, String endDate, String endUserOrganizationName, OffsetDateTime firstIncidentTimeAfter, OffsetDateTime firstIncidentTimeBefore, String includeMuted, String integrationName, OffsetDateTime lastIncidentTimeAfter, OffsetDateTime lastIncidentTimeBefore, Integer pageSize, String startDate, String status, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = issuesListCall(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status, _callback);
+        okhttp3.Call localVarCall = issuesListCall(accountToken, cursor, endDate, endUserOrganizationName, firstIncidentTimeAfter, firstIncidentTimeBefore, includeMuted, integrationName, lastIncidentTimeAfter, lastIncidentTimeBefore, pageSize, startDate, status, _callback);
         return localVarCall;
 
     }
@@ -158,8 +179,12 @@ public class IssuesApi {
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
      * @param endUserOrganizationName  (optional)
+     * @param firstIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param firstIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param includeMuted If True, will include muted issues (optional)
      * @param integrationName  (optional)
+     * @param lastIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param lastIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
      * @param status  (optional)
@@ -171,8 +196,8 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedIssueList issuesList(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status) throws ApiException {
-        ApiResponse<PaginatedIssueList> localVarResp = issuesListWithHttpInfo(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status);
+    public PaginatedIssueList issuesList(String accountToken, String cursor, String endDate, String endUserOrganizationName, OffsetDateTime firstIncidentTimeAfter, OffsetDateTime firstIncidentTimeBefore, String includeMuted, String integrationName, OffsetDateTime lastIncidentTimeAfter, OffsetDateTime lastIncidentTimeBefore, Integer pageSize, String startDate, String status) throws ApiException {
+        ApiResponse<PaginatedIssueList> localVarResp = issuesListWithHttpInfo(accountToken, cursor, endDate, endUserOrganizationName, firstIncidentTimeAfter, firstIncidentTimeBefore, includeMuted, integrationName, lastIncidentTimeAfter, lastIncidentTimeBefore, pageSize, startDate, status);
         return localVarResp.getData();
     }
 
@@ -183,8 +208,12 @@ public class IssuesApi {
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
      * @param endUserOrganizationName  (optional)
+     * @param firstIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param firstIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param includeMuted If True, will include muted issues (optional)
      * @param integrationName  (optional)
+     * @param lastIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param lastIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
      * @param status  (optional)
@@ -196,8 +225,8 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedIssueList> issuesListWithHttpInfo(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status) throws ApiException {
-        okhttp3.Call localVarCall = issuesListValidateBeforeCall(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status, null);
+    public ApiResponse<PaginatedIssueList> issuesListWithHttpInfo(String accountToken, String cursor, String endDate, String endUserOrganizationName, OffsetDateTime firstIncidentTimeAfter, OffsetDateTime firstIncidentTimeBefore, String includeMuted, String integrationName, OffsetDateTime lastIncidentTimeAfter, OffsetDateTime lastIncidentTimeBefore, Integer pageSize, String startDate, String status) throws ApiException {
+        okhttp3.Call localVarCall = issuesListValidateBeforeCall(accountToken, cursor, endDate, endUserOrganizationName, firstIncidentTimeAfter, firstIncidentTimeBefore, includeMuted, integrationName, lastIncidentTimeAfter, lastIncidentTimeBefore, pageSize, startDate, status, null);
         Type localVarReturnType = new TypeToken<PaginatedIssueList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -209,8 +238,12 @@ public class IssuesApi {
      * @param cursor The pagination cursor value. (optional)
      * @param endDate If included, will only include issues whose most recent action occurred before this time (optional)
      * @param endUserOrganizationName  (optional)
+     * @param firstIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param firstIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param includeMuted If True, will include muted issues (optional)
      * @param integrationName  (optional)
+     * @param lastIncidentTimeAfter If provided, will only return issues whose first incident time was after this datetime. (optional)
+     * @param lastIncidentTimeBefore If provided, will only return issues whose first incident time was before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param startDate If included, will only include issues whose most recent action occurred after this time (optional)
      * @param status  (optional)
@@ -223,9 +256,9 @@ public class IssuesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call issuesListAsync(String accountToken, String cursor, String endDate, String endUserOrganizationName, String includeMuted, String integrationName, Integer pageSize, String startDate, String status, final ApiCallback<PaginatedIssueList> _callback) throws ApiException {
+    public okhttp3.Call issuesListAsync(String accountToken, String cursor, String endDate, String endUserOrganizationName, OffsetDateTime firstIncidentTimeAfter, OffsetDateTime firstIncidentTimeBefore, String includeMuted, String integrationName, OffsetDateTime lastIncidentTimeAfter, OffsetDateTime lastIncidentTimeBefore, Integer pageSize, String startDate, String status, final ApiCallback<PaginatedIssueList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = issuesListValidateBeforeCall(accountToken, cursor, endDate, endUserOrganizationName, includeMuted, integrationName, pageSize, startDate, status, _callback);
+        okhttp3.Call localVarCall = issuesListValidateBeforeCall(accountToken, cursor, endDate, endUserOrganizationName, firstIncidentTimeAfter, firstIncidentTimeBefore, includeMuted, integrationName, lastIncidentTimeAfter, lastIncidentTimeBefore, pageSize, startDate, status, _callback);
         Type localVarReturnType = new TypeToken<PaginatedIssueList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

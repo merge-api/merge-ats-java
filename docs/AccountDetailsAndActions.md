@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **endUserOriginId** | **String** |  |  [optional]
 **endUserOrganizationName** | **String** |  | 
 **endUserEmailAddress** | **String** |  | 
+**webhookListenerUrl** | **String** |  | 
 **integration** | [**AccountDetailsAndActionsIntegration**](AccountDetailsAndActionsIntegration.md) |  |  [optional]
 
 

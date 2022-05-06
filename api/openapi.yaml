@@ -18,6 +18,15 @@ paths:
     get:
       description: Get details for a linked account.
       operationId: account_details_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -467,6 +476,39 @@ paths:
       tags:
       - applications
       x-accepts: application/json
+  /applications/meta/post:
+    get:
+      description: Returns metadata for `Application` POSTs.
+      operationId: applications_meta_post_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The template ID associated with the nested application in the
+          request.
+        explode: true
+        in: query
+        name: application_remote_template_id
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaResponse'
+      security:
+      - tokenAuth: []
+      tags:
+      - applications
+      x-accepts: application/json
   /attachments:
     get:
       description: Returns a list of `Attachment` objects.
@@ -673,6 +715,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Attachment'
+      security:
+      - tokenAuth: []
+      tags:
+      - attachments
+      x-accepts: application/json
+  /attachments/meta/post:
+    get:
+      description: Returns metadata for `Attachment` POSTs.
+      operationId: attachments_meta_post_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaResponse'
       security:
       - tokenAuth: []
       tags:
@@ -928,6 +994,14 @@ paths:
         stored for audit purposes.
       operationId: candidates_ignore_create
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: model_id
@@ -950,7 +1024,10 @@ paths:
         required: true
       responses:
         "200":
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IgnoreCommonModel'
       security:
       - tokenAuth: []
       tags:
@@ -958,6 +1035,30 @@ paths:
       x-extra-tags:
       - ignore-model
       x-contentType: application/json
+      x-accepts: application/json
+  /candidates/meta/post:
+    get:
+      description: Returns metadata for `Candidate` POSTs.
+      operationId: candidates_meta_post_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaResponse'
+      security:
+      - tokenAuth: []
+      tags:
+      - candidates
       x-accepts: application/json
   /delete-account:
     post:
@@ -1533,6 +1634,28 @@ paths:
         schema:
           type: string
         style: form
+      - description: If provided, will only return issues whose first incident time
+          was after this datetime.
+        explode: true
+        in: query
+        name: first_incident_time_after
+        required: false
+        schema:
+          format: date-time
+          nullable: true
+          type: string
+        style: form
+      - description: If provided, will only return issues whose first incident time
+          was before this datetime.
+        explode: true
+        in: query
+        name: first_incident_time_before
+        required: false
+        schema:
+          format: date-time
+          nullable: true
+          type: string
+        style: form
       - description: If True, will include muted issues
         explode: true
         in: query
@@ -1546,6 +1669,28 @@ paths:
         name: integration_name
         required: false
         schema:
+          type: string
+        style: form
+      - description: If provided, will only return issues whose first incident time
+          was after this datetime.
+        explode: true
+        in: query
+        name: last_incident_time_after
+        required: false
+        schema:
+          format: date-time
+          nullable: true
+          type: string
+        style: form
+      - description: If provided, will only return issues whose first incident time
+          was before this datetime.
+        explode: true
+        in: query
+        name: last_incident_time_before
+        required: false
+        schema:
+          format: date-time
+          nullable: true
           type: string
         style: form
       - description: Number of results to return per page.
@@ -1981,7 +2126,9 @@ paths:
           enum:
           - accounting
           - ats
+          - crm
           - hris
+          - ticketing
           nullable: true
           type: string
         style: form
@@ -1997,21 +2144,27 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: If provided, will only return linked accounts associated with
+          the given email address.
+        explode: true
         in: query
         name: end_user_email_address
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: If provided, will only return linked accounts associated with
+          the given organization name.
+        explode: true
         in: query
         name: end_user_organization_name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: If provided, will only return linked accounts associated with
+          the given origin ID.
+        explode: true
         in: query
         name: end_user_origin_id
         required: false
@@ -2019,7 +2172,7 @@ paths:
           type: string
         style: form
       - description: Comma-separated list of EndUser origin IDs, making it possible
-          to specify multiple EndUsers at once
+          to specify multiple EndUsers at once.
         explode: true
         in: query
         name: end_user_origin_ids
@@ -2036,7 +2189,7 @@ paths:
           type: string
         style: form
       - description: Comma-separated list of LinkedAccount IDs, making it possible
-          to specify multiple LinkedAccounts at once
+          to specify multiple LinkedAccounts at once.
         explode: true
         in: query
         name: ids
@@ -2044,7 +2197,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: If provided, will only return linked accounts associated with
+          the given integration name.
+        explode: true
         in: query
         name: integration_name
         required: false
@@ -2052,7 +2207,7 @@ paths:
           type: string
         style: form
       - description: If included, will only include test linked accounts. If not included,
-          will only include non-test linked accounts
+          will only include non-test linked accounts.
         explode: true
         in: query
         name: is_test_account
@@ -2859,7 +3014,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SyncStatus'
+                items:
+                  $ref: '#/components/schemas/SyncStatus'
+                type: array
       security:
       - tokenAuth: []
       tags:
@@ -3129,6 +3286,68 @@ paths:
       tags:
       - users
       x-accepts: application/json
+  /webhook-receivers:
+    get:
+      description: Returns a list of `WebhookReceiver` objects.
+      operationId: webhook_receivers_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WebhookReceiver'
+                type: array
+      security:
+      - tokenAuth: []
+      tags:
+      - webhook-receivers
+      x-accepts: application/json
+    post:
+      description: Creates a `WebhookReceiver` object with the given values.
+      operationId: webhook_receivers_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookReceiverRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebhookReceiverRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebhookReceiverRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookReceiver'
+      security:
+      - tokenAuth: []
+      tags:
+      - webhook-receivers
+      x-contentType: application/json
+      x-accepts: application/json
 components:
   schemas:
     AccessRoleEnum:
@@ -3147,7 +3366,9 @@ components:
         id: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd
         category: hris
         end_user_origin_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        integration_slug: bamboohr
         status: COMPLETE
+        webhook_listener_url: https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
       properties:
         id:
           example: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd
@@ -3156,6 +3377,10 @@ components:
           type: string
         integration:
           example: BambooHR
+          readOnly: true
+          type: string
+        integration_slug:
+          example: bamboohr
           readOnly: true
           type: string
         category:
@@ -3173,10 +3398,16 @@ components:
           type: string
         end_user_email_address:
           example: kendall.roy@waystar-royco.com
+          format: email
           readOnly: true
           type: string
         status:
           example: COMPLETE
+          readOnly: true
+          type: string
+        webhook_listener_url:
+          example: https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
+          format: uri
           readOnly: true
           type: string
       type: object
@@ -3229,6 +3460,7 @@ components:
         end_user_origin_id: 3ac95cde-6c7f-4eef-afec-be710b42308d
         status: COMPLETE
         status_detail: status_detail
+        webhook_listener_url: https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
       properties:
         id:
           example: e59b1821-f85c-4e28-a6b3-1804156f3563
@@ -3252,6 +3484,9 @@ components:
         end_user_email_address:
           example: hradmin@foobar.dev
           type: string
+        webhook_listener_url:
+          example: https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
+          type: string
         integration:
           $ref: '#/components/schemas/AccountDetailsAndActionsIntegration'
       required:
@@ -3259,14 +3494,17 @@ components:
       - end_user_organization_name
       - id
       - status
+      - webhook_listener_url
       type: object
       x-merge-sample-json: '{"id": "e59b1821-f85c-4e28-a6b3-1804156f3563", "category":
         "hris", "status": "COMPLETE", "status_detail": null, "end_user_origin_id":
         "3ac95cde-6c7f-4eef-afec-be710b42308d", "end_user_organization_name": "Foo
-        Bar, LLC", "end_user_email_address": "hradmin@foobar.dev", "integration":
-        {"name": "SAP SuccessFactors", "categories": ["hris", "ats"], "image": "https://cdn.merge.dev/SuccessFactors_Logo.png",
-        "square_image": "https://cdn.merge.dev/SuccessFactors_Square_Logo.jpg", "color":
-        "#F6A704", "slug": "sap-successfactors", "passthrough_available": true, "available_model_operations":
+        Bar, LLC", "end_user_email_address": "hradmin@foobar.dev", "webhook_listener_url":
+        "https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4",
+        "integration": {"name": "SAP SuccessFactors", "categories": ["hris", "ats"],
+        "image": "https://cdn.merge.dev/SuccessFactors_Logo.png", "square_image":
+        "https://cdn.merge.dev/SuccessFactors_Square_Logo.jpg", "color": "#F6A704",
+        "slug": "sap-successfactors", "passthrough_available": true, "available_model_operations":
         [{"model_name": "Candidate", "available_operations": ["FETCH", "CREATE"],
         "required_post_parameters": ["remote_user_id"], "supported_fields": ["first_name",
         "last_name", "company", "title"]}]}}'
@@ -3439,6 +3677,7 @@ components:
         user:
           example: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
           format: uuid
+          nullable: true
           type: string
         remote_created_at:
           description: When the third party's activity was created.
@@ -3489,7 +3728,10 @@ components:
       description: |-
         # The Application Object
         ### Description
-        The `Application` object is used to represent an Application for a job position.
+        The `Application` object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.
+
+        Please note: Application objects are constructed if the object does not exist in the remote system.
+
         ### Usage Example
         Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
       example:
@@ -3523,10 +3765,12 @@ components:
         candidate:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
+          nullable: true
           type: string
         job:
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
+          nullable: true
           type: string
         applied_at:
           description: When the application was submitted.
@@ -3546,7 +3790,6 @@ components:
           nullable: true
           type: string
         credited_to:
-          description: The user credited for this application.
           example: 58166795-8d68-4b30-9bfb-bfd402479484
           format: uuid
           nullable: true
@@ -3554,10 +3797,12 @@ components:
         current_stage:
           example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           format: uuid
+          nullable: true
           type: string
         reject_reason:
           example: 59b25f2b-da02-40f5-9656-9fa0db555784
           format: uuid
+          nullable: true
           type: string
         remote_data:
           example:
@@ -3608,7 +3853,10 @@ components:
       description: |-
         # The Application Object
         ### Description
-        The `Application` object is used to represent an Application for a job position.
+        The `Application` object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.
+
+        Please note: Application objects are constructed if the object does not exist in the remote system.
+
         ### Usage Example
         Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
       example:
@@ -3637,10 +3885,12 @@ components:
         candidate:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
+          nullable: true
           type: string
         job:
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
+          nullable: true
           type: string
         applied_at:
           description: When the application was submitted.
@@ -3660,7 +3910,6 @@ components:
           nullable: true
           type: string
         credited_to:
-          description: The user credited for this application.
           example: 58166795-8d68-4b30-9bfb-bfd402479484
           format: uuid
           nullable: true
@@ -3668,10 +3917,12 @@ components:
         current_stage:
           example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           format: uuid
+          nullable: true
           type: string
         reject_reason:
           example: 59b25f2b-da02-40f5-9656-9fa0db555784
           format: uuid
+          nullable: true
           type: string
         custom_fields:
           additionalProperties: {}
@@ -3730,8 +3981,18 @@ components:
             data:
             - Varies by platform
         logs:
-        - https://openapi-generator.tech
-        - https://openapi-generator.tech
+        - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+          dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+          log_summary:
+            status_code: 200
+            method: POST
+            url: https://harvest.greenhouse.io/v1/candidates/
+        - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+          dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+          log_summary:
+            status_code: 200
+            method: POST
+            url: https://harvest.greenhouse.io/v1/candidates/
         errors:
         - problem_type: MISSING_REQUIRED_FIELD
           source:
@@ -3756,8 +4017,7 @@ components:
           type: array
         logs:
           items:
-            format: uri
-            type: string
+            $ref: '#/components/schemas/DebugModeLog'
           type: array
       required:
       - errors
@@ -3808,6 +4068,7 @@ components:
         candidate:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
+          nullable: true
           type: string
         attachment_type:
           allOf:
@@ -3886,6 +4147,7 @@ components:
         candidate:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
+          nullable: true
           type: string
         attachment_type:
           allOf:
@@ -3933,8 +4195,18 @@ components:
             data:
             - Varies by platform
         logs:
-        - https://openapi-generator.tech
-        - https://openapi-generator.tech
+        - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+          dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+          log_summary:
+            status_code: 200
+            method: POST
+            url: https://harvest.greenhouse.io/v1/candidates/
+        - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+          dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+          log_summary:
+            status_code: 200
+            method: POST
+            url: https://harvest.greenhouse.io/v1/candidates/
         errors:
         - problem_type: MISSING_REQUIRED_FIELD
           source:
@@ -3959,8 +4231,7 @@ components:
           type: array
         logs:
           items:
-            format: uri
-            type: string
+            $ref: '#/components/schemas/DebugModeLog'
           type: array
       required:
       - errors
@@ -4154,7 +4425,6 @@ components:
             phone_number_type: MOBILE
           items:
             $ref: '#/components/schemas/PhoneNumber'
-          readOnly: true
           type: array
         email_addresses:
           example:
@@ -4162,7 +4432,6 @@ components:
             email_address_type: PERSONAL
           items:
             $ref: '#/components/schemas/EmailAddress'
-          readOnly: true
           type: array
         urls:
           example:
@@ -4170,7 +4439,6 @@ components:
             url_type: BLOG
           items:
             $ref: '#/components/schemas/Url'
-          readOnly: true
           type: array
         tags:
           description: Array of `Tag` names as strings.
@@ -4187,6 +4455,7 @@ components:
           - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
           items:
             format: uuid
+            nullable: true
             type: string
           type: array
         attachments:
@@ -4195,6 +4464,7 @@ components:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
           items:
             format: uuid
+            nullable: true
             type: string
           type: array
         remote_data:
@@ -4218,6 +4488,9 @@ components:
         remote_user_id: remote_user_id
         model:
           is_private: true
+          email_addresses:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
           attachments:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
           custom_fields:
@@ -4230,6 +4503,12 @@ components:
           remote_updated_at: 2021-10-16T00:00:00Z
           tags:
           - High-Priority
+          phone_numbers:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          urls:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
           last_interaction_at: 2021-10-17T00:00:00Z
           remote_template_id: "92830948203"
           can_email: true
@@ -4264,6 +4543,9 @@ components:
         Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.
       example:
         is_private: true
+        email_addresses:
+        - value: hello@merge.dev
+          email_address_type: PERSONAL
         attachments:
         - bea08964-32b4-4a20-8bb4-2612ba09de1d
         custom_fields:
@@ -4276,6 +4558,12 @@ components:
         remote_updated_at: 2021-10-16T00:00:00Z
         tags:
         - High-Priority
+        phone_numbers:
+        - value: +1234567890
+          phone_number_type: MOBILE
+        urls:
+        - value: http://alturl.com/p749b
+          url_type: BLOG
         last_interaction_at: 2021-10-17T00:00:00Z
         remote_template_id: "92830948203"
         can_email: true
@@ -4358,6 +4646,27 @@ components:
             type: string
           nullable: true
           type: array
+        phone_numbers:
+          example:
+          - value: +1234567890
+            phone_number_type: MOBILE
+          items:
+            $ref: '#/components/schemas/PhoneNumberRequest'
+          type: array
+        email_addresses:
+          example:
+          - value: hello@merge.dev
+            email_address_type: PERSONAL
+          items:
+            $ref: '#/components/schemas/EmailAddressRequest'
+          type: array
+        urls:
+          example:
+          - value: http://alturl.com/p749b
+            url_type: BLOG
+          items:
+            $ref: '#/components/schemas/UrlRequest'
+          type: array
         tags:
           description: Array of `Tag` names as strings.
           example:
@@ -4373,6 +4682,7 @@ components:
           - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
           items:
             format: uuid
+            nullable: true
             type: string
           type: array
         attachments:
@@ -4381,6 +4691,7 @@ components:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
           items:
             format: uuid
+            nullable: true
             type: string
           type: array
         custom_fields:
@@ -4462,8 +4773,18 @@ components:
           - b4d08e5c-de00-4d64-a29f-66addac9af99
           - 4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56
         logs:
-        - https://openapi-generator.tech
-        - https://openapi-generator.tech
+        - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+          dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+          log_summary:
+            status_code: 200
+            method: POST
+            url: https://harvest.greenhouse.io/v1/candidates/
+        - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+          dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+          log_summary:
+            status_code: 200
+            method: POST
+            url: https://harvest.greenhouse.io/v1/candidates/
         errors:
         - problem_type: MISSING_REQUIRED_FIELD
           source:
@@ -4488,8 +4809,7 @@ components:
           type: array
         logs:
           items:
-            format: uri
-            type: string
+            $ref: '#/components/schemas/DebugModeLog'
           type: array
       required:
       - errors
@@ -4501,12 +4821,16 @@ components:
       - hris
       - ats
       - accounting
+      - ticketing
+      - crm
       type: string
     CategoryEnum:
       enum:
       - hris
       - ats
       - accounting
+      - ticketing
+      - crm
       type: string
     DataPassthroughRequest:
       description: |-
@@ -4524,6 +4848,17 @@ components:
         method: POST
         data: '{"company": "Lime", "model": "Gen 2.5"}'
         base_url_override: base_url_override
+        multipart_form_data:
+        - data: SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=
+          content_type: application/pdf
+          file_name: resume.pdf
+          name: resume
+          encoding: BASE64
+        - data: SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=
+          content_type: application/pdf
+          file_name: resume.pdf
+          name: resume
+          encoding: BASE64
       properties:
         method:
           allOf:
@@ -4542,8 +4877,18 @@ components:
           minLength: 1
           nullable: true
           type: string
+        multipart_form_data:
+          description: Pass an array of `MultipartFormField` objects in here instead
+            of using the `data` param if `request_format` is set to `MULTIPART`.
+          items:
+            $ref: '#/components/schemas/MultipartFormFieldRequest'
+          nullable: true
+          type: array
         headers:
           additionalProperties: {}
+          description: The headers to use for the request (Merge will handle the account's
+            authorization headers). `Content-Type` header is required for passthrough.
+            Choose content type corresponding to expected format of receiving server.
           example:
             EXTRA-HEADER: value
           nullable: true
@@ -4556,6 +4901,48 @@ components:
       required:
       - method
       - path
+      type: object
+    DebugModeLog:
+      example:
+        log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+        dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+        log_summary:
+          status_code: 200
+          method: POST
+          url: https://harvest.greenhouse.io/v1/candidates/
+      properties:
+        log_id:
+          example: 99433219-8017-4acd-bb3c-ceb23d663832
+          type: string
+        dashboard_view:
+          example: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
+          type: string
+        log_summary:
+          $ref: '#/components/schemas/DebugModelLogSummary'
+      required:
+      - dashboard_view
+      - log_id
+      - log_summary
+      type: object
+    DebugModelLogSummary:
+      example:
+        status_code: 200
+        method: POST
+        url: https://harvest.greenhouse.io/v1/candidates/
+      properties:
+        url:
+          example: https://harvest.greenhouse.io/v1/candidates/
+          type: string
+        method:
+          example: POST
+          type: string
+        status_code:
+          example: 200
+          type: integer
+      required:
+      - method
+      - status_code
+      - url
       type: object
     Department:
       description: |-
@@ -4639,6 +5026,7 @@ components:
         candidate:
           example: f963f34d-3d2f-4f77-b557-cf36bc7e6498
           format: uuid
+          nullable: true
           type: string
         submitted_at:
           description: When the information was submitted.
@@ -4731,6 +5119,11 @@ components:
       - WORK
       - OTHER
       type: string
+    EncodingEnum:
+      enum:
+      - RAW
+      - BASE64
+      type: string
     EndUserDetailsRequest:
       example:
         end_user_organization_name: end_user_organization_name
@@ -4740,14 +5133,18 @@ components:
         - null
         - null
         end_user_origin_id: end_user_origin_id
+        link_expiry_mins: 85
       properties:
         end_user_email_address:
+          maxLength: 100
           minLength: 1
           type: string
         end_user_organization_name:
+          maxLength: 100
           minLength: 1
           type: string
         end_user_origin_id:
+          maxLength: 100
           minLength: 1
           type: string
         categories:
@@ -4755,10 +5152,20 @@ components:
             $ref: '#/components/schemas/CategoriesEnum'
           type: array
         integration:
+          description: The slug of a specific pre-selected integration for this linking
+            flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata
           minLength: 1
           nullable: true
           type: string
+        link_expiry_mins:
+          default: 30
+          description: An integer number of minutes between [30, 720] for how long
+            this token is valid. Defaults to 30
+          maximum: 720
+          minimum: 30
+          type: integer
       required:
+      - categories
       - end_user_email_address
       - end_user_organization_name
       - end_user_origin_id
@@ -4813,6 +5220,22 @@ components:
       required:
       - name
       type: object
+    IgnoreCommonModel:
+      example:
+        reason: GENERAL_CUSTOMER_REQUEST
+        message: deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39
+      properties:
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/ReasonEnum'
+          example: GENERAL_CUSTOMER_REQUEST
+        message:
+          example: deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39
+          maxLength: 256
+          type: string
+      required:
+      - reason
+      type: object
     IgnoreCommonModelRequest:
       example:
         reason: GENERAL_CUSTOMER_REQUEST
@@ -4822,13 +5245,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/ReasonEnum'
           example: GENERAL_CUSTOMER_REQUEST
-          writeOnly: true
         message:
           example: deletion request by user id 51903790-7dfe-4053-8d63-5a10cc4ffd39
           maxLength: 256
           minLength: 1
           type: string
-          writeOnly: true
       required:
       - reason
       type: object
@@ -4899,6 +5320,8 @@ components:
         departments:
         - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
         - d6e687d6-0c36-48a1-8114-35324b5cb38f
+        recruiters:
+        - 787ed912-33ec-444e-a215-8d71cc42fc12
         remote_created_at: 2021-10-15T00:00:00Z
         status: OPEN
         confidential: true
@@ -4960,6 +5383,7 @@ components:
           - d6e687d6-0c36-48a1-8114-35324b5cb38f
           items:
             format: uuid
+            nullable: true
             type: string
           type: array
         offices:
@@ -4968,6 +5392,7 @@ components:
           - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
           items:
             format: uuid
+            nullable: true
             type: string
           type: array
         hiring_managers:
@@ -4977,6 +5402,17 @@ components:
           - 787ed912-33ec-444e-a215-8d71cc42fc12
           items:
             format: uuid
+            nullable: true
+            type: string
+          type: array
+        recruiters:
+          description: IDs of RemoteUser objects that serve as recruiters for this
+            Job.
+          example:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
+          items:
+            format: uuid
+            nullable: true
             type: string
           type: array
         remote_data:
@@ -5033,6 +5469,7 @@ components:
         job:
           example: ba7d9648-5316-4a80-8d73-4e636cef5a90
           format: uuid
+          nullable: true
           type: string
         remote_data:
           example:
@@ -5067,6 +5504,43 @@ components:
       required:
       - integration_name
       - link_token
+      type: object
+    LinkedAccountStatus:
+      example:
+        linked_account_status: linked_account_status
+        can_make_request: true
+      properties:
+        linked_account_status:
+          type: string
+        can_make_request:
+          type: boolean
+      required:
+      - can_make_request
+      - linked_account_status
+      type: object
+    MetaResponse:
+      example:
+        has_required_linked_account_params: true
+        request_schema:
+          key: ""
+        has_conditional_params: true
+        status:
+          linked_account_status: linked_account_status
+          can_make_request: true
+      properties:
+        request_schema:
+          additionalProperties: {}
+          type: object
+        status:
+          $ref: '#/components/schemas/LinkedAccountStatus'
+        has_conditional_params:
+          type: boolean
+        has_required_linked_account_params:
+          type: boolean
+      required:
+      - has_conditional_params
+      - has_required_linked_account_params
+      - request_schema
       type: object
     MethodEnum:
       enum:
@@ -5130,6 +5604,54 @@ components:
       - required_post_parameters
       - supported_fields
       type: object
+    MultipartFormFieldRequest:
+      description: |-
+        # The MultipartFormField Object
+        ### Description
+        The `MultipartFormField` object is used to represent fields in an HTTP request using `multipart/form-data`.
+
+        ### Usage Example
+        Create a `MultipartFormField` to define a multipart form entry.
+      example:
+        data: SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=
+        content_type: application/pdf
+        file_name: resume.pdf
+        name: resume
+        encoding: BASE64
+      properties:
+        name:
+          description: The name of the form field
+          example: resume
+          minLength: 1
+          type: string
+        data:
+          description: The data for the form field.
+          example: SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=
+          minLength: 1
+          type: string
+        encoding:
+          allOf:
+          - $ref: '#/components/schemas/EncodingEnum'
+          description: The encoding of the value of `data`. Defaults to `RAW` if not
+            defined.
+          example: BASE64
+          nullable: true
+        file_name:
+          description: The file name of the form field, if the field is for a file.
+          example: resume.pdf
+          minLength: 1
+          nullable: true
+          type: string
+        content_type:
+          description: The MIME type of the file, if the field is for a file.
+          example: application/pdf
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - data
+      - name
+      type: object
     Offer:
       description: |-
         # The Offer Object
@@ -5165,10 +5687,12 @@ components:
         application:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
+          nullable: true
           type: string
         creator:
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
+          nullable: true
           type: string
         remote_created_at:
           description: When the third party's offer was created.
@@ -5327,6 +5851,7 @@ components:
           end_user_origin_id: 3ac95cde-6c7f-4eef-afec-be710b42308d
           status: COMPLETE
           status_detail: status_detail
+          webhook_listener_url: https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
         - end_user_organization_name: Foo Bar, LLC
           integration:
             image: image
@@ -5367,6 +5892,7 @@ components:
           end_user_origin_id: 3ac95cde-6c7f-4eef-afec-be710b42308d
           status: COMPLETE
           status_detail: status_detail
+          webhook_listener_url: https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
       properties:
         next:
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -5776,6 +6302,8 @@ components:
           departments:
           - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
           - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          recruiters:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
           remote_created_at: 2021-10-15T00:00:00Z
           status: OPEN
           confidential: true
@@ -5797,6 +6325,8 @@ components:
           departments:
           - 5b3c1341-a20f-4e51-b72c-f3830a16c97b
           - d6e687d6-0c36-48a1-8114-35324b5cb38f
+          recruiters:
+          - 787ed912-33ec-444e-a215-8d71cc42fc12
           remote_created_at: 2021-10-15T00:00:00Z
           status: OPEN
           confidential: true
@@ -6476,14 +7006,17 @@ components:
         application:
           example: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           format: uuid
+          nullable: true
           type: string
         job_interview_stage:
           example: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
           format: uuid
+          nullable: true
           type: string
         organizer:
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
+          nullable: true
           type: string
         interviewers:
           description: Array of `RemoteUser` IDs.
@@ -6492,6 +7025,7 @@ components:
           - 89a86fcf-d540-4e6b-ac3d-ce07c4ec9b3c
           items:
             format: uuid
+            nullable: true
             type: string
           type: array
         location:
@@ -6580,14 +7114,17 @@ components:
         application:
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
+          nullable: true
           type: string
         interview:
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
+          nullable: true
           type: string
         interviewer:
           example: bbb519a3-246e-4b95-b6b3-dba16107ba6b
           format: uuid
+          nullable: true
           type: string
         remote_created_at:
           description: When the third party's scorecard was created.
@@ -6809,9 +7346,43 @@ components:
       - problem_type
       - title
       type: object
+    WebhookReceiver:
+      example:
+        is_active: true
+        event: event
+        key: key
+      properties:
+        event:
+          type: string
+        is_active:
+          type: boolean
+        key:
+          type: string
+      required:
+      - event
+      - is_active
+      type: object
+    WebhookReceiverRequest:
+      example:
+        is_active: true
+        event: event
+        key: key
+      properties:
+        event:
+          minLength: 1
+          type: string
+        is_active:
+          type: boolean
+        key:
+          minLength: 1
+          type: string
+      required:
+      - event
+      - is_active
+      type: object
   securitySchemes:
     tokenAuth:
-      description: Token-based authentication with required prefix "Token"
+      description: Token-based authentication with required prefix "Bearer"
       in: header
       name: Authorization
       type: apiKey

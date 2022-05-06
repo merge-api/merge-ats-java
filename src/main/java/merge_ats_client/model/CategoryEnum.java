@@ -39,7 +39,11 @@ public enum CategoryEnum {
   
   ATS("ats"),
   
-  ACCOUNTING("accounting");
+  ACCOUNTING("accounting"),
+  
+  TICKETING("ticketing"),
+  
+  CRM("crm");
 
   private String value;
 

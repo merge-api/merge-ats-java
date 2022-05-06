@@ -59,6 +59,14 @@ public class AccountDetailsTest {
     }
 
     /**
+     * Test the property 'integrationSlug'
+     */
+    @Test
+    public void integrationSlugTest() {
+        // TODO: test integrationSlug
+    }
+
+    /**
      * Test the property 'category'
      */
     @Test
@@ -96,6 +104,14 @@ public class AccountDetailsTest {
     @Test
     public void statusTest() {
         // TODO: test status
+    }
+
+    /**
+     * Test the property 'webhookListenerUrl'
+     */
+    @Test
+    public void webhookListenerUrlTest() {
+        // TODO: test webhookListenerUrl
     }
 
 }

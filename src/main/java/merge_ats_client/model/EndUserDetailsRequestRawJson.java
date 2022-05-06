@@ -21,7 +21,6 @@ import com.google.gson.annotations.SerializedName;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * EndUserDetailsRequestRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class EndUserDetailsRequestRawJson {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
@@ -55,6 +54,10 @@ public class EndUserDetailsRequestRawJson {
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
   private JsonElement integration;
+
+  public static final String SERIALIZED_NAME_LINK_EXPIRY_MINS = "link_expiry_mins";
+  @SerializedName(SERIALIZED_NAME_LINK_EXPIRY_MINS)
+  private JsonElement linkExpiryMins;
 
   private transient JSON serializer;
 
@@ -129,8 +132,8 @@ public class EndUserDetailsRequestRawJson {
    * Get categories
    * @return categories
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
 
   public JsonElement getCategories() {
     return categories;
@@ -145,17 +148,38 @@ public class EndUserDetailsRequestRawJson {
   }
 
    /**
-   * Get integration
+   * The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata
    * @return integration
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata")
 
   public JsonElement getIntegration() {
     return integration;
   }
   public void setIntegration(JsonElement integration) {
     this.integration = integration;
+  }
+
+  public EndUserDetailsRequestRawJson linkExpiryMins(Integer linkExpiryMins) {
+    this.linkExpiryMins = this.serializer.getGson().toJsonTree(linkExpiryMins);
+    return this;
+  }
+
+   /**
+   * An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30
+   * minimum: 30
+   * maximum: 720
+   * @return linkExpiryMins
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30")
+
+  public JsonElement getLinkExpiryMins() {
+    return linkExpiryMins;
+  }
+  public void setLinkExpiryMins(JsonElement linkExpiryMins) {
+    this.linkExpiryMins = linkExpiryMins;
   }
   @Override
   public boolean equals(Object o) {
@@ -170,11 +194,12 @@ public class EndUserDetailsRequestRawJson {
         Objects.equals(this.endUserOrganizationName.getAsString(), endUserDetailsRequest.endUserOrganizationName.getAsString()) &&
         Objects.equals(this.endUserOriginId.getAsString(), endUserDetailsRequest.endUserOriginId.getAsString()) &&
         Objects.equals(this.categories.getAsString(), endUserDetailsRequest.categories.getAsString()) &&
-        Objects.equals(this.integration.getAsString(), endUserDetailsRequest.integration.getAsString());
+        Objects.equals(this.integration.getAsString(), endUserDetailsRequest.integration.getAsString()) &&
+        Objects.equals(this.linkExpiryMins.getAsString(), endUserDetailsRequest.linkExpiryMins.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration);
+    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration, linkExpiryMins);
   }
   @Override
   public String toString() {
@@ -185,6 +210,7 @@ public class EndUserDetailsRequestRawJson {
     sb.append("    endUserOriginId: ").append(toIndentedString(endUserOriginId.getAsString())).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories.getAsString())).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration.getAsString())).append("\n");
+    sb.append("    linkExpiryMins: ").append(toIndentedString(linkExpiryMins.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

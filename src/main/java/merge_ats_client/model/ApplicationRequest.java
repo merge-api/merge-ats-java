@@ -30,10 +30,10 @@ import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position. ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
+ * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.  Please note: Application objects are constructed if the object does not exist in the remote system.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
-@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position. ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.  Please note: Application objects are constructed if the object does not exist in the remote system.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class ApplicationRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -233,11 +233,11 @@ public class ApplicationRequest {
   }
 
    /**
-   * The user credited for this application.
+   * Get creditedTo
    * @return creditedTo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "58166795-8d68-4b30-9bfb-bfd402479484", value = "The user credited for this application.")
+  @ApiModelProperty(example = "58166795-8d68-4b30-9bfb-bfd402479484", value = "")
 
   public UUID getCreditedTo() {
     return creditedTo;

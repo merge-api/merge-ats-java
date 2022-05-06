@@ -100,6 +100,14 @@ public class AccountDetailsAndActionsTest {
     }
 
     /**
+     * Test the property 'webhookListenerUrl'
+     */
+    @Test
+    public void webhookListenerUrlTest() {
+        // TODO: test webhookListenerUrl
+    }
+
+    /**
      * Test the property 'integration'
      */
     @Test

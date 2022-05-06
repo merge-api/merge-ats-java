@@ -23,25 +23,24 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
 import merge_ats_client.model.UrlTypeEnum;
 
 /**
  * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent a candidate&#39;s website. ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.
  */
 @ApiModel(description = "# The Url Object ### Description The `Url` object is used to represent a candidate's website. ### Usage Example Fetch from the `GET Candidate` endpoint and view their website urls.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class UrlRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
-  private URI value;
+  private String value;
 
   public static final String SERIALIZED_NAME_URL_TYPE = "url_type";
   @SerializedName(SERIALIZED_NAME_URL_TYPE)
   private UrlTypeEnum urlType;
 
 
-  public UrlRequest value(URI value) {
+  public UrlRequest value(String value) {
     
     this.value = value;
     return this;
@@ -54,12 +53,12 @@ public class UrlRequest {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "http://alturl.com/p749b", value = "The site's url.")
 
-  public URI getValue() {
+  public String getValue() {
     return value;
   }
 
 
-  public void setValue(URI value) {
+  public void setValue(String value) {
     this.value = value;
   }
 

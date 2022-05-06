@@ -17,6 +17,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.model.Application;
 import merge_ats_client.model.ApplicationEndpointRequest;
 import merge_ats_client.model.ApplicationResponse;
+import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedApplicationList;
 import java.util.UUID;
@@ -82,6 +83,23 @@ public class ApplicationsApiTest {
         String rejectReasonId = null;
         String remoteId = null;
         PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Returns metadata for &#x60;Application&#x60; POSTs.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void applicationsMetaPostRetrieveTest() throws ApiException {
+        String xAccountToken = null;
+        String applicationRemoteTemplateId = null;
+        MetaResponse response = api.applicationsMetaPostRetrieve(xAccountToken, applicationRemoteTemplateId);
 
         // TODO: test validations
     }

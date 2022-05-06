@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**applicationsCreate**](ApplicationsApi.md#applicationsCreate) | **POST** /applications | 
 [**applicationsList**](ApplicationsApi.md#applicationsList) | **GET** /applications | 
+[**applicationsMetaPostRetrieve**](ApplicationsApi.md#applicationsMetaPostRetrieve) | **GET** /applications/meta/post | 
 [**applicationsRetrieve**](ApplicationsApi.md#applicationsRetrieve) | **GET** /applications/{id} | 
 
 
@@ -166,6 +167,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedApplicationList**](PaginatedApplicationList.md)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+<a name="applicationsMetaPostRetrieve"></a>
+# **applicationsMetaPostRetrieve**
+> MetaResponse applicationsMetaPostRetrieve(xAccountToken, applicationRemoteTemplateId)
+
+
+
+Returns metadata for &#x60;Application&#x60; POSTs.
+
+### Example
+```java
+// Import classes:
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import merge_ats_client.api.ApplicationsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //tokenAuth.setApiKeyPrefix("Token");
+
+    ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
+    String applicationRemoteTemplateId = "applicationRemoteTemplateId_example"; // String | The template ID associated with the nested application in the request.
+    try {
+      MetaResponse result = apiInstance.applicationsMetaPostRetrieve(xAccountToken, applicationRemoteTemplateId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ApplicationsApi#applicationsMetaPostRetrieve");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
+ **applicationRemoteTemplateId** | **String**| The template ID associated with the nested application in the request. | [optional]
+
+### Return type
+
+[**MetaResponse**](MetaResponse.md)
 
 ### Authorization
 
