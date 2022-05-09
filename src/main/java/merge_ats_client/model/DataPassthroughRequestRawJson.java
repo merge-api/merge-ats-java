@@ -21,7 +21,6 @@ import com.google.gson.annotations.SerializedName;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class DataPassthroughRequestRawJson {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -52,6 +51,10 @@ public class DataPassthroughRequestRawJson {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
   private JsonElement data;
+
+  public static final String SERIALIZED_NAME_MULTIPART_FORM_DATA = "multipart_form_data";
+  @SerializedName(SERIALIZED_NAME_MULTIPART_FORM_DATA)
+  private JsonElement multipartFormData;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
@@ -144,17 +147,36 @@ public class DataPassthroughRequestRawJson {
     this.data = data;
   }
 
+  public DataPassthroughRequestRawJson multipartFormData(List<MultipartFormFieldRequest> multipartFormData) {
+    this.multipartFormData = this.serializer.getGson().toJsonTree(multipartFormData);
+    return this;
+  }
+
+   /**
+   * Pass an array of &#x60;MultipartFormField&#x60; objects in here instead of using the &#x60;data&#x60; param if &#x60;request_format&#x60; is set to &#x60;MULTIPART&#x60;.
+   * @return multipartFormData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`.")
+
+  public JsonElement getMultipartFormData() {
+    return multipartFormData;
+  }
+  public void setMultipartFormData(JsonElement multipartFormData) {
+    this.multipartFormData = multipartFormData;
+  }
+
   public DataPassthroughRequestRawJson headers(Map<String, Object> headers) {
     this.headers = this.serializer.getGson().toJsonTree(headers);
     return this;
   }
 
    /**
-   * Get headers
+   * The headers to use for the request (Merge will handle the account&#39;s authorization headers). &#x60;Content-Type&#x60; header is required for passthrough. Choose content type corresponding to expected format of receiving server.
    * @return headers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"EXTRA-HEADER\":\"value\"}", value = "")
+  @ApiModelProperty(example = "{\"EXTRA-HEADER\":\"value\"}", value = "The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.")
 
   public JsonElement getHeaders() {
     return headers;
@@ -194,12 +216,13 @@ public class DataPassthroughRequestRawJson {
         Objects.equals(this.path.getAsString(), dataPassthroughRequest.path.getAsString()) &&
         Objects.equals(this.baseUrlOverride.getAsString(), dataPassthroughRequest.baseUrlOverride.getAsString()) &&
         Objects.equals(this.data.getAsString(), dataPassthroughRequest.data.getAsString()) &&
+        Objects.equals(this.multipartFormData.getAsString(), dataPassthroughRequest.multipartFormData.getAsString()) &&
         Objects.equals(this.headers.getAsString(), dataPassthroughRequest.headers.getAsString()) &&
         Objects.equals(this.requestFormat.getAsString(), dataPassthroughRequest.requestFormat.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(method, path, baseUrlOverride, data, headers, requestFormat);
+    return Objects.hash(method, path, baseUrlOverride, data, multipartFormData, headers, requestFormat);
   }
   @Override
   public String toString() {
@@ -209,6 +232,7 @@ public class DataPassthroughRequestRawJson {
     sb.append("    path: ").append(toIndentedString(path.getAsString())).append("\n");
     sb.append("    baseUrlOverride: ").append(toIndentedString(baseUrlOverride.getAsString())).append("\n");
     sb.append("    data: ").append(toIndentedString(data.getAsString())).append("\n");
+    sb.append("    multipartFormData: ").append(toIndentedString(multipartFormData.getAsString())).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers.getAsString())).append("\n");
     sb.append("    requestFormat: ").append(toIndentedString(requestFormat.getAsString())).append("\n");
     sb.append("}");

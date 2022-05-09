@@ -31,7 +31,7 @@ import merge_ats_client.model.CategoryEnum;
  * # The LinkedAccount Object ### Description The &#x60;LinkedAccount&#x60; object is used to represent an end user&#39;s link with a specific integration.  ### Usage Example View a list of your organization&#39;s &#x60;LinkedAccount&#x60; objects.
  */
 @ApiModel(description = "# The LinkedAccount Object ### Description The `LinkedAccount` object is used to represent an end user's link with a specific integration.  ### Usage Example View a list of your organization's `LinkedAccount` objects.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class AccountDetailsAndActions {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -60,6 +60,10 @@ public class AccountDetailsAndActions {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
   private String endUserEmailAddress;
+
+  public static final String SERIALIZED_NAME_WEBHOOK_LISTENER_URL = "webhook_listener_url";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_LISTENER_URL)
+  private String webhookListenerUrl;
 
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
@@ -223,6 +227,28 @@ public class AccountDetailsAndActions {
   }
 
 
+  public AccountDetailsAndActions webhookListenerUrl(String webhookListenerUrl) {
+    
+    this.webhookListenerUrl = webhookListenerUrl;
+    return this;
+  }
+
+   /**
+   * Get webhookListenerUrl
+   * @return webhookListenerUrl
+  **/
+  @ApiModelProperty(example = "https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4", required = true, value = "")
+
+  public String getWebhookListenerUrl() {
+    return webhookListenerUrl;
+  }
+
+
+  public void setWebhookListenerUrl(String webhookListenerUrl) {
+    this.webhookListenerUrl = webhookListenerUrl;
+  }
+
+
   public AccountDetailsAndActions integration(AccountDetailsAndActionsIntegration integration) {
     
     this.integration = integration;
@@ -262,12 +288,13 @@ public class AccountDetailsAndActions {
         Objects.equals(this.endUserOriginId, accountDetailsAndActions.endUserOriginId) &&
         Objects.equals(this.endUserOrganizationName, accountDetailsAndActions.endUserOrganizationName) &&
         Objects.equals(this.endUserEmailAddress, accountDetailsAndActions.endUserEmailAddress) &&
+        Objects.equals(this.webhookListenerUrl, accountDetailsAndActions.webhookListenerUrl) &&
         Objects.equals(this.integration, accountDetailsAndActions.integration);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, integration);
+    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, webhookListenerUrl, integration);
   }
 
   @Override
@@ -281,6 +308,7 @@ public class AccountDetailsAndActions {
     sb.append("    endUserOriginId: ").append(toIndentedString(endUserOriginId)).append("\n");
     sb.append("    endUserOrganizationName: ").append(toIndentedString(endUserOrganizationName)).append("\n");
     sb.append("    endUserEmailAddress: ").append(toIndentedString(endUserEmailAddress)).append("\n");
+    sb.append("    webhookListenerUrl: ").append(toIndentedString(webhookListenerUrl)).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration)).append("\n");
     sb.append("}");
     return sb.toString();

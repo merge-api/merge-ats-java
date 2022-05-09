@@ -30,7 +30,7 @@ import merge_ats_client.model.CategoriesEnum;
 /**
  * EndUserDetailsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class EndUserDetailsRequest {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
@@ -46,11 +46,15 @@ public class EndUserDetailsRequest {
 
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
   @SerializedName(SERIALIZED_NAME_CATEGORIES)
-  private List<CategoriesEnum> categories = null;
+  private List<CategoriesEnum> categories = new ArrayList<CategoriesEnum>();
 
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
   private String integration;
+
+  public static final String SERIALIZED_NAME_LINK_EXPIRY_MINS = "link_expiry_mins";
+  @SerializedName(SERIALIZED_NAME_LINK_EXPIRY_MINS)
+  private Integer linkExpiryMins = 30;
 
 
   public EndUserDetailsRequest endUserEmailAddress(String endUserEmailAddress) {
@@ -126,9 +130,6 @@ public class EndUserDetailsRequest {
   }
 
   public EndUserDetailsRequest addCategoriesItem(CategoriesEnum categoriesItem) {
-    if (this.categories == null) {
-      this.categories = new ArrayList<CategoriesEnum>();
-    }
     this.categories.add(categoriesItem);
     return this;
   }
@@ -137,8 +138,7 @@ public class EndUserDetailsRequest {
    * Get categories
    * @return categories
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public List<CategoriesEnum> getCategories() {
     return categories;
@@ -157,11 +157,11 @@ public class EndUserDetailsRequest {
   }
 
    /**
-   * Get integration
+   * The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata
    * @return integration
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata")
 
   public String getIntegration() {
     return integration;
@@ -170,6 +170,31 @@ public class EndUserDetailsRequest {
 
   public void setIntegration(String integration) {
     this.integration = integration;
+  }
+
+
+  public EndUserDetailsRequest linkExpiryMins(Integer linkExpiryMins) {
+    
+    this.linkExpiryMins = linkExpiryMins;
+    return this;
+  }
+
+   /**
+   * An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30
+   * minimum: 30
+   * maximum: 720
+   * @return linkExpiryMins
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30")
+
+  public Integer getLinkExpiryMins() {
+    return linkExpiryMins;
+  }
+
+
+  public void setLinkExpiryMins(Integer linkExpiryMins) {
+    this.linkExpiryMins = linkExpiryMins;
   }
 
 
@@ -186,12 +211,13 @@ public class EndUserDetailsRequest {
         Objects.equals(this.endUserOrganizationName, endUserDetailsRequest.endUserOrganizationName) &&
         Objects.equals(this.endUserOriginId, endUserDetailsRequest.endUserOriginId) &&
         Objects.equals(this.categories, endUserDetailsRequest.categories) &&
-        Objects.equals(this.integration, endUserDetailsRequest.integration);
+        Objects.equals(this.integration, endUserDetailsRequest.integration) &&
+        Objects.equals(this.linkExpiryMins, endUserDetailsRequest.linkExpiryMins);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration);
+    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration, linkExpiryMins);
   }
 
   @Override
@@ -203,6 +229,7 @@ public class EndUserDetailsRequest {
     sb.append("    endUserOriginId: ").append(toIndentedString(endUserOriginId)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration)).append("\n");
+    sb.append("    linkExpiryMins: ").append(toIndentedString(linkExpiryMins)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -21,7 +21,6 @@ import com.google.gson.annotations.SerializedName;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company. ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company. ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class JobRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -84,6 +83,10 @@ public class JobRawJson {
   public static final String SERIALIZED_NAME_HIRING_MANAGERS = "hiring_managers";
   @SerializedName(SERIALIZED_NAME_HIRING_MANAGERS)
   private JsonElement hiringManagers;
+
+  public static final String SERIALIZED_NAME_RECRUITERS = "recruiters";
+  @SerializedName(SERIALIZED_NAME_RECRUITERS)
+  private JsonElement recruiters;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -316,6 +319,25 @@ public class JobRawJson {
     this.hiringManagers = hiringManagers;
   }
 
+  public JobRawJson recruiters(List<UUID> recruiters) {
+    this.recruiters = this.serializer.getGson().toJsonTree(recruiters);
+    return this;
+  }
+
+   /**
+   * IDs of RemoteUser objects that serve as recruiters for this Job.
+   * @return recruiters
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "IDs of RemoteUser objects that serve as recruiters for this Job.")
+
+  public JsonElement getRecruiters() {
+    return recruiters;
+  }
+  public void setRecruiters(JsonElement recruiters) {
+    this.recruiters = recruiters;
+  }
+
    /**
    * Get remoteData
    * @return remoteData
@@ -347,11 +369,12 @@ public class JobRawJson {
         Objects.equals(this.departments.getAsString(), job.departments.getAsString()) &&
         Objects.equals(this.offices.getAsString(), job.offices.getAsString()) &&
         Objects.equals(this.hiringManagers.getAsString(), job.hiringManagers.getAsString()) &&
+        Objects.equals(this.recruiters.getAsString(), job.recruiters.getAsString()) &&
         Objects.equals(this.remoteData.getAsString(), job.remoteData.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, remoteData);
+    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData);
   }
   @Override
   public String toString() {
@@ -369,6 +392,7 @@ public class JobRawJson {
     sb.append("    departments: ").append(toIndentedString(departments.getAsString())).append("\n");
     sb.append("    offices: ").append(toIndentedString(offices.getAsString())).append("\n");
     sb.append("    hiringManagers: ").append(toIndentedString(hiringManagers.getAsString())).append("\n");
+    sb.append("    recruiters: ").append(toIndentedString(recruiters.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();

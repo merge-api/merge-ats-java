@@ -23,7 +23,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import merge_ats_client.model.CategoriesEnum;
@@ -31,7 +30,7 @@ import merge_ats_client.model.CategoriesEnum;
 /**
  * AccountIntegration
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class AccountIntegration {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -43,11 +42,11 @@ public class AccountIntegration {
 
   public static final String SERIALIZED_NAME_IMAGE = "image";
   @SerializedName(SERIALIZED_NAME_IMAGE)
-  private URI image;
+  private String image;
 
   public static final String SERIALIZED_NAME_SQUARE_IMAGE = "square_image";
   @SerializedName(SERIALIZED_NAME_SQUARE_IMAGE)
-  private URI squareImage;
+  private String squareImage;
 
   public static final String SERIALIZED_NAME_COLOR = "color";
   @SerializedName(SERIALIZED_NAME_COLOR)
@@ -111,7 +110,7 @@ public class AccountIntegration {
   }
 
 
-  public AccountIntegration image(URI image) {
+  public AccountIntegration image(String image) {
     
     this.image = image;
     return this;
@@ -124,17 +123,17 @@ public class AccountIntegration {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Company logo in rectangular shape. <b>Upload an image with a clear background.</b>")
 
-  public URI getImage() {
+  public String getImage() {
     return image;
   }
 
 
-  public void setImage(URI image) {
+  public void setImage(String image) {
     this.image = image;
   }
 
 
-  public AccountIntegration squareImage(URI squareImage) {
+  public AccountIntegration squareImage(String squareImage) {
     
     this.squareImage = squareImage;
     return this;
@@ -147,12 +146,12 @@ public class AccountIntegration {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Company logo in square shape. <b>Upload an image with a white background.</b>")
 
-  public URI getSquareImage() {
+  public String getSquareImage() {
     return squareImage;
   }
 
 
-  public void setSquareImage(URI squareImage) {
+  public void setSquareImage(String squareImage) {
     this.squareImage = squareImage;
   }
 

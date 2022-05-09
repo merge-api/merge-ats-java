@@ -23,17 +23,17 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import merge_ats_client.model.Candidate;
+import merge_ats_client.model.DebugModeLog;
 import merge_ats_client.model.ErrorValidationProblem;
 import merge_ats_client.model.WarningValidationProblem;
 
 /**
  * CandidateResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class CandidateResponse {
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
@@ -49,7 +49,7 @@ public class CandidateResponse {
 
   public static final String SERIALIZED_NAME_LOGS = "logs";
   @SerializedName(SERIALIZED_NAME_LOGS)
-  private List<URI> logs = null;
+  private List<DebugModeLog> logs = null;
 
 
   public CandidateResponse model(Candidate model) {
@@ -128,15 +128,15 @@ public class CandidateResponse {
   }
 
 
-  public CandidateResponse logs(List<URI> logs) {
+  public CandidateResponse logs(List<DebugModeLog> logs) {
     
     this.logs = logs;
     return this;
   }
 
-  public CandidateResponse addLogsItem(URI logsItem) {
+  public CandidateResponse addLogsItem(DebugModeLog logsItem) {
     if (this.logs == null) {
-      this.logs = new ArrayList<URI>();
+      this.logs = new ArrayList<DebugModeLog>();
     }
     this.logs.add(logsItem);
     return this;
@@ -149,12 +149,12 @@ public class CandidateResponse {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<URI> getLogs() {
+  public List<DebugModeLog> getLogs() {
     return logs;
   }
 
 
-  public void setLogs(List<URI> logs) {
+  public void setLogs(List<DebugModeLog> logs) {
     this.logs = logs;
   }
 

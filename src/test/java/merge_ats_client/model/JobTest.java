@@ -143,6 +143,14 @@ public class JobTest {
     }
 
     /**
+     * Test the property 'recruiters'
+     */
+    @Test
+    public void recruitersTest() {
+        // TODO: test recruiters
+    }
+
+    /**
      * Test the property 'remoteData'
      */
     @Test

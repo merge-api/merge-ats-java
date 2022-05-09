@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **departments** | **List&lt;UUID&gt;** | IDs of &#x60;Department&#x60; objects for this &#x60;Job&#x60;. |  [optional]
 **offices** | **List&lt;UUID&gt;** | IDs of &#x60;Office&#x60; objects for this &#x60;Job&#x60;. |  [optional]
 **hiringManagers** | **List&lt;UUID&gt;** | IDs of &#x60;RemoteUser&#x60; objects that serve as hiring managers for this &#x60;Job&#x60;. |  [optional]
+**recruiters** | **List&lt;UUID&gt;** | IDs of RemoteUser objects that serve as recruiters for this Job. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 
 

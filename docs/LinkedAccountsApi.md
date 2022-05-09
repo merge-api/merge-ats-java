@@ -39,14 +39,14 @@ public class Example {
     LinkedAccountsApi apiInstance = new LinkedAccountsApi(defaultClient);
     String category = "category_example"; // String | 
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
-    String endUserEmailAddress = "endUserEmailAddress_example"; // String | 
-    String endUserOrganizationName = "endUserOrganizationName_example"; // String | 
-    String endUserOriginId = "endUserOriginId_example"; // String | 
-    String endUserOriginIds = "endUserOriginIds_example"; // String | Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once
+    String endUserEmailAddress = "endUserEmailAddress_example"; // String | If provided, will only return linked accounts associated with the given email address.
+    String endUserOrganizationName = "endUserOrganizationName_example"; // String | If provided, will only return linked accounts associated with the given organization name.
+    String endUserOriginId = "endUserOriginId_example"; // String | If provided, will only return linked accounts associated with the given origin ID.
+    String endUserOriginIds = "endUserOriginIds_example"; // String | Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once.
     UUID id = new UUID(); // UUID | 
-    String ids = "ids_example"; // String | Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once
-    String integrationName = "integrationName_example"; // String | 
-    String isTestAccount = "isTestAccount_example"; // String | If included, will only include test linked accounts. If not included, will only include non-test linked accounts
+    String ids = "ids_example"; // String | Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once.
+    String integrationName = "integrationName_example"; // String | If provided, will only return linked accounts associated with the given integration name.
+    String isTestAccount = "isTestAccount_example"; // String | If included, will only include test linked accounts. If not included, will only include non-test linked accounts.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String status = "status_example"; // String | Filter by status. Options: `COMPLETE`, `INCOMPLETE`, `RELINK_NEEDED`
     try {
@@ -67,16 +67,16 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **category** | **String**|  | [optional] [enum: accounting, ats, hris]
+ **category** | **String**|  | [optional] [enum: accounting, ats, crm, hris, ticketing]
  **cursor** | **String**| The pagination cursor value. | [optional]
- **endUserEmailAddress** | **String**|  | [optional]
- **endUserOrganizationName** | **String**|  | [optional]
- **endUserOriginId** | **String**|  | [optional]
- **endUserOriginIds** | **String**| Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once | [optional]
+ **endUserEmailAddress** | **String**| If provided, will only return linked accounts associated with the given email address. | [optional]
+ **endUserOrganizationName** | **String**| If provided, will only return linked accounts associated with the given organization name. | [optional]
+ **endUserOriginId** | **String**| If provided, will only return linked accounts associated with the given origin ID. | [optional]
+ **endUserOriginIds** | **String**| Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once. | [optional]
  **id** | [**UUID**](.md)|  | [optional]
- **ids** | **String**| Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once | [optional]
- **integrationName** | **String**|  | [optional]
- **isTestAccount** | **String**| If included, will only include test linked accounts. If not included, will only include non-test linked accounts | [optional]
+ **ids** | **String**| Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once. | [optional]
+ **integrationName** | **String**| If provided, will only return linked accounts associated with the given integration name. | [optional]
+ **isTestAccount** | **String**| If included, will only include test linked accounts. If not included, will only include non-test linked accounts. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
  **status** | **String**| Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; | [optional]
 

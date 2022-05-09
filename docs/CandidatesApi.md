@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**candidatesCreate**](CandidatesApi.md#candidatesCreate) | **POST** /candidates | 
 [**candidatesIgnoreCreate**](CandidatesApi.md#candidatesIgnoreCreate) | **POST** /candidates/ignore/{model_id} | 
 [**candidatesList**](CandidatesApi.md#candidatesList) | **GET** /candidates | 
+[**candidatesMetaPostRetrieve**](CandidatesApi.md#candidatesMetaPostRetrieve) | **GET** /candidates/meta/post | 
 [**candidatesRetrieve**](CandidatesApi.md#candidatesRetrieve) | **GET** /candidates/{id} | 
 
 
@@ -87,7 +88,7 @@ Name | Type | Description  | Notes
 
 <a name="candidatesIgnoreCreate"></a>
 # **candidatesIgnoreCreate**
-> candidatesIgnoreCreate(modelId, ignoreCommonModelRequest)
+> IgnoreCommonModel candidatesIgnoreCreate(xAccountToken, modelId, ignoreCommonModelRequest)
 
 
 
@@ -115,10 +116,12 @@ public class Example {
     //tokenAuth.setApiKeyPrefix("Token");
 
     CandidatesApi apiInstance = new CandidatesApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID modelId = new UUID(); // UUID | 
     IgnoreCommonModelRequest ignoreCommonModelRequest = new IgnoreCommonModelRequest(); // IgnoreCommonModelRequest | 
     try {
-      apiInstance.candidatesIgnoreCreate(modelId, ignoreCommonModelRequest);
+      IgnoreCommonModel result = apiInstance.candidatesIgnoreCreate(xAccountToken, modelId, ignoreCommonModelRequest);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CandidatesApi#candidatesIgnoreCreate");
       System.err.println("Status code: " + e.getCode());
@@ -134,12 +137,13 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **modelId** | [**UUID**](.md)|  |
  **ignoreCommonModelRequest** | [**IgnoreCommonModelRequest**](IgnoreCommonModelRequest.md)|  |
 
 ### Return type
 
-null (empty response body)
+[**IgnoreCommonModel**](IgnoreCommonModel.md)
 
 ### Authorization
 
@@ -148,12 +152,12 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response body |  -  |
+**200** |  |  -  |
 
 <a name="candidatesList"></a>
 # **candidatesList**
@@ -231,6 +235,75 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedCandidateList**](PaginatedCandidateList.md)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+<a name="candidatesMetaPostRetrieve"></a>
+# **candidatesMetaPostRetrieve**
+> MetaResponse candidatesMetaPostRetrieve(xAccountToken)
+
+
+
+Returns metadata for &#x60;Candidate&#x60; POSTs.
+
+### Example
+```java
+// Import classes:
+import merge_ats_client.ApiClient;
+import merge_ats_client.ApiException;
+import merge_ats_client.Configuration;
+import merge_ats_client.auth.*;
+import merge_ats_client.models.*;
+import merge_ats_client.api.CandidatesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
+    
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //tokenAuth.setApiKeyPrefix("Token");
+
+    CandidatesApi apiInstance = new CandidatesApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
+    try {
+      MetaResponse result = apiInstance.candidatesMetaPostRetrieve(xAccountToken);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CandidatesApi#candidatesMetaPostRetrieve");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
+
+### Return type
+
+[**MetaResponse**](MetaResponse.md)
 
 ### Authorization
 

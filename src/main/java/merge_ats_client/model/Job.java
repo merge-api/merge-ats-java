@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company. ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company. ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T15:32:36.773068Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
 public class Job {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -83,6 +83,10 @@ public class Job {
   public static final String SERIALIZED_NAME_HIRING_MANAGERS = "hiring_managers";
   @SerializedName(SERIALIZED_NAME_HIRING_MANAGERS)
   private List<UUID> hiringManagers = null;
+
+  public static final String SERIALIZED_NAME_RECRUITERS = "recruiters";
+  @SerializedName(SERIALIZED_NAME_RECRUITERS)
+  private List<UUID> recruiters = null;
 
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
@@ -380,6 +384,37 @@ public class Job {
   }
 
 
+  public Job recruiters(List<UUID> recruiters) {
+    
+    this.recruiters = recruiters;
+    return this;
+  }
+
+  public Job addRecruitersItem(UUID recruitersItem) {
+    if (this.recruiters == null) {
+      this.recruiters = new ArrayList<UUID>();
+    }
+    this.recruiters.add(recruitersItem);
+    return this;
+  }
+
+   /**
+   * IDs of RemoteUser objects that serve as recruiters for this Job.
+   * @return recruiters
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "IDs of RemoteUser objects that serve as recruiters for this Job.")
+
+  public List<UUID> getRecruiters() {
+    return recruiters;
+  }
+
+
+  public void setRecruiters(List<UUID> recruiters) {
+    this.recruiters = recruiters;
+  }
+
+
    /**
    * Get remoteData
    * @return remoteData
@@ -415,12 +450,13 @@ public class Job {
         Objects.equals(this.departments, job.departments) &&
         Objects.equals(this.offices, job.offices) &&
         Objects.equals(this.hiringManagers, job.hiringManagers) &&
+        Objects.equals(this.recruiters, job.recruiters) &&
         Objects.equals(this.remoteData, job.remoteData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, remoteData);
+    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData);
   }
 
   @Override
@@ -439,6 +475,7 @@ public class Job {
     sb.append("    departments: ").append(toIndentedString(departments)).append("\n");
     sb.append("    offices: ").append(toIndentedString(offices)).append("\n");
     sb.append("    hiringManagers: ").append(toIndentedString(hiringManagers)).append("\n");
+    sb.append("    recruiters: ").append(toIndentedString(recruiters)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
     sb.append("}");
     return sb.toString();

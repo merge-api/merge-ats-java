@@ -9,11 +9,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **UUID** |  |  [optional] [readonly]
 **integration** | **String** |  |  [optional] [readonly]
+**integrationSlug** | **String** |  |  [optional] [readonly]
 **category** | [**CategoryEnum**](CategoryEnum.md) |  |  [optional]
 **endUserOriginId** | **String** |  |  [optional] [readonly]
 **endUserOrganizationName** | **String** |  |  [optional] [readonly]
 **endUserEmailAddress** | **String** |  |  [optional] [readonly]
 **status** | **String** |  |  [optional] [readonly]
+**webhookListenerUrl** | **URI** |  |  [optional] [readonly]
 
 
 

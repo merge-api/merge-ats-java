@@ -17,7 +17,9 @@ import merge_ats_client.ApiException;
 import merge_ats_client.model.Candidate;
 import merge_ats_client.model.CandidateEndpointRequest;
 import merge_ats_client.model.CandidateResponse;
+import merge_ats_client.model.IgnoreCommonModel;
 import merge_ats_client.model.IgnoreCommonModelRequest;
+import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedCandidateList;
 import java.util.UUID;
@@ -67,9 +69,10 @@ public class CandidatesApiTest {
      */
     @Test
     public void candidatesIgnoreCreateTest() throws ApiException {
+        String xAccountToken = null;
         UUID modelId = null;
         IgnoreCommonModelRequest ignoreCommonModelRequest = null;
-        api.candidatesIgnoreCreate(modelId, ignoreCommonModelRequest);
+        IgnoreCommonModel response = api.candidatesIgnoreCreate(xAccountToken, modelId, ignoreCommonModelRequest);
 
         // TODO: test validations
     }
@@ -97,6 +100,22 @@ public class CandidatesApiTest {
         Integer pageSize = null;
         String remoteId = null;
         PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Returns metadata for &#x60;Candidate&#x60; POSTs.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void candidatesMetaPostRetrieveTest() throws ApiException {
+        String xAccountToken = null;
+        MetaResponse response = api.candidatesMetaPostRetrieve(xAccountToken);
 
         // TODO: test validations
     }

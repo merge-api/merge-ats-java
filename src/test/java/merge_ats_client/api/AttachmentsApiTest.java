@@ -17,6 +17,7 @@ import merge_ats_client.ApiException;
 import merge_ats_client.model.Attachment;
 import merge_ats_client.model.AttachmentEndpointRequest;
 import merge_ats_client.model.AttachmentResponse;
+import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedAttachmentList;
 import java.util.UUID;
@@ -78,6 +79,22 @@ public class AttachmentsApiTest {
         Integer pageSize = null;
         String remoteId = null;
         PaginatedAttachmentList response = api.attachmentsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Returns metadata for &#x60;Attachment&#x60; POSTs.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void attachmentsMetaPostRetrieveTest() throws ApiException {
+        String xAccountToken = null;
+        MetaResponse response = api.attachmentsMetaPostRetrieve(xAccountToken);
 
         // TODO: test validations
     }

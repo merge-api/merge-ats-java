@@ -26,6 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import merge_ats_client.model.EmailAddressRequest;
+import merge_ats_client.model.PhoneNumberRequest;
+import merge_ats_client.model.UrlRequest;
 import org.threeten.bp.OffsetDateTime;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -132,6 +135,30 @@ public class CandidateRequestTest {
     @Test
     public void locationsTest() {
         // TODO: test locations
+    }
+
+    /**
+     * Test the property 'phoneNumbers'
+     */
+    @Test
+    public void phoneNumbersTest() {
+        // TODO: test phoneNumbers
+    }
+
+    /**
+     * Test the property 'emailAddresses'
+     */
+    @Test
+    public void emailAddressesTest() {
+        // TODO: test emailAddresses
+    }
+
+    /**
+     * Test the property 'urls'
+     */
+    @Test
+    public void urlsTest() {
+        // TODO: test urls
     }
 
     /**

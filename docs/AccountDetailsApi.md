@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="accountDetailsRetrieve"></a>
 # **accountDetailsRetrieve**
-> AccountDetails accountDetailsRetrieve()
+> AccountDetails accountDetailsRetrieve(xAccountToken)
 
 
 
@@ -37,8 +37,9 @@ public class Example {
     //tokenAuth.setApiKeyPrefix("Token");
 
     AccountDetailsApi apiInstance = new AccountDetailsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      AccountDetails result = apiInstance.accountDetailsRetrieve();
+      AccountDetails result = apiInstance.accountDetailsRetrieve(xAccountToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AccountDetailsApi#accountDetailsRetrieve");
@@ -52,7 +53,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
 
 ### Return type
 

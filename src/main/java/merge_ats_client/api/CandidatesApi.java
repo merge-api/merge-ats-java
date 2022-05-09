@@ -30,7 +30,9 @@ import java.io.IOException;
 import merge_ats_client.model.Candidate;
 import merge_ats_client.model.CandidateEndpointRequest;
 import merge_ats_client.model.CandidateResponse;
+import merge_ats_client.model.IgnoreCommonModel;
 import merge_ats_client.model.IgnoreCommonModelRequest;
+import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedCandidateList;
 import java.util.UUID;
@@ -202,6 +204,7 @@ public class CandidatesApi {
     }
     /**
      * Build call for candidatesIgnoreCreate
+     * @param xAccountToken Token identifying the end user. (required)
      * @param modelId  (required)
      * @param ignoreCommonModelRequest  (required)
      * @param _callback Callback for upload/download progress
@@ -210,10 +213,10 @@ public class CandidatesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> No response body </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call candidatesIgnoreCreateCall(UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call candidatesIgnoreCreateCall(String xAccountToken, UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = ignoreCommonModelRequest;
 
         // create path and map variables
@@ -226,8 +229,12 @@ public class CandidatesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
-            
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -245,7 +252,12 @@ public class CandidatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call candidatesIgnoreCreateValidateBeforeCall(UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call candidatesIgnoreCreateValidateBeforeCall(String xAccountToken, UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling candidatesIgnoreCreate(Async)");
+        }
         
         // verify the required parameter 'modelId' is set
         if (modelId == null) {
@@ -258,7 +270,7 @@ public class CandidatesApi {
         }
         
 
-        okhttp3.Call localVarCall = candidatesIgnoreCreateCall(modelId, ignoreCommonModelRequest, _callback);
+        okhttp3.Call localVarCall = candidatesIgnoreCreateCall(xAccountToken, modelId, ignoreCommonModelRequest, _callback);
         return localVarCall;
 
     }
@@ -266,40 +278,46 @@ public class CandidatesApi {
     /**
      * 
      * Ignores a specific row based on the &#x60;model_id&#x60; in the url. These records will have their properties set to null, and will not be updated in future syncs. The \&quot;reason\&quot; and \&quot;message\&quot; fields in the request body will be stored for audit purposes.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param modelId  (required)
      * @param ignoreCommonModelRequest  (required)
+     * @return IgnoreCommonModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> No response body </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public void candidatesIgnoreCreate(UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest) throws ApiException {
-        candidatesIgnoreCreateWithHttpInfo(modelId, ignoreCommonModelRequest);
+    public IgnoreCommonModel candidatesIgnoreCreate(String xAccountToken, UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest) throws ApiException {
+        ApiResponse<IgnoreCommonModel> localVarResp = candidatesIgnoreCreateWithHttpInfo(xAccountToken, modelId, ignoreCommonModelRequest);
+        return localVarResp.getData();
     }
 
     /**
      * 
      * Ignores a specific row based on the &#x60;model_id&#x60; in the url. These records will have their properties set to null, and will not be updated in future syncs. The \&quot;reason\&quot; and \&quot;message\&quot; fields in the request body will be stored for audit purposes.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param modelId  (required)
      * @param ignoreCommonModelRequest  (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;IgnoreCommonModel&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> No response body </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> candidatesIgnoreCreateWithHttpInfo(UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest) throws ApiException {
-        okhttp3.Call localVarCall = candidatesIgnoreCreateValidateBeforeCall(modelId, ignoreCommonModelRequest, null);
-        return localVarApiClient.execute(localVarCall);
+    public ApiResponse<IgnoreCommonModel> candidatesIgnoreCreateWithHttpInfo(String xAccountToken, UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest) throws ApiException {
+        okhttp3.Call localVarCall = candidatesIgnoreCreateValidateBeforeCall(xAccountToken, modelId, ignoreCommonModelRequest, null);
+        Type localVarReturnType = new TypeToken<IgnoreCommonModel>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
      * Ignores a specific row based on the &#x60;model_id&#x60; in the url. These records will have their properties set to null, and will not be updated in future syncs. The \&quot;reason\&quot; and \&quot;message\&quot; fields in the request body will be stored for audit purposes.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param modelId  (required)
      * @param ignoreCommonModelRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -308,13 +326,14 @@ public class CandidatesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> No response body </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call candidatesIgnoreCreateAsync(UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call candidatesIgnoreCreateAsync(String xAccountToken, UUID modelId, IgnoreCommonModelRequest ignoreCommonModelRequest, final ApiCallback<IgnoreCommonModel> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = candidatesIgnoreCreateValidateBeforeCall(modelId, ignoreCommonModelRequest, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        okhttp3.Call localVarCall = candidatesIgnoreCreateValidateBeforeCall(xAccountToken, modelId, ignoreCommonModelRequest, _callback);
+        Type localVarReturnType = new TypeToken<IgnoreCommonModel>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
@@ -517,6 +536,121 @@ public class CandidatesApi {
 
         okhttp3.Call localVarCall = candidatesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedCandidateList>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for candidatesMetaPostRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call candidatesMetaPostRetrieveCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/candidates/meta/post";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call candidatesMetaPostRetrieveValidateBeforeCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling candidatesMetaPostRetrieve(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = candidatesMetaPostRetrieveCall(xAccountToken, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Returns metadata for &#x60;Candidate&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @return MetaResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public MetaResponse candidatesMetaPostRetrieve(String xAccountToken) throws ApiException {
+        ApiResponse<MetaResponse> localVarResp = candidatesMetaPostRetrieveWithHttpInfo(xAccountToken);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Returns metadata for &#x60;Candidate&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @return ApiResponse&lt;MetaResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<MetaResponse> candidatesMetaPostRetrieveWithHttpInfo(String xAccountToken) throws ApiException {
+        okhttp3.Call localVarCall = candidatesMetaPostRetrieveValidateBeforeCall(xAccountToken, null);
+        Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Returns metadata for &#x60;Candidate&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call candidatesMetaPostRetrieveAsync(String xAccountToken, final ApiCallback<MetaResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = candidatesMetaPostRetrieveValidateBeforeCall(xAccountToken, _callback);
+        Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

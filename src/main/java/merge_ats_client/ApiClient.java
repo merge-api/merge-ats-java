@@ -30,7 +30,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.net.URI;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.file.Files;
@@ -125,7 +124,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/1.3.0/java");
+        setUserAgent("OpenAPI-Generator/1.4.0/java");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -605,7 +604,7 @@ public class ApiClient {
         // collectionFormat is assumed to be "csv" by default
         String delimiter = ",";
 
-        // escape all delimiters except commas, which are URI reserved
+        // escape all delimiters except commas, which are String reserved
         // characters
         if ("ssv".equals(collectionFormat)) {
             delimiter = escapeString(" ");
