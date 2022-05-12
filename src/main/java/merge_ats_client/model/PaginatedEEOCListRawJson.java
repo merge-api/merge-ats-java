@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * PaginatedEEOCListRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class PaginatedEEOCListRawJson {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)

@@ -118,4 +118,12 @@ public class RemoteUserTest {
         // TODO: test remoteData
     }
 
+    /**
+     * Test the property 'remoteWasDeleted'
+     */
+    @Test
+    public void remoteWasDeletedTest() {
+        // TODO: test remoteWasDeleted
+    }
+
 }

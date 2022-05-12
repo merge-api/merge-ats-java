@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **startDate** | **OffsetDateTime** | The employment start date on the offer. |  [optional]
 **status** | [**OfferStatusEnum**](OfferStatusEnum.md) | The offer&#39;s status. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

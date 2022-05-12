@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Office Object ### Description The &#x60;Office&#x60; object is used to represent an office within a company. ### Usage Example Fetch from the &#x60;LIST Offices&#x60; endpoint and view the offices within a company.
  */
 @ApiModel(description = "# The Office Object ### Description The `Office` object is used to represent an office within a company. ### Usage Example Fetch from the `LIST Offices` endpoint and view the offices within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class OfficeRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -55,6 +55,10 @@ public class OfficeRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -141,6 +145,17 @@ public class OfficeRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -154,11 +169,12 @@ public class OfficeRawJson {
         Objects.equals(this.remoteId.getAsString(), office.remoteId.getAsString()) &&
         Objects.equals(this.name.getAsString(), office.name.getAsString()) &&
         Objects.equals(this.location.getAsString(), office.location.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), office.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), office.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), office.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, location, remoteData);
+    return Objects.hash(id, remoteId, name, location, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -169,6 +185,7 @@ public class OfficeRawJson {
     sb.append("    name: ").append(toIndentedString(name.getAsString())).append("\n");
     sb.append("    location: ").append(toIndentedString(location.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

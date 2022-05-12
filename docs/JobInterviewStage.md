@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **name** | **String** | The stage&#39;s name. |  [optional]
 **job** | **UUID** |  |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

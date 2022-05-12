@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **hiringManagers** | **List&lt;UUID&gt;** | IDs of &#x60;RemoteUser&#x60; objects that serve as hiring managers for this &#x60;Job&#x60;. |  [optional]
 **recruiters** | **List&lt;UUID&gt;** | IDs of RemoteUser objects that serve as recruiters for this Job. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

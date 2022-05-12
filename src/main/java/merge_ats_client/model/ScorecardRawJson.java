@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
 @ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class ScorecardRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -71,6 +71,10 @@ public class ScorecardRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -233,6 +237,17 @@ public class ScorecardRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -250,11 +265,12 @@ public class ScorecardRawJson {
         Objects.equals(this.remoteCreatedAt.getAsString(), scorecard.remoteCreatedAt.getAsString()) &&
         Objects.equals(this.submittedAt.getAsString(), scorecard.submittedAt.getAsString()) &&
         Objects.equals(this.overallRecommendation.getAsString(), scorecard.overallRecommendation.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), scorecard.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), scorecard.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), scorecard.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, application, interview, interviewer, remoteCreatedAt, submittedAt, overallRecommendation, remoteData);
+    return Objects.hash(id, remoteId, application, interview, interviewer, remoteCreatedAt, submittedAt, overallRecommendation, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -269,6 +285,7 @@ public class ScorecardRawJson {
     sb.append("    submittedAt: ").append(toIndentedString(submittedAt.getAsString())).append("\n");
     sb.append("    overallRecommendation: ").append(toIndentedString(overallRecommendation.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

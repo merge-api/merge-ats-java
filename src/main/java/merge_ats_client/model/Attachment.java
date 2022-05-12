@@ -33,7 +33,7 @@ import merge_ats_client.model.RemoteData;
  * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate. ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
 @ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate. ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class Attachment {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -62,6 +62,10 @@ public class Attachment {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private List<RemoteData> remoteData = null;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private Boolean remoteWasDeleted;
 
 
    /**
@@ -207,6 +211,20 @@ public class Attachment {
 
 
 
+   /**
+   * Get remoteWasDeleted
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -222,12 +240,13 @@ public class Attachment {
         Objects.equals(this.fileUrl, attachment.fileUrl) &&
         Objects.equals(this.candidate, attachment.candidate) &&
         Objects.equals(this.attachmentType, attachment.attachmentType) &&
-        Objects.equals(this.remoteData, attachment.remoteData);
+        Objects.equals(this.remoteData, attachment.remoteData) &&
+        Objects.equals(this.remoteWasDeleted, attachment.remoteWasDeleted);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, fileName, fileUrl, candidate, attachmentType, remoteData);
+    return Objects.hash(id, remoteId, fileName, fileUrl, candidate, attachmentType, remoteData, remoteWasDeleted);
   }
 
   @Override
@@ -241,6 +260,7 @@ public class Attachment {
     sb.append("    candidate: ").append(toIndentedString(candidate)).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
     sb.append("}");
     return sb.toString();
   }

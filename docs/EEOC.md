@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **veteranStatus** | [**VeteranStatusEnum**](VeteranStatusEnum.md) | The candidate&#39;s veteran status. |  [optional]
 **disabilityStatus** | [**DisabilityStatusEnum**](DisabilityStatusEnum.md) | The candidate&#39;s disability status. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

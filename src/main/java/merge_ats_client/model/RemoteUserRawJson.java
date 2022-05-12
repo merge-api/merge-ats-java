@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The RemoteUser Object ### Description The &#x60;RemoteUser&#x60; object is used to represent a third party user. ### Usage Example Fetch from the &#x60;LIST RemoteUsers&#x60; endpoint to show all users for a third party.
  */
 @ApiModel(description = "# The RemoteUser Object ### Description The `RemoteUser` object is used to represent a third party user. ### Usage Example Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class RemoteUserRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -71,6 +71,10 @@ public class RemoteUserRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -233,6 +237,17 @@ public class RemoteUserRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -250,11 +265,12 @@ public class RemoteUserRawJson {
         Objects.equals(this.disabled.getAsString(), remoteUser.disabled.getAsString()) &&
         Objects.equals(this.remoteCreatedAt.getAsString(), remoteUser.remoteCreatedAt.getAsString()) &&
         Objects.equals(this.accessRole.getAsString(), remoteUser.accessRole.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), remoteUser.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), remoteUser.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), remoteUser.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, firstName, lastName, email, disabled, remoteCreatedAt, accessRole, remoteData);
+    return Objects.hash(id, remoteId, firstName, lastName, email, disabled, remoteCreatedAt, accessRole, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -269,6 +285,7 @@ public class RemoteUserRawJson {
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt.getAsString())).append("\n");
     sb.append("    accessRole: ").append(toIndentedString(accessRole.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Department Object ### Description The &#x60;Department&#x60; object is used to represent a department within a company. ### Usage Example Fetch from the &#x60;LIST Departments&#x60; endpoint and view the departments within a company.
  */
 @ApiModel(description = "# The Department Object ### Description The `Department` object is used to represent a department within a company. ### Usage Example Fetch from the `LIST Departments` endpoint and view the departments within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class DepartmentRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -51,6 +51,10 @@ public class DepartmentRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -118,6 +122,17 @@ public class DepartmentRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -130,11 +145,12 @@ public class DepartmentRawJson {
     return Objects.equals(this.id.getAsString(), department.id.getAsString()) &&
         Objects.equals(this.remoteId.getAsString(), department.remoteId.getAsString()) &&
         Objects.equals(this.name.getAsString(), department.name.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), department.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), department.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), department.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, remoteData);
+    return Objects.hash(id, remoteId, name, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -144,6 +160,7 @@ public class DepartmentRawJson {
     sb.append("    remoteId: ").append(toIndentedString(remoteId.getAsString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

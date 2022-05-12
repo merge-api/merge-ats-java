@@ -32,7 +32,7 @@ import merge_ats_client.model.RemoteData;
  * # The Department Object ### Description The &#x60;Department&#x60; object is used to represent a department within a company. ### Usage Example Fetch from the &#x60;LIST Departments&#x60; endpoint and view the departments within a company.
  */
 @ApiModel(description = "# The Department Object ### Description The `Department` object is used to represent a department within a company. ### Usage Example Fetch from the `LIST Departments` endpoint and view the departments within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class Department {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -49,6 +49,10 @@ public class Department {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private List<RemoteData> remoteData = null;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private Boolean remoteWasDeleted;
 
 
    /**
@@ -125,6 +129,20 @@ public class Department {
 
 
 
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public Boolean getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -137,12 +155,13 @@ public class Department {
     return Objects.equals(this.id, department.id) &&
         Objects.equals(this.remoteId, department.remoteId) &&
         Objects.equals(this.name, department.name) &&
-        Objects.equals(this.remoteData, department.remoteData);
+        Objects.equals(this.remoteData, department.remoteData) &&
+        Objects.equals(this.remoteWasDeleted, department.remoteWasDeleted);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, remoteData);
+    return Objects.hash(id, remoteId, name, remoteData, remoteWasDeleted);
   }
 
   @Override
@@ -153,6 +172,7 @@ public class Department {
     sb.append("    remoteId: ").append(toIndentedString(remoteId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
     sb.append("}");
     return sb.toString();
   }

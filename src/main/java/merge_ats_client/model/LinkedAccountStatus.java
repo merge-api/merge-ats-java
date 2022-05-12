@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * LinkedAccountStatus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class LinkedAccountStatus {
   public static final String SERIALIZED_NAME_LINKED_ACCOUNT_STATUS = "linked_account_status";
   @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_STATUS)

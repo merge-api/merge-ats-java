@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Attachment Object ### Description The &#x60;Attachment&#x60; object is used to represent a attachment for a candidate. ### Usage Example Fetch from the &#x60;LIST Attachments&#x60; endpoint and view attachments accessible by a company.
  */
 @ApiModel(description = "# The Attachment Object ### Description The `Attachment` object is used to represent a attachment for a candidate. ### Usage Example Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class AttachmentRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -63,6 +63,10 @@ public class AttachmentRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -187,6 +191,17 @@ public class AttachmentRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Get remoteWasDeleted
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -202,11 +217,12 @@ public class AttachmentRawJson {
         Objects.equals(this.fileUrl.getAsString(), attachment.fileUrl.getAsString()) &&
         Objects.equals(this.candidate.getAsString(), attachment.candidate.getAsString()) &&
         Objects.equals(this.attachmentType.getAsString(), attachment.attachmentType.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), attachment.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), attachment.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), attachment.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, fileName, fileUrl, candidate, attachmentType, remoteData);
+    return Objects.hash(id, remoteId, fileName, fileUrl, candidate, attachmentType, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -219,6 +235,7 @@ public class AttachmentRawJson {
     sb.append("    candidate: ").append(toIndentedString(candidate.getAsString())).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

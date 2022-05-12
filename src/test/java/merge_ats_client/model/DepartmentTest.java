@@ -76,4 +76,12 @@ public class DepartmentTest {
         // TODO: test remoteData
     }
 
+    /**
+     * Test the property 'remoteWasDeleted'
+     */
+    @Test
+    public void remoteWasDeletedTest() {
+        // TODO: test remoteWasDeleted
+    }
+
 }

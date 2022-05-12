@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **candidate** | **UUID** |  |  [optional]
 **attachmentType** | [**AttachmentTypeEnum**](AttachmentTypeEnum.md) | The attachment&#39;s type. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** |  |  [optional] [readonly]
 
 
 
