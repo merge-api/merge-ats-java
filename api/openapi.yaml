@@ -3656,6 +3656,7 @@ components:
         remote_id: "198123"
         activity_type: NOTE
         id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+        remote_was_deleted: true
         remote_created_at: 2021-10-15T00:00:00Z
         body: Candidate loves integrations!!.
         user: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
@@ -3717,6 +3718,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     ActivityTypeEnum:
       enum:
@@ -3736,21 +3742,22 @@ components:
         Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
       example:
         applied_at: 2021-10-15T00:00:00Z
-        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
         rejected_at: 2021-11-15T00:00:00Z
         custom_fields:
           key: ""
         remote_id: "98796"
-        id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
         source: Campus recruiting event
-        credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
-        current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
         reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
-        job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         remote_data:
         - path: /candidacies
           data:
           - Varies by platform
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+        id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+        credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+        current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+        remote_was_deleted: true
+        job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
       properties:
         id:
           example: 92e8a369-fffe-430d-b93a-f7e8a16563f1
@@ -3819,6 +3826,9 @@ components:
           description: Custom fields configured for a given model.
           nullable: true
           type: object
+        remote_was_deleted:
+          readOnly: true
+          type: boolean
       type: object
     ApplicationEndpointRequest:
       example:
@@ -3965,21 +3975,22 @@ components:
           title: Unrecognized Field
         model:
           applied_at: 2021-10-15T00:00:00Z
-          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           rejected_at: 2021-11-15T00:00:00Z
           custom_fields:
             key: ""
           remote_id: "98796"
-          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           source: Campus recruiting event
-          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
-          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
-          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           remote_data:
           - path: /candidacies
             data:
             - Varies by platform
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          remote_was_deleted: true
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         logs:
         - log_id: 99433219-8017-4acd-bb3c-ceb23d663832
           dashboard_view: https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832
@@ -4038,6 +4049,7 @@ components:
         file_name: Candidate Resume
         remote_id: "11167"
         id: c640b80b-fac9-409f-aa19-1f9221aec445
+        remote_was_deleted: true
         remote_data:
         - path: /attachments
           data:
@@ -4086,6 +4098,9 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          readOnly: true
+          type: boolean
       type: object
     AttachmentEndpointRequest:
       example:
@@ -4190,6 +4205,7 @@ components:
           file_name: Candidate Resume
           remote_id: "11167"
           id: c640b80b-fac9-409f-aa19-1f9221aec445
+          remote_was_deleted: true
           remote_data:
           - path: /attachments
             data:
@@ -4342,6 +4358,7 @@ components:
         - New York
         - Miami
         id: 521b18c2-4d01-4297-b451-19858d07c133
+        remote_was_deleted: true
         remote_created_at: 2021-10-15T00:00:00Z
         first_name: Gil
         applications:
@@ -4482,6 +4499,9 @@ components:
           description: Custom fields configured for a given model.
           nullable: true
           type: object
+        remote_was_deleted:
+          readOnly: true
+          type: boolean
       type: object
     CandidateEndpointRequest:
       example:
@@ -4766,6 +4786,7 @@ components:
           - New York
           - Miami
           id: 521b18c2-4d01-4297-b451-19858d07c133
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           first_name: Gil
           applications:
@@ -4955,6 +4976,7 @@ components:
         remote_id: "23456"
         name: Engineering
         id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+        remote_was_deleted: true
         remote_data:
         - path: /departments
           data:
@@ -4985,6 +5007,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     DisabilityStatusEnum:
       enum:
@@ -5008,6 +5035,7 @@ components:
         veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
         remote_id: "76"
         id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+        remote_was_deleted: true
         remote_data:
         - path: /eeoc
           data:
@@ -5068,6 +5096,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     EmailAddress:
       description: |-
@@ -5322,6 +5355,7 @@ components:
         - d6e687d6-0c36-48a1-8114-35324b5cb38f
         recruiters:
         - 787ed912-33ec-444e-a215-8d71cc42fc12
+        remote_was_deleted: true
         remote_created_at: 2021-10-15T00:00:00Z
         status: OPEN
         confidential: true
@@ -5425,6 +5459,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
       x-merge-sample-json: '{"id": "022a2bef-57e5-4def-8ed2-7c41bd9a5ed8", "remote_id":
         "8765432", "name": "Software Engineer (Merge is actually hiring btw)", "description":
@@ -5445,6 +5484,7 @@ components:
         remote_id: "876556788"
         name: Phone Screen
         id: f9813dd5-e70b-484c-91d8-00acd6065b07
+        remote_was_deleted: true
         job: ba7d9648-5316-4a80-8d73-4e636cef5a90
         remote_data:
         - path: /interview-stages
@@ -5481,6 +5521,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     JobStatusEnum:
       enum:
@@ -5666,6 +5711,7 @@ components:
         application: 2872ba14-4084-492b-be96-e5eee6fc33ef
         remote_id: "9876"
         id: dd85625c-6a59-446f-a317-6de64d83bae7
+        remote_was_deleted: true
         remote_created_at: 2021-10-15T00:00:00Z
         start_date: 2021-11-15T00:00:00Z
         status: SENT
@@ -5734,6 +5780,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     OfferStatusEnum:
       enum:
@@ -5759,6 +5810,7 @@ components:
         name: SF Office
         location: Embarcadero Center 2
         id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+        remote_was_deleted: true
         remote_data:
         - path: /locations
           data:
@@ -5794,6 +5846,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
       x-merge-sample-json: '{"id": "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46", "remote_id":
         "876556788", "name": "SF Office", "location": "Embarcadero Center 2", "remote_data":
@@ -5917,6 +5974,7 @@ components:
           remote_id: "198123"
           activity_type: NOTE
           id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           body: Candidate loves integrations!!.
           user: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
@@ -5929,6 +5987,7 @@ components:
           remote_id: "198123"
           activity_type: NOTE
           id: ecbe05ac-62a3-46c5-ab31-4b478b37d1b4
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           body: Candidate loves integrations!!.
           user: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
@@ -5956,37 +6015,39 @@ components:
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
         - applied_at: 2021-10-15T00:00:00Z
-          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           rejected_at: 2021-11-15T00:00:00Z
           custom_fields:
             key: ""
           remote_id: "98796"
-          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           source: Campus recruiting event
-          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
-          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
-          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           remote_data:
           - path: /candidacies
             data:
             - Varies by platform
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          remote_was_deleted: true
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         - applied_at: 2021-10-15T00:00:00Z
-          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           rejected_at: 2021-11-15T00:00:00Z
           custom_fields:
             key: ""
           remote_id: "98796"
-          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           source: Campus recruiting event
-          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
-          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
-          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           remote_data:
           - path: /candidacies
             data:
             - Varies by platform
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
+          id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
+          credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
+          current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          remote_was_deleted: true
+          job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
       properties:
         next:
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -6012,6 +6073,7 @@ components:
           file_name: Candidate Resume
           remote_id: "11167"
           id: c640b80b-fac9-409f-aa19-1f9221aec445
+          remote_was_deleted: true
           remote_data:
           - path: /attachments
             data:
@@ -6022,6 +6084,7 @@ components:
           file_name: Candidate Resume
           remote_id: "11167"
           id: c640b80b-fac9-409f-aa19-1f9221aec445
+          remote_was_deleted: true
           remote_data:
           - path: /attachments
             data:
@@ -6077,6 +6140,7 @@ components:
           - New York
           - Miami
           id: 521b18c2-4d01-4297-b451-19858d07c133
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           first_name: Gil
           applications:
@@ -6115,6 +6179,7 @@ components:
           - New York
           - Miami
           id: 521b18c2-4d01-4297-b451-19858d07c133
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           first_name: Gil
           applications:
@@ -6143,6 +6208,7 @@ components:
         - remote_id: "23456"
           name: Engineering
           id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          remote_was_deleted: true
           remote_data:
           - path: /departments
             data:
@@ -6150,6 +6216,7 @@ components:
         - remote_id: "23456"
           name: Engineering
           id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
+          remote_was_deleted: true
           remote_data:
           - path: /departments
             data:
@@ -6181,6 +6248,7 @@ components:
           veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
           remote_id: "76"
           id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+          remote_was_deleted: true
           remote_data:
           - path: /eeoc
             data:
@@ -6193,6 +6261,7 @@ components:
           veteran_status: I_AM_NOT_A_PROTECTED_VETERAN
           remote_id: "76"
           id: f7dd7b4f-237e-4772-8bd4-3246384c6c58
+          remote_was_deleted: true
           remote_data:
           - path: /eeoc
             data:
@@ -6252,6 +6321,7 @@ components:
         - remote_id: "876556788"
           name: Phone Screen
           id: f9813dd5-e70b-484c-91d8-00acd6065b07
+          remote_was_deleted: true
           job: ba7d9648-5316-4a80-8d73-4e636cef5a90
           remote_data:
           - path: /interview-stages
@@ -6260,6 +6330,7 @@ components:
         - remote_id: "876556788"
           name: Phone Screen
           id: f9813dd5-e70b-484c-91d8-00acd6065b07
+          remote_was_deleted: true
           job: ba7d9648-5316-4a80-8d73-4e636cef5a90
           remote_data:
           - path: /interview-stages
@@ -6304,6 +6375,7 @@ components:
           - d6e687d6-0c36-48a1-8114-35324b5cb38f
           recruiters:
           - 787ed912-33ec-444e-a215-8d71cc42fc12
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           status: OPEN
           confidential: true
@@ -6327,6 +6399,7 @@ components:
           - d6e687d6-0c36-48a1-8114-35324b5cb38f
           recruiters:
           - 787ed912-33ec-444e-a215-8d71cc42fc12
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           status: OPEN
           confidential: true
@@ -6355,6 +6428,7 @@ components:
           application: 2872ba14-4084-492b-be96-e5eee6fc33ef
           remote_id: "9876"
           id: dd85625c-6a59-446f-a317-6de64d83bae7
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           start_date: 2021-11-15T00:00:00Z
           status: SENT
@@ -6368,6 +6442,7 @@ components:
           application: 2872ba14-4084-492b-be96-e5eee6fc33ef
           remote_id: "9876"
           id: dd85625c-6a59-446f-a317-6de64d83bae7
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           start_date: 2021-11-15T00:00:00Z
           status: SENT
@@ -6398,6 +6473,7 @@ components:
           name: SF Office
           location: Embarcadero Center 2
           id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          remote_was_deleted: true
           remote_data:
           - path: /locations
             data:
@@ -6406,6 +6482,7 @@ components:
           name: SF Office
           location: Embarcadero Center 2
           id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
+          remote_was_deleted: true
           remote_data:
           - path: /locations
             data:
@@ -6432,6 +6509,7 @@ components:
         - remote_id: "876556788"
           name: Not passionate enough about APIs.
           id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
+          remote_was_deleted: true
           remote_data:
           - path: /rejection-reasons
             data:
@@ -6439,6 +6517,7 @@ components:
         - remote_id: "876556788"
           name: Not passionate enough about APIs.
           id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
+          remote_was_deleted: true
           remote_data:
           - path: /rejection-reasons
             data:
@@ -6467,6 +6546,7 @@ components:
           last_name: Ding
           disabled: true
           id: b82302de-852e-4e60-b050-edf9da3b7c02
+          remote_was_deleted: true
           remote_created_at: 2020-11-10T00:00:00Z
           first_name: Shensi
           email: hello@merge.dev
@@ -6479,6 +6559,7 @@ components:
           last_name: Ding
           disabled: true
           id: b82302de-852e-4e60-b050-edf9da3b7c02
+          remote_was_deleted: true
           remote_created_at: 2020-11-10T00:00:00Z
           first_name: Shensi
           email: hello@merge.dev
@@ -6521,6 +6602,7 @@ components:
           organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           location: Embarcadero Center 2
           id: b8faf072-98b9-4445-8a9a-6b4950efca19
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           status: SCHEDULED
         - end_at: 2021-10-15T02:00:00Z
@@ -6539,6 +6621,7 @@ components:
           organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           location: Embarcadero Center 2
           id: b8faf072-98b9-4445-8a9a-6b4950efca19
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           status: SCHEDULED
       properties:
@@ -6566,6 +6649,7 @@ components:
           remote_id: "22234"
           overall_recommendation: STRONG_YES
           id: 3eab2f17-eeb1-450d-97f0-029d8be1e06f
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           interview: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           remote_data:
@@ -6578,6 +6662,7 @@ components:
           remote_id: "22234"
           overall_recommendation: STRONG_YES
           id: 3eab2f17-eeb1-450d-97f0-029d8be1e06f
+          remote_was_deleted: true
           remote_created_at: 2021-10-15T00:00:00Z
           interview: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           remote_data:
@@ -6636,12 +6721,14 @@ components:
         results:
         - remote_id: "4567"
           name: High-Priority
+          remote_was_deleted: true
           remote_data:
           - path: /tags
             data:
             - Varies by platform
         - remote_id: "4567"
           name: High-Priority
+          remote_was_deleted: true
           remote_data:
           - path: /tags
             data:
@@ -6736,6 +6823,7 @@ components:
         remote_id: "876556788"
         name: Not passionate enough about APIs.
         id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
+        remote_was_deleted: true
         remote_data:
         - path: /rejection-reasons
           data:
@@ -6766,6 +6854,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     RemoteData:
       properties:
@@ -6893,6 +6986,7 @@ components:
         last_name: Ding
         disabled: true
         id: b82302de-852e-4e60-b050-edf9da3b7c02
+        remote_was_deleted: true
         remote_created_at: 2020-11-10T00:00:00Z
         first_name: Shensi
         email: hello@merge.dev
@@ -6954,6 +7048,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
       x-merge-sample-json: '{"id": "b82302de-852e-4e60-b050-edf9da3b7c02", "remote_id":
         "344321", "first_name": "Shensi", "last_name": "Ding", "email": "hello@merge.dev",
@@ -6990,6 +7089,7 @@ components:
         organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         location: Embarcadero Center 2
         id: b8faf072-98b9-4445-8a9a-6b4950efca19
+        remote_was_deleted: true
         remote_created_at: 2021-10-15T00:00:00Z
         status: SCHEDULED
       properties:
@@ -7073,6 +7173,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     ScheduledInterviewStatusEnum:
       enum:
@@ -7094,6 +7199,7 @@ components:
         remote_id: "22234"
         overall_recommendation: STRONG_YES
         id: 3eab2f17-eeb1-450d-97f0-029d8be1e06f
+        remote_was_deleted: true
         remote_created_at: 2021-10-15T00:00:00Z
         interview: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         remote_data:
@@ -7154,6 +7260,11 @@ components:
           nullable: true
           readOnly: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          readOnly: true
+          type: boolean
       type: object
     SyncStatus:
       description: |-
@@ -7220,6 +7331,7 @@ components:
       example:
         remote_id: "4567"
         name: High-Priority
+        remote_was_deleted: true
         remote_data:
         - path: /tags
           data:
@@ -7247,6 +7359,10 @@ components:
             type: object
           nullable: true
           type: array
+        remote_was_deleted:
+          description: Indicates whether or not this object has been deleted on the
+            third-party.
+          type: boolean
       type: object
     Url:
       description: |-

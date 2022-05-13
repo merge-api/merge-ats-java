@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **body** | **String** | The activity&#39;s body. |  [optional]
 **visibility** | [**VisibilityEnum**](VisibilityEnum.md) | The activity&#39;s visibility. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

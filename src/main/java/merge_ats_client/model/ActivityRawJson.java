@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Activity Object ### Description The &#x60;Activity&#x60; object is used to represent an activity performed by a user. ### Usage Example Fetch from the &#x60;LIST Activities&#x60; endpoint and filter by &#x60;ID&#x60; to show all activities.
  */
 @ApiModel(description = "# The Activity Object ### Description The `Activity` object is used to represent an activity performed by a user. ### Usage Example Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class ActivityRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -71,6 +71,10 @@ public class ActivityRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -233,6 +237,17 @@ public class ActivityRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -250,11 +265,12 @@ public class ActivityRawJson {
         Objects.equals(this.subject.getAsString(), activity.subject.getAsString()) &&
         Objects.equals(this.body.getAsString(), activity.body.getAsString()) &&
         Objects.equals(this.visibility.getAsString(), activity.visibility.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), activity.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), activity.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), activity.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, user, remoteCreatedAt, activityType, subject, body, visibility, remoteData);
+    return Objects.hash(id, remoteId, user, remoteCreatedAt, activityType, subject, body, visibility, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -269,6 +285,7 @@ public class ActivityRawJson {
     sb.append("    body: ").append(toIndentedString(body.getAsString())).append("\n");
     sb.append("    visibility: ").append(toIndentedString(visibility.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

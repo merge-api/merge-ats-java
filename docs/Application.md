@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **rejectReason** | **UUID** |  |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
 **customFields** | **Map&lt;String, Object&gt;** | Custom fields configured for a given model. |  [optional]
+**remoteWasDeleted** | **Boolean** |  |  [optional] [readonly]
 
 
 

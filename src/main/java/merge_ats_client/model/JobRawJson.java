@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company. ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company. ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class JobRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -91,6 +91,10 @@ public class JobRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -348,6 +352,17 @@ public class JobRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -370,11 +385,12 @@ public class JobRawJson {
         Objects.equals(this.offices.getAsString(), job.offices.getAsString()) &&
         Objects.equals(this.hiringManagers.getAsString(), job.hiringManagers.getAsString()) &&
         Objects.equals(this.recruiters.getAsString(), job.recruiters.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), job.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), job.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), job.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData);
+    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -394,6 +410,7 @@ public class JobRawJson {
     sb.append("    hiringManagers: ").append(toIndentedString(hiringManagers.getAsString())).append("\n");
     sb.append("    recruiters: ").append(toIndentedString(recruiters.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

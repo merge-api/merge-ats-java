@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'dev.merge.ats'
-version = '1.4.0'
+version = '1.4.1'
 
 buildscript {
     repositories {

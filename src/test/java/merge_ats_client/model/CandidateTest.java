@@ -210,4 +210,12 @@ public class CandidateTest {
         // TODO: test customFields
     }
 
+    /**
+     * Test the property 'remoteWasDeleted'
+     */
+    @Test
+    public void remoteWasDeletedTest() {
+        // TODO: test remoteWasDeleted
+    }
+
 }

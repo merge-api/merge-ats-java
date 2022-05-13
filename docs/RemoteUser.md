@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s user was created. |  [optional]
 **accessRole** | [**AccessRoleEnum**](AccessRoleEnum.md) | The user&#39;s role. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

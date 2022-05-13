@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **name** | **String** | The office&#39;s name. |  [optional]
 **location** | **String** | The office&#39;s location. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

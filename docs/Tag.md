@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
 **name** | **String** | The tag&#39;s name. |  [optional]
 **remoteData** | **List&lt;Map&lt;String, Object&gt;&gt;** |  |  [optional]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional]
 
 
 

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **remoteUpdatedAt** | **OffsetDateTime** | When the third party&#39;s interview was updated. |  [optional]
 **status** | [**ScheduledInterviewStatusEnum**](ScheduledInterviewStatusEnum.md) | The interview&#39;s status. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
 
 
 

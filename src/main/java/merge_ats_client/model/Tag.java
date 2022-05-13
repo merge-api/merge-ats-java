@@ -31,7 +31,7 @@ import java.util.Map;
  * # The Tag Object ### Description The &#x60;Tag&#x60; object is used to represent a tag for a candidate. ### Usage Example Fetch from the &#x60;LIST Tags&#x60; endpoint and view the tags used within a company.
  */
 @ApiModel(description = "# The Tag Object ### Description The `Tag` object is used to represent a tag for a candidate. ### Usage Example Fetch from the `LIST Tags` endpoint and view the tags used within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class Tag {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -44,6 +44,10 @@ public class Tag {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private List<Map<String, Object>> remoteData = null;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private Boolean remoteWasDeleted;
 
 
   public Tag remoteId(String remoteId) {
@@ -123,6 +127,29 @@ public class Tag {
   }
 
 
+  public Tag remoteWasDeleted(Boolean remoteWasDeleted) {
+    
+    this.remoteWasDeleted = remoteWasDeleted;
+    return this;
+  }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public Boolean getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
+
+
+  public void setRemoteWasDeleted(Boolean remoteWasDeleted) {
+    this.remoteWasDeleted = remoteWasDeleted;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -134,12 +161,13 @@ public class Tag {
     Tag tag = (Tag) o;
     return Objects.equals(this.remoteId, tag.remoteId) &&
         Objects.equals(this.name, tag.name) &&
-        Objects.equals(this.remoteData, tag.remoteData);
+        Objects.equals(this.remoteData, tag.remoteData) &&
+        Objects.equals(this.remoteWasDeleted, tag.remoteWasDeleted);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, name, remoteData);
+    return Objects.hash(remoteId, name, remoteData, remoteWasDeleted);
   }
 
   @Override
@@ -149,6 +177,7 @@ public class Tag {
     sb.append("    remoteId: ").append(toIndentedString(remoteId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
     sb.append("}");
     return sb.toString();
   }

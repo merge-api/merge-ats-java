@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application. ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
  */
 @ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application. ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class Offer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -75,6 +75,10 @@ public class Offer {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private List<RemoteData> remoteData = null;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private Boolean remoteWasDeleted;
 
 
    /**
@@ -289,6 +293,20 @@ public class Offer {
 
 
 
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public Boolean getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -307,12 +325,13 @@ public class Offer {
         Objects.equals(this.sentAt, offer.sentAt) &&
         Objects.equals(this.startDate, offer.startDate) &&
         Objects.equals(this.status, offer.status) &&
-        Objects.equals(this.remoteData, offer.remoteData);
+        Objects.equals(this.remoteData, offer.remoteData) &&
+        Objects.equals(this.remoteWasDeleted, offer.remoteWasDeleted);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, application, creator, remoteCreatedAt, closedAt, sentAt, startDate, status, remoteData);
+    return Objects.hash(id, remoteId, application, creator, remoteCreatedAt, closedAt, sentAt, startDate, status, remoteData, remoteWasDeleted);
   }
 
   @Override
@@ -329,6 +348,7 @@ public class Offer {
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
     sb.append("}");
     return sb.toString();
   }

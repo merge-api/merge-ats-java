@@ -114,6 +114,8 @@ public class ApiClient {
         for (Interceptor interceptor: interceptors) {
             builder.addInterceptor(interceptor);
         }
+        // Enable gzip request compression
+        builder.addInterceptor(new GzipRequestInterceptor());
 
         httpClient = builder.build();
     }
@@ -124,7 +126,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/1.4.0/java");
+        setUserAgent("OpenAPI-Generator/1.4.1/java");
 
         authentications = new HashMap<String, Authentication>();
     }

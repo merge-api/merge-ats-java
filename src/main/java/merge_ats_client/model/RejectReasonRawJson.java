@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The RejectReason Object ### Description The &#x60;RejectReason&#x60; object is used to represent a reason for rejecting an application. ### Usage Example Fetch from the &#x60;LIST RejectReasons&#x60; endpoint and filter by &#x60;ID&#x60; to show all reasons.
  */
 @ApiModel(description = "# The RejectReason Object ### Description The `RejectReason` object is used to represent a reason for rejecting an application. ### Usage Example Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class RejectReasonRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -51,6 +51,10 @@ public class RejectReasonRawJson {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private JsonElement remoteWasDeleted;
 
   private transient JSON serializer;
 
@@ -118,6 +122,17 @@ public class RejectReasonRawJson {
   public JsonElement getRemoteData() {
     return remoteData;
   }
+
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public JsonElement getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -130,11 +145,12 @@ public class RejectReasonRawJson {
     return Objects.equals(this.id.getAsString(), rejectReason.id.getAsString()) &&
         Objects.equals(this.remoteId.getAsString(), rejectReason.remoteId.getAsString()) &&
         Objects.equals(this.name.getAsString(), rejectReason.name.getAsString()) &&
-        Objects.equals(this.remoteData.getAsString(), rejectReason.remoteData.getAsString());
+        Objects.equals(this.remoteData.getAsString(), rejectReason.remoteData.getAsString()) &&
+        Objects.equals(this.remoteWasDeleted.getAsString(), rejectReason.remoteWasDeleted.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, remoteData);
+    return Objects.hash(id, remoteId, name, remoteData, remoteWasDeleted);
   }
   @Override
   public String toString() {
@@ -144,6 +160,7 @@ public class RejectReasonRawJson {
     sb.append("    remoteId: ").append(toIndentedString(remoteId.getAsString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

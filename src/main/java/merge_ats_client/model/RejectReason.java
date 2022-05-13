@@ -32,7 +32,7 @@ import merge_ats_client.model.RemoteData;
  * # The RejectReason Object ### Description The &#x60;RejectReason&#x60; object is used to represent a reason for rejecting an application. ### Usage Example Fetch from the &#x60;LIST RejectReasons&#x60; endpoint and filter by &#x60;ID&#x60; to show all reasons.
  */
 @ApiModel(description = "# The RejectReason Object ### Description The `RejectReason` object is used to represent a reason for rejecting an application. ### Usage Example Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-06T21:17:34.959180Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
 public class RejectReason {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -49,6 +49,10 @@ public class RejectReason {
   public static final String SERIALIZED_NAME_REMOTE_DATA = "remote_data";
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private List<RemoteData> remoteData = null;
+
+  public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
+  @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
+  private Boolean remoteWasDeleted;
 
 
    /**
@@ -125,6 +129,20 @@ public class RejectReason {
 
 
 
+   /**
+   * Indicates whether or not this object has been deleted on the third-party.
+   * @return remoteWasDeleted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+
+  public Boolean getRemoteWasDeleted() {
+    return remoteWasDeleted;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -137,12 +155,13 @@ public class RejectReason {
     return Objects.equals(this.id, rejectReason.id) &&
         Objects.equals(this.remoteId, rejectReason.remoteId) &&
         Objects.equals(this.name, rejectReason.name) &&
-        Objects.equals(this.remoteData, rejectReason.remoteData);
+        Objects.equals(this.remoteData, rejectReason.remoteData) &&
+        Objects.equals(this.remoteWasDeleted, rejectReason.remoteWasDeleted);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, remoteData);
+    return Objects.hash(id, remoteId, name, remoteData, remoteWasDeleted);
   }
 
   @Override
@@ -153,6 +172,7 @@ public class RejectReason {
     sb.append("    remoteId: ").append(toIndentedString(remoteId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
+    sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
     sb.append("}");
     return sb.toString();
   }
