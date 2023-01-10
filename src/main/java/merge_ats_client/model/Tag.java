@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ import java.util.Map;
  * # The Tag Object ### Description The &#x60;Tag&#x60; object is used to represent a tag for a candidate. ### Usage Example Fetch from the &#x60;LIST Tags&#x60; endpoint and view the tags used within a company.
  */
 @ApiModel(description = "# The Tag Object ### Description The `Tag` object is used to represent a tag for a candidate. ### Usage Example Fetch from the `LIST Tags` endpoint and view the tags used within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class Tag {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -48,6 +49,10 @@ public class Tag {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private Boolean remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private Map<String, Object> fieldMappings = null;
 
 
   public Tag remoteId(String remoteId) {
@@ -134,11 +139,11 @@ public class Tag {
   }
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public Boolean getRemoteWasDeleted() {
     return remoteWasDeleted;
@@ -148,6 +153,20 @@ public class Tag {
   public void setRemoteWasDeleted(Boolean remoteWasDeleted) {
     this.remoteWasDeleted = remoteWasDeleted;
   }
+
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public Map<String, Object> getFieldMappings() {
+    return fieldMappings;
+  }
+
+
 
 
   @Override
@@ -162,12 +181,13 @@ public class Tag {
     return Objects.equals(this.remoteId, tag.remoteId) &&
         Objects.equals(this.name, tag.name) &&
         Objects.equals(this.remoteData, tag.remoteData) &&
-        Objects.equals(this.remoteWasDeleted, tag.remoteWasDeleted);
+        Objects.equals(this.remoteWasDeleted, tag.remoteWasDeleted) &&
+        Objects.equals(this.fieldMappings, tag.fieldMappings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, name, remoteData, remoteWasDeleted);
+    return Objects.hash(remoteId, name, remoteData, remoteWasDeleted, fieldMappings);
   }
 
   @Override
@@ -178,6 +198,7 @@ public class Tag {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

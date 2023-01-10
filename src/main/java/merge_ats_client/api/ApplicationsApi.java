@@ -34,6 +34,7 @@ import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedApplicationList;
 import java.util.UUID;
+import merge_ats_client.model.UpdateApplicationStageRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -60,6 +61,151 @@ public class ApplicationsApi {
         this.localVarApiClient = apiClient;
     }
 
+    /**
+     * Build call for applicationsChangeStageCreate
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param id  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param updateApplicationStageRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call applicationsChangeStageCreateCall(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = updateApplicationStageRequest;
+
+        // create path and map variables
+        String localVarPath = "/applications/{id}/change-stage"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (isDebugMode != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("is_debug_mode", isDebugMode));
+        }
+
+        if (runAsync != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
+        }
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/x-www-form-urlencoded", "multipart/form-data"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call applicationsChangeStageCreateValidateBeforeCall(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling applicationsChangeStageCreate(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling applicationsChangeStageCreate(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = applicationsChangeStageCreateCall(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param id  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param updateApplicationStageRequest  (optional)
+     * @return ApplicationResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApplicationResponse applicationsChangeStageCreate(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest) throws ApiException {
+        ApiResponse<ApplicationResponse> localVarResp = applicationsChangeStageCreateWithHttpInfo(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param id  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param updateApplicationStageRequest  (optional)
+     * @return ApiResponse&lt;ApplicationResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ApplicationResponse> applicationsChangeStageCreateWithHttpInfo(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest) throws ApiException {
+        okhttp3.Call localVarCall = applicationsChangeStageCreateValidateBeforeCall(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest, null);
+        Type localVarReturnType = new TypeToken<ApplicationResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     * @param xAccountToken Token identifying the end user. (required)
+     * @param id  (required)
+     * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
+     * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
+     * @param updateApplicationStageRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call applicationsChangeStageCreateAsync(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback<ApplicationResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = applicationsChangeStageCreateValidateBeforeCall(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest, _callback);
+        Type localVarReturnType = new TypeToken<ApplicationResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for applicationsCreate
      * @param xAccountToken Token identifying the end user. (required)
@@ -209,7 +355,7 @@ public class ApplicationsApi {
      * @param creditedToId If provided, will only return applications credited to this user. (optional)
      * @param currentStageId If provided, will only return applications at this interview stage. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return applications for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -217,6 +363,7 @@ public class ApplicationsApi {
      * @param pageSize Number of results to return per page. (optional)
      * @param rejectReasonId If provided, will only return applications with this reject reason. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
+     * @param source If provided, will only return applications with this source. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -226,7 +373,7 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsListCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call applicationsListCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -294,6 +441,10 @@ public class ApplicationsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
         }
 
+        if (source != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("source", source));
+        }
+
         if (xAccountToken != null) {
             localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
         }
@@ -317,7 +468,7 @@ public class ApplicationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call applicationsListValidateBeforeCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call applicationsListValidateBeforeCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -325,7 +476,7 @@ public class ApplicationsApi {
         }
         
 
-        okhttp3.Call localVarCall = applicationsListCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, _callback);
+        okhttp3.Call localVarCall = applicationsListCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, _callback);
         return localVarCall;
 
     }
@@ -340,7 +491,7 @@ public class ApplicationsApi {
      * @param creditedToId If provided, will only return applications credited to this user. (optional)
      * @param currentStageId If provided, will only return applications at this interview stage. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return applications for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -348,6 +499,7 @@ public class ApplicationsApi {
      * @param pageSize Number of results to return per page. (optional)
      * @param rejectReasonId If provided, will only return applications with this reject reason. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
+     * @param source If provided, will only return applications with this source. (optional)
      * @return PaginatedApplicationList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -356,8 +508,8 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedApplicationList applicationsList(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId) throws ApiException {
-        ApiResponse<PaginatedApplicationList> localVarResp = applicationsListWithHttpInfo(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
+    public PaginatedApplicationList applicationsList(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source) throws ApiException {
+        ApiResponse<PaginatedApplicationList> localVarResp = applicationsListWithHttpInfo(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source);
         return localVarResp.getData();
     }
 
@@ -371,7 +523,7 @@ public class ApplicationsApi {
      * @param creditedToId If provided, will only return applications credited to this user. (optional)
      * @param currentStageId If provided, will only return applications at this interview stage. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return applications for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -379,6 +531,7 @@ public class ApplicationsApi {
      * @param pageSize Number of results to return per page. (optional)
      * @param rejectReasonId If provided, will only return applications with this reject reason. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
+     * @param source If provided, will only return applications with this source. (optional)
      * @return ApiResponse&lt;PaginatedApplicationList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -387,8 +540,8 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedApplicationList> applicationsListWithHttpInfo(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, null);
+    public ApiResponse<PaginatedApplicationList> applicationsListWithHttpInfo(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source) throws ApiException {
+        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, null);
         Type localVarReturnType = new TypeToken<PaginatedApplicationList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -403,7 +556,7 @@ public class ApplicationsApi {
      * @param creditedToId If provided, will only return applications credited to this user. (optional)
      * @param currentStageId If provided, will only return applications at this interview stage. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return applications for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -411,6 +564,7 @@ public class ApplicationsApi {
      * @param pageSize Number of results to return per page. (optional)
      * @param rejectReasonId If provided, will only return applications with this reject reason. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
+     * @param source If provided, will only return applications with this source. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -420,9 +574,9 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsListAsync(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, final ApiCallback<PaginatedApplicationList> _callback) throws ApiException {
+    public okhttp3.Call applicationsListAsync(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback<PaginatedApplicationList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, _callback);
+        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, _callback);
         Type localVarReturnType = new TypeToken<PaginatedApplicationList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

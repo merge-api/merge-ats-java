@@ -35,7 +35,7 @@ import merge_ats_client.model.RequestFormatEnum;
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class DataPassthroughRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -64,6 +64,10 @@ public class DataPassthroughRequest {
   public static final String SERIALIZED_NAME_REQUEST_FORMAT = "request_format";
   @SerializedName(SERIALIZED_NAME_REQUEST_FORMAT)
   private RequestFormatEnum requestFormat;
+
+  public static final String SERIALIZED_NAME_NORMALIZE_RESPONSE = "normalize_response";
+  @SerializedName(SERIALIZED_NAME_NORMALIZE_RESPONSE)
+  private Boolean normalizeResponse;
 
 
   public DataPassthroughRequest method(MethodEnum method) {
@@ -241,6 +245,29 @@ public class DataPassthroughRequest {
   }
 
 
+  public DataPassthroughRequest normalizeResponse(Boolean normalizeResponse) {
+    
+    this.normalizeResponse = normalizeResponse;
+    return this;
+  }
+
+   /**
+   * Optional. If true, the response will always be an object of the form &#x60;{\&quot;type\&quot;: T, \&quot;value\&quot;: ...}&#x60; where &#x60;T&#x60; will be one of &#x60;string, boolean, number, null, array, object&#x60;.
+   * @return normalizeResponse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional. If true, the response will always be an object of the form `{\"type\": T, \"value\": ...}` where `T` will be one of `string, boolean, number, null, array, object`.")
+
+  public Boolean getNormalizeResponse() {
+    return normalizeResponse;
+  }
+
+
+  public void setNormalizeResponse(Boolean normalizeResponse) {
+    this.normalizeResponse = normalizeResponse;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -256,12 +283,13 @@ public class DataPassthroughRequest {
         Objects.equals(this.data, dataPassthroughRequest.data) &&
         Objects.equals(this.multipartFormData, dataPassthroughRequest.multipartFormData) &&
         Objects.equals(this.headers, dataPassthroughRequest.headers) &&
-        Objects.equals(this.requestFormat, dataPassthroughRequest.requestFormat);
+        Objects.equals(this.requestFormat, dataPassthroughRequest.requestFormat) &&
+        Objects.equals(this.normalizeResponse, dataPassthroughRequest.normalizeResponse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, path, baseUrlOverride, data, multipartFormData, headers, requestFormat);
+    return Objects.hash(method, path, baseUrlOverride, data, multipartFormData, headers, requestFormat, normalizeResponse);
   }
 
   @Override
@@ -275,6 +303,7 @@ public class DataPassthroughRequest {
     sb.append("    multipartFormData: ").append(toIndentedString(multipartFormData)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    requestFormat: ").append(toIndentedString(requestFormat)).append("\n");
+    sb.append("    normalizeResponse: ").append(toIndentedString(normalizeResponse)).append("\n");
     sb.append("}");
     return sb.toString();
   }

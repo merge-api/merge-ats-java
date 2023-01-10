@@ -21,6 +21,9 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import merge_ats_client.model.PhoneNumberTypeEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -55,6 +58,22 @@ public class PhoneNumberRequestTest {
     @Test
     public void phoneNumberTypeTest() {
         // TODO: test phoneNumberType
+    }
+
+    /**
+     * Test the property 'integrationParams'
+     */
+    @Test
+    public void integrationParamsTest() {
+        // TODO: test integrationParams
+    }
+
+    /**
+     * Test the property 'linkedAccountParams'
+     */
+    @Test
+    public void linkedAccountParamsTest() {
+        // TODO: test linkedAccountParams
     }
 
 }

@@ -37,6 +37,7 @@ paths:
       - tokenAuth: []
       tags:
       - account-details
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /account-token/{public_token}:
     get:
@@ -61,6 +62,7 @@ paths:
       - tokenAuth: []
       tags:
       - account-token
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /activities:
     get:
@@ -105,7 +107,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -148,6 +151,22 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsActivityType,Visibility:
+            summary: Remote Fields Activity_type, Visibility
+            value: activity_type,visibility
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - activity_type
+          - activity_type,visibility
+          - visibility
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -178,6 +197,7 @@ paths:
       - tokenAuth: []
       tags:
       - activities
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /activities/{id}:
     get:
@@ -209,6 +229,22 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsActivityType,Visibility:
+            summary: Remote Fields Activity_type, Visibility
+            value: activity_type,visibility
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - activity_type
+          - activity_type,visibility
+          - visibility
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -219,6 +255,7 @@ paths:
       - tokenAuth: []
       tags:
       - activities
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /applications:
     get:
@@ -297,7 +334,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -371,6 +409,15 @@ paths:
           nullable: true
           type: string
         style: form
+      - description: If provided, will only return applications with this source.
+        explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -381,6 +428,7 @@ paths:
       - tokenAuth: []
       tags:
       - applications
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
     post:
       description: Creates an `Application` object with the given values.
@@ -433,6 +481,7 @@ paths:
       - tokenAuth: []
       tags:
       - applications
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
   /applications/{id}:
@@ -475,6 +524,69 @@ paths:
       - tokenAuth: []
       tags:
       - applications
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-accepts: application/json
+  /applications/{id}/change-stage:
+    post:
+      description: Updates the `current_stage` field of an `Application` object
+      operationId: applications_change_stage_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Whether to include debug fields (such as log file links) in the
+          response.
+        explode: true
+        in: query
+        name: is_debug_mode
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Whether or not third-party updates should be run asynchronously.
+        explode: true
+        in: query
+        name: run_async
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationStageRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationStageRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationStageRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+      security:
+      - tokenAuth: []
+      tags:
+      - applications
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-contentType: application/json
       x-accepts: application/json
   /applications/meta/post:
     get:
@@ -508,6 +620,7 @@ paths:
       - tokenAuth: []
       tags:
       - applications
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /attachments:
     get:
@@ -563,7 +676,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -606,6 +720,20 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsAttachmentType:
+            summary: Remote Fields Attachment_type
+            value: attachment_type
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - attachment_type
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -625,6 +753,7 @@ paths:
       - tokenAuth: []
       tags:
       - attachments
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
     post:
       description: Creates an `Attachment` object with the given values.
@@ -677,6 +806,7 @@ paths:
       - tokenAuth: []
       tags:
       - attachments
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
   /attachments/{id}:
@@ -709,6 +839,20 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsAttachmentType:
+            summary: Remote Fields Attachment_type
+            value: attachment_type
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - attachment_type
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -719,6 +863,7 @@ paths:
       - tokenAuth: []
       tags:
       - attachments
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /attachments/meta/post:
     get:
@@ -743,6 +888,7 @@ paths:
       - tokenAuth: []
       tags:
       - attachments
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /available-actions:
     get:
@@ -767,6 +913,7 @@ paths:
       - tokenAuth: []
       tags:
       - available-actions
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /candidates:
     get:
@@ -811,6 +958,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: If provided, will only return candidates with these email addresses;
+          multiple addresses can be separated by commas.
+        explode: true
+        in: query
+        name: email_addresses
+        required: false
+        schema:
+          type: string
+        style: form
       - description: If provided, will only return candidates with this first name.
         explode: true
         in: query
@@ -820,7 +976,8 @@ paths:
           nullable: true
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -881,6 +1038,15 @@ paths:
           nullable: true
           type: string
         style: form
+      - description: If provided, will only return candidates with these tags; multiple
+          tags can be separated by commas.
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -891,6 +1057,7 @@ paths:
       - tokenAuth: []
       tags:
       - candidates
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
     post:
       description: Creates a `Candidate` object with the given values.
@@ -943,6 +1110,7 @@ paths:
       - tokenAuth: []
       tags:
       - candidates
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
   /candidates/{id}:
@@ -985,6 +1153,7 @@ paths:
       - tokenAuth: []
       tags:
       - candidates
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /candidates/ignore/{model_id}:
     post:
@@ -1059,6 +1228,89 @@ paths:
       - tokenAuth: []
       tags:
       - candidates
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-accepts: application/json
+  /common-model-scopes:
+    get:
+      description: Fetch the configuration of what data is saved by Merge when syncing.
+        Common model scopes are set as a default across all linked accounts, but can
+        be updated to have greater granularity per integration or account.
+      operationId: common_model_scopes_retrieve
+      parameters:
+      - description: Slug of the integration to fetch
+        explode: true
+        in: query
+        name: integration_slug
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ID of specific linked account to fetch
+        explode: true
+        in: query
+        name: linked_account_id
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonModelScopes'
+      security:
+      - tokenAuth: []
+      tags:
+      - common-model-scopes
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-accepts: application/json
+    put:
+      description: Update the configuration of what data is saved by Merge when syncing.
+        Common model scopes are set as a default across all linked accounts, but can
+        be updated to have greater granularity per integration or account.
+      operationId: common_model_scopes_update
+      parameters:
+      - description: Slug of the integration to fetch
+        explode: true
+        in: query
+        name: integration_slug
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ID of specific linked account to fetch
+        explode: true
+        in: query
+        name: linked_account_id
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonModelScopesUpdateSerializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommonModelScopesUpdateSerializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommonModelScopesUpdateSerializer'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonModelScopes'
+      security:
+      - tokenAuth: []
+      tags:
+      - common-model-scopes
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-contentType: application/json
       x-accepts: application/json
   /delete-account:
     post:
@@ -1080,6 +1332,7 @@ paths:
       - tokenAuth: []
       tags:
       - delete-account
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /departments:
     get:
@@ -1124,7 +1377,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -1186,6 +1440,7 @@ paths:
       - tokenAuth: []
       tags:
       - departments
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /departments/{id}:
     get:
@@ -1227,6 +1482,7 @@ paths:
       - tokenAuth: []
       tags:
       - departments
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /eeocs:
     get:
@@ -1282,7 +1538,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -1325,6 +1582,34 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsDisabilityStatus,Gender,Race,VeteranStatus:
+            summary: Remote Fields Disability_status, Gender, Race, Veteran_status
+            value: disability_status,gender,race,veteran_status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - disability_status
+          - disability_status,gender
+          - disability_status,gender,race
+          - disability_status,gender,race,veteran_status
+          - disability_status,gender,veteran_status
+          - disability_status,race
+          - disability_status,race,veteran_status
+          - disability_status,veteran_status
+          - gender
+          - gender,race
+          - gender,race,veteran_status
+          - gender,veteran_status
+          - race
+          - race,veteran_status
+          - veteran_status
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -1344,6 +1629,7 @@ paths:
       - tokenAuth: []
       tags:
       - eeocs
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /eeocs/{id}:
     get:
@@ -1375,6 +1661,34 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsDisabilityStatus,Gender,Race,VeteranStatus:
+            summary: Remote Fields Disability_status, Gender, Race, Veteran_status
+            value: disability_status,gender,race,veteran_status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - disability_status
+          - disability_status,gender
+          - disability_status,gender,race
+          - disability_status,gender,race,veteran_status
+          - disability_status,gender,veteran_status
+          - disability_status,race
+          - disability_status,race,veteran_status
+          - disability_status,veteran_status
+          - gender
+          - gender,race
+          - gender,race,veteran_status
+          - gender,veteran_status
+          - race
+          - race,veteran_status
+          - veteran_status
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1385,6 +1699,7 @@ paths:
       - tokenAuth: []
       tags:
       - eeocs
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /generate-key:
     post:
@@ -1412,6 +1727,7 @@ paths:
       - tokenAuth: []
       tags:
       - generate-key
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
   /interviews:
@@ -1468,7 +1784,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -1533,6 +1850,20 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsStatus:
+            summary: Remote Fields Status
+            value: status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - status
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -1552,6 +1883,7 @@ paths:
       - tokenAuth: []
       tags:
       - interviews
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /interviews/{id}:
     get:
@@ -1583,6 +1915,20 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsStatus:
+            summary: Remote Fields Status
+            value: status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - status
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1593,6 +1939,7 @@ paths:
       - tokenAuth: []
       tags:
       - interviews
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /issues:
     get:
@@ -1730,6 +2077,7 @@ paths:
       - tokenAuth: []
       tags:
       - issues
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /issues/{id}:
     get:
@@ -1754,6 +2102,7 @@ paths:
       - tokenAuth: []
       tags:
       - issues
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /job-interview-stages:
     get:
@@ -1798,7 +2147,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -1871,6 +2221,7 @@ paths:
       - tokenAuth: []
       tags:
       - job-interview-stages
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /job-interview-stages/{id}:
     get:
@@ -1912,6 +2263,7 @@ paths:
       - tokenAuth: []
       tags:
       - job-interview-stages
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /jobs:
     get:
@@ -1965,7 +2317,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -2008,6 +2361,20 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsStatus:
+            summary: Remote Fields Status
+            value: status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - status
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -2043,6 +2410,7 @@ paths:
       - tokenAuth: []
       tags:
       - jobs
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /jobs/{id}:
     get:
@@ -2074,6 +2442,20 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsStatus:
+            summary: Remote Fields Status
+            value: status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - status
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2084,6 +2466,7 @@ paths:
       - tokenAuth: []
       tags:
       - jobs
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /link-token:
     post:
@@ -2111,6 +2494,7 @@ paths:
       - tokenAuth: []
       tags:
       - link-token
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
   /linked-accounts:
@@ -2197,6 +2581,16 @@ paths:
         schema:
           type: string
         style: form
+      - description: If `true`, will include complete production duplicates of the
+          account specified by the `id` query parameter in the response. `id` must
+          be for a complete production linked account.
+        explode: true
+        in: query
+        name: include_duplicates
+        required: false
+        schema:
+          type: boolean
+        style: form
       - description: If provided, will only return linked accounts associated with
           the given integration name.
         explode: true
@@ -2241,6 +2635,7 @@ paths:
       - tokenAuth: []
       tags:
       - linked-accounts
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /offers:
     get:
@@ -2307,7 +2702,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -2350,6 +2746,20 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsStatus:
+            summary: Remote Fields Status
+            value: status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - status
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -2369,6 +2779,7 @@ paths:
       - tokenAuth: []
       tags:
       - offers
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /offers/{id}:
     get:
@@ -2400,6 +2811,20 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsStatus:
+            summary: Remote Fields Status
+            value: status
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - status
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2410,6 +2835,7 @@ paths:
       - tokenAuth: []
       tags:
       - offers
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /offices:
     get:
@@ -2454,7 +2880,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -2516,6 +2943,7 @@ paths:
       - tokenAuth: []
       tags:
       - offices
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /offices/{id}:
     get:
@@ -2557,6 +2985,7 @@ paths:
       - tokenAuth: []
       tags:
       - offices
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /passthrough:
     post:
@@ -2593,6 +3022,7 @@ paths:
       - tokenAuth: []
       tags:
       - passthrough
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
   /regenerate-key:
@@ -2621,6 +3051,7 @@ paths:
       - tokenAuth: []
       tags:
       - regenerate-key
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
   /reject-reasons:
@@ -2666,7 +3097,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -2728,6 +3160,7 @@ paths:
       - tokenAuth: []
       tags:
       - reject-reasons
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /reject-reasons/{id}:
     get:
@@ -2769,6 +3202,7 @@ paths:
       - tokenAuth: []
       tags:
       - reject-reasons
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /scorecards:
     get:
@@ -2824,7 +3258,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -2889,6 +3324,20 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsOverallRecommendation:
+            summary: Remote Fields Overall_recommendation
+            value: overall_recommendation
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - overall_recommendation
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -2908,6 +3357,7 @@ paths:
       - tokenAuth: []
       tags:
       - scorecards
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /scorecards/{id}:
     get:
@@ -2939,6 +3389,20 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsOverallRecommendation:
+            summary: Remote Fields Overall_recommendation
+            value: overall_recommendation
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - overall_recommendation
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2949,11 +3413,172 @@ paths:
       - tokenAuth: []
       tags:
       - scorecards
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-accepts: application/json
+  /selective-sync/configurations:
+    get:
+      description: Get a linked account's selective syncs.
+      operationId: selective_sync_configurations_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                StartDateConditionExample:
+                  summary: Employees that started on or after January 1st, 2022
+                  value:
+                    linked_account_conditons:
+                    - condition_schema_id: 123e4567-e89b-12d3-a456-426655440000
+                      common_model: hris.Employee
+                      native_name: Started At
+                      field_name: start_date
+                      operator: GREATER_THAN_OR_EQUAL
+                      value: 2022-01-01T00:00:00Z
+              schema:
+                items:
+                  $ref: '#/components/schemas/LinkedAccountSelectiveSyncConfiguration'
+                type: array
+      security:
+      - tokenAuth: []
+      tags:
+      - selective-sync
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-accepts: application/json
+    put:
+      description: Replace a linked account's selective syncs.
+      operationId: selective_sync_configurations_update
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              StartDateConditionRequestExample:
+                summary: Employees that started on or after January 1st, 2022
+                value:
+                  linked_account_conditons:
+                  - condition_schema_id: 123e4567-e89b-12d3-a456-426655440000
+                    operator: GREATER_THAN_OR_EQUAL
+                    value: 2022-01-01T00:00:00Z
+            schema:
+              $ref: '#/components/schemas/LinkedAccountSelectiveSyncConfigurationListRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                StartDateConditionExample:
+                  summary: Employees that started on or after January 1st, 2022
+                  value:
+                    linked_account_conditons:
+                    - condition_schema_id: 123e4567-e89b-12d3-a456-426655440000
+                      common_model: hris.Employee
+                      native_name: Started At
+                      field_name: start_date
+                      operator: GREATER_THAN_OR_EQUAL
+                      value: 2022-01-01T00:00:00Z
+              schema:
+                items:
+                  $ref: '#/components/schemas/LinkedAccountSelectiveSyncConfiguration'
+                type: array
+      security:
+      - tokenAuth: []
+      tags:
+      - selective-sync
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
+      x-contentType: application/json
+      x-accepts: application/json
+  /selective-sync/meta:
+    get:
+      description: Get metadata for the conditions available to a linked account.
+      operationId: selective_sync_meta_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: common_model
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The pagination cursor value.
+        examples:
+          CursorExample:
+            summary: Cursor Example
+            value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                PaginatedConditionSchemaListExample:
+                  summary: Employees that started on or after January 1st, 2022
+                  value:
+                    previous: null
+                    next: null
+                    results:
+                    - id: 123e4567-e89b-12d3-a456-426655440000
+                      common_model: hris.Employee
+                      native_name: Started At
+                      field_name: start_date
+                      is_unique: true
+                      condition_type: DATE_TIME
+                      operators:
+                      - operator: GREATER_THAN_OR_EQUAL
+                        is_unique: true
+                      - operator: LESS_THAN_OR_EQUAL
+                        is_unique: true
+              schema:
+                $ref: '#/components/schemas/PaginatedConditionSchemaList'
+      security:
+      - tokenAuth: []
+      tags:
+      - selective-sync
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /sync-status:
     get:
       description: 'Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`,
-        `SYNCING`'
+        `PAUSED`, `SYNCING`'
       operationId: sync_status_list
       parameters:
       - description: Token identifying the end user.
@@ -2994,6 +3619,7 @@ paths:
       - tokenAuth: []
       tags:
       - sync-status
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /sync-status/resync:
     post:
@@ -3021,6 +3647,7 @@ paths:
       - tokenAuth: []
       tags:
       - force-resync
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /tags:
     get:
@@ -3065,7 +3692,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -3127,6 +3755,7 @@ paths:
       - tokenAuth: []
       tags:
       - tags
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /users:
     get:
@@ -3182,7 +3811,8 @@ paths:
           nullable: true
           type: string
         style: form
-      - description: Whether to include data that was deleted in the third-party service.
+      - description: Whether to include data that was marked as deleted by third party
+          webhooks.
         explode: true
         in: query
         name: include_deleted_data
@@ -3225,6 +3855,20 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsAccessRole:
+            summary: Remote Fields Access_role
+            value: access_role
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - access_role
+          type: string
+        style: form
       - description: The API provider's ID for the given object.
         explode: true
         in: query
@@ -3244,6 +3888,7 @@ paths:
       - tokenAuth: []
       tags:
       - users
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /users/{id}:
     get:
@@ -3275,6 +3920,20 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Which fields should be returned in non-normalized form.
+        examples:
+          RemoteFieldsAccessRole:
+            summary: Remote Fields Access_role
+            value: access_role
+        explode: true
+        in: query
+        name: remote_fields
+        required: false
+        schema:
+          enum:
+          - access_role
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3285,6 +3944,7 @@ paths:
       - tokenAuth: []
       tags:
       - users
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
   /webhook-receivers:
     get:
@@ -3311,6 +3971,7 @@ paths:
       - tokenAuth: []
       tags:
       - webhook-receivers
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-accepts: application/json
     post:
       description: Creates a `WebhookReceiver` object with the given values.
@@ -3346,6 +4007,7 @@ paths:
       - tokenAuth: []
       tags:
       - webhook-receivers
+      x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
       x-contentType: application/json
       x-accepts: application/json
 components:
@@ -3358,6 +4020,7 @@ components:
       - LIMITED_TEAM_MEMBER
       - INTERVIEWER
       type: string
+      x-merge-category: ats
     AccountDetails:
       example:
         integration: BambooHR
@@ -3365,6 +4028,7 @@ components:
         end_user_email_address: kendall.roy@waystar-royco.com
         id: 0496d4c2-42e6-4072-80b3-7b69bfdc76fd
         category: hris
+        is_duplicate: true
         end_user_origin_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         integration_slug: bamboohr
         status: COMPLETE
@@ -3410,7 +4074,17 @@ components:
           format: uri
           readOnly: true
           type: string
+        is_duplicate:
+          description: Whether a Production Linked Account's credentials match another
+            existing Production Linked Account. This field is `null` for Test Linked
+            Accounts, incomplete Production Linked Accounts, and ignored duplicate
+            Production Linked Account sets.
+          example: true
+          nullable: true
+          readOnly: true
+          type: boolean
       type: object
+      x-merge-category: ats
     AccountDetailsAndActions:
       description: |-
         # The LinkedAccount Object
@@ -3457,6 +4131,7 @@ components:
         end_user_email_address: hradmin@foobar.dev
         id: e59b1821-f85c-4e28-a6b3-1804156f3563
         category: hris
+        is_duplicate: true
         end_user_origin_id: 3ac95cde-6c7f-4eef-afec-be710b42308d
         status: COMPLETE
         status_detail: status_detail
@@ -3487,6 +4162,14 @@ components:
         webhook_listener_url:
           example: https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4
           type: string
+        is_duplicate:
+          description: Whether a Production Linked Account's credentials match another
+            existing Production Linked Account. This field is `null` for Test Linked
+            Accounts, incomplete Production Linked Accounts, and ignored duplicate
+            Production Linked Account sets.
+          example: true
+          nullable: true
+          type: boolean
         integration:
           $ref: '#/components/schemas/AccountDetailsAndActionsIntegration'
       required:
@@ -3501,13 +4184,14 @@ components:
         "3ac95cde-6c7f-4eef-afec-be710b42308d", "end_user_organization_name": "Foo
         Bar, LLC", "end_user_email_address": "hradmin@foobar.dev", "webhook_listener_url":
         "https://api.merge.dev/api/integrations/webhook-listener/7fc3mee0UW8ecV4",
-        "integration": {"name": "SAP SuccessFactors", "categories": ["hris", "ats"],
-        "image": "https://cdn.merge.dev/SuccessFactors_Logo.png", "square_image":
-        "https://cdn.merge.dev/SuccessFactors_Square_Logo.jpg", "color": "#F6A704",
-        "slug": "sap-successfactors", "passthrough_available": true, "available_model_operations":
+        "is_duplicate": true, "integration": {"name": "SAP SuccessFactors", "categories":
+        ["hris", "ats"], "image": "https://cdn.merge.dev/SuccessFactors_Logo.png",
+        "square_image": "https://cdn.merge.dev/SuccessFactors_Square_Logo.jpg", "color":
+        "#F6A704", "slug": "sap-successfactors", "passthrough_available": true, "available_model_operations":
         [{"model_name": "Candidate", "available_operations": ["FETCH", "CREATE"],
         "required_post_parameters": ["remote_user_id"], "supported_fields": ["first_name",
         "last_name", "company", "title"]}]}}'
+      x-merge-category: ats
     AccountDetailsAndActionsIntegration:
       example:
         image: image
@@ -3570,12 +4254,14 @@ components:
       - passthrough_available
       - slug
       type: object
+      x-merge-category: ats
     AccountDetailsAndActionsStatusEnum:
       enum:
       - COMPLETE
       - INCOMPLETE
       - RELINK_NEEDED
       type: string
+      x-merge-category: ats
     AccountIntegration:
       example:
         image: https://openapi-generator.tech
@@ -3621,6 +4307,7 @@ components:
       required:
       - name
       type: object
+      x-merge-category: ats
     AccountToken:
       example:
         account_token: T9klMDQrcHdm9jrtHuOS2Nf06BIHwMNjpPXPMB
@@ -3643,6 +4330,7 @@ components:
       - account_token
       - integration
       type: object
+      x-merge-category: ats
     Activity:
       description: |-
         # The Activity Object
@@ -3651,6 +4339,11 @@ components:
         ### Usage Example
         Fetch from the `LIST Activities` endpoint and filter by `ID` to show all activities.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         visibility: PRIVATE
         subject: Gil Feig's interview
         remote_id: "198123"
@@ -3676,10 +4369,12 @@ components:
           nullable: true
           type: string
         user:
+          description: The user the performed the action.
           example: 9d892439-5fab-4dbb-8bd8-34f7f96c7912
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: RemoteUser
         remote_created_at:
           description: When the third party's activity was created.
           example: 2021-10-15T00:00:00Z
@@ -3719,17 +4414,30 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-expands: '{"user": "RemoteUser"}'
+      x-merge-category: ats
     ActivityTypeEnum:
       enum:
       - NOTE
       - EMAIL
       - OTHER
       type: string
+      x-merge-category: ats
     Application:
       description: |-
         # The Application Object
@@ -3743,8 +4451,6 @@ components:
       example:
         applied_at: 2021-10-15T00:00:00Z
         rejected_at: 2021-11-15T00:00:00Z
-        custom_fields:
-          key: ""
         remote_id: "98796"
         source: Campus recruiting event
         reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
@@ -3752,6 +4458,11 @@ components:
         - path: /candidacies
           data:
           - Varies by platform
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
         id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
         credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
@@ -3770,15 +4481,19 @@ components:
           nullable: true
           type: string
         candidate:
+          description: The candidate applying.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Candidate
         job:
+          description: The job being applied for.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Job
         applied_at:
           description: When the application was submitted.
           example: 2021-10-15T00:00:00Z
@@ -3797,20 +4512,26 @@ components:
           nullable: true
           type: string
         credited_to:
+          description: The user credited for this application.
           example: 58166795-8d68-4b30-9bfb-bfd402479484
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: RemoteUser
         current_stage:
+          description: The application's current stage.
           example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: JobInterviewStage
         reject_reason:
+          description: The application's reason for rejection.
           example: 59b25f2b-da02-40f5-9656-9fa0db555784
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: RejectReason
         remote_data:
           example:
           - path: /candidacies
@@ -3821,35 +4542,42 @@ components:
           nullable: true
           readOnly: true
           type: array
-        custom_fields:
-          additionalProperties: {}
-          description: Custom fields configured for a given model.
-          nullable: true
-          type: object
         remote_was_deleted:
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-nested-write-allowed: true
+      x-merge-expands: '{"candidate": "Candidate", "credited_to": "RemoteUser", "current_stage":
+        "JobInterviewStage", "job": "Job", "reject_reason": "RejectReason"}'
+      x-merge-category: ats
     ApplicationEndpointRequest:
       example:
         remote_user_id: remote_user_id
         model:
           applied_at: 2021-10-15T00:00:00Z
+          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           rejected_at: 2021-11-15T00:00:00Z
-          custom_fields:
-            key: ""
+          remote_template_id: "92830948203"
           remote_id: "98796"
           source: Campus recruiting event
-          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
-          linked_account_params:
-            unique_linked_account_field: unique_linked_account_field_value
-          candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
-          remote_template_id: "92830948203"
           credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
           current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+          reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
           integration_params:
             unique_integration_field: unique_integration_field_value
           job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+          linked_account_params:
+            unique_linked_account_field: unique_linked_account_field_value
       properties:
         model:
           $ref: '#/components/schemas/ApplicationRequest'
@@ -3859,6 +4587,7 @@ components:
       - model
       - remote_user_id
       type: object
+      x-merge-category: ats
     ApplicationRequest:
       description: |-
         # The Application Object
@@ -3871,21 +4600,19 @@ components:
         Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.
       example:
         applied_at: 2021-10-15T00:00:00Z
+        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
         rejected_at: 2021-11-15T00:00:00Z
-        custom_fields:
-          key: ""
+        remote_template_id: "92830948203"
         remote_id: "98796"
         source: Campus recruiting event
-        reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
-        linked_account_params:
-          unique_linked_account_field: unique_linked_account_field_value
-        candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
-        remote_template_id: "92830948203"
         credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
         current_stage: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
+        reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
         integration_params:
           unique_integration_field: unique_integration_field_value
         job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
+        linked_account_params:
+          unique_linked_account_field: unique_linked_account_field_value
       properties:
         remote_id:
           description: The third-party API ID of the matching object.
@@ -3893,15 +4620,19 @@ components:
           nullable: true
           type: string
         candidate:
+          description: The candidate applying.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Candidate
         job:
+          description: The job being applied for.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Job
         applied_at:
           description: When the application was submitted.
           example: 2021-10-15T00:00:00Z
@@ -3920,25 +4651,26 @@ components:
           nullable: true
           type: string
         credited_to:
+          description: The user credited for this application.
           example: 58166795-8d68-4b30-9bfb-bfd402479484
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: RemoteUser
         current_stage:
+          description: The application's current stage.
           example: d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: JobInterviewStage
         reject_reason:
+          description: The application's reason for rejection.
           example: 59b25f2b-da02-40f5-9656-9fa0db555784
           format: uuid
           nullable: true
           type: string
-        custom_fields:
-          additionalProperties: {}
-          description: Custom fields configured for a given model.
-          nullable: true
-          type: object
+          x-merge-expands-to: RejectReason
         remote_template_id:
           example: "92830948203"
           minLength: 1
@@ -3960,6 +4692,9 @@ components:
           type: object
           writeOnly: true
       type: object
+      x-merge-expands: '{"candidate": "Candidate", "credited_to": "RemoteUser", "current_stage":
+        "JobInterviewStage", "job": "Job", "reject_reason": "RejectReason"}'
+      x-merge-category: ats
     ApplicationResponse:
       example:
         warnings:
@@ -3976,8 +4711,6 @@ components:
         model:
           applied_at: 2021-10-15T00:00:00Z
           rejected_at: 2021-11-15T00:00:00Z
-          custom_fields:
-            key: ""
           remote_id: "98796"
           source: Campus recruiting event
           reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
@@ -3985,6 +4718,11 @@ components:
           - path: /candidacies
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
@@ -4035,6 +4773,7 @@ components:
       - model
       - warnings
       type: object
+      x-merge-category: ats
     Attachment:
       description: |-
         # The Attachment Object
@@ -4043,6 +4782,11 @@ components:
         ### Usage Example
         Fetch from the `LIST Attachments` endpoint and view attachments accessible by a company.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         file_url: http://alturl.com/p749b
         candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
         attachment_type: RESUME
@@ -4101,7 +4845,20 @@ components:
         remote_was_deleted:
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-nested-write-allowed: true
+      x-merge-expands: '{"ticket": "Ticket"}'
+      x-merge-category: ats
     AttachmentEndpointRequest:
       example:
         remote_user_id: remote_user_id
@@ -4124,6 +4881,7 @@ components:
       - model
       - remote_user_id
       type: object
+      x-merge-category: ats
     AttachmentRequest:
       description: |-
         # The Attachment Object
@@ -4185,6 +4943,8 @@ components:
           type: object
           writeOnly: true
       type: object
+      x-merge-expands: '{"ticket": "Ticket"}'
+      x-merge-category: ats
     AttachmentResponse:
       example:
         warnings:
@@ -4199,6 +4959,11 @@ components:
           detail: An unrecognized field, age, was passed in with request data.
           title: Unrecognized Field
         model:
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           file_url: http://alturl.com/p749b
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           attachment_type: RESUME
@@ -4254,6 +5019,7 @@ components:
       - model
       - warnings
       type: object
+      x-merge-category: ats
     AttachmentTypeEnum:
       enum:
       - RESUME
@@ -4261,6 +5027,7 @@ components:
       - OFFER_LETTER
       - OTHER
       type: string
+      x-merge-category: ats
     AvailableActions:
       description: |-
         # The AvailableActions Object
@@ -4318,6 +5085,7 @@ components:
       - integration
       - passthrough_available
       type: object
+      x-merge-category: ats
     Candidate:
       description: |-
         # The Candidate Object
@@ -4332,8 +5100,6 @@ components:
           email_address_type: PERSONAL
         attachments:
         - bea08964-32b4-4a20-8bb4-2612ba09de1d
-        custom_fields:
-          key: ""
         remote_id: "21198"
         last_name: Feig
         title: Software Engineer
@@ -4344,6 +5110,11 @@ components:
         - path: /candidates
           data:
           - Varies by platform
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         phone_numbers:
         - value: +1234567890
           phone_number_type: MOBILE
@@ -4475,6 +5246,7 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: Application
         attachments:
           description: Array of `Attachment` object IDs.
           example:
@@ -4484,6 +5256,7 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: Attachment
         remote_data:
           example:
           - path: /candidates
@@ -4494,15 +5267,22 @@ components:
           nullable: true
           readOnly: true
           type: array
-        custom_fields:
-          additionalProperties: {}
-          description: Custom fields configured for a given model.
-          nullable: true
-          type: object
         remote_was_deleted:
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-expands: '{"applications": "Application", "attachments": "Attachment"}'
+      x-merge-category: ats
     CandidateEndpointRequest:
       example:
         remote_user_id: remote_user_id
@@ -4513,8 +5293,6 @@ components:
             email_address_type: PERSONAL
           attachments:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
-          custom_fields:
-            key: ""
           remote_id: "21198"
           last_name: Feig
           title: Software Engineer
@@ -4554,6 +5332,7 @@ components:
       - model
       - remote_user_id
       type: object
+      x-merge-category: ats
     CandidateRequest:
       description: |-
         # The Candidate Object
@@ -4568,8 +5347,6 @@ components:
           email_address_type: PERSONAL
         attachments:
         - bea08964-32b4-4a20-8bb4-2612ba09de1d
-        custom_fields:
-          key: ""
         remote_id: "21198"
         last_name: Feig
         title: Software Engineer
@@ -4705,6 +5482,7 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: Application
         attachments:
           description: Array of `Attachment` object IDs.
           example:
@@ -4714,11 +5492,7 @@ components:
             nullable: true
             type: string
           type: array
-        custom_fields:
-          additionalProperties: {}
-          description: Custom fields configured for a given model.
-          nullable: true
-          type: object
+          x-merge-expands-to: Attachment
         remote_template_id:
           example: "92830948203"
           minLength: 1
@@ -4740,6 +5514,8 @@ components:
           type: object
           writeOnly: true
       type: object
+      x-merge-expands: '{"applications": "Application", "attachments": "Attachment"}'
+      x-merge-category: ats
     CandidateResponse:
       example:
         warnings:
@@ -4760,8 +5536,6 @@ components:
             email_address_type: PERSONAL
           attachments:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
-          custom_fields:
-            key: ""
           remote_id: "21198"
           last_name: Feig
           title: Software Engineer
@@ -4772,6 +5546,11 @@ components:
           - path: /candidates
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           phone_numbers:
           - value: +1234567890
             phone_number_type: MOBILE
@@ -4837,6 +5616,7 @@ components:
       - model
       - warnings
       type: object
+      x-merge-category: ats
     CategoriesEnum:
       enum:
       - hris
@@ -4845,6 +5625,7 @@ components:
       - ticketing
       - crm
       type: string
+      x-merge-category: ats
     CategoryEnum:
       enum:
       - hris
@@ -4853,6 +5634,220 @@ components:
       - ticketing
       - crm
       type: string
+      x-merge-category: ats
+    CommonModelScopes:
+      example:
+        scope:
+          value: value
+        common_models:
+        - model_name: Employee
+          model_id: hris.Employee
+          enabled_actions:
+          - READ
+          - WRITE
+          is_disabled: false
+          disabled_fields:
+          - employment
+        - model_name: Employment
+          model_id: hris.Employment
+          enabled_actions: []
+          is_disabled: true
+          disabled_fields: []
+      properties:
+        scope:
+          $ref: '#/components/schemas/CommonModelScopesScope'
+        common_models:
+          example:
+          - model_name: Employee
+            model_id: hris.Employee
+            enabled_actions:
+            - READ
+            - WRITE
+            is_disabled: false
+            disabled_fields:
+            - employment
+          - model_name: Employment
+            model_id: hris.Employment
+            enabled_actions: []
+            is_disabled: true
+            disabled_fields: []
+          items:
+            $ref: '#/components/schemas/CommonModelScopesDisabledModels'
+          type: array
+      required:
+      - common_models
+      - scope
+      type: object
+      x-merge-category: ats
+    CommonModelScopesDisabledModels:
+      properties:
+        model_name:
+          type: string
+        model_id:
+          type: string
+        enabled_actions:
+          items:
+            $ref: '#/components/schemas/CommonModelScopesDisabledModelsEnabledActionsEnum'
+          type: array
+        is_disabled:
+          type: boolean
+        disabled_fields:
+          items:
+            type: string
+          type: array
+      required:
+      - disabled_fields
+      - enabled_actions
+      - is_disabled
+      - model_id
+      - model_name
+      type: object
+      x-merge-category: ats
+    CommonModelScopesDisabledModelsEnabledActionsEnum:
+      enum:
+      - ENABLED_ACTION_READ
+      - ENABLED_ACTION_WRITE
+      type: string
+      x-merge-category: ats
+    CommonModelScopesPutInnerDeserializerEnabledActionsEnum:
+      enum:
+      - READ
+      - WRITE
+      type: string
+      x-merge-category: ats
+    CommonModelScopesPutInnerDeserializerRequest:
+      example:
+        disabled_fields:
+        - disabled_fields
+        - disabled_fields
+        model_id: hris.Employee
+        enabled_actions:
+        - READ
+        - WRITE
+      properties:
+        model_id:
+          example: hris.Employee
+          minLength: 1
+          type: string
+        enabled_actions:
+          example:
+          - READ
+          - WRITE
+          items:
+            $ref: '#/components/schemas/CommonModelScopesPutInnerDeserializerEnabledActionsEnum'
+          type: array
+        disabled_fields:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - disabled_fields
+      - enabled_actions
+      - model_id
+      type: object
+      x-merge-category: ats
+    CommonModelScopesScope:
+      example:
+        value: value
+      properties:
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        value:
+          type: string
+      required:
+      - type
+      - value
+      type: object
+      x-merge-category: ats
+    CommonModelScopesUpdateSerializer:
+      example:
+        common_models:
+        - disabled_fields:
+          - disabled_fields
+          - disabled_fields
+          model_id: hris.Employee
+          enabled_actions:
+          - READ
+          - WRITE
+        - disabled_fields:
+          - disabled_fields
+          - disabled_fields
+          model_id: hris.Employee
+          enabled_actions:
+          - READ
+          - WRITE
+      properties:
+        common_models:
+          description: The common model scopes to update.
+          items:
+            $ref: '#/components/schemas/CommonModelScopesPutInnerDeserializerRequest'
+          type: array
+      required:
+      - common_models
+      type: object
+      x-merge-category: ats
+    ConditionSchema:
+      example:
+        common_model: common_model
+        operators:
+        - is_unique: true
+          operator: operator
+        - is_unique: true
+          operator: operator
+        is_unique: true
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        native_name: native_name
+        field_name: field_name
+      properties:
+        id:
+          description: The ID of the condition schema. This ID is used when updating
+            selective syncs for a linked account.
+          format: uuid
+          type: string
+        common_model:
+          description: The common model for which a condition schema is defined.
+          readOnly: true
+          type: string
+        native_name:
+          description: User-facing *native condition* name. e.g. "Skip Manager".
+          nullable: true
+          type: string
+        field_name:
+          description: The name of the field on the common model that this condition
+            corresponds to, if they conceptually match. e.g. "location_type".
+          nullable: true
+          type: string
+        is_unique:
+          description: Whether this condition can only be applied once. If false,
+            the condition can be AND'd together multiple times.
+          type: boolean
+        condition_type:
+          $ref: '#/components/schemas/ConditionTypeEnum'
+        operators:
+          description: The schemas for the operators that can be used on a condition.
+          items:
+            $ref: '#/components/schemas/OperatorSchema'
+          type: array
+      required:
+      - condition_type
+      - field_name
+      - id
+      - native_name
+      - operators
+      type: object
+      x-merge-category: ats
+    ConditionTypeEnum:
+      enum:
+      - BOOLEAN
+      - DATE
+      - DATE_TIME
+      - INTEGER
+      - FLOAT
+      - STRING
+      - LIST_OF_STRINGS
+      type: string
+      x-merge-category: ats
     DataPassthroughRequest:
       description: |-
         # The DataPassthrough Object
@@ -4868,6 +5863,7 @@ components:
         request_format: JSON
         method: POST
         data: '{"company": "Lime", "model": "Gen 2.5"}'
+        normalize_response: true
         base_url_override: base_url_override
         multipart_form_data:
         - data: SW50ZWdyYXRlIGZhc3QKSW50ZWdyYXRlIG9uY2U=
@@ -4919,10 +5915,16 @@ components:
           - $ref: '#/components/schemas/RequestFormatEnum'
           example: JSON
           nullable: true
+        normalize_response:
+          description: 'Optional. If true, the response will always be an object of
+            the form `{"type": T, "value": ...}` where `T` will be one of `string,
+            boolean, number, null, array, object`.'
+          type: boolean
       required:
       - method
       - path
       type: object
+      x-merge-category: ats
     DebugModeLog:
       example:
         log_id: 99433219-8017-4acd-bb3c-ceb23d663832
@@ -4945,6 +5947,11 @@ components:
       - log_id
       - log_summary
       type: object
+      x-merge-sample-json: '{"log_id": "99433219-8017-4acd-bb3c-ceb23d663832", "dashboard_view":
+        "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832", "log_summary":
+        {"url": "https://harvest.greenhouse.io/v1/candidates/", "method": "POST",
+        "status_code": 200}}'
+      x-merge-category: ats
     DebugModelLogSummary:
       example:
         status_code: 200
@@ -4965,6 +5972,9 @@ components:
       - status_code
       - url
       type: object
+      x-merge-sample-json: '{"url": "https://harvest.greenhouse.io/v1/candidates/",
+        "method": "POST", "status_code": 200}'
+      x-merge-category: ats
     Department:
       description: |-
         # The Department Object
@@ -4973,6 +5983,11 @@ components:
         ### Usage Example
         Fetch from the `LIST Departments` endpoint and view the departments within a company.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         remote_id: "23456"
         name: Engineering
         id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
@@ -5008,17 +6023,29 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-category: ats
     DisabilityStatusEnum:
       enum:
       - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY
       - NO_I_DONT_HAVE_A_DISABILITY
       - I_DONT_WISH_TO_ANSWER
       type: string
+      x-merge-category: ats
     EEOC:
       description: |-
         # The EEOC Object
@@ -5027,6 +6054,11 @@ components:
         ### Usage Example
         Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
         disability_status: I_DONT_WISH_TO_ANSWER
         race: HISPANIC_OR_LATINO
@@ -5052,10 +6084,12 @@ components:
           nullable: true
           type: string
         candidate:
+          description: The candidate being represented.
           example: f963f34d-3d2f-4f77-b557-cf36bc7e6498
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Candidate
         submitted_at:
           description: When the information was submitted.
           example: 2021-10-15T00:00:00Z
@@ -5097,11 +6131,23 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-expands: '{"candidate": "Candidate"}'
+      x-merge-category: ats
     EmailAddress:
       description: |-
         # The EmailAddress Object
@@ -5124,6 +6170,8 @@ components:
           example: PERSONAL
           nullable: true
       type: object
+      x-merge-nested-write-allowed: true
+      x-merge-category: ats
     EmailAddressRequest:
       description: |-
         # The EmailAddress Object
@@ -5145,18 +6193,36 @@ components:
           description: The type of email address.
           example: PERSONAL
           nullable: true
+        integration_params:
+          additionalProperties: {}
+          example:
+            unique_integration_field: unique_integration_field_value
+          nullable: true
+          type: object
+          writeOnly: true
+        linked_account_params:
+          additionalProperties: {}
+          example:
+            unique_linked_account_field: unique_linked_account_field_value
+          nullable: true
+          type: object
+          writeOnly: true
       type: object
+      x-merge-category: ats
     EmailAddressTypeEnum:
       enum:
       - PERSONAL
       - WORK
       - OTHER
       type: string
+      x-merge-category: ats
     EncodingEnum:
       enum:
       - RAW
       - BASE64
+      - GZIP_BASE64
       type: string
+      x-merge-category: ats
     EndUserDetailsRequest:
       example:
         end_user_organization_name: end_user_organization_name
@@ -5165,44 +6231,59 @@ components:
         categories:
         - null
         - null
+        should_create_magic_link_url: false
         end_user_origin_id: end_user_origin_id
-        link_expiry_mins: 85
+        link_expiry_mins: 834
       properties:
         end_user_email_address:
+          description: Your end user's email address. This is purely for identification
+            purposes - setting this value will not cause any emails to be sent.
           maxLength: 100
           minLength: 1
           type: string
         end_user_organization_name:
+          description: Your end user's organization.
           maxLength: 100
           minLength: 1
           type: string
         end_user_origin_id:
+          description: This unique identifier typically represents the ID for your
+            end user in your product's database. This value must be distinct from
+            other Linked Accounts' unique identifiers.
           maxLength: 100
           minLength: 1
           type: string
         categories:
+          description: The integration categories to show in Merge Link.
           items:
             $ref: '#/components/schemas/CategoriesEnum'
           type: array
         integration:
           description: The slug of a specific pre-selected integration for this linking
-            flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata
+            flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.
           minLength: 1
           nullable: true
           type: string
         link_expiry_mins:
           default: 30
-          description: An integer number of minutes between [30, 720] for how long
-            this token is valid. Defaults to 30
-          maximum: 720
+          description: An integer number of minutes between [30, 720 or 10080 if for
+            a Magic Link URL] for how long this token is valid. Defaults to 30.
+          maximum: 10080
           minimum: 30
           type: integer
+        should_create_magic_link_url:
+          default: false
+          description: Whether to generate a Magic Link URL. Defaults to false. For
+            more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/.
+          nullable: true
+          type: boolean
       required:
       - categories
       - end_user_email_address
       - end_user_organization_name
       - end_user_origin_id
       type: object
+      x-merge-category: ats
     ErrorValidationProblem:
       example:
         problem_type: MISSING_REQUIRED_FIELD
@@ -5227,6 +6308,7 @@ components:
       - problem_type
       - title
       type: object
+      x-merge-category: ats
     GenderEnum:
       enum:
       - MALE
@@ -5235,6 +6317,7 @@ components:
       - OTHER
       - DECLINE_TO_SELF_IDENTIFY
       type: string
+      x-merge-category: ats
     GenerateRemoteKeyRequest:
       description: |-
         # The GenerateRemoteKey Object
@@ -5253,6 +6336,7 @@ components:
       required:
       - name
       type: object
+      x-merge-category: ats
     IgnoreCommonModel:
       example:
         reason: GENERAL_CUSTOMER_REQUEST
@@ -5269,6 +6353,7 @@ components:
       required:
       - reason
       type: object
+      x-merge-category: ats
     IgnoreCommonModelRequest:
       example:
         reason: GENERAL_CUSTOMER_REQUEST
@@ -5286,47 +6371,68 @@ components:
       required:
       - reason
       type: object
+      x-merge-category: ats
     Issue:
       example:
-        end_user:
-          key: ""
-        error_description: error_description
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        end_user: b82302de-852e-4e60-b050-edf9da3b7c02
+        error_details:
+        - Missing employee permissions.
+        - Missing time off permissions.
+        error_description: string
+        id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         is_muted: true
-        last_incident_time: 2000-01-23T04:56:07.000+00:00
-        first_incident_time: 2000-01-23T04:56:07.000+00:00
+        last_incident_time: 2022-12-05T16:19:15.161Z
+        status: ONGOING
+        first_incident_time: 2022-12-05T16:19:15.161Z
       properties:
         id:
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
           format: uuid
           readOnly: true
           type: string
         status:
-          $ref: '#/components/schemas/IssueStatusEnum'
+          allOf:
+          - $ref: '#/components/schemas/IssueStatusEnum'
+          example: ONGOING
         error_description:
+          example: string
           type: string
         end_user:
           additionalProperties: {}
+          example: b82302de-852e-4e60-b050-edf9da3b7c02
           readOnly: true
           type: object
         first_incident_time:
+          example: 2022-12-05T16:19:15.161Z
           format: date-time
           nullable: true
           type: string
         last_incident_time:
+          example: 2022-12-05T16:19:15.161Z
           format: date-time
           nullable: true
           type: string
         is_muted:
+          example: true
           readOnly: true
           type: boolean
+        error_details:
+          additionalProperties: {}
+          example:
+          - Missing employee permissions.
+          - Missing time off permissions.
+          readOnly: true
+          type: object
       required:
       - error_description
       type: object
+      x-merge-category: ats
     IssueStatusEnum:
       enum:
       - ONGOING
       - RESOLVED
       type: string
+      x-merge-category: ats
     Job:
       description: |-
         # The Job Object
@@ -5341,11 +6447,19 @@ components:
         - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
         description: <b>If you're reading this documentation, you might be a good
           fit for Merge!</b>
+        job_posting_urls:
+        - value: https://merge.dev/careers
+          url_type: JOB_POSTING
         remote_updated_at: 2021-10-16T00:00:00Z
         remote_data:
         - path: /positions
           data:
           - Varies by platform
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         hiring_managers:
         - 787ed912-33ec-444e-a215-8d71cc42fc12
         name: Software Engineer (Merge is actually hiring btw)
@@ -5393,6 +6507,13 @@ components:
           description: The job's status.
           example: OPEN
           nullable: true
+        job_posting_urls:
+          example:
+          - value: https://merge.dev/careers
+            url_type: JOB_POSTING
+          items:
+            $ref: '#/components/schemas/Url'
+          type: array
         remote_created_at:
           description: When the third party's job was created.
           example: 2021-10-15T00:00:00Z
@@ -5420,6 +6541,7 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: Department
         offices:
           description: IDs of `Office` objects for this `Job`.
           example:
@@ -5429,6 +6551,7 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: Office
         hiring_managers:
           description: IDs of `RemoteUser` objects that serve as hiring managers for
             this `Job`.
@@ -5439,9 +6562,10 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: RemoteUser
         recruiters:
-          description: IDs of RemoteUser objects that serve as recruiters for this
-            Job.
+          description: IDs of `RemoteUser` objects that serve as recruiters for this
+            `Job`.
           example:
           - 787ed912-33ec-444e-a215-8d71cc42fc12
           items:
@@ -5449,6 +6573,7 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: RemoteUser
         remote_data:
           example:
           - path: /positions
@@ -5460,27 +6585,46 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
       x-merge-sample-json: '{"id": "022a2bef-57e5-4def-8ed2-7c41bd9a5ed8", "remote_id":
         "8765432", "name": "Software Engineer (Merge is actually hiring btw)", "description":
         "<b>If you''re reading this documentation, you might be a good fit for Merge!</b>",
-        "code": "C0025", "status": "OPEN", "remote_created_at": "2021-10-15T00:00:00Z",
+        "code": "C0025", "status": "OPEN", "job_posting_urls": [{"value": "https://merge.dev/careers",
+        "url_type": "JOB_POSTING"}], "remote_created_at": "2021-10-15T00:00:00Z",
         "remote_updated_at": "2021-10-16T00:00:00Z", "confidential": true, "departments":
         ["5b3c1341-a20f-4e51-b72c-f3830a16c97b", "d6e687d6-0c36-48a1-8114-35324b5cb38f"],
         "offices": ["9871b4a9-f5d2-4f3b-a66b-dfedbed42c46"], "hiring_managers": ["787ed912-33ec-444e-a215-8d71cc42fc12"],
         "remote_data": [{"path": "/positions", "data": {"example": "Varies by platform"}}]}'
+      x-merge-expands: '{"departments": "Department", "hiring_managers": "RemoteUser",
+        "offices": "Office", "recruiters": "RemoteUser"}'
+      x-merge-category: ats
     JobInterviewStage:
       description: |-
         # The JobInterviewStage Object
         ### Description
-        The `JobInterviewStage` object is used to represent the stage of an interview
+        The `JobInterviewStage` object is used to represent the stage that a job application is in.
         ### Usage Example
         Fetch from the `LIST JobInterviewStages` endpoint and view the job interview stages used by a company.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         remote_id: "876556788"
         name: Phone Screen
         id: f9813dd5-e70b-484c-91d8-00acd6065b07
@@ -5507,10 +6651,13 @@ components:
           nullable: true
           type: string
         job:
+          description: This field is populated only if the stage is specific to a
+            particular job. If the stage is generic, this field will not be populated.
           example: ba7d9648-5316-4a80-8d73-4e636cef5a90
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Job
         remote_data:
           example:
           - path: /interview-stages
@@ -5522,11 +6669,23 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-expands: '{"job": "Job"}'
+      x-merge-category: ats
     JobStatusEnum:
       enum:
       - OPEN
@@ -5535,9 +6694,11 @@ components:
       - ARCHIVED
       - PENDING
       type: string
+      x-merge-category: ats
     LinkToken:
       example:
         integration_name: Lever
+        magic_link_url: https://link.merge.dev/asdfjkl12345jsndfgi2i83n
         link_token: necdP7FtdASl1fQwm62be2_dM4wBG8_GactqoUV0
       properties:
         link_token:
@@ -5546,10 +6707,146 @@ components:
         integration_name:
           example: Lever
           type: string
+        magic_link_url:
+          example: https://link.merge.dev/asdfjkl12345jsndfgi2i83n
+          type: string
       required:
-      - integration_name
       - link_token
       type: object
+      x-merge-category: ats
+    LinkedAccountCondition:
+      example:
+        common_model: common_model
+        condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        value: ""
+        native_name: native_name
+        operator: operator
+        field_name: field_name
+      properties:
+        condition_schema_id:
+          description: The ID indicating which condition schema to use for a specific
+            condition.
+          format: uuid
+          type: string
+        common_model:
+          description: The common model for a specific condition.
+          readOnly: true
+          type: string
+        native_name:
+          description: User-facing *native condition* name. e.g. "Skip Manager".
+          nullable: true
+          type: string
+        operator:
+          description: The operator for a specific condition.
+          type: string
+        value:
+          description: The value for a condition.
+          readOnly: true
+        field_name:
+          description: The name of the field on the common model that this condition
+            corresponds to, if they conceptually match. e.g. "location_type".
+          nullable: true
+          type: string
+      required:
+      - condition_schema_id
+      - field_name
+      - native_name
+      - operator
+      type: object
+      x-merge-category: ats
+    LinkedAccountConditionRequest:
+      example:
+        condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        value: ""
+        operator: operator
+      properties:
+        condition_schema_id:
+          description: The ID indicating which condition schema to use for a specific
+            condition.
+          format: uuid
+          type: string
+        operator:
+          description: The operator for a specific condition.
+          minLength: 1
+          type: string
+        value:
+          description: The value for a specific condition.
+      required:
+      - condition_schema_id
+      - operator
+      - value
+      type: object
+      x-merge-category: ats
+    LinkedAccountSelectiveSyncConfiguration:
+      example:
+        linked_account_conditions:
+        - common_model: common_model
+          condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: ""
+          native_name: native_name
+          operator: operator
+          field_name: field_name
+        - common_model: common_model
+          condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: ""
+          native_name: native_name
+          operator: operator
+          field_name: field_name
+      properties:
+        linked_account_conditions:
+          description: The conditions belonging to a selective sync.
+          items:
+            $ref: '#/components/schemas/LinkedAccountCondition'
+          readOnly: true
+          type: array
+      type: object
+      x-merge-category: ats
+    LinkedAccountSelectiveSyncConfigurationListRequest:
+      example:
+        sync_configurations:
+        - linked_account_conditions:
+          - condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            value: ""
+            operator: operator
+          - condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            value: ""
+            operator: operator
+        - linked_account_conditions:
+          - condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            value: ""
+            operator: operator
+          - condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            value: ""
+            operator: operator
+      properties:
+        sync_configurations:
+          description: The selective syncs associated with a linked account.
+          items:
+            $ref: '#/components/schemas/LinkedAccountSelectiveSyncConfigurationRequest'
+          type: array
+      required:
+      - sync_configurations
+      type: object
+      x-merge-category: ats
+    LinkedAccountSelectiveSyncConfigurationRequest:
+      example:
+        linked_account_conditions:
+        - condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: ""
+          operator: operator
+        - condition_schema_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: ""
+          operator: operator
+      properties:
+        linked_account_conditions:
+          description: The conditions belonging to a selective sync.
+          items:
+            $ref: '#/components/schemas/LinkedAccountConditionRequest'
+          type: array
+      required:
+      - linked_account_conditions
+      type: object
+      x-merge-category: ats
     LinkedAccountStatus:
       example:
         linked_account_status: linked_account_status
@@ -5563,6 +6860,7 @@ components:
       - can_make_request
       - linked_account_status
       type: object
+      x-merge-category: ats
     MetaResponse:
       example:
         has_required_linked_account_params: true
@@ -5587,6 +6885,7 @@ components:
       - has_required_linked_account_params
       - request_schema
       type: object
+      x-merge-category: ats
     MethodEnum:
       enum:
       - GET
@@ -5597,6 +6896,7 @@ components:
       - PATCH
       - DELETE
       type: string
+      x-merge-category: ats
     ModelOperation:
       description: |-
         # The ModelOperation Object
@@ -5649,6 +6949,7 @@ components:
       - required_post_parameters
       - supported_fields
       type: object
+      x-merge-category: ats
     MultipartFormFieldRequest:
       description: |-
         # The MultipartFormField Object
@@ -5697,6 +6998,7 @@ components:
       - data
       - name
       type: object
+      x-merge-category: ats
     Offer:
       description: |-
         # The Offer Object
@@ -5706,6 +7008,11 @@ components:
         Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.
       example:
         sent_at: 2021-10-15T00:00:00Z
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         creator: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         closed_at: 2021-10-16T00:00:00Z
         application: 2872ba14-4084-492b-be96-e5eee6fc33ef
@@ -5731,15 +7038,19 @@ components:
           nullable: true
           type: string
         application:
+          description: The application who is receiving the offer.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Application
         creator:
+          description: The user who created the offer.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: RemoteUser
         remote_created_at:
           description: When the third party's offer was created.
           example: 2021-10-15T00:00:00Z
@@ -5781,11 +7092,23 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-expands: '{"application": "Application", "creator": "RemoteUser"}'
+      x-merge-category: ats
     OfferStatusEnum:
       enum:
       - DRAFT
@@ -5798,6 +7121,7 @@ components:
       - SIGNED
       - DEPRECATED
       type: string
+      x-merge-category: ats
     Office:
       description: |-
         # The Office Object
@@ -5806,6 +7130,11 @@ components:
         ### Usage Example
         Fetch from the `LIST Offices` endpoint and view the offices within a company.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         remote_id: "876556788"
         name: SF Office
         location: Embarcadero Center 2
@@ -5847,14 +7176,40 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
       x-merge-sample-json: '{"id": "9871b4a9-f5d2-4f3b-a66b-dfedbed42c46", "remote_id":
         "876556788", "name": "SF Office", "location": "Embarcadero Center 2", "remote_data":
         [{"path": "/locations", "data": {"example": "Varies by platform"}}]}'
+      x-merge-category: ats
+    OperatorSchema:
+      example:
+        is_unique: true
+        operator: operator
+      properties:
+        operator:
+          description: The operator for which an operator schema is defined.
+          readOnly: true
+          type: string
+        is_unique:
+          description: Whether the operator can be repeated multiple times.
+          readOnly: true
+          type: boolean
+      type: object
+      x-merge-category: ats
     OverallRecommendationEnum:
       enum:
       - DEFINITELY_NO
@@ -5863,6 +7218,7 @@ components:
       - STRONG_YES
       - NO_DECISION
       type: string
+      x-merge-category: ats
     PaginatedAccountDetailsAndActionsList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -5905,6 +7261,7 @@ components:
           end_user_email_address: hradmin@foobar.dev
           id: e59b1821-f85c-4e28-a6b3-1804156f3563
           category: hris
+          is_duplicate: true
           end_user_origin_id: 3ac95cde-6c7f-4eef-afec-be710b42308d
           status: COMPLETE
           status_detail: status_detail
@@ -5946,6 +7303,7 @@ components:
           end_user_email_address: hradmin@foobar.dev
           id: e59b1821-f85c-4e28-a6b3-1804156f3563
           category: hris
+          is_duplicate: true
           end_user_origin_id: 3ac95cde-6c7f-4eef-afec-be710b42308d
           status: COMPLETE
           status_detail: status_detail
@@ -5964,12 +7322,18 @@ components:
             $ref: '#/components/schemas/AccountDetailsAndActions'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedActivityList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - visibility: PRIVATE
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          visibility: PRIVATE
           subject: Gil Feig's interview
           remote_id: "198123"
           activity_type: NOTE
@@ -5982,7 +7346,12 @@ components:
           - path: /actions
             data:
             - Varies by platform
-        - visibility: PRIVATE
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          visibility: PRIVATE
           subject: Gil Feig's interview
           remote_id: "198123"
           activity_type: NOTE
@@ -6009,6 +7378,7 @@ components:
             $ref: '#/components/schemas/Activity'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedApplicationList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -6016,8 +7386,6 @@ components:
         results:
         - applied_at: 2021-10-15T00:00:00Z
           rejected_at: 2021-11-15T00:00:00Z
-          custom_fields:
-            key: ""
           remote_id: "98796"
           source: Campus recruiting event
           reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
@@ -6025,6 +7393,11 @@ components:
           - path: /candidacies
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
@@ -6033,8 +7406,6 @@ components:
           job: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         - applied_at: 2021-10-15T00:00:00Z
           rejected_at: 2021-11-15T00:00:00Z
-          custom_fields:
-            key: ""
           remote_id: "98796"
           source: Campus recruiting event
           reject_reason: 59b25f2b-da02-40f5-9656-9fa0db555784
@@ -6042,6 +7413,11 @@ components:
           - path: /candidacies
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           id: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           credited_to: 58166795-8d68-4b30-9bfb-bfd402479484
@@ -6062,12 +7438,18 @@ components:
             $ref: '#/components/schemas/Application'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedAttachmentList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - file_url: http://alturl.com/p749b
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          file_url: http://alturl.com/p749b
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           attachment_type: RESUME
           file_name: Candidate Resume
@@ -6078,7 +7460,12 @@ components:
           - path: /attachments
             data:
             - Varies by platform
-        - file_url: http://alturl.com/p749b
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          file_url: http://alturl.com/p749b
           candidate: 2872ba14-4084-492b-be96-e5eee6fc33ef
           attachment_type: RESUME
           file_name: Candidate Resume
@@ -6103,6 +7490,7 @@ components:
             $ref: '#/components/schemas/Attachment'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedCandidateList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -6114,8 +7502,6 @@ components:
             email_address_type: PERSONAL
           attachments:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
-          custom_fields:
-            key: ""
           remote_id: "21198"
           last_name: Feig
           title: Software Engineer
@@ -6126,6 +7512,11 @@ components:
           - path: /candidates
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           phone_numbers:
           - value: +1234567890
             phone_number_type: MOBILE
@@ -6153,8 +7544,6 @@ components:
             email_address_type: PERSONAL
           attachments:
           - bea08964-32b4-4a20-8bb4-2612ba09de1d
-          custom_fields:
-            key: ""
           remote_id: "21198"
           last_name: Feig
           title: Software Engineer
@@ -6165,6 +7554,11 @@ components:
           - path: /candidates
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           phone_numbers:
           - value: +1234567890
             phone_number_type: MOBILE
@@ -6200,12 +7594,58 @@ components:
             $ref: '#/components/schemas/Candidate'
           type: array
       type: object
+      x-merge-category: ats
+    PaginatedConditionSchemaList:
+      example:
+        next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+        previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+        results:
+        - common_model: common_model
+          operators:
+          - is_unique: true
+            operator: operator
+          - is_unique: true
+            operator: operator
+          is_unique: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          native_name: native_name
+          field_name: field_name
+        - common_model: common_model
+          operators:
+          - is_unique: true
+            operator: operator
+          - is_unique: true
+            operator: operator
+          is_unique: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          native_name: native_name
+          field_name: field_name
+      properties:
+        next:
+          example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          nullable: true
+          type: string
+        previous:
+          example: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ConditionSchema'
+          type: array
+      type: object
+      x-merge-category: ats
     PaginatedDepartmentList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - remote_id: "23456"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "23456"
           name: Engineering
           id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
           remote_was_deleted: true
@@ -6213,7 +7653,12 @@ components:
           - path: /departments
             data:
             - Varies by platform
-        - remote_id: "23456"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "23456"
           name: Engineering
           id: 5b3c1341-a20f-4e51-b72c-f3830a16c97b
           remote_was_deleted: true
@@ -6235,12 +7680,18 @@ components:
             $ref: '#/components/schemas/Department'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedEEOCList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
           disability_status: I_DONT_WISH_TO_ANSWER
           race: HISPANIC_OR_LATINO
           gender: FEMALE
@@ -6253,7 +7704,12 @@ components:
           - path: /eeoc
             data:
             - Varies by platform
-        - candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          candidate: f963f34d-3d2f-4f77-b557-cf36bc7e6498
           disability_status: I_DONT_WISH_TO_ANSWER
           race: HISPANIC_OR_LATINO
           gender: FEMALE
@@ -6280,25 +7736,32 @@ components:
             $ref: '#/components/schemas/EEOC'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedIssueList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - end_user:
-            key: ""
-          error_description: error_description
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - end_user: b82302de-852e-4e60-b050-edf9da3b7c02
+          error_details:
+          - Missing employee permissions.
+          - Missing time off permissions.
+          error_description: string
+          id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
           is_muted: true
-          last_incident_time: 2000-01-23T04:56:07.000+00:00
-          first_incident_time: 2000-01-23T04:56:07.000+00:00
-        - end_user:
-            key: ""
-          error_description: error_description
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          last_incident_time: 2022-12-05T16:19:15.161Z
+          status: ONGOING
+          first_incident_time: 2022-12-05T16:19:15.161Z
+        - end_user: b82302de-852e-4e60-b050-edf9da3b7c02
+          error_details:
+          - Missing employee permissions.
+          - Missing time off permissions.
+          error_description: string
+          id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
           is_muted: true
-          last_incident_time: 2000-01-23T04:56:07.000+00:00
-          first_incident_time: 2000-01-23T04:56:07.000+00:00
+          last_incident_time: 2022-12-05T16:19:15.161Z
+          status: ONGOING
+          first_incident_time: 2022-12-05T16:19:15.161Z
       properties:
         next:
           example: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -6313,12 +7776,18 @@ components:
             $ref: '#/components/schemas/Issue'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedJobInterviewStageList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - remote_id: "876556788"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "876556788"
           name: Phone Screen
           id: f9813dd5-e70b-484c-91d8-00acd6065b07
           remote_was_deleted: true
@@ -6327,7 +7796,12 @@ components:
           - path: /interview-stages
             data:
             - Varies by platform
-        - remote_id: "876556788"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "876556788"
           name: Phone Screen
           id: f9813dd5-e70b-484c-91d8-00acd6065b07
           remote_was_deleted: true
@@ -6350,6 +7824,7 @@ components:
             $ref: '#/components/schemas/JobInterviewStage'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedJobList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -6361,11 +7836,19 @@ components:
           - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
           description: <b>If you're reading this documentation, you might be a good
             fit for Merge!</b>
+          job_posting_urls:
+          - value: https://merge.dev/careers
+            url_type: JOB_POSTING
           remote_updated_at: 2021-10-16T00:00:00Z
           remote_data:
           - path: /positions
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           hiring_managers:
           - 787ed912-33ec-444e-a215-8d71cc42fc12
           name: Software Engineer (Merge is actually hiring btw)
@@ -6385,11 +7868,19 @@ components:
           - 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
           description: <b>If you're reading this documentation, you might be a good
             fit for Merge!</b>
+          job_posting_urls:
+          - value: https://merge.dev/careers
+            url_type: JOB_POSTING
           remote_updated_at: 2021-10-16T00:00:00Z
           remote_data:
           - path: /positions
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           hiring_managers:
           - 787ed912-33ec-444e-a215-8d71cc42fc12
           name: Software Engineer (Merge is actually hiring btw)
@@ -6417,12 +7908,18 @@ components:
             $ref: '#/components/schemas/Job'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedOfferList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
         - sent_at: 2021-10-15T00:00:00Z
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           creator: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           closed_at: 2021-10-16T00:00:00Z
           application: 2872ba14-4084-492b-be96-e5eee6fc33ef
@@ -6437,6 +7934,11 @@ components:
             data:
             - Varies by platform
         - sent_at: 2021-10-15T00:00:00Z
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           creator: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           closed_at: 2021-10-16T00:00:00Z
           application: 2872ba14-4084-492b-be96-e5eee6fc33ef
@@ -6464,12 +7966,18 @@ components:
             $ref: '#/components/schemas/Offer'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedOfficeList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - remote_id: "876556788"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "876556788"
           name: SF Office
           location: Embarcadero Center 2
           id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
@@ -6478,7 +7986,12 @@ components:
           - path: /locations
             data:
             - Varies by platform
-        - remote_id: "876556788"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "876556788"
           name: SF Office
           location: Embarcadero Center 2
           id: 9871b4a9-f5d2-4f3b-a66b-dfedbed42c46
@@ -6501,12 +8014,18 @@ components:
             $ref: '#/components/schemas/Office'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedRejectReasonList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - remote_id: "876556788"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "876556788"
           name: Not passionate enough about APIs.
           id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
           remote_was_deleted: true
@@ -6514,7 +8033,12 @@ components:
           - path: /rejection-reasons
             data:
             - Varies by platform
-        - remote_id: "876556788"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "876556788"
           name: Not passionate enough about APIs.
           id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
           remote_was_deleted: true
@@ -6536,12 +8060,18 @@ components:
             $ref: '#/components/schemas/RejectReason'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedRemoteUserList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - remote_id: "344321"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "344321"
           access_role: SUPER_ADMIN
           last_name: Ding
           disabled: true
@@ -6554,7 +8084,12 @@ components:
           - path: /users
             data:
             - Varies by platform
-        - remote_id: "344321"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "344321"
           access_role: SUPER_ADMIN
           last_name: Ding
           disabled: true
@@ -6581,6 +8116,7 @@ components:
             $ref: '#/components/schemas/RemoteUser'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedScheduledInterviewList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -6598,6 +8134,11 @@ components:
           - path: /interviews
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           application: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           location: Embarcadero Center 2
@@ -6617,6 +8158,11 @@ components:
           - path: /interviews
             data:
             - Varies by platform
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           application: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           location: Embarcadero Center 2
@@ -6638,12 +8184,18 @@ components:
             $ref: '#/components/schemas/ScheduledInterview'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedScorecardList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
         - interviewer: bbb519a3-246e-4b95-b6b3-dba16107ba6b
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           application: 2872ba14-4084-492b-be96-e5eee6fc33ef
           submitted_at: 2021-10-15T00:00:00Z
           remote_id: "22234"
@@ -6657,6 +8209,11 @@ components:
             data:
             - Varies by platform
         - interviewer: bbb519a3-246e-4b95-b6b3-dba16107ba6b
+          field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
           application: 2872ba14-4084-492b-be96-e5eee6fc33ef
           submitted_at: 2021-10-15T00:00:00Z
           remote_id: "22234"
@@ -6683,18 +8240,21 @@ components:
             $ref: '#/components/schemas/Scorecard'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedSyncStatusList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - next_sync_start: 2021-03-30T20:44:18.662942Z
+        - selective_sync_configurations_usage: IN_NEXT_SYNC
+          next_sync_start: 2021-03-30T20:44:18.662942Z
           model_name: Candidate
           model_id: ats.Candidate
           last_sync_start: 2021-03-30T19:44:18.695973Z
           is_initial_sync: true
           status: SYNCING
-        - next_sync_start: 2021-03-30T20:44:18.662942Z
+        - selective_sync_configurations_usage: IN_NEXT_SYNC
+          next_sync_start: 2021-03-30T20:44:18.662942Z
           model_name: Candidate
           model_id: ats.Candidate
           last_sync_start: 2021-03-30T19:44:18.695973Z
@@ -6714,19 +8274,30 @@ components:
             $ref: '#/components/schemas/SyncStatus'
           type: array
       type: object
+      x-merge-category: ats
     PaginatedTagList:
       example:
         next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
         previous: cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ
         results:
-        - remote_id: "4567"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "4567"
           name: High-Priority
           remote_was_deleted: true
           remote_data:
           - path: /tags
             data:
             - Varies by platform
-        - remote_id: "4567"
+        - field_mappings:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          remote_id: "4567"
           name: High-Priority
           remote_was_deleted: true
           remote_data:
@@ -6747,6 +8318,7 @@ components:
             $ref: '#/components/schemas/Tag'
           type: array
       type: object
+      x-merge-category: ats
     PhoneNumber:
       description: |-
         # The PhoneNumber Object
@@ -6767,6 +8339,8 @@ components:
           example: HOME
           nullable: true
       type: object
+      x-merge-nested-write-allowed: true
+      x-merge-category: ats
     PhoneNumberRequest:
       description: |-
         # The PhoneNumber Object
@@ -6786,7 +8360,22 @@ components:
           description: The type of phone number.
           example: HOME
           nullable: true
+        integration_params:
+          additionalProperties: {}
+          example:
+            unique_integration_field: unique_integration_field_value
+          nullable: true
+          type: object
+          writeOnly: true
+        linked_account_params:
+          additionalProperties: {}
+          example:
+            unique_linked_account_field: unique_linked_account_field_value
+          nullable: true
+          type: object
+          writeOnly: true
       type: object
+      x-merge-category: ats
     PhoneNumberTypeEnum:
       enum:
       - HOME
@@ -6795,6 +8384,7 @@ components:
       - SKYPE
       - OTHER
       type: string
+      x-merge-category: ats
     RaceEnum:
       enum:
       - AMERICAN_INDIAN_OR_ALASKAN_NATIVE
@@ -6806,12 +8396,14 @@ components:
       - TWO_OR_MORE_RACES
       - DECLINE_TO_SELF_IDENTIFY
       type: string
+      x-merge-category: ats
     ReasonEnum:
       enum:
       - GENERAL_CUSTOMER_REQUEST
       - GDPR
       - OTHER
       type: string
+      x-merge-category: ats
     RejectReason:
       description: |-
         # The RejectReason Object
@@ -6820,6 +8412,11 @@ components:
         ### Usage Example
         Fetch from the `LIST RejectReasons` endpoint and filter by `ID` to show all reasons.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         remote_id: "876556788"
         name: Not passionate enough about APIs.
         id: 8be99a4a-f8d4-4339-bf1e-30eac970e217
@@ -6855,11 +8452,22 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-category: ats
     RemoteData:
       properties:
         path:
@@ -6870,17 +8478,7 @@ components:
       required:
       - path
       type: object
-    RemoteDataRequest:
-      properties:
-        path:
-          minLength: 1
-          type: string
-        data:
-          additionalProperties: {}
-          type: object
-      required:
-      - path
-      type: object
+      x-merge-category: ats
     RemoteKey:
       description: |-
         # The RemoteKey Object
@@ -6903,6 +8501,7 @@ components:
       - key
       - name
       type: object
+      x-merge-category: ats
     RemoteKeyForRegenerationRequest:
       description: |-
         # The RemoteKeyForRegeneration Object
@@ -6921,6 +8520,7 @@ components:
       required:
       - name
       type: object
+      x-merge-category: ats
     RemoteResponse:
       description: |-
         # The RemoteResponse Object
@@ -6934,6 +8534,8 @@ components:
         headers:
           EXTRA-HEADER: value
           Authorization: <redacted>
+        response_headers:
+          X-Page-Token: value
         method: GET
         response:
           scooters:
@@ -6941,6 +8543,7 @@ components:
             model: Gen 2.5
           - company: Bird
             model: Bird Zero
+        response_type: JSON
         status: 200
       properties:
         method:
@@ -6953,14 +8556,21 @@ components:
           example: 200
           type: integer
         response:
-          additionalProperties: {}
           example:
             scooters:
             - company: Lime
               model: Gen 2.5
             - company: Bird
               model: Bird Zero
+        response_headers:
+          additionalProperties: {}
+          example:
+            X-Page-Token: value
           type: object
+        response_type:
+          allOf:
+          - $ref: '#/components/schemas/ResponseTypeEnum'
+          example: JSON
         headers:
           additionalProperties: {}
           example:
@@ -6973,6 +8583,7 @@ components:
       - response
       - status
       type: object
+      x-merge-category: ats
     RemoteUser:
       description: |-
         # The RemoteUser Object
@@ -6981,6 +8592,11 @@ components:
         ### Usage Example
         Fetch from the `LIST RemoteUsers` endpoint to show all users for a third party.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         remote_id: "344321"
         access_role: SUPER_ADMIN
         last_name: Ding
@@ -7049,27 +8665,45 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
       x-merge-sample-json: '{"id": "b82302de-852e-4e60-b050-edf9da3b7c02", "remote_id":
         "344321", "first_name": "Shensi", "last_name": "Ding", "email": "hello@merge.dev",
         "disabled": false, "remote_created_at": "2020-11-10T00:00:00Z", "access_role":
         "SUPER_ADMIN", "remote_data": [{"path": "/users", "data": {"example": "Varies
         by platform"}}]}'
+      x-merge-category: ats
     RequestFormatEnum:
       enum:
       - JSON
       - XML
       - MULTIPART
       type: string
+      x-merge-category: ats
+    ResponseTypeEnum:
+      enum:
+      - JSON
+      - BASE64_GZIP
+      type: string
+      x-merge-category: ats
     ScheduledInterview:
       description: |-
         # The ScheduledInterview Object
         ### Description
-        The `ScheduledInterview` object is used to represent an interview
+        The `ScheduledInterview` object is used to represent an interview.
         ### Usage Example
         Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.
       example:
@@ -7085,6 +8719,11 @@ components:
         - path: /interviews
           data:
           - Varies by platform
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         application: 92e8a369-fffe-430d-b93a-f7e8a16563f1
         organizer: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
         location: Embarcadero Center 2
@@ -7104,20 +8743,26 @@ components:
           nullable: true
           type: string
         application:
+          description: The application being interviewed.
           example: 92e8a369-fffe-430d-b93a-f7e8a16563f1
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Application
         job_interview_stage:
+          description: The stage of the interview.
           example: 2f7adb59-3fe6-4b5b-aef6-563f72bd13dc
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: JobInterviewStage
         organizer:
+          description: The user organizing the interview.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: RemoteUser
         interviewers:
           description: Array of `RemoteUser` IDs.
           example:
@@ -7128,6 +8773,7 @@ components:
             nullable: true
             type: string
           type: array
+          x-merge-expands-to: RemoteUser
         location:
           description: The interview's location.
           example: Embarcadero Center 2
@@ -7174,26 +8820,45 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-expands: '{"application": "Application", "interviewers": "RemoteUser",
+        "job_interview_stage": "JobInterviewStage", "organizer": "RemoteUser"}'
+      x-merge-category: ats
     ScheduledInterviewStatusEnum:
       enum:
       - SCHEDULED
       - AWAITING_FEEDBACK
       - COMPLETE
       type: string
+      x-merge-category: ats
     Scorecard:
       description: |-
         # The Scorecard Object
         ### Description
-        The `Scorecard` object is used to represent a Scorecard for an interview
+        The `Scorecard` object is used to represent a Scorecard for an interview.
         ### Usage Example
         Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.
       example:
         interviewer: bbb519a3-246e-4b95-b6b3-dba16107ba6b
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         application: 2872ba14-4084-492b-be96-e5eee6fc33ef
         submitted_at: 2021-10-15T00:00:00Z
         remote_id: "22234"
@@ -7218,20 +8883,26 @@ components:
           nullable: true
           type: string
         application:
+          description: The application being scored.
           example: 2872ba14-4084-492b-be96-e5eee6fc33ef
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: Application
         interview:
+          description: The interview being scored.
           example: 52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: ScheduledInterview
         interviewer:
+          description: The interviewer doing the scoring.
           example: bbb519a3-246e-4b95-b6b3-dba16107ba6b
           format: uuid
           nullable: true
           type: string
+          x-merge-expands-to: RemoteUser
         remote_created_at:
           description: When the third party's scorecard was created.
           example: 2021-10-15T00:00:00Z
@@ -7261,11 +8932,30 @@ components:
           readOnly: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           readOnly: true
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-expands: '{"application": "Application", "interview": "ScheduledInterview",
+        "interviewer": "RemoteUser"}'
+      x-merge-category: ats
+    SelectiveSyncConfigurationsUsageEnum:
+      enum:
+      - IN_NEXT_SYNC
+      - IN_LAST_SYNC
+      type: string
+      x-merge-category: ats
     SyncStatus:
       description: |-
         # The SyncStatus Object
@@ -7275,6 +8965,7 @@ components:
         ### Usage Example
         View the `SyncStatus` for an account to see how recently its models were synced.
       example:
+        selective_sync_configurations_usage: IN_NEXT_SYNC
         next_sync_start: 2021-03-30T20:44:18.662942Z
         model_name: Candidate
         model_id: ats.Candidate
@@ -7303,24 +8994,29 @@ components:
         is_initial_sync:
           example: true
           type: boolean
+        selective_sync_configurations_usage:
+          allOf:
+          - $ref: '#/components/schemas/SelectiveSyncConfigurationsUsageEnum'
+          example: IN_NEXT_SYNC
       required:
       - is_initial_sync
-      - last_sync_start
       - model_id
       - model_name
-      - next_sync_start
       - status
       type: object
       x-merge-sample-json: '{"model_name": "Candidate", "model_id": "ats.Candidate",
         "last_sync_start": "2021-03-30T19:44:18.695973Z", "next_sync_start": "2021-03-30T20:44:18.662942Z",
         "status": "SYNCING", "is_initial_sync": true}'
+      x-merge-category: ats
     SyncStatusStatusEnum:
       enum:
       - SYNCING
       - DONE
       - FAILED
       - DISABLED
+      - PAUSED
       type: string
+      x-merge-category: ats
     Tag:
       description: |-
         # The Tag Object
@@ -7329,6 +9025,11 @@ components:
         ### Usage Example
         Fetch from the `LIST Tags` endpoint and view the tags used within a company.
       example:
+        field_mappings:
+          organization_defined_targets:
+            custom_key: custom_value
+          linked_account_defined_targets:
+            custom_key: custom_value
         remote_id: "4567"
         name: High-Priority
         remote_was_deleted: true
@@ -7360,15 +9061,48 @@ components:
           nullable: true
           type: array
         remote_was_deleted:
-          description: Indicates whether or not this object has been deleted on the
-            third-party.
+          description: Indicates whether or not this object has been deleted by third
+            party webhooks.
           type: boolean
+        field_mappings:
+          additionalProperties: {}
+          example:
+            organization_defined_targets:
+              custom_key: custom_value
+            linked_account_defined_targets:
+              custom_key: custom_value
+          nullable: true
+          readOnly: true
+          type: object
       type: object
+      x-merge-category: ats
+    TypeEnum:
+      enum:
+      - ORGANIZATION
+      - INTEGRATION
+      - LINKED_ACCOUNT
+      type: string
+      x-merge-category: ats
+    UpdateApplicationStageRequest:
+      example:
+        job_interview_stage: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        remote_user_id: remote_user_id
+      properties:
+        job_interview_stage:
+          description: The interview stage to move the application to.
+          format: uuid
+          nullable: true
+          type: string
+        remote_user_id:
+          minLength: 1
+          type: string
+      type: object
+      x-merge-category: ats
     Url:
       description: |-
         # The Url Object
         ### Description
-        The `Url` object is used to represent a candidate's website.
+        The `Url` object is used to represent hyperlinks associated with the parent model.
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their website urls.
       properties:
@@ -7386,11 +9120,13 @@ components:
           example: PERSONAL
           nullable: true
       type: object
+      x-merge-nested-write-allowed: true
+      x-merge-category: ats
     UrlRequest:
       description: |-
         # The Url Object
         ### Description
-        The `Url` object is used to represent a candidate's website.
+        The `Url` object is used to represent hyperlinks associated with the parent model.
         ### Usage Example
         Fetch from the `GET Candidate` endpoint and view their website urls.
       properties:
@@ -7407,7 +9143,22 @@ components:
           description: The type of site.
           example: PERSONAL
           nullable: true
+        integration_params:
+          additionalProperties: {}
+          example:
+            unique_integration_field: unique_integration_field_value
+          nullable: true
+          type: object
+          writeOnly: true
+        linked_account_params:
+          additionalProperties: {}
+          example:
+            unique_linked_account_field: unique_linked_account_field_value
+          nullable: true
+          type: object
+          writeOnly: true
       type: object
+      x-merge-category: ats
     UrlTypeEnum:
       enum:
       - PERSONAL
@@ -7416,7 +9167,9 @@ components:
       - BLOG
       - SOCIAL_MEDIA
       - OTHER
+      - JOB_POSTING
       type: string
+      x-merge-category: ats
     ValidationProblemSource:
       example:
         pointer: pointer
@@ -7426,18 +9179,21 @@ components:
       required:
       - pointer
       type: object
+      x-merge-category: ats
     VeteranStatusEnum:
       enum:
       - I_AM_NOT_A_PROTECTED_VETERAN
       - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN
       - I_DONT_WISH_TO_ANSWER
       type: string
+      x-merge-category: ats
     VisibilityEnum:
       enum:
       - ADMIN_ONLY
       - PUBLIC
       - PRIVATE
       type: string
+      x-merge-category: ats
     WarningValidationProblem:
       example:
         problem_type: UNRECOGNIZED_FIELD
@@ -7462,6 +9218,7 @@ components:
       - problem_type
       - title
       type: object
+      x-merge-category: ats
     WebhookReceiver:
       example:
         is_active: true
@@ -7478,6 +9235,7 @@ components:
       - event
       - is_active
       type: object
+      x-merge-category: ats
     WebhookReceiverRequest:
       example:
         is_active: true
@@ -7496,6 +9254,7 @@ components:
       - event
       - is_active
       type: object
+      x-merge-category: ats
   securitySchemes:
     tokenAuth:
       description: Token-based authentication with required prefix "Bearer"

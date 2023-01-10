@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The PhoneNumber Object ### Description The &#x60;PhoneNumber&#x60; object is used to represent a candidate&#39;s phone number. ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their phone numbers.
  */
 @ApiModel(description = "# The PhoneNumber Object ### Description The `PhoneNumber` object is used to represent a candidate's phone number. ### Usage Example Fetch from the `GET Candidate` endpoint and view their phone numbers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class PhoneNumberRequestRawJson {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -43,6 +43,14 @@ public class PhoneNumberRequestRawJson {
   public static final String SERIALIZED_NAME_PHONE_NUMBER_TYPE = "phone_number_type";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER_TYPE)
   private JsonElement phoneNumberType;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private JsonElement integrationParams;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private JsonElement linkedAccountParams;
 
   private transient JSON serializer;
 
@@ -88,6 +96,44 @@ public class PhoneNumberRequestRawJson {
   public void setPhoneNumberType(JsonElement phoneNumberType) {
     this.phoneNumberType = phoneNumberType;
   }
+
+  public PhoneNumberRequestRawJson integrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = this.serializer.getGson().toJsonTree(integrationParams);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public JsonElement getIntegrationParams() {
+    return integrationParams;
+  }
+  public void setIntegrationParams(JsonElement integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+  public PhoneNumberRequestRawJson linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = this.serializer.getGson().toJsonTree(linkedAccountParams);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public JsonElement getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+  public void setLinkedAccountParams(JsonElement linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -98,11 +144,13 @@ public class PhoneNumberRequestRawJson {
     }
     PhoneNumberRequestRawJson phoneNumberRequest = (PhoneNumberRequestRawJson) o;
     return Objects.equals(this.value.getAsString(), phoneNumberRequest.value.getAsString()) &&
-        Objects.equals(this.phoneNumberType.getAsString(), phoneNumberRequest.phoneNumberType.getAsString());
+        Objects.equals(this.phoneNumberType.getAsString(), phoneNumberRequest.phoneNumberType.getAsString()) &&
+        Objects.equals(this.integrationParams.getAsString(), phoneNumberRequest.integrationParams.getAsString()) &&
+        Objects.equals(this.linkedAccountParams.getAsString(), phoneNumberRequest.linkedAccountParams.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(value, phoneNumberType);
+    return Objects.hash(value, phoneNumberType, integrationParams, linkedAccountParams);
   }
   @Override
   public String toString() {
@@ -110,6 +158,8 @@ public class PhoneNumberRequestRawJson {
     sb.append("class PhoneNumberRequestRawJson {\n");
     sb.append("    value: ").append(toIndentedString(value.getAsString())).append("\n");
     sb.append("    phoneNumberType: ").append(toIndentedString(phoneNumberType.getAsString())).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams.getAsString())).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

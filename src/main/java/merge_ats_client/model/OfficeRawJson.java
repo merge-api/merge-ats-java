@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Office Object ### Description The &#x60;Office&#x60; object is used to represent an office within a company. ### Usage Example Fetch from the &#x60;LIST Offices&#x60; endpoint and view the offices within a company.
  */
 @ApiModel(description = "# The Office Object ### Description The `Office` object is used to represent an office within a company. ### Usage Example Fetch from the `LIST Offices` endpoint and view the offices within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class OfficeRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -59,6 +59,10 @@ public class OfficeRawJson {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private JsonElement remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private JsonElement fieldMappings;
 
   private transient JSON serializer;
 
@@ -147,14 +151,25 @@ public class OfficeRawJson {
   }
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public JsonElement getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public JsonElement getFieldMappings() {
+    return fieldMappings;
   }
   @Override
   public boolean equals(Object o) {
@@ -170,11 +185,12 @@ public class OfficeRawJson {
         Objects.equals(this.name.getAsString(), office.name.getAsString()) &&
         Objects.equals(this.location.getAsString(), office.location.getAsString()) &&
         Objects.equals(this.remoteData.getAsString(), office.remoteData.getAsString()) &&
-        Objects.equals(this.remoteWasDeleted.getAsString(), office.remoteWasDeleted.getAsString());
+        Objects.equals(this.remoteWasDeleted.getAsString(), office.remoteWasDeleted.getAsString()) &&
+        Objects.equals(this.fieldMappings.getAsString(), office.fieldMappings.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, location, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, name, location, remoteData, remoteWasDeleted, fieldMappings);
   }
   @Override
   public String toString() {
@@ -186,6 +202,7 @@ public class OfficeRawJson {
     sb.append("    location: ").append(toIndentedString(location.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

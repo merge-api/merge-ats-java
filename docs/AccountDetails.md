@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **endUserEmailAddress** | **String** |  |  [optional] [readonly]
 **status** | **String** |  |  [optional] [readonly]
 **webhookListenerUrl** | **URI** |  |  [optional] [readonly]
+**isDuplicate** | **Boolean** | Whether a Production Linked Account&#39;s credentials match another existing Production Linked Account. This field is &#x60;null&#x60; for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets. |  [optional] [readonly]
 
 
 

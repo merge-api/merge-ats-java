@@ -77,8 +77,9 @@ public class AttachmentsApiTest {
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
+        String remoteFields = null;
         String remoteId = null;
-        PaginatedAttachmentList response = api.attachmentsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedAttachmentList response = api.attachmentsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
 
         // TODO: test validations
     }
@@ -112,7 +113,8 @@ public class AttachmentsApiTest {
         String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Attachment response = api.attachmentsRetrieve(xAccountToken, id, includeRemoteData);
+        String remoteFields = null;
+        Attachment response = api.attachmentsRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

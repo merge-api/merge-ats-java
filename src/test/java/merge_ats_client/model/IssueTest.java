@@ -102,4 +102,12 @@ public class IssueTest {
         // TODO: test isMuted
     }
 
+    /**
+     * Test the property 'errorDetails'
+     */
+    @Test
+    public void errorDetailsTest() {
+        // TODO: test errorDetails
+    }
+
 }

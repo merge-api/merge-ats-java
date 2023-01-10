@@ -24,7 +24,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.RemoteData;
 
@@ -32,7 +34,7 @@ import merge_ats_client.model.RemoteData;
  * # The Department Object ### Description The &#x60;Department&#x60; object is used to represent a department within a company. ### Usage Example Fetch from the &#x60;LIST Departments&#x60; endpoint and view the departments within a company.
  */
 @ApiModel(description = "# The Department Object ### Description The `Department` object is used to represent a department within a company. ### Usage Example Fetch from the `LIST Departments` endpoint and view the departments within a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class Department {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -53,6 +55,10 @@ public class Department {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private Boolean remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private Map<String, Object> fieldMappings = null;
 
 
    /**
@@ -130,14 +136,28 @@ public class Department {
 
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public Boolean getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+
+
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public Map<String, Object> getFieldMappings() {
+    return fieldMappings;
   }
 
 
@@ -156,12 +176,13 @@ public class Department {
         Objects.equals(this.remoteId, department.remoteId) &&
         Objects.equals(this.name, department.name) &&
         Objects.equals(this.remoteData, department.remoteData) &&
-        Objects.equals(this.remoteWasDeleted, department.remoteWasDeleted);
+        Objects.equals(this.remoteWasDeleted, department.remoteWasDeleted) &&
+        Objects.equals(this.fieldMappings, department.fieldMappings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, name, remoteData, remoteWasDeleted, fieldMappings);
   }
 
   @Override
@@ -173,6 +194,7 @@ public class Department {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -45,7 +45,9 @@ public enum UrlTypeEnum {
   
   SOCIAL_MEDIA("SOCIAL_MEDIA"),
   
-  OTHER("OTHER");
+  OTHER("OTHER"),
+  
+  JOB_POSTING("JOB_POSTING");
 
   private String value;
 

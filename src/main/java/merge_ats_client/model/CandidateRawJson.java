@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions. ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
 @ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions. ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class CandidateRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -112,13 +112,13 @@ public class CandidateRawJson {
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private JsonElement remoteData;
 
-  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
-  private JsonElement customFields;
-
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private JsonElement remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private JsonElement fieldMappings;
 
   private transient JSON serializer;
 
@@ -472,25 +472,6 @@ public class CandidateRawJson {
     return remoteData;
   }
 
-  public CandidateRawJson customFields(Map<String, Object> customFields) {
-    this.customFields = this.serializer.getGson().toJsonTree(customFields);
-    return this;
-  }
-
-   /**
-   * Custom fields configured for a given model.
-   * @return customFields
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Custom fields configured for a given model.")
-
-  public JsonElement getCustomFields() {
-    return customFields;
-  }
-  public void setCustomFields(JsonElement customFields) {
-    this.customFields = customFields;
-  }
-
    /**
    * Get remoteWasDeleted
    * @return remoteWasDeleted
@@ -500,6 +481,17 @@ public class CandidateRawJson {
 
   public JsonElement getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public JsonElement getFieldMappings() {
+    return fieldMappings;
   }
   @Override
   public boolean equals(Object o) {
@@ -529,12 +521,12 @@ public class CandidateRawJson {
         Objects.equals(this.applications.getAsString(), candidate.applications.getAsString()) &&
         Objects.equals(this.attachments.getAsString(), candidate.attachments.getAsString()) &&
         Objects.equals(this.remoteData.getAsString(), candidate.remoteData.getAsString()) &&
-        Objects.equals(this.customFields.getAsString(), candidate.customFields.getAsString()) &&
-        Objects.equals(this.remoteWasDeleted.getAsString(), candidate.remoteWasDeleted.getAsString());
+        Objects.equals(this.remoteWasDeleted.getAsString(), candidate.remoteWasDeleted.getAsString()) &&
+        Objects.equals(this.fieldMappings.getAsString(), candidate.fieldMappings.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, remoteData, customFields, remoteWasDeleted);
+    return Objects.hash(id, remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, remoteData, remoteWasDeleted, fieldMappings);
   }
   @Override
   public String toString() {
@@ -559,8 +551,8 @@ public class CandidateRawJson {
     sb.append("    applications: ").append(toIndentedString(applications.getAsString())).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
-    sb.append("    customFields: ").append(toIndentedString(customFields.getAsString())).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

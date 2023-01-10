@@ -24,17 +24,20 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.JobStatusEnum;
 import merge_ats_client.model.RemoteData;
+import merge_ats_client.model.Url;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company. ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company. ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class Job {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -59,6 +62,10 @@ public class Job {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private JobStatusEnum status;
+
+  public static final String SERIALIZED_NAME_JOB_POSTING_URLS = "job_posting_urls";
+  @SerializedName(SERIALIZED_NAME_JOB_POSTING_URLS)
+  private List<Url> jobPostingUrls = null;
 
   public static final String SERIALIZED_NAME_REMOTE_CREATED_AT = "remote_created_at";
   @SerializedName(SERIALIZED_NAME_REMOTE_CREATED_AT)
@@ -95,6 +102,10 @@ public class Job {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private Boolean remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private Map<String, Object> fieldMappings = null;
 
 
    /**
@@ -223,6 +234,37 @@ public class Job {
 
   public void setStatus(JobStatusEnum status) {
     this.status = status;
+  }
+
+
+  public Job jobPostingUrls(List<Url> jobPostingUrls) {
+    
+    this.jobPostingUrls = jobPostingUrls;
+    return this;
+  }
+
+  public Job addJobPostingUrlsItem(Url jobPostingUrlsItem) {
+    if (this.jobPostingUrls == null) {
+      this.jobPostingUrls = new ArrayList<Url>();
+    }
+    this.jobPostingUrls.add(jobPostingUrlsItem);
+    return this;
+  }
+
+   /**
+   * Get jobPostingUrls
+   * @return jobPostingUrls
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[{\"value\":\"https://merge.dev/careers\",\"url_type\":\"JOB_POSTING\"}]", value = "")
+
+  public List<Url> getJobPostingUrls() {
+    return jobPostingUrls;
+  }
+
+
+  public void setJobPostingUrls(List<Url> jobPostingUrls) {
+    this.jobPostingUrls = jobPostingUrls;
   }
 
 
@@ -403,11 +445,11 @@ public class Job {
   }
 
    /**
-   * IDs of RemoteUser objects that serve as recruiters for this Job.
+   * IDs of &#x60;RemoteUser&#x60; objects that serve as recruiters for this &#x60;Job&#x60;.
    * @return recruiters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "IDs of RemoteUser objects that serve as recruiters for this Job.")
+  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "IDs of `RemoteUser` objects that serve as recruiters for this `Job`.")
 
   public List<UUID> getRecruiters() {
     return recruiters;
@@ -434,14 +476,28 @@ public class Job {
 
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public Boolean getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+
+
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public Map<String, Object> getFieldMappings() {
+    return fieldMappings;
   }
 
 
@@ -462,6 +518,7 @@ public class Job {
         Objects.equals(this.description, job.description) &&
         Objects.equals(this.code, job.code) &&
         Objects.equals(this.status, job.status) &&
+        Objects.equals(this.jobPostingUrls, job.jobPostingUrls) &&
         Objects.equals(this.remoteCreatedAt, job.remoteCreatedAt) &&
         Objects.equals(this.remoteUpdatedAt, job.remoteUpdatedAt) &&
         Objects.equals(this.confidential, job.confidential) &&
@@ -470,12 +527,13 @@ public class Job {
         Objects.equals(this.hiringManagers, job.hiringManagers) &&
         Objects.equals(this.recruiters, job.recruiters) &&
         Objects.equals(this.remoteData, job.remoteData) &&
-        Objects.equals(this.remoteWasDeleted, job.remoteWasDeleted);
+        Objects.equals(this.remoteWasDeleted, job.remoteWasDeleted) &&
+        Objects.equals(this.fieldMappings, job.fieldMappings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, name, description, code, status, jobPostingUrls, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData, remoteWasDeleted, fieldMappings);
   }
 
   @Override
@@ -488,6 +546,7 @@ public class Job {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    jobPostingUrls: ").append(toIndentedString(jobPostingUrls)).append("\n");
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt)).append("\n");
     sb.append("    remoteUpdatedAt: ").append(toIndentedString(remoteUpdatedAt)).append("\n");
     sb.append("    confidential: ").append(toIndentedString(confidential)).append("\n");
@@ -497,6 +556,7 @@ public class Job {
     sb.append("    recruiters: ").append(toIndentedString(recruiters)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

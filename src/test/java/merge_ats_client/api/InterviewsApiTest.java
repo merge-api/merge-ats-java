@@ -57,8 +57,9 @@ public class InterviewsApiTest {
         OffsetDateTime modifiedBefore = null;
         String organizerId = null;
         Integer pageSize = null;
+        String remoteFields = null;
         String remoteId = null;
-        PaginatedScheduledInterviewList response = api.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteId);
+        PaginatedScheduledInterviewList response = api.interviewsList(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId);
 
         // TODO: test validations
     }
@@ -76,7 +77,8 @@ public class InterviewsApiTest {
         String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        ScheduledInterview response = api.interviewsRetrieve(xAccountToken, id, includeRemoteData);
+        String remoteFields = null;
+        ScheduledInterview response = api.interviewsRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

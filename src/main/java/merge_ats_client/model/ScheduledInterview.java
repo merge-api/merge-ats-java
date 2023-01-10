@@ -24,17 +24,19 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.RemoteData;
 import merge_ats_client.model.ScheduledInterviewStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
+ * # The ScheduledInterview Object ### Description The &#x60;ScheduledInterview&#x60; object is used to represent an interview. ### Usage Example Fetch from the &#x60;LIST ScheduledInterviews&#x60; endpoint and filter by &#x60;interviewers&#x60; to show all office locations.
  */
-@ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@ApiModel(description = "# The ScheduledInterview Object ### Description The `ScheduledInterview` object is used to represent an interview. ### Usage Example Fetch from the `LIST ScheduledInterviews` endpoint and filter by `interviewers` to show all office locations.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class ScheduledInterview {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -92,6 +94,10 @@ public class ScheduledInterview {
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private Boolean remoteWasDeleted;
 
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private Map<String, Object> fieldMappings = null;
+
 
    /**
    * Get id
@@ -137,11 +143,11 @@ public class ScheduledInterview {
   }
 
    /**
-   * Get application
+   * The application being interviewed.
    * @return application
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "92e8a369-fffe-430d-b93a-f7e8a16563f1", value = "")
+  @ApiModelProperty(example = "92e8a369-fffe-430d-b93a-f7e8a16563f1", value = "The application being interviewed.")
 
   public UUID getApplication() {
     return application;
@@ -160,11 +166,11 @@ public class ScheduledInterview {
   }
 
    /**
-   * Get jobInterviewStage
+   * The stage of the interview.
    * @return jobInterviewStage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2f7adb59-3fe6-4b5b-aef6-563f72bd13dc", value = "")
+  @ApiModelProperty(example = "2f7adb59-3fe6-4b5b-aef6-563f72bd13dc", value = "The stage of the interview.")
 
   public UUID getJobInterviewStage() {
     return jobInterviewStage;
@@ -183,11 +189,11 @@ public class ScheduledInterview {
   }
 
    /**
-   * Get organizer
+   * The user organizing the interview.
    * @return organizer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The user organizing the interview.")
 
   public UUID getOrganizer() {
     return organizer;
@@ -383,14 +389,28 @@ public class ScheduledInterview {
 
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public Boolean getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+
+
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public Map<String, Object> getFieldMappings() {
+    return fieldMappings;
   }
 
 
@@ -418,12 +438,13 @@ public class ScheduledInterview {
         Objects.equals(this.remoteUpdatedAt, scheduledInterview.remoteUpdatedAt) &&
         Objects.equals(this.status, scheduledInterview.status) &&
         Objects.equals(this.remoteData, scheduledInterview.remoteData) &&
-        Objects.equals(this.remoteWasDeleted, scheduledInterview.remoteWasDeleted);
+        Objects.equals(this.remoteWasDeleted, scheduledInterview.remoteWasDeleted) &&
+        Objects.equals(this.fieldMappings, scheduledInterview.fieldMappings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, application, jobInterviewStage, organizer, interviewers, location, startAt, endAt, remoteCreatedAt, remoteUpdatedAt, status, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, application, jobInterviewStage, organizer, interviewers, location, startAt, endAt, remoteCreatedAt, remoteUpdatedAt, status, remoteData, remoteWasDeleted, fieldMappings);
   }
 
   @Override
@@ -444,6 +465,7 @@ public class ScheduledInterview {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

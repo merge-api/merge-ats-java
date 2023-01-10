@@ -55,8 +55,9 @@ public class EeocsApiTest {
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
+        String remoteFields = null;
         String remoteId = null;
-        PaginatedEEOCList response = api.eeocsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedEEOCList response = api.eeocsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
 
         // TODO: test validations
     }
@@ -74,7 +75,8 @@ public class EeocsApiTest {
         String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        EEOC response = api.eeocsRetrieve(xAccountToken, id, includeRemoteData);
+        String remoteFields = null;
+        EEOC response = api.eeocsRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

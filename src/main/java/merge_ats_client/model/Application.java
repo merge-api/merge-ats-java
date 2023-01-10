@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.  Please note: Application objects are constructed if the object does not exist in the remote system.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
 @ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.  Please note: Application objects are constructed if the object does not exist in the remote system.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class Application {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -81,13 +81,13 @@ public class Application {
   @SerializedName(SERIALIZED_NAME_REMOTE_DATA)
   private List<RemoteData> remoteData = null;
 
-  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
-  private Map<String, Object> customFields = null;
-
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private Boolean remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private Map<String, Object> fieldMappings = null;
 
 
    /**
@@ -134,11 +134,11 @@ public class Application {
   }
 
    /**
-   * Get candidate
+   * The candidate applying.
    * @return candidate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The candidate applying.")
 
   public UUID getCandidate() {
     return candidate;
@@ -157,11 +157,11 @@ public class Application {
   }
 
    /**
-   * Get job
+   * The job being applied for.
    * @return job
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The job being applied for.")
 
   public UUID getJob() {
     return job;
@@ -249,11 +249,11 @@ public class Application {
   }
 
    /**
-   * Get creditedTo
+   * The user credited for this application.
    * @return creditedTo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "58166795-8d68-4b30-9bfb-bfd402479484", value = "")
+  @ApiModelProperty(example = "58166795-8d68-4b30-9bfb-bfd402479484", value = "The user credited for this application.")
 
   public UUID getCreditedTo() {
     return creditedTo;
@@ -272,11 +272,11 @@ public class Application {
   }
 
    /**
-   * Get currentStage
+   * The application&#39;s current stage.
    * @return currentStage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "")
+  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "The application's current stage.")
 
   public UUID getCurrentStage() {
     return currentStage;
@@ -295,11 +295,11 @@ public class Application {
   }
 
    /**
-   * Get rejectReason
+   * The application&#39;s reason for rejection.
    * @return rejectReason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "")
+  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "The application's reason for rejection.")
 
   public UUID getRejectReason() {
     return rejectReason;
@@ -325,37 +325,6 @@ public class Application {
 
 
 
-  public Application customFields(Map<String, Object> customFields) {
-    
-    this.customFields = customFields;
-    return this;
-  }
-
-  public Application putCustomFieldsItem(String key, Object customFieldsItem) {
-    if (this.customFields == null) {
-      this.customFields = new HashMap<String, Object>();
-    }
-    this.customFields.put(key, customFieldsItem);
-    return this;
-  }
-
-   /**
-   * Custom fields configured for a given model.
-   * @return customFields
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Custom fields configured for a given model.")
-
-  public Map<String, Object> getCustomFields() {
-    return customFields;
-  }
-
-
-  public void setCustomFields(Map<String, Object> customFields) {
-    this.customFields = customFields;
-  }
-
-
    /**
    * Get remoteWasDeleted
    * @return remoteWasDeleted
@@ -365,6 +334,20 @@ public class Application {
 
   public Boolean getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+
+
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public Map<String, Object> getFieldMappings() {
+    return fieldMappings;
   }
 
 
@@ -390,13 +373,13 @@ public class Application {
         Objects.equals(this.currentStage, application.currentStage) &&
         Objects.equals(this.rejectReason, application.rejectReason) &&
         Objects.equals(this.remoteData, application.remoteData) &&
-        Objects.equals(this.customFields, application.customFields) &&
-        Objects.equals(this.remoteWasDeleted, application.remoteWasDeleted);
+        Objects.equals(this.remoteWasDeleted, application.remoteWasDeleted) &&
+        Objects.equals(this.fieldMappings, application.fieldMappings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, remoteData, customFields, remoteWasDeleted);
+    return Objects.hash(id, remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, remoteData, remoteWasDeleted, fieldMappings);
   }
 
   @Override
@@ -414,8 +397,8 @@ public class Application {
     sb.append("    currentStage: ").append(toIndentedString(currentStage)).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
-    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Job Object ### Description The &#x60;Job&#x60; object is used to represent a Job offering at a company. ### Usage Example Fetch from the &#x60;LIST Jobs&#x60; endpoint to show all job postings.
  */
 @ApiModel(description = "# The Job Object ### Description The `Job` object is used to represent a Job offering at a company. ### Usage Example Fetch from the `LIST Jobs` endpoint to show all job postings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class JobRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -59,6 +59,10 @@ public class JobRawJson {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private JsonElement status;
+
+  public static final String SERIALIZED_NAME_JOB_POSTING_URLS = "job_posting_urls";
+  @SerializedName(SERIALIZED_NAME_JOB_POSTING_URLS)
+  private JsonElement jobPostingUrls;
 
   public static final String SERIALIZED_NAME_REMOTE_CREATED_AT = "remote_created_at";
   @SerializedName(SERIALIZED_NAME_REMOTE_CREATED_AT)
@@ -95,6 +99,10 @@ public class JobRawJson {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private JsonElement remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private JsonElement fieldMappings;
 
   private transient JSON serializer;
 
@@ -207,6 +215,25 @@ public class JobRawJson {
   }
   public void setStatus(JsonElement status) {
     this.status = status;
+  }
+
+  public JobRawJson jobPostingUrls(List<Url> jobPostingUrls) {
+    this.jobPostingUrls = this.serializer.getGson().toJsonTree(jobPostingUrls);
+    return this;
+  }
+
+   /**
+   * Get jobPostingUrls
+   * @return jobPostingUrls
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[{\"value\":\"https://merge.dev/careers\",\"url_type\":\"JOB_POSTING\"}]", value = "")
+
+  public JsonElement getJobPostingUrls() {
+    return jobPostingUrls;
+  }
+  public void setJobPostingUrls(JsonElement jobPostingUrls) {
+    this.jobPostingUrls = jobPostingUrls;
   }
 
   public JobRawJson remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
@@ -329,11 +356,11 @@ public class JobRawJson {
   }
 
    /**
-   * IDs of RemoteUser objects that serve as recruiters for this Job.
+   * IDs of &#x60;RemoteUser&#x60; objects that serve as recruiters for this &#x60;Job&#x60;.
    * @return recruiters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "IDs of RemoteUser objects that serve as recruiters for this Job.")
+  @ApiModelProperty(example = "[\"787ed912-33ec-444e-a215-8d71cc42fc12\"]", value = "IDs of `RemoteUser` objects that serve as recruiters for this `Job`.")
 
   public JsonElement getRecruiters() {
     return recruiters;
@@ -354,14 +381,25 @@ public class JobRawJson {
   }
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public JsonElement getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public JsonElement getFieldMappings() {
+    return fieldMappings;
   }
   @Override
   public boolean equals(Object o) {
@@ -378,6 +416,7 @@ public class JobRawJson {
         Objects.equals(this.description.getAsString(), job.description.getAsString()) &&
         Objects.equals(this.code.getAsString(), job.code.getAsString()) &&
         Objects.equals(this.status.getAsString(), job.status.getAsString()) &&
+        Objects.equals(this.jobPostingUrls.getAsString(), job.jobPostingUrls.getAsString()) &&
         Objects.equals(this.remoteCreatedAt.getAsString(), job.remoteCreatedAt.getAsString()) &&
         Objects.equals(this.remoteUpdatedAt.getAsString(), job.remoteUpdatedAt.getAsString()) &&
         Objects.equals(this.confidential.getAsString(), job.confidential.getAsString()) &&
@@ -386,11 +425,12 @@ public class JobRawJson {
         Objects.equals(this.hiringManagers.getAsString(), job.hiringManagers.getAsString()) &&
         Objects.equals(this.recruiters.getAsString(), job.recruiters.getAsString()) &&
         Objects.equals(this.remoteData.getAsString(), job.remoteData.getAsString()) &&
-        Objects.equals(this.remoteWasDeleted.getAsString(), job.remoteWasDeleted.getAsString());
+        Objects.equals(this.remoteWasDeleted.getAsString(), job.remoteWasDeleted.getAsString()) &&
+        Objects.equals(this.fieldMappings.getAsString(), job.fieldMappings.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, description, code, status, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, name, description, code, status, jobPostingUrls, remoteCreatedAt, remoteUpdatedAt, confidential, departments, offices, hiringManagers, recruiters, remoteData, remoteWasDeleted, fieldMappings);
   }
   @Override
   public String toString() {
@@ -402,6 +442,7 @@ public class JobRawJson {
     sb.append("    description: ").append(toIndentedString(description.getAsString())).append("\n");
     sb.append("    code: ").append(toIndentedString(code.getAsString())).append("\n");
     sb.append("    status: ").append(toIndentedString(status.getAsString())).append("\n");
+    sb.append("    jobPostingUrls: ").append(toIndentedString(jobPostingUrls.getAsString())).append("\n");
     sb.append("    remoteCreatedAt: ").append(toIndentedString(remoteCreatedAt.getAsString())).append("\n");
     sb.append("    remoteUpdatedAt: ").append(toIndentedString(remoteUpdatedAt.getAsString())).append("\n");
     sb.append("    confidential: ").append(toIndentedString(confidential.getAsString())).append("\n");
@@ -411,6 +452,7 @@ public class JobRawJson {
     sb.append("    recruiters: ").append(toIndentedString(recruiters.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

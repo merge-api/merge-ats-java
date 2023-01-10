@@ -22,7 +22,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.OfferStatusEnum;
 import merge_ats_client.model.RemoteData;
@@ -132,6 +134,14 @@ public class OfferTest {
     @Test
     public void remoteWasDeletedTest() {
         // TODO: test remoteWasDeleted
+    }
+
+    /**
+     * Test the property 'fieldMappings'
+     */
+    @Test
+    public void fieldMappingsTest() {
+        // TODO: test fieldMappings
     }
 
 }

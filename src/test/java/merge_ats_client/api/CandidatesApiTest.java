@@ -91,6 +91,7 @@ public class CandidatesApiTest {
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
+        String emailAddresses = null;
         String firstName = null;
         Boolean includeDeletedData = null;
         Boolean includeRemoteData = null;
@@ -99,7 +100,8 @@ public class CandidatesApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        String tags = null;
+        PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, emailAddresses, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, tags);
 
         // TODO: test validations
     }

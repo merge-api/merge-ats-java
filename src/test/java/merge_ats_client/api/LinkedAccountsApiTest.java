@@ -51,11 +51,12 @@ public class LinkedAccountsApiTest {
         String endUserOriginIds = null;
         UUID id = null;
         String ids = null;
+        Boolean includeDuplicates = null;
         String integrationName = null;
         String isTestAccount = null;
         Integer pageSize = null;
         String status = null;
-        PaginatedAccountDetailsAndActionsList response = api.linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, integrationName, isTestAccount, pageSize, status);
+        PaginatedAccountDetailsAndActionsList response = api.linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, includeDuplicates, integrationName, isTestAccount, pageSize, status);
 
         // TODO: test validations
     }

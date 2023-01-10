@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="linkedAccountsList"></a>
 # **linkedAccountsList**
-> PaginatedAccountDetailsAndActionsList linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, integrationName, isTestAccount, pageSize, status)
+> PaginatedAccountDetailsAndActionsList linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, includeDuplicates, integrationName, isTestAccount, pageSize, status)
 
 
 
@@ -45,12 +45,13 @@ public class Example {
     String endUserOriginIds = "endUserOriginIds_example"; // String | Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once.
     UUID id = new UUID(); // UUID | 
     String ids = "ids_example"; // String | Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once.
+    Boolean includeDuplicates = true; // Boolean | If `true`, will include complete production duplicates of the account specified by the `id` query parameter in the response. `id` must be for a complete production linked account.
     String integrationName = "integrationName_example"; // String | If provided, will only return linked accounts associated with the given integration name.
     String isTestAccount = "isTestAccount_example"; // String | If included, will only include test linked accounts. If not included, will only include non-test linked accounts.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String status = "status_example"; // String | Filter by status. Options: `COMPLETE`, `INCOMPLETE`, `RELINK_NEEDED`
     try {
-      PaginatedAccountDetailsAndActionsList result = apiInstance.linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, integrationName, isTestAccount, pageSize, status);
+      PaginatedAccountDetailsAndActionsList result = apiInstance.linkedAccountsList(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, includeDuplicates, integrationName, isTestAccount, pageSize, status);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LinkedAccountsApi#linkedAccountsList");
@@ -75,6 +76,7 @@ Name | Type | Description  | Notes
  **endUserOriginIds** | **String**| Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once. | [optional]
  **id** | [**UUID**](.md)|  | [optional]
  **ids** | **String**| Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once. | [optional]
+ **includeDuplicates** | **Boolean**| If &#x60;true&#x60;, will include complete production duplicates of the account specified by the &#x60;id&#x60; query parameter in the response. &#x60;id&#x60; must be for a complete production linked account. | [optional]
  **integrationName** | **String**| If provided, will only return linked accounts associated with the given integration name. | [optional]
  **isTestAccount** | **String**| If included, will only include test linked accounts. If not included, will only include non-test linked accounts. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]

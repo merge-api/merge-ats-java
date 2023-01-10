@@ -17,5 +17,7 @@
 
 * `OTHER` (value: `"OTHER"`)
 
+* `JOB_POSTING` (value: `"JOB_POSTING"`)
+
 
 

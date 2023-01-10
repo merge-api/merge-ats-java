@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * EndUserDetailsRequestRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class EndUserDetailsRequestRawJson {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
@@ -59,6 +59,10 @@ public class EndUserDetailsRequestRawJson {
   @SerializedName(SERIALIZED_NAME_LINK_EXPIRY_MINS)
   private JsonElement linkExpiryMins;
 
+  public static final String SERIALIZED_NAME_SHOULD_CREATE_MAGIC_LINK_URL = "should_create_magic_link_url";
+  @SerializedName(SERIALIZED_NAME_SHOULD_CREATE_MAGIC_LINK_URL)
+  private JsonElement shouldCreateMagicLinkUrl;
+
   private transient JSON serializer;
 
   public EndUserDetailsRequestRawJson(JSON srlzer) { 
@@ -72,11 +76,11 @@ public class EndUserDetailsRequestRawJson {
   }
 
    /**
-   * Get endUserEmailAddress
+   * Your end user&#39;s email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
    * @return endUserEmailAddress
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.")
 
   public JsonElement getEndUserEmailAddress() {
     return endUserEmailAddress;
@@ -91,11 +95,11 @@ public class EndUserDetailsRequestRawJson {
   }
 
    /**
-   * Get endUserOrganizationName
+   * Your end user&#39;s organization.
    * @return endUserOrganizationName
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Your end user's organization.")
 
   public JsonElement getEndUserOrganizationName() {
     return endUserOrganizationName;
@@ -110,11 +114,11 @@ public class EndUserDetailsRequestRawJson {
   }
 
    /**
-   * Get endUserOriginId
+   * This unique identifier typically represents the ID for your end user in your product&#39;s database. This value must be distinct from other Linked Accounts&#39; unique identifiers.
    * @return endUserOriginId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.")
 
   public JsonElement getEndUserOriginId() {
     return endUserOriginId;
@@ -129,11 +133,11 @@ public class EndUserDetailsRequestRawJson {
   }
 
    /**
-   * Get categories
+   * The integration categories to show in Merge Link.
    * @return categories
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The integration categories to show in Merge Link.")
 
   public JsonElement getCategories() {
     return categories;
@@ -148,11 +152,11 @@ public class EndUserDetailsRequestRawJson {
   }
 
    /**
-   * The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata
+   * The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.
    * @return integration
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata")
+  @ApiModelProperty(value = "The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.")
 
   public JsonElement getIntegration() {
     return integration;
@@ -167,19 +171,38 @@ public class EndUserDetailsRequestRawJson {
   }
 
    /**
-   * An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30
+   * An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.
    * minimum: 30
-   * maximum: 720
+   * maximum: 10080
    * @return linkExpiryMins
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30")
+  @ApiModelProperty(value = "An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.")
 
   public JsonElement getLinkExpiryMins() {
     return linkExpiryMins;
   }
   public void setLinkExpiryMins(JsonElement linkExpiryMins) {
     this.linkExpiryMins = linkExpiryMins;
+  }
+
+  public EndUserDetailsRequestRawJson shouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl) {
+    this.shouldCreateMagicLinkUrl = this.serializer.getGson().toJsonTree(shouldCreateMagicLinkUrl);
+    return this;
+  }
+
+   /**
+   * Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/.
+   * @return shouldCreateMagicLinkUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/.")
+
+  public JsonElement getShouldCreateMagicLinkUrl() {
+    return shouldCreateMagicLinkUrl;
+  }
+  public void setShouldCreateMagicLinkUrl(JsonElement shouldCreateMagicLinkUrl) {
+    this.shouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl;
   }
   @Override
   public boolean equals(Object o) {
@@ -195,11 +218,12 @@ public class EndUserDetailsRequestRawJson {
         Objects.equals(this.endUserOriginId.getAsString(), endUserDetailsRequest.endUserOriginId.getAsString()) &&
         Objects.equals(this.categories.getAsString(), endUserDetailsRequest.categories.getAsString()) &&
         Objects.equals(this.integration.getAsString(), endUserDetailsRequest.integration.getAsString()) &&
-        Objects.equals(this.linkExpiryMins.getAsString(), endUserDetailsRequest.linkExpiryMins.getAsString());
+        Objects.equals(this.linkExpiryMins.getAsString(), endUserDetailsRequest.linkExpiryMins.getAsString()) &&
+        Objects.equals(this.shouldCreateMagicLinkUrl.getAsString(), endUserDetailsRequest.shouldCreateMagicLinkUrl.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration, linkExpiryMins);
+    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration, linkExpiryMins, shouldCreateMagicLinkUrl);
   }
   @Override
   public String toString() {
@@ -211,6 +235,7 @@ public class EndUserDetailsRequestRawJson {
     sb.append("    categories: ").append(toIndentedString(categories.getAsString())).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration.getAsString())).append("\n");
     sb.append("    linkExpiryMins: ").append(toIndentedString(linkExpiryMins.getAsString())).append("\n");
+    sb.append("    shouldCreateMagicLinkUrl: ").append(toIndentedString(shouldCreateMagicLinkUrl.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

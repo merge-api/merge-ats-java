@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Offer Object ### Description The &#x60;Offer&#x60; object is used to represent an offer for an application. ### Usage Example Fetch from the &#x60;LIST Offers&#x60; endpoint and filter by &#x60;ID&#x60; to show all offers.
  */
 @ApiModel(description = "# The Offer Object ### Description The `Offer` object is used to represent an offer for an application. ### Usage Example Fetch from the `LIST Offers` endpoint and filter by `ID` to show all offers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class OfferRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -80,6 +80,10 @@ public class OfferRawJson {
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private JsonElement remoteWasDeleted;
 
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private JsonElement fieldMappings;
+
   private transient JSON serializer;
 
   public OfferRawJson(JSON srlzer) { 
@@ -123,11 +127,11 @@ public class OfferRawJson {
   }
 
    /**
-   * Get application
+   * The application who is receiving the offer.
    * @return application
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The application who is receiving the offer.")
 
   public JsonElement getApplication() {
     return application;
@@ -142,11 +146,11 @@ public class OfferRawJson {
   }
 
    /**
-   * Get creator
+   * The user who created the offer.
    * @return creator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The user who created the offer.")
 
   public JsonElement getCreator() {
     return creator;
@@ -262,14 +266,25 @@ public class OfferRawJson {
   }
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public JsonElement getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public JsonElement getFieldMappings() {
+    return fieldMappings;
   }
   @Override
   public boolean equals(Object o) {
@@ -290,11 +305,12 @@ public class OfferRawJson {
         Objects.equals(this.startDate.getAsString(), offer.startDate.getAsString()) &&
         Objects.equals(this.status.getAsString(), offer.status.getAsString()) &&
         Objects.equals(this.remoteData.getAsString(), offer.remoteData.getAsString()) &&
-        Objects.equals(this.remoteWasDeleted.getAsString(), offer.remoteWasDeleted.getAsString());
+        Objects.equals(this.remoteWasDeleted.getAsString(), offer.remoteWasDeleted.getAsString()) &&
+        Objects.equals(this.fieldMappings.getAsString(), offer.fieldMappings.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, application, creator, remoteCreatedAt, closedAt, sentAt, startDate, status, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, application, creator, remoteCreatedAt, closedAt, sentAt, startDate, status, remoteData, remoteWasDeleted, fieldMappings);
   }
   @Override
   public String toString() {
@@ -311,6 +327,7 @@ public class OfferRawJson {
     sb.append("    status: ").append(toIndentedString(status.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

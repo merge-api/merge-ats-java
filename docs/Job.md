@@ -14,15 +14,17 @@ Name | Type | Description | Notes
 **description** | **String** | The job&#39;s description. |  [optional]
 **code** | **String** | The job&#39;s code. Typically an additional identifier used to reference the particular job that is displayed on the ATS. |  [optional]
 **status** | [**JobStatusEnum**](JobStatusEnum.md) | The job&#39;s status. |  [optional]
+**jobPostingUrls** | [**List&lt;Url&gt;**](Url.md) |  |  [optional]
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s job was created. |  [optional]
 **remoteUpdatedAt** | **OffsetDateTime** | When the third party&#39;s job was updated. |  [optional]
 **confidential** | **Boolean** | Whether the job is confidential. |  [optional]
 **departments** | **List&lt;UUID&gt;** | IDs of &#x60;Department&#x60; objects for this &#x60;Job&#x60;. |  [optional]
 **offices** | **List&lt;UUID&gt;** | IDs of &#x60;Office&#x60; objects for this &#x60;Job&#x60;. |  [optional]
 **hiringManagers** | **List&lt;UUID&gt;** | IDs of &#x60;RemoteUser&#x60; objects that serve as hiring managers for this &#x60;Job&#x60;. |  [optional]
-**recruiters** | **List&lt;UUID&gt;** | IDs of RemoteUser objects that serve as recruiters for this Job. |  [optional]
+**recruiters** | **List&lt;UUID&gt;** | IDs of &#x60;RemoteUser&#x60; objects that serve as recruiters for this &#x60;Job&#x60;. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
-**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted by third party webhooks. |  [optional] [readonly]
+**fieldMappings** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly]
 
 
 

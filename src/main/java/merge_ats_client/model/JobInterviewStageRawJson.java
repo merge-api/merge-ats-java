@@ -31,10 +31,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The JobInterviewStage Object ### Description The &#x60;JobInterviewStage&#x60; object is used to represent the stage of an interview ### Usage Example Fetch from the &#x60;LIST JobInterviewStages&#x60; endpoint and view the job interview stages used by a company.
+ * # The JobInterviewStage Object ### Description The &#x60;JobInterviewStage&#x60; object is used to represent the stage that a job application is in. ### Usage Example Fetch from the &#x60;LIST JobInterviewStages&#x60; endpoint and view the job interview stages used by a company.
  */
-@ApiModel(description = "# The JobInterviewStage Object ### Description The `JobInterviewStage` object is used to represent the stage of an interview ### Usage Example Fetch from the `LIST JobInterviewStages` endpoint and view the job interview stages used by a company.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@ApiModel(description = "# The JobInterviewStage Object ### Description The `JobInterviewStage` object is used to represent the stage that a job application is in. ### Usage Example Fetch from the `LIST JobInterviewStages` endpoint and view the job interview stages used by a company.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class JobInterviewStageRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -59,6 +59,10 @@ public class JobInterviewStageRawJson {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private JsonElement remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private JsonElement fieldMappings;
 
   private transient JSON serializer;
 
@@ -122,11 +126,11 @@ public class JobInterviewStageRawJson {
   }
 
    /**
-   * Get job
+   * This field is populated only if the stage is specific to a particular job. If the stage is generic, this field will not be populated.
    * @return job
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ba7d9648-5316-4a80-8d73-4e636cef5a90", value = "")
+  @ApiModelProperty(example = "ba7d9648-5316-4a80-8d73-4e636cef5a90", value = "This field is populated only if the stage is specific to a particular job. If the stage is generic, this field will not be populated.")
 
   public JsonElement getJob() {
     return job;
@@ -147,14 +151,25 @@ public class JobInterviewStageRawJson {
   }
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public JsonElement getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public JsonElement getFieldMappings() {
+    return fieldMappings;
   }
   @Override
   public boolean equals(Object o) {
@@ -170,11 +185,12 @@ public class JobInterviewStageRawJson {
         Objects.equals(this.name.getAsString(), jobInterviewStage.name.getAsString()) &&
         Objects.equals(this.job.getAsString(), jobInterviewStage.job.getAsString()) &&
         Objects.equals(this.remoteData.getAsString(), jobInterviewStage.remoteData.getAsString()) &&
-        Objects.equals(this.remoteWasDeleted.getAsString(), jobInterviewStage.remoteWasDeleted.getAsString());
+        Objects.equals(this.remoteWasDeleted.getAsString(), jobInterviewStage.remoteWasDeleted.getAsString()) &&
+        Objects.equals(this.fieldMappings.getAsString(), jobInterviewStage.fieldMappings.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, name, job, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, name, job, remoteData, remoteWasDeleted, fieldMappings);
   }
   @Override
   public String toString() {
@@ -186,6 +202,7 @@ public class JobInterviewStageRawJson {
     sb.append("    job: ").append(toIndentedString(job.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import merge_ats_client.model.ResponseTypeEnum;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -73,6 +74,22 @@ public class RemoteResponseTest {
     @Test
     public void responseTest() {
         // TODO: test response
+    }
+
+    /**
+     * Test the property 'responseHeaders'
+     */
+    @Test
+    public void responseHeadersTest() {
+        // TODO: test responseHeaders
+    }
+
+    /**
+     * Test the property 'responseType'
+     */
+    @Test
+    public void responseTypeTest() {
+        // TODO: test responseType
     }
 
     /**

@@ -103,4 +103,12 @@ public class DataPassthroughRequestTest {
         // TODO: test requestFormat
     }
 
+    /**
+     * Test the property 'normalizeResponse'
+     */
+    @Test
+    public void normalizeResponseTest() {
+        // TODO: test normalizeResponse
+    }
+
 }

@@ -118,14 +118,6 @@ public class ApplicationRequestTest {
     }
 
     /**
-     * Test the property 'customFields'
-     */
-    @Test
-    public void customFieldsTest() {
-        // TODO: test customFields
-    }
-
-    /**
      * Test the property 'remoteTemplateId'
      */
     @Test

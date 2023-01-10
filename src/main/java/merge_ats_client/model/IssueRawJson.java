@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * IssueRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class IssueRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -63,6 +63,10 @@ public class IssueRawJson {
   @SerializedName(SERIALIZED_NAME_IS_MUTED)
   private JsonElement isMuted;
 
+  public static final String SERIALIZED_NAME_ERROR_DETAILS = "error_details";
+  @SerializedName(SERIALIZED_NAME_ERROR_DETAILS)
+  private JsonElement errorDetails;
+
   private transient JSON serializer;
 
   public IssueRawJson(JSON srlzer) { 
@@ -75,7 +79,7 @@ public class IssueRawJson {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "3fa85f64-5717-4562-b3fc-2c963f66afa6", value = "")
 
   public JsonElement getId() {
     return id;
@@ -91,7 +95,7 @@ public class IssueRawJson {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "ONGOING", value = "")
 
   public JsonElement getStatus() {
     return status;
@@ -110,7 +114,7 @@ public class IssueRawJson {
    * @return errorDescription
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "string", required = true, value = "")
 
   public JsonElement getErrorDescription() {
     return errorDescription;
@@ -124,7 +128,7 @@ public class IssueRawJson {
    * @return endUser
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "b82302de-852e-4e60-b050-edf9da3b7c02", value = "")
 
   public JsonElement getEndUser() {
     return endUser;
@@ -140,7 +144,7 @@ public class IssueRawJson {
    * @return firstIncidentTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2022-12-05T16:19:15.161Z", value = "")
 
   public JsonElement getFirstIncidentTime() {
     return firstIncidentTime;
@@ -159,7 +163,7 @@ public class IssueRawJson {
    * @return lastIncidentTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2022-12-05T16:19:15.161Z", value = "")
 
   public JsonElement getLastIncidentTime() {
     return lastIncidentTime;
@@ -173,10 +177,21 @@ public class IssueRawJson {
    * @return isMuted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "true", value = "")
 
   public JsonElement getIsMuted() {
     return isMuted;
+  }
+
+   /**
+   * Get errorDetails
+   * @return errorDetails
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"Missing employee permissions.\",\"Missing time off permissions.\"]", value = "")
+
+  public JsonElement getErrorDetails() {
+    return errorDetails;
   }
   @Override
   public boolean equals(Object o) {
@@ -193,11 +208,12 @@ public class IssueRawJson {
         Objects.equals(this.endUser.getAsString(), issue.endUser.getAsString()) &&
         Objects.equals(this.firstIncidentTime.getAsString(), issue.firstIncidentTime.getAsString()) &&
         Objects.equals(this.lastIncidentTime.getAsString(), issue.lastIncidentTime.getAsString()) &&
-        Objects.equals(this.isMuted.getAsString(), issue.isMuted.getAsString());
+        Objects.equals(this.isMuted.getAsString(), issue.isMuted.getAsString()) &&
+        Objects.equals(this.errorDetails.getAsString(), issue.errorDetails.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, errorDescription, endUser, firstIncidentTime, lastIncidentTime, isMuted);
+    return Objects.hash(id, status, errorDescription, endUser, firstIncidentTime, lastIncidentTime, isMuted, errorDetails);
   }
   @Override
   public String toString() {
@@ -210,6 +226,7 @@ public class IssueRawJson {
     sb.append("    firstIncidentTime: ").append(toIndentedString(firstIncidentTime.getAsString())).append("\n");
     sb.append("    lastIncidentTime: ").append(toIndentedString(lastIncidentTime.getAsString())).append("\n");
     sb.append("    isMuted: ").append(toIndentedString(isMuted.getAsString())).append("\n");
+    sb.append("    errorDetails: ").append(toIndentedString(errorDetails.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

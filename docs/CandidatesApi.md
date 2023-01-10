@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 <a name="candidatesList"></a>
 # **candidatesList**
-> PaginatedCandidateList candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedCandidateList candidatesList(xAccountToken, createdAfter, createdBefore, cursor, emailAddresses, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, tags)
 
 
 
@@ -193,16 +193,18 @@ public class Example {
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
+    String emailAddresses = "emailAddresses_example"; // String | If provided, will only return candidates with these email addresses; multiple addresses can be separated by commas.
     String firstName = "firstName_example"; // String | If provided, will only return candidates with this first name.
-    Boolean includeDeletedData = true; // Boolean | Whether to include data that was deleted in the third-party service.
+    Boolean includeDeletedData = true; // Boolean | Whether to include data that was marked as deleted by third party webhooks.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String lastName = "lastName_example"; // String | If provided, will only return candidates with this last name.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
     OffsetDateTime modifiedBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified before this datetime.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
+    String tags = "tags_example"; // String | If provided, will only return candidates with these tags; multiple tags can be separated by commas.
     try {
-      PaginatedCandidateList result = apiInstance.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedCandidateList result = apiInstance.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, emailAddresses, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, tags);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CandidatesApi#candidatesList");
@@ -223,14 +225,16 @@ Name | Type | Description  | Notes
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
+ **emailAddresses** | **String**| If provided, will only return candidates with these email addresses; multiple addresses can be separated by commas. | [optional]
  **firstName** | **String**| If provided, will only return candidates with this first name. | [optional]
- **includeDeletedData** | **Boolean**| Whether to include data that was deleted in the third-party service. | [optional]
+ **includeDeletedData** | **Boolean**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **lastName** | **String**| If provided, will only return candidates with this last name. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
  **modifiedBefore** | **OffsetDateTime**| If provided, will only return objects modified before this datetime. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
  **remoteId** | **String**| The API provider&#39;s ID for the given object. | [optional]
+ **tags** | **String**| If provided, will only return candidates with these tags; multiple tags can be separated by commas. | [optional]
 
 ### Return type
 

@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.SelectiveSyncConfigurationsUsageEnum;
 import merge_ats_client.model.SyncStatusStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 
@@ -30,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The SyncStatus Object ### Description The &#x60;SyncStatus&#x60; object is used to represent the syncing state of an account  ### Usage Example View the &#x60;SyncStatus&#x60; for an account to see how recently its models were synced.
  */
 @ApiModel(description = "# The SyncStatus Object ### Description The `SyncStatus` object is used to represent the syncing state of an account  ### Usage Example View the `SyncStatus` for an account to see how recently its models were synced.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class SyncStatus {
   public static final String SERIALIZED_NAME_MODEL_NAME = "model_name";
   @SerializedName(SERIALIZED_NAME_MODEL_NAME)
@@ -55,6 +56,10 @@ public class SyncStatus {
   public static final String SERIALIZED_NAME_IS_INITIAL_SYNC = "is_initial_sync";
   @SerializedName(SERIALIZED_NAME_IS_INITIAL_SYNC)
   private Boolean isInitialSync;
+
+  public static final String SERIALIZED_NAME_SELECTIVE_SYNC_CONFIGURATIONS_USAGE = "selective_sync_configurations_usage";
+  @SerializedName(SERIALIZED_NAME_SELECTIVE_SYNC_CONFIGURATIONS_USAGE)
+  private SelectiveSyncConfigurationsUsageEnum selectiveSyncConfigurationsUsage;
 
 
   public SyncStatus modelName(String modelName) {
@@ -111,7 +116,8 @@ public class SyncStatus {
    * Get lastSyncStart
    * @return lastSyncStart
   **/
-  @ApiModelProperty(example = "2021-03-30T19:44:18.695973Z", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2021-03-30T19:44:18.695973Z", value = "")
 
   public OffsetDateTime getLastSyncStart() {
     return lastSyncStart;
@@ -133,7 +139,8 @@ public class SyncStatus {
    * Get nextSyncStart
    * @return nextSyncStart
   **/
-  @ApiModelProperty(example = "2021-03-30T20:44:18.662942Z", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2021-03-30T20:44:18.662942Z", value = "")
 
   public OffsetDateTime getNextSyncStart() {
     return nextSyncStart;
@@ -189,6 +196,29 @@ public class SyncStatus {
   }
 
 
+  public SyncStatus selectiveSyncConfigurationsUsage(SelectiveSyncConfigurationsUsageEnum selectiveSyncConfigurationsUsage) {
+    
+    this.selectiveSyncConfigurationsUsage = selectiveSyncConfigurationsUsage;
+    return this;
+  }
+
+   /**
+   * Get selectiveSyncConfigurationsUsage
+   * @return selectiveSyncConfigurationsUsage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "IN_NEXT_SYNC", value = "")
+
+  public SelectiveSyncConfigurationsUsageEnum getSelectiveSyncConfigurationsUsage() {
+    return selectiveSyncConfigurationsUsage;
+  }
+
+
+  public void setSelectiveSyncConfigurationsUsage(SelectiveSyncConfigurationsUsageEnum selectiveSyncConfigurationsUsage) {
+    this.selectiveSyncConfigurationsUsage = selectiveSyncConfigurationsUsage;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -203,12 +233,13 @@ public class SyncStatus {
         Objects.equals(this.lastSyncStart, syncStatus.lastSyncStart) &&
         Objects.equals(this.nextSyncStart, syncStatus.nextSyncStart) &&
         Objects.equals(this.status, syncStatus.status) &&
-        Objects.equals(this.isInitialSync, syncStatus.isInitialSync);
+        Objects.equals(this.isInitialSync, syncStatus.isInitialSync) &&
+        Objects.equals(this.selectiveSyncConfigurationsUsage, syncStatus.selectiveSyncConfigurationsUsage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(modelName, modelId, lastSyncStart, nextSyncStart, status, isInitialSync);
+    return Objects.hash(modelName, modelId, lastSyncStart, nextSyncStart, status, isInitialSync, selectiveSyncConfigurationsUsage);
   }
 
   @Override
@@ -221,6 +252,7 @@ public class SyncStatus {
     sb.append("    nextSyncStart: ").append(toIndentedString(nextSyncStart)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    isInitialSync: ").append(toIndentedString(isInitialSync)).append("\n");
+    sb.append("    selectiveSyncConfigurationsUsage: ").append(toIndentedString(selectiveSyncConfigurationsUsage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

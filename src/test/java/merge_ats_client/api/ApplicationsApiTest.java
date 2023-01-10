@@ -21,6 +21,7 @@ import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedApplicationList;
 import java.util.UUID;
+import merge_ats_client.model.UpdateApplicationStageRequest;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -37,6 +38,26 @@ public class ApplicationsApiTest {
 
     private final ApplicationsApi api = new ApplicationsApi();
 
+    
+    /**
+     * 
+     *
+     * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void applicationsChangeStageCreateTest() throws ApiException {
+        String xAccountToken = null;
+        UUID id = null;
+        Boolean isDebugMode = null;
+        Boolean runAsync = null;
+        UpdateApplicationStageRequest updateApplicationStageRequest = null;
+        ApplicationResponse response = api.applicationsChangeStageCreate(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest);
+
+        // TODO: test validations
+    }
     
     /**
      * 
@@ -82,7 +103,8 @@ public class ApplicationsApiTest {
         Integer pageSize = null;
         String rejectReasonId = null;
         String remoteId = null;
-        PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
+        String source = null;
+        PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source);
 
         // TODO: test validations
     }

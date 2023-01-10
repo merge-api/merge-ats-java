@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * AccountDetailsRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class AccountDetailsRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -70,6 +70,10 @@ public class AccountDetailsRawJson {
   public static final String SERIALIZED_NAME_WEBHOOK_LISTENER_URL = "webhook_listener_url";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_LISTENER_URL)
   private JsonElement webhookListenerUrl;
+
+  public static final String SERIALIZED_NAME_IS_DUPLICATE = "is_duplicate";
+  @SerializedName(SERIALIZED_NAME_IS_DUPLICATE)
+  private JsonElement isDuplicate;
 
   private transient JSON serializer;
 
@@ -184,6 +188,17 @@ public class AccountDetailsRawJson {
   public JsonElement getWebhookListenerUrl() {
     return webhookListenerUrl;
   }
+
+   /**
+   * Whether a Production Linked Account&#39;s credentials match another existing Production Linked Account. This field is &#x60;null&#x60; for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
+   * @return isDuplicate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.")
+
+  public JsonElement getIsDuplicate() {
+    return isDuplicate;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -201,11 +216,12 @@ public class AccountDetailsRawJson {
         Objects.equals(this.endUserOrganizationName.getAsString(), accountDetails.endUserOrganizationName.getAsString()) &&
         Objects.equals(this.endUserEmailAddress.getAsString(), accountDetails.endUserEmailAddress.getAsString()) &&
         Objects.equals(this.status.getAsString(), accountDetails.status.getAsString()) &&
-        Objects.equals(this.webhookListenerUrl.getAsString(), accountDetails.webhookListenerUrl.getAsString());
+        Objects.equals(this.webhookListenerUrl.getAsString(), accountDetails.webhookListenerUrl.getAsString()) &&
+        Objects.equals(this.isDuplicate.getAsString(), accountDetails.isDuplicate.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, integration, integrationSlug, category, endUserOriginId, endUserOrganizationName, endUserEmailAddress, status, webhookListenerUrl);
+    return Objects.hash(id, integration, integrationSlug, category, endUserOriginId, endUserOrganizationName, endUserEmailAddress, status, webhookListenerUrl, isDuplicate);
   }
   @Override
   public String toString() {
@@ -220,6 +236,7 @@ public class AccountDetailsRawJson {
     sb.append("    endUserEmailAddress: ").append(toIndentedString(endUserEmailAddress.getAsString())).append("\n");
     sb.append("    status: ").append(toIndentedString(status.getAsString())).append("\n");
     sb.append("    webhookListenerUrl: ").append(toIndentedString(webhookListenerUrl.getAsString())).append("\n");
+    sb.append("    isDuplicate: ").append(toIndentedString(isDuplicate.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

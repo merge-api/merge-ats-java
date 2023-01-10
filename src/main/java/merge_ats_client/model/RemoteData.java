@@ -15,6 +15,8 @@ package merge_ats_client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -30,7 +32,7 @@ import java.util.Map;
 /**
  * RemoteData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class RemoteData {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -38,7 +40,7 @@ public class RemoteData {
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private Map<String, Object> data = null;
+  private JsonElement data = null;
 
 
   public RemoteData path(String path) {
@@ -63,17 +65,17 @@ public class RemoteData {
   }
 
 
-  public RemoteData data(Map<String, Object> data) {
+  public RemoteData data(JsonElement data) {
     
     this.data = data;
     return this;
   }
 
-  public RemoteData putDataItem(String key, Object dataItem) {
+  public RemoteData putDataItem(String key, JsonElement dataItem) {
     if (this.data == null) {
-      this.data = new HashMap<String, Object>();
+      this.data = new JsonObject();
     }
-    this.data.put(key, dataItem);
+    this.data = dataItem;
     return this;
   }
 
@@ -84,12 +86,12 @@ public class RemoteData {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Map<String, Object> getData() {
+  public JsonElement getData() {
     return data;
   }
 
 
-  public void setData(Map<String, Object> data) {
+  public void setData(JsonElement data) {
     this.data = data;
   }
 

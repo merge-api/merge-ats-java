@@ -108,6 +108,14 @@ public class AccountDetailsAndActionsTest {
     }
 
     /**
+     * Test the property 'isDuplicate'
+     */
+    @Test
+    public void isDuplicateTest() {
+        // TODO: test isDuplicate
+    }
+
+    /**
      * Test the property 'integration'
      */
     @Test

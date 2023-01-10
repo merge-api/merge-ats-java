@@ -64,13 +64,14 @@ public class ScorecardsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param interviewId If provided, will only return scorecards for this interview. (optional)
      * @param interviewerId If provided, will only return scorecards for this interviewer. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -81,7 +82,7 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call scorecardsListCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call scorecardsListCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -137,6 +138,10 @@ public class ScorecardsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page_size", pageSize));
         }
 
+        if (remoteFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
+        }
+
         if (remoteId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
         }
@@ -164,7 +169,7 @@ public class ScorecardsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call scorecardsListValidateBeforeCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call scorecardsListValidateBeforeCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -172,7 +177,7 @@ public class ScorecardsApi {
         }
         
 
-        okhttp3.Call localVarCall = scorecardsListCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = scorecardsListCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         return localVarCall;
 
     }
@@ -185,13 +190,14 @@ public class ScorecardsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param interviewId If provided, will only return scorecards for this interview. (optional)
      * @param interviewerId If provided, will only return scorecards for this interviewer. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @return PaginatedScorecardList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -201,8 +207,8 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedScorecardList scorecardsList(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        ApiResponse<PaginatedScorecardList> localVarResp = scorecardsListWithHttpInfo(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+    public PaginatedScorecardList scorecardsList(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        ApiResponse<PaginatedScorecardList> localVarResp = scorecardsListWithHttpInfo(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
         return localVarResp.getData();
     }
 
@@ -214,13 +220,14 @@ public class ScorecardsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param interviewId If provided, will only return scorecards for this interview. (optional)
      * @param interviewerId If provided, will only return scorecards for this interviewer. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @return ApiResponse&lt;PaginatedScorecardList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -230,8 +237,8 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedScorecardList> scorecardsListWithHttpInfo(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = scorecardsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
+    public ApiResponse<PaginatedScorecardList> scorecardsListWithHttpInfo(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = scorecardsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedScorecardList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -244,13 +251,14 @@ public class ScorecardsApi {
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param interviewId If provided, will only return scorecards for this interview. (optional)
      * @param interviewerId If provided, will only return scorecards for this interviewer. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -261,9 +269,9 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call scorecardsListAsync(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedScorecardList> _callback) throws ApiException {
+    public okhttp3.Call scorecardsListAsync(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String interviewId, String interviewerId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedScorecardList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = scorecardsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = scorecardsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, interviewId, interviewerId, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedScorecardList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -273,6 +281,7 @@ public class ScorecardsApi {
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -282,7 +291,7 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call scorecardsRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call scorecardsRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -297,6 +306,10 @@ public class ScorecardsApi {
 
         if (includeRemoteData != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_remote_data", includeRemoteData));
+        }
+
+        if (remoteFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
         }
 
         if (xAccountToken != null) {
@@ -322,7 +335,7 @@ public class ScorecardsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call scorecardsRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call scorecardsRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'xAccountToken' is set
         if (xAccountToken == null) {
@@ -335,7 +348,7 @@ public class ScorecardsApi {
         }
         
 
-        okhttp3.Call localVarCall = scorecardsRetrieveCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = scorecardsRetrieveCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         return localVarCall;
 
     }
@@ -346,6 +359,7 @@ public class ScorecardsApi {
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @return Scorecard
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -354,8 +368,8 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Scorecard scorecardsRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        ApiResponse<Scorecard> localVarResp = scorecardsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
+    public Scorecard scorecardsRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        ApiResponse<Scorecard> localVarResp = scorecardsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
         return localVarResp.getData();
     }
 
@@ -365,6 +379,7 @@ public class ScorecardsApi {
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @return ApiResponse&lt;Scorecard&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -373,8 +388,8 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Scorecard> scorecardsRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        okhttp3.Call localVarCall = scorecardsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, null);
+    public ApiResponse<Scorecard> scorecardsRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        okhttp3.Call localVarCall = scorecardsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, null);
         Type localVarReturnType = new TypeToken<Scorecard>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -385,6 +400,7 @@ public class ScorecardsApi {
      * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -394,9 +410,9 @@ public class ScorecardsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call scorecardsRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback<Scorecard> _callback) throws ApiException {
+    public okhttp3.Call scorecardsRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<Scorecard> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = scorecardsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = scorecardsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         Type localVarReturnType = new TypeToken<Scorecard>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

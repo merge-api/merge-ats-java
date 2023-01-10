@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
 **name** | **String** | The department&#39;s name. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
-**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted by third party webhooks. |  [optional] [readonly]
+**fieldMappings** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly]
 
 
 

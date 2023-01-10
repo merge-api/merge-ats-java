@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * LinkTokenRawJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class LinkTokenRawJson {
   public static final String SERIALIZED_NAME_LINK_TOKEN = "link_token";
   @SerializedName(SERIALIZED_NAME_LINK_TOKEN)
@@ -42,6 +42,10 @@ public class LinkTokenRawJson {
   public static final String SERIALIZED_NAME_INTEGRATION_NAME = "integration_name";
   @SerializedName(SERIALIZED_NAME_INTEGRATION_NAME)
   private JsonElement integrationName;
+
+  public static final String SERIALIZED_NAME_MAGIC_LINK_URL = "magic_link_url";
+  @SerializedName(SERIALIZED_NAME_MAGIC_LINK_URL)
+  private JsonElement magicLinkUrl;
 
   private transient JSON serializer;
 
@@ -78,14 +82,33 @@ public class LinkTokenRawJson {
    * Get integrationName
    * @return integrationName
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Lever", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Lever", value = "")
 
   public JsonElement getIntegrationName() {
     return integrationName;
   }
   public void setIntegrationName(JsonElement integrationName) {
     this.integrationName = integrationName;
+  }
+
+  public LinkTokenRawJson magicLinkUrl(String magicLinkUrl) {
+    this.magicLinkUrl = this.serializer.getGson().toJsonTree(magicLinkUrl);
+    return this;
+  }
+
+   /**
+   * Get magicLinkUrl
+   * @return magicLinkUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://link.merge.dev/asdfjkl12345jsndfgi2i83n", value = "")
+
+  public JsonElement getMagicLinkUrl() {
+    return magicLinkUrl;
+  }
+  public void setMagicLinkUrl(JsonElement magicLinkUrl) {
+    this.magicLinkUrl = magicLinkUrl;
   }
   @Override
   public boolean equals(Object o) {
@@ -97,11 +120,12 @@ public class LinkTokenRawJson {
     }
     LinkTokenRawJson linkToken = (LinkTokenRawJson) o;
     return Objects.equals(this.linkToken.getAsString(), linkToken.linkToken.getAsString()) &&
-        Objects.equals(this.integrationName.getAsString(), linkToken.integrationName.getAsString());
+        Objects.equals(this.integrationName.getAsString(), linkToken.integrationName.getAsString()) &&
+        Objects.equals(this.magicLinkUrl.getAsString(), linkToken.magicLinkUrl.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(linkToken, integrationName);
+    return Objects.hash(linkToken, integrationName, magicLinkUrl);
   }
   @Override
   public String toString() {
@@ -109,6 +133,7 @@ public class LinkTokenRawJson {
     sb.append("class LinkTokenRawJson {\n");
     sb.append("    linkToken: ").append(toIndentedString(linkToken.getAsString())).append("\n");
     sb.append("    integrationName: ").append(toIndentedString(integrationName.getAsString())).append("\n");
+    sb.append("    magicLinkUrl: ").append(toIndentedString(magicLinkUrl.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.Assert;
@@ -73,6 +74,14 @@ public class TagTest {
     @Test
     public void remoteWasDeletedTest() {
         // TODO: test remoteWasDeleted
+    }
+
+    /**
+     * Test the property 'fieldMappings'
+     */
+    @Test
+    public void fieldMappingsTest() {
+        // TODO: test fieldMappings
     }
 
 }
