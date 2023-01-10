@@ -45,7 +45,6 @@ public class JobsApiTest {
      */
     @Test
     public void jobsListTest() throws ApiException {
-        String xAccountToken = null;
         String code = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
@@ -55,9 +54,10 @@ public class JobsApiTest {
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
+        String remoteFields = null;
         String remoteId = null;
         String status = null;
-        PaginatedJobList response = api.jobsList(xAccountToken, code, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, status);
+        PaginatedJobList response = api.jobsList(code, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, status);
 
         // TODO: test validations
     }
@@ -72,10 +72,10 @@ public class JobsApiTest {
      */
     @Test
     public void jobsRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Job response = api.jobsRetrieve(xAccountToken, id, includeRemoteData);
+        String remoteFields = null;
+        Job response = api.jobsRetrieve(id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

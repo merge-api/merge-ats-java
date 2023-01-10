@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="passthroughCreate"></a>
 # **passthroughCreate**
-> RemoteResponse passthroughCreate(xAccountToken, dataPassthroughRequest)
+> RemoteResponse passthroughCreate(dataPassthroughRequest)
 
 
 
@@ -30,17 +30,20 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: accountTokenAuth
+    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
+    accountTokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
+    //accountTokenAuth.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     PassthroughApi apiInstance = new PassthroughApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     DataPassthroughRequest dataPassthroughRequest = new DataPassthroughRequest(); // DataPassthroughRequest | 
     try {
-      RemoteResponse result = apiInstance.passthroughCreate(xAccountToken, dataPassthroughRequest);
+      RemoteResponse result = apiInstance.passthroughCreate(dataPassthroughRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PassthroughApi#passthroughCreate");
@@ -57,7 +60,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xAccountToken** | **String**| Token identifying the end user. |
  **dataPassthroughRequest** | [**DataPassthroughRequest**](DataPassthroughRequest.md)|  |
 
 ### Return type
@@ -66,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

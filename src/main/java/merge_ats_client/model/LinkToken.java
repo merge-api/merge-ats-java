@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * LinkToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class LinkToken {
   public static final String SERIALIZED_NAME_LINK_TOKEN = "link_token";
   @SerializedName(SERIALIZED_NAME_LINK_TOKEN)
@@ -36,6 +36,10 @@ public class LinkToken {
   public static final String SERIALIZED_NAME_INTEGRATION_NAME = "integration_name";
   @SerializedName(SERIALIZED_NAME_INTEGRATION_NAME)
   private String integrationName;
+
+  public static final String SERIALIZED_NAME_MAGIC_LINK_URL = "magic_link_url";
+  @SerializedName(SERIALIZED_NAME_MAGIC_LINK_URL)
+  private String magicLinkUrl;
 
 
   public LinkToken linkToken(String linkToken) {
@@ -70,7 +74,8 @@ public class LinkToken {
    * Get integrationName
    * @return integrationName
   **/
-  @ApiModelProperty(example = "Lever", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Lever", value = "")
 
   public String getIntegrationName() {
     return integrationName;
@@ -79,6 +84,29 @@ public class LinkToken {
 
   public void setIntegrationName(String integrationName) {
     this.integrationName = integrationName;
+  }
+
+
+  public LinkToken magicLinkUrl(String magicLinkUrl) {
+    
+    this.magicLinkUrl = magicLinkUrl;
+    return this;
+  }
+
+   /**
+   * Get magicLinkUrl
+   * @return magicLinkUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://link.merge.dev/asdfjkl12345jsndfgi2i83n", value = "")
+
+  public String getMagicLinkUrl() {
+    return magicLinkUrl;
+  }
+
+
+  public void setMagicLinkUrl(String magicLinkUrl) {
+    this.magicLinkUrl = magicLinkUrl;
   }
 
 
@@ -92,12 +120,13 @@ public class LinkToken {
     }
     LinkToken linkToken = (LinkToken) o;
     return Objects.equals(this.linkToken, linkToken.linkToken) &&
-        Objects.equals(this.integrationName, linkToken.integrationName);
+        Objects.equals(this.integrationName, linkToken.integrationName) &&
+        Objects.equals(this.magicLinkUrl, linkToken.magicLinkUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(linkToken, integrationName);
+    return Objects.hash(linkToken, integrationName, magicLinkUrl);
   }
 
   @Override
@@ -106,6 +135,7 @@ public class LinkToken {
     sb.append("class LinkToken {\n");
     sb.append("    linkToken: ").append(toIndentedString(linkToken)).append("\n");
     sb.append("    integrationName: ").append(toIndentedString(integrationName)).append("\n");
+    sb.append("    magicLinkUrl: ").append(toIndentedString(magicLinkUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

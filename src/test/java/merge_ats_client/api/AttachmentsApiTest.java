@@ -48,11 +48,10 @@ public class AttachmentsApiTest {
      */
     @Test
     public void attachmentsCreateTest() throws ApiException {
-        String xAccountToken = null;
         AttachmentEndpointRequest attachmentEndpointRequest = null;
         Boolean isDebugMode = null;
         Boolean runAsync = null;
-        AttachmentResponse response = api.attachmentsCreate(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync);
+        AttachmentResponse response = api.attachmentsCreate(attachmentEndpointRequest, isDebugMode, runAsync);
 
         // TODO: test validations
     }
@@ -67,7 +66,6 @@ public class AttachmentsApiTest {
      */
     @Test
     public void attachmentsListTest() throws ApiException {
-        String xAccountToken = null;
         String candidateId = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
@@ -77,8 +75,9 @@ public class AttachmentsApiTest {
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
+        String remoteFields = null;
         String remoteId = null;
-        PaginatedAttachmentList response = api.attachmentsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedAttachmentList response = api.attachmentsList(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
 
         // TODO: test validations
     }
@@ -93,8 +92,7 @@ public class AttachmentsApiTest {
      */
     @Test
     public void attachmentsMetaPostRetrieveTest() throws ApiException {
-        String xAccountToken = null;
-        MetaResponse response = api.attachmentsMetaPostRetrieve(xAccountToken);
+        MetaResponse response = api.attachmentsMetaPostRetrieve();
 
         // TODO: test validations
     }
@@ -109,10 +107,10 @@ public class AttachmentsApiTest {
      */
     @Test
     public void attachmentsRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Attachment response = api.attachmentsRetrieve(xAccountToken, id, includeRemoteData);
+        String remoteFields = null;
+        Attachment response = api.attachmentsRetrieve(id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

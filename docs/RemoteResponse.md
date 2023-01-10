@@ -11,7 +11,9 @@ Name | Type | Description | Notes
 **method** | **String** |  | 
 **path** | **String** |  | 
 **status** | **Integer** |  | 
-**response** | **Map&lt;String, Object&gt;** |  | 
+**response** | **Object** |  | 
+**responseHeaders** | **Map&lt;String, Object&gt;** |  |  [optional]
+**responseType** | [**ResponseTypeEnum**](ResponseTypeEnum.md) |  |  [optional]
 **headers** | **Map&lt;String, Object&gt;** |  |  [optional]
 
 

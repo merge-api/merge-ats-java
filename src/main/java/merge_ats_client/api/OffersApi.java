@@ -59,17 +59,17 @@ public class OffersApi {
 
     /**
      * Build call for offersList
-     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return offers for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param creatorId If provided, will only return offers created by this user. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -80,7 +80,7 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call offersListCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call offersListCall(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -132,12 +132,12 @@ public class OffersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page_size", pageSize));
         }
 
-        if (remoteId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
+        if (remoteFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
         }
 
-        if (xAccountToken != null) {
-            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        if (remoteId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
         }
 
         final String[] localVarAccepts = {
@@ -154,20 +154,15 @@ public class OffersApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call offersListValidateBeforeCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'xAccountToken' is set
-        if (xAccountToken == null) {
-            throw new ApiException("Missing the required parameter 'xAccountToken' when calling offersList(Async)");
-        }
+    private okhttp3.Call offersListValidateBeforeCall(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = offersListCall(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = offersListCall(applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         return localVarCall;
 
     }
@@ -175,17 +170,17 @@ public class OffersApi {
     /**
      * 
      * Returns a list of &#x60;Offer&#x60; objects.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return offers for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param creatorId If provided, will only return offers created by this user. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @return PaginatedOfferList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -195,25 +190,25 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedOfferList offersList(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        ApiResponse<PaginatedOfferList> localVarResp = offersListWithHttpInfo(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+    public PaginatedOfferList offersList(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        ApiResponse<PaginatedOfferList> localVarResp = offersListWithHttpInfo(applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of &#x60;Offer&#x60; objects.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return offers for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param creatorId If provided, will only return offers created by this user. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @return ApiResponse&lt;PaginatedOfferList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -223,8 +218,8 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedOfferList> offersListWithHttpInfo(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = offersListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
+    public ApiResponse<PaginatedOfferList> offersListWithHttpInfo(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = offersListValidateBeforeCall(applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedOfferList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -232,17 +227,17 @@ public class OffersApi {
     /**
      *  (asynchronously)
      * Returns a list of &#x60;Offer&#x60; objects.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return offers for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param creatorId If provided, will only return offers created by this user. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
      * @param modifiedBefore If provided, will only return objects modified before this datetime. (optional)
      * @param pageSize Number of results to return per page. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param remoteId The API provider&#39;s ID for the given object. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -253,18 +248,18 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call offersListAsync(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedOfferList> _callback) throws ApiException {
+    public okhttp3.Call offersListAsync(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creatorId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedOfferList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = offersListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = offersListValidateBeforeCall(applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedOfferList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for offersRetrieve
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -274,7 +269,7 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call offersRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call offersRetrieveCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -291,8 +286,8 @@ public class OffersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_remote_data", includeRemoteData));
         }
 
-        if (xAccountToken != null) {
-            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        if (remoteFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
         }
 
         final String[] localVarAccepts = {
@@ -309,17 +304,12 @@ public class OffersApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call offersRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'xAccountToken' is set
-        if (xAccountToken == null) {
-            throw new ApiException("Missing the required parameter 'xAccountToken' when calling offersRetrieve(Async)");
-        }
+    private okhttp3.Call offersRetrieveValidateBeforeCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -327,7 +317,7 @@ public class OffersApi {
         }
         
 
-        okhttp3.Call localVarCall = offersRetrieveCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = offersRetrieveCall(id, includeRemoteData, remoteFields, _callback);
         return localVarCall;
 
     }
@@ -335,9 +325,9 @@ public class OffersApi {
     /**
      * 
      * Returns an &#x60;Offer&#x60; object with the given &#x60;id&#x60;.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @return Offer
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -346,17 +336,17 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Offer offersRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        ApiResponse<Offer> localVarResp = offersRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
+    public Offer offersRetrieve(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        ApiResponse<Offer> localVarResp = offersRetrieveWithHttpInfo(id, includeRemoteData, remoteFields);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns an &#x60;Offer&#x60; object with the given &#x60;id&#x60;.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @return ApiResponse&lt;Offer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -365,8 +355,8 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Offer> offersRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        okhttp3.Call localVarCall = offersRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, null);
+    public ApiResponse<Offer> offersRetrieveWithHttpInfo(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        okhttp3.Call localVarCall = offersRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, null);
         Type localVarReturnType = new TypeToken<Offer>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -374,9 +364,9 @@ public class OffersApi {
     /**
      *  (asynchronously)
      * Returns an &#x60;Offer&#x60; object with the given &#x60;id&#x60;.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
+     * @param remoteFields Which fields should be returned in non-normalized form. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -386,9 +376,9 @@ public class OffersApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call offersRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback<Offer> _callback) throws ApiException {
+    public okhttp3.Call offersRetrieveAsync(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<Offer> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = offersRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = offersRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, _callback);
         Type localVarReturnType = new TypeToken<Offer>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

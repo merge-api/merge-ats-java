@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="deleteAccountCreate"></a>
 # **deleteAccountCreate**
-> deleteAccountCreate(xAccountToken)
+> deleteAccountCreate()
 
 
 
@@ -30,16 +30,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: accountTokenAuth
+    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
+    accountTokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
+    //accountTokenAuth.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     DeleteAccountApi apiInstance = new DeleteAccountApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      apiInstance.deleteAccountCreate(xAccountToken);
+      apiInstance.deleteAccountCreate();
     } catch (ApiException e) {
       System.err.println("Exception when calling DeleteAccountApi#deleteAccountCreate");
       System.err.println("Status code: " + e.getCode());
@@ -52,10 +55,7 @@ public class Example {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xAccountToken** | **String**| Token identifying the end user. |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -63,7 +63,7 @@ null (empty response body)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

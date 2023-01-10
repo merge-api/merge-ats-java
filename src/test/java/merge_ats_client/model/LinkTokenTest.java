@@ -56,4 +56,12 @@ public class LinkTokenTest {
         // TODO: test integrationName
     }
 
+    /**
+     * Test the property 'magicLinkUrl'
+     */
+    @Test
+    public void magicLinkUrlTest() {
+        // TODO: test magicLinkUrl
+    }
+
 }

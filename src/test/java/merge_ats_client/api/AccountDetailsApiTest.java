@@ -42,8 +42,7 @@ public class AccountDetailsApiTest {
      */
     @Test
     public void accountDetailsRetrieveTest() throws ApiException {
-        String xAccountToken = null;
-        AccountDetails response = api.accountDetailsRetrieve(xAccountToken);
+        AccountDetails response = api.accountDetailsRetrieve();
 
         // TODO: test validations
     }

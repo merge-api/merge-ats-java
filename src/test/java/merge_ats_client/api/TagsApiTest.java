@@ -43,7 +43,6 @@ public class TagsApiTest {
      */
     @Test
     public void tagsListTest() throws ApiException {
-        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -53,7 +52,7 @@ public class TagsApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedTagList response = api.tagsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedTagList response = api.tagsList(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }

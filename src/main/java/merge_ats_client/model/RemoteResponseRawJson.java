@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The RemoteResponse Object ### Description The &#x60;RemoteResponse&#x60; object is used to represent information returned from a third-party endpoint.  ### Usage Example View the &#x60;RemoteResponse&#x60; returned from your &#x60;DataPassthrough&#x60;.
  */
 @ApiModel(description = "# The RemoteResponse Object ### Description The `RemoteResponse` object is used to represent information returned from a third-party endpoint.  ### Usage Example View the `RemoteResponse` returned from your `DataPassthrough`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class RemoteResponseRawJson {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -51,6 +51,14 @@ public class RemoteResponseRawJson {
   public static final String SERIALIZED_NAME_RESPONSE = "response";
   @SerializedName(SERIALIZED_NAME_RESPONSE)
   private JsonElement response;
+
+  public static final String SERIALIZED_NAME_RESPONSE_HEADERS = "response_headers";
+  @SerializedName(SERIALIZED_NAME_RESPONSE_HEADERS)
+  private JsonElement responseHeaders;
+
+  public static final String SERIALIZED_NAME_RESPONSE_TYPE = "response_type";
+  @SerializedName(SERIALIZED_NAME_RESPONSE_TYPE)
+  private JsonElement responseType;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
@@ -120,7 +128,7 @@ public class RemoteResponseRawJson {
     this.status = status;
   }
 
-  public RemoteResponseRawJson response(Map<String, Object> response) {
+  public RemoteResponseRawJson response(Object response) {
     this.response = this.serializer.getGson().toJsonTree(response);
     return this;
   }
@@ -129,7 +137,7 @@ public class RemoteResponseRawJson {
    * Get response
    * @return response
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"scooters\":[{\"company\":\"Lime\",\"model\":\"Gen 2.5\"},{\"company\":\"Bird\",\"model\":\"Bird Zero\"}]}", required = true, value = "")
 
   public JsonElement getResponse() {
@@ -137,6 +145,44 @@ public class RemoteResponseRawJson {
   }
   public void setResponse(JsonElement response) {
     this.response = response;
+  }
+
+  public RemoteResponseRawJson responseHeaders(Map<String, Object> responseHeaders) {
+    this.responseHeaders = this.serializer.getGson().toJsonTree(responseHeaders);
+    return this;
+  }
+
+   /**
+   * Get responseHeaders
+   * @return responseHeaders
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"X-Page-Token\":\"value\"}", value = "")
+
+  public JsonElement getResponseHeaders() {
+    return responseHeaders;
+  }
+  public void setResponseHeaders(JsonElement responseHeaders) {
+    this.responseHeaders = responseHeaders;
+  }
+
+  public RemoteResponseRawJson responseType(ResponseTypeEnum responseType) {
+    this.responseType = this.serializer.getGson().toJsonTree(responseType);
+    return this;
+  }
+
+   /**
+   * Get responseType
+   * @return responseType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "JSON", value = "")
+
+  public JsonElement getResponseType() {
+    return responseType;
+  }
+  public void setResponseType(JsonElement responseType) {
+    this.responseType = responseType;
   }
 
   public RemoteResponseRawJson headers(Map<String, Object> headers) {
@@ -170,11 +216,13 @@ public class RemoteResponseRawJson {
         Objects.equals(this.path.getAsString(), remoteResponse.path.getAsString()) &&
         Objects.equals(this.status.getAsString(), remoteResponse.status.getAsString()) &&
         Objects.equals(this.response.getAsString(), remoteResponse.response.getAsString()) &&
+        Objects.equals(this.responseHeaders.getAsString(), remoteResponse.responseHeaders.getAsString()) &&
+        Objects.equals(this.responseType.getAsString(), remoteResponse.responseType.getAsString()) &&
         Objects.equals(this.headers.getAsString(), remoteResponse.headers.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(method, path, status, response, headers);
+    return Objects.hash(method, path, status, response, responseHeaders, responseType, headers);
   }
   @Override
   public String toString() {
@@ -184,6 +232,8 @@ public class RemoteResponseRawJson {
     sb.append("    path: ").append(toIndentedString(path.getAsString())).append("\n");
     sb.append("    status: ").append(toIndentedString(status.getAsString())).append("\n");
     sb.append("    response: ").append(toIndentedString(response.getAsString())).append("\n");
+    sb.append("    responseHeaders: ").append(toIndentedString(responseHeaders.getAsString())).append("\n");
+    sb.append("    responseType: ").append(toIndentedString(responseType.getAsString())).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();

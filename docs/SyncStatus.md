@@ -10,10 +10,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **modelName** | **String** |  | 
 **modelId** | **String** |  | 
-**lastSyncStart** | **OffsetDateTime** |  | 
-**nextSyncStart** | **OffsetDateTime** |  | 
+**lastSyncStart** | **OffsetDateTime** |  |  [optional]
+**nextSyncStart** | **OffsetDateTime** |  |  [optional]
 **status** | [**SyncStatusStatusEnum**](SyncStatusStatusEnum.md) |  | 
 **isInitialSync** | **Boolean** |  | 
+**selectiveSyncConfigurationsUsage** | [**SelectiveSyncConfigurationsUsageEnum**](SelectiveSyncConfigurationsUsageEnum.md) |  |  [optional]
 
 
 

@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions. ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
 @ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions. ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class CandidateRequestRawJson {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -103,10 +103,6 @@ public class CandidateRequestRawJson {
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
   private JsonElement attachments;
-
-  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
-  private JsonElement customFields;
 
   public static final String SERIALIZED_NAME_REMOTE_TEMPLATE_ID = "remote_template_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_TEMPLATE_ID)
@@ -450,25 +446,6 @@ public class CandidateRequestRawJson {
     this.attachments = attachments;
   }
 
-  public CandidateRequestRawJson customFields(Map<String, Object> customFields) {
-    this.customFields = this.serializer.getGson().toJsonTree(customFields);
-    return this;
-  }
-
-   /**
-   * Custom fields configured for a given model.
-   * @return customFields
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Custom fields configured for a given model.")
-
-  public JsonElement getCustomFields() {
-    return customFields;
-  }
-  public void setCustomFields(JsonElement customFields) {
-    this.customFields = customFields;
-  }
-
   public CandidateRequestRawJson remoteTemplateId(String remoteTemplateId) {
     this.remoteTemplateId = this.serializer.getGson().toJsonTree(remoteTemplateId);
     return this;
@@ -551,14 +528,13 @@ public class CandidateRequestRawJson {
         Objects.equals(this.tags.getAsString(), candidateRequest.tags.getAsString()) &&
         Objects.equals(this.applications.getAsString(), candidateRequest.applications.getAsString()) &&
         Objects.equals(this.attachments.getAsString(), candidateRequest.attachments.getAsString()) &&
-        Objects.equals(this.customFields.getAsString(), candidateRequest.customFields.getAsString()) &&
         Objects.equals(this.remoteTemplateId.getAsString(), candidateRequest.remoteTemplateId.getAsString()) &&
         Objects.equals(this.integrationParams.getAsString(), candidateRequest.integrationParams.getAsString()) &&
         Objects.equals(this.linkedAccountParams.getAsString(), candidateRequest.linkedAccountParams.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, customFields, remoteTemplateId, integrationParams, linkedAccountParams);
+    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, remoteTemplateId, integrationParams, linkedAccountParams);
   }
   @Override
   public String toString() {
@@ -581,7 +557,6 @@ public class CandidateRequestRawJson {
     sb.append("    tags: ").append(toIndentedString(tags.getAsString())).append("\n");
     sb.append("    applications: ").append(toIndentedString(applications.getAsString())).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments.getAsString())).append("\n");
-    sb.append("    customFields: ").append(toIndentedString(customFields.getAsString())).append("\n");
     sb.append("    remoteTemplateId: ").append(toIndentedString(remoteTemplateId.getAsString())).append("\n");
     sb.append("    integrationParams: ").append(toIndentedString(integrationParams.getAsString())).append("\n");
     sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams.getAsString())).append("\n");

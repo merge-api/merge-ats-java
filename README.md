@@ -1,8 +1,8 @@
 # merge-ats-client
 
 Merge ATS API
-- API version: 1.0
-  - Build date: 2022-05-12T20:59:08.199624Z[Etc/UTC]
+- API version: 2.0.0
+  - Build date: 2023-01-10T20:13:14.599893Z[Etc/UTC]
 
 The unified API for building rich integrations with multiple Applicant Tracking System platforms.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.merge.ats</groupId>
   <artifactId>merge-ats-client</artifactId>
-  <version>1.4.1</version>
+  <version>2.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.merge.ats:merge-ats-client:1.4.1"
+compile "dev.merge.ats:merge-ats-client:2.0.0"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/merge-ats-client-1.4.1.jar`
+* `target/merge-ats-client-2.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -86,16 +86,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: accountTokenAuth
+    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
+    accountTokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
+    //accountTokenAuth.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     AccountDetailsApi apiInstance = new AccountDetailsApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      AccountDetails result = apiInstance.accountDetailsRetrieve(xAccountToken);
+      AccountDetails result = apiInstance.accountDetailsRetrieve();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AccountDetailsApi#accountDetailsRetrieve");
@@ -119,6 +122,7 @@ Class | Method | HTTP request | Description
 *AccountTokenApi* | [**accountTokenRetrieve**](docs/AccountTokenApi.md#accountTokenRetrieve) | **GET** /account-token/{public_token} | 
 *ActivitiesApi* | [**activitiesList**](docs/ActivitiesApi.md#activitiesList) | **GET** /activities | 
 *ActivitiesApi* | [**activitiesRetrieve**](docs/ActivitiesApi.md#activitiesRetrieve) | **GET** /activities/{id} | 
+*ApplicationsApi* | [**applicationsChangeStageCreate**](docs/ApplicationsApi.md#applicationsChangeStageCreate) | **POST** /applications/{id}/change-stage | 
 *ApplicationsApi* | [**applicationsCreate**](docs/ApplicationsApi.md#applicationsCreate) | **POST** /applications | 
 *ApplicationsApi* | [**applicationsList**](docs/ApplicationsApi.md#applicationsList) | **GET** /applications | 
 *ApplicationsApi* | [**applicationsMetaPostRetrieve**](docs/ApplicationsApi.md#applicationsMetaPostRetrieve) | **GET** /applications/meta/post | 
@@ -133,6 +137,8 @@ Class | Method | HTTP request | Description
 *CandidatesApi* | [**candidatesList**](docs/CandidatesApi.md#candidatesList) | **GET** /candidates | 
 *CandidatesApi* | [**candidatesMetaPostRetrieve**](docs/CandidatesApi.md#candidatesMetaPostRetrieve) | **GET** /candidates/meta/post | 
 *CandidatesApi* | [**candidatesRetrieve**](docs/CandidatesApi.md#candidatesRetrieve) | **GET** /candidates/{id} | 
+*CommonModelScopesApi* | [**commonModelScopesRetrieve**](docs/CommonModelScopesApi.md#commonModelScopesRetrieve) | **GET** /common-model-scopes | 
+*CommonModelScopesApi* | [**commonModelScopesUpdate**](docs/CommonModelScopesApi.md#commonModelScopesUpdate) | **PUT** /common-model-scopes | 
 *DeleteAccountApi* | [**deleteAccountCreate**](docs/DeleteAccountApi.md#deleteAccountCreate) | **POST** /delete-account | 
 *DepartmentsApi* | [**departmentsList**](docs/DepartmentsApi.md#departmentsList) | **GET** /departments | 
 *DepartmentsApi* | [**departmentsRetrieve**](docs/DepartmentsApi.md#departmentsRetrieve) | **GET** /departments/{id} | 
@@ -160,6 +166,9 @@ Class | Method | HTTP request | Description
 *RejectReasonsApi* | [**rejectReasonsRetrieve**](docs/RejectReasonsApi.md#rejectReasonsRetrieve) | **GET** /reject-reasons/{id} | 
 *ScorecardsApi* | [**scorecardsList**](docs/ScorecardsApi.md#scorecardsList) | **GET** /scorecards | 
 *ScorecardsApi* | [**scorecardsRetrieve**](docs/ScorecardsApi.md#scorecardsRetrieve) | **GET** /scorecards/{id} | 
+*SelectiveSyncApi* | [**selectiveSyncConfigurationsList**](docs/SelectiveSyncApi.md#selectiveSyncConfigurationsList) | **GET** /selective-sync/configurations | 
+*SelectiveSyncApi* | [**selectiveSyncConfigurationsUpdate**](docs/SelectiveSyncApi.md#selectiveSyncConfigurationsUpdate) | **PUT** /selective-sync/configurations | 
+*SelectiveSyncApi* | [**selectiveSyncMetaList**](docs/SelectiveSyncApi.md#selectiveSyncMetaList) | **GET** /selective-sync/meta | 
 *SyncStatusApi* | [**syncStatusList**](docs/SyncStatusApi.md#syncStatusList) | **GET** /sync-status | 
 *TagsApi* | [**tagsList**](docs/TagsApi.md#tagsList) | **GET** /tags | 
 *UsersApi* | [**usersList**](docs/UsersApi.md#usersList) | **GET** /users | 
@@ -195,6 +204,15 @@ Class | Method | HTTP request | Description
  - [CandidateResponse](docs/CandidateResponse.md)
  - [CategoriesEnum](docs/CategoriesEnum.md)
  - [CategoryEnum](docs/CategoryEnum.md)
+ - [CommonModelScopes](docs/CommonModelScopes.md)
+ - [CommonModelScopesDisabledModels](docs/CommonModelScopesDisabledModels.md)
+ - [CommonModelScopesDisabledModelsEnabledActionsEnum](docs/CommonModelScopesDisabledModelsEnabledActionsEnum.md)
+ - [CommonModelScopesPutInnerDeserializerEnabledActionsEnum](docs/CommonModelScopesPutInnerDeserializerEnabledActionsEnum.md)
+ - [CommonModelScopesPutInnerDeserializerRequest](docs/CommonModelScopesPutInnerDeserializerRequest.md)
+ - [CommonModelScopesScope](docs/CommonModelScopesScope.md)
+ - [CommonModelScopesUpdateSerializer](docs/CommonModelScopesUpdateSerializer.md)
+ - [ConditionSchema](docs/ConditionSchema.md)
+ - [ConditionTypeEnum](docs/ConditionTypeEnum.md)
  - [DataPassthroughRequest](docs/DataPassthroughRequest.md)
  - [DebugModeLog](docs/DebugModeLog.md)
  - [DebugModelLogSummary](docs/DebugModelLogSummary.md)
@@ -217,6 +235,11 @@ Class | Method | HTTP request | Description
  - [JobInterviewStage](docs/JobInterviewStage.md)
  - [JobStatusEnum](docs/JobStatusEnum.md)
  - [LinkToken](docs/LinkToken.md)
+ - [LinkedAccountCondition](docs/LinkedAccountCondition.md)
+ - [LinkedAccountConditionRequest](docs/LinkedAccountConditionRequest.md)
+ - [LinkedAccountSelectiveSyncConfiguration](docs/LinkedAccountSelectiveSyncConfiguration.md)
+ - [LinkedAccountSelectiveSyncConfigurationListRequest](docs/LinkedAccountSelectiveSyncConfigurationListRequest.md)
+ - [LinkedAccountSelectiveSyncConfigurationRequest](docs/LinkedAccountSelectiveSyncConfigurationRequest.md)
  - [LinkedAccountStatus](docs/LinkedAccountStatus.md)
  - [MetaResponse](docs/MetaResponse.md)
  - [MethodEnum](docs/MethodEnum.md)
@@ -225,12 +248,14 @@ Class | Method | HTTP request | Description
  - [Offer](docs/Offer.md)
  - [OfferStatusEnum](docs/OfferStatusEnum.md)
  - [Office](docs/Office.md)
+ - [OperatorSchema](docs/OperatorSchema.md)
  - [OverallRecommendationEnum](docs/OverallRecommendationEnum.md)
  - [PaginatedAccountDetailsAndActionsList](docs/PaginatedAccountDetailsAndActionsList.md)
  - [PaginatedActivityList](docs/PaginatedActivityList.md)
  - [PaginatedApplicationList](docs/PaginatedApplicationList.md)
  - [PaginatedAttachmentList](docs/PaginatedAttachmentList.md)
  - [PaginatedCandidateList](docs/PaginatedCandidateList.md)
+ - [PaginatedConditionSchemaList](docs/PaginatedConditionSchemaList.md)
  - [PaginatedDepartmentList](docs/PaginatedDepartmentList.md)
  - [PaginatedEEOCList](docs/PaginatedEEOCList.md)
  - [PaginatedIssueList](docs/PaginatedIssueList.md)
@@ -251,18 +276,21 @@ Class | Method | HTTP request | Description
  - [ReasonEnum](docs/ReasonEnum.md)
  - [RejectReason](docs/RejectReason.md)
  - [RemoteData](docs/RemoteData.md)
- - [RemoteDataRequest](docs/RemoteDataRequest.md)
  - [RemoteKey](docs/RemoteKey.md)
  - [RemoteKeyForRegenerationRequest](docs/RemoteKeyForRegenerationRequest.md)
  - [RemoteResponse](docs/RemoteResponse.md)
  - [RemoteUser](docs/RemoteUser.md)
  - [RequestFormatEnum](docs/RequestFormatEnum.md)
+ - [ResponseTypeEnum](docs/ResponseTypeEnum.md)
  - [ScheduledInterview](docs/ScheduledInterview.md)
  - [ScheduledInterviewStatusEnum](docs/ScheduledInterviewStatusEnum.md)
  - [Scorecard](docs/Scorecard.md)
+ - [SelectiveSyncConfigurationsUsageEnum](docs/SelectiveSyncConfigurationsUsageEnum.md)
  - [SyncStatus](docs/SyncStatus.md)
  - [SyncStatusStatusEnum](docs/SyncStatusStatusEnum.md)
  - [Tag](docs/Tag.md)
+ - [TypeEnum](docs/TypeEnum.md)
+ - [UpdateApplicationStageRequest](docs/UpdateApplicationStageRequest.md)
  - [Url](docs/Url.md)
  - [UrlRequest](docs/UrlRequest.md)
  - [UrlTypeEnum](docs/UrlTypeEnum.md)
@@ -277,11 +305,15 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
-### tokenAuth
+### accountTokenAuth
 
 - **Type**: API key
-- **API key parameter name**: Authorization
+- **API key parameter name**: X-Account-Token
 - **Location**: HTTP header
+
+### bearerAuth
+
+- **Type**: HTTP basic authentication
 
 
 ## Recommendation

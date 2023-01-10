@@ -21,6 +21,7 @@ import merge_ats_client.model.MetaResponse;
 import org.threeten.bp.OffsetDateTime;
 import merge_ats_client.model.PaginatedApplicationList;
 import java.util.UUID;
+import merge_ats_client.model.UpdateApplicationStageRequest;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -41,6 +42,25 @@ public class ApplicationsApiTest {
     /**
      * 
      *
+     * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void applicationsChangeStageCreateTest() throws ApiException {
+        UUID id = null;
+        Boolean isDebugMode = null;
+        Boolean runAsync = null;
+        UpdateApplicationStageRequest updateApplicationStageRequest = null;
+        ApplicationResponse response = api.applicationsChangeStageCreate(id, isDebugMode, runAsync, updateApplicationStageRequest);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * Creates an &#x60;Application&#x60; object with the given values.
      *
      * @throws ApiException
@@ -48,11 +68,10 @@ public class ApplicationsApiTest {
      */
     @Test
     public void applicationsCreateTest() throws ApiException {
-        String xAccountToken = null;
         ApplicationEndpointRequest applicationEndpointRequest = null;
         Boolean isDebugMode = null;
         Boolean runAsync = null;
-        ApplicationResponse response = api.applicationsCreate(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync);
+        ApplicationResponse response = api.applicationsCreate(applicationEndpointRequest, isDebugMode, runAsync);
 
         // TODO: test validations
     }
@@ -67,7 +86,6 @@ public class ApplicationsApiTest {
      */
     @Test
     public void applicationsListTest() throws ApiException {
-        String xAccountToken = null;
         String candidateId = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
@@ -82,7 +100,8 @@ public class ApplicationsApiTest {
         Integer pageSize = null;
         String rejectReasonId = null;
         String remoteId = null;
-        PaginatedApplicationList response = api.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId);
+        String source = null;
+        PaginatedApplicationList response = api.applicationsList(candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source);
 
         // TODO: test validations
     }
@@ -97,9 +116,8 @@ public class ApplicationsApiTest {
      */
     @Test
     public void applicationsMetaPostRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         String applicationRemoteTemplateId = null;
-        MetaResponse response = api.applicationsMetaPostRetrieve(xAccountToken, applicationRemoteTemplateId);
+        MetaResponse response = api.applicationsMetaPostRetrieve(applicationRemoteTemplateId);
 
         // TODO: test validations
     }
@@ -114,10 +132,9 @@ public class ApplicationsApiTest {
      */
     @Test
     public void applicationsRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Application response = api.applicationsRetrieve(xAccountToken, id, includeRemoteData);
+        Application response = api.applicationsRetrieve(id, includeRemoteData);
 
         // TODO: test validations
     }

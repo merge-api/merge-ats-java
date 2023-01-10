@@ -43,9 +43,8 @@ public class PassthroughApiTest {
      */
     @Test
     public void passthroughCreateTest() throws ApiException {
-        String xAccountToken = null;
         DataPassthroughRequest dataPassthroughRequest = null;
-        RemoteResponse response = api.passthroughCreate(xAccountToken, dataPassthroughRequest);
+        RemoteResponse response = api.passthroughCreate(dataPassthroughRequest);
 
         // TODO: test validations
     }

@@ -45,7 +45,6 @@ public class OffersApiTest {
      */
     @Test
     public void offersListTest() throws ApiException {
-        String xAccountToken = null;
         String applicationId = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
@@ -56,8 +55,9 @@ public class OffersApiTest {
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
+        String remoteFields = null;
         String remoteId = null;
-        PaginatedOfferList response = api.offersList(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedOfferList response = api.offersList(applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
 
         // TODO: test validations
     }
@@ -72,10 +72,10 @@ public class OffersApiTest {
      */
     @Test
     public void offersRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Offer response = api.offersRetrieve(xAccountToken, id, includeRemoteData);
+        String remoteFields = null;
+        Offer response = api.offersRetrieve(id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

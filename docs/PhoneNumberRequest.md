@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **value** | **String** | The phone number. |  [optional]
 **phoneNumberType** | [**PhoneNumberTypeEnum**](PhoneNumberTypeEnum.md) | The type of phone number. |  [optional]
+**integrationParams** | **Map&lt;String, Object&gt;** |  |  [optional]
+**linkedAccountParams** | **Map&lt;String, Object&gt;** |  |  [optional]
 
 
 

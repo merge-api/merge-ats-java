@@ -22,10 +22,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.JobStatusEnum;
 import merge_ats_client.model.RemoteData;
+import merge_ats_client.model.Url;
 import org.threeten.bp.OffsetDateTime;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -92,6 +95,14 @@ public class JobTest {
     @Test
     public void statusTest() {
         // TODO: test status
+    }
+
+    /**
+     * Test the property 'jobPostingUrls'
+     */
+    @Test
+    public void jobPostingUrlsTest() {
+        // TODO: test jobPostingUrls
     }
 
     /**
@@ -164,6 +175,14 @@ public class JobTest {
     @Test
     public void remoteWasDeletedTest() {
         // TODO: test remoteWasDeleted
+    }
+
+    /**
+     * Test the property 'fieldMappings'
+     */
+    @Test
+    public void fieldMappingsTest() {
+        // TODO: test fieldMappings
     }
 
 }

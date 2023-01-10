@@ -10,17 +10,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **UUID** |  |  [optional] [readonly]
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
-**candidate** | **UUID** |  |  [optional]
-**job** | **UUID** |  |  [optional]
+**candidate** | **UUID** | The candidate applying. |  [optional]
+**job** | **UUID** | The job being applied for. |  [optional]
 **appliedAt** | **OffsetDateTime** | When the application was submitted. |  [optional]
 **rejectedAt** | **OffsetDateTime** | When the application was rejected. |  [optional]
 **source** | **String** | The application&#39;s source. |  [optional]
-**creditedTo** | **UUID** |  |  [optional]
-**currentStage** | **UUID** |  |  [optional]
-**rejectReason** | **UUID** |  |  [optional]
+**creditedTo** | **UUID** | The user credited for this application. |  [optional]
+**currentStage** | **UUID** | The application&#39;s current stage. |  [optional]
+**rejectReason** | **UUID** | The application&#39;s reason for rejection. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
-**customFields** | **Map&lt;String, Object&gt;** | Custom fields configured for a given model. |  [optional]
 **remoteWasDeleted** | **Boolean** |  |  [optional] [readonly]
+**fieldMappings** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly]
 
 
 

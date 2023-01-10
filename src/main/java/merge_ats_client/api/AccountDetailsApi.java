@@ -56,7 +56,6 @@ public class AccountDetailsApi {
 
     /**
      * Build call for accountDetailsRetrieve
-     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -66,7 +65,7 @@ public class AccountDetailsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountDetailsRetrieveCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountDetailsRetrieveCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -77,10 +76,6 @@ public class AccountDetailsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (xAccountToken != null) {
-            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
-        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -96,20 +91,15 @@ public class AccountDetailsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountDetailsRetrieveValidateBeforeCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'xAccountToken' is set
-        if (xAccountToken == null) {
-            throw new ApiException("Missing the required parameter 'xAccountToken' when calling accountDetailsRetrieve(Async)");
-        }
+    private okhttp3.Call accountDetailsRetrieveValidateBeforeCall(final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = accountDetailsRetrieveCall(xAccountToken, _callback);
+        okhttp3.Call localVarCall = accountDetailsRetrieveCall(_callback);
         return localVarCall;
 
     }
@@ -117,7 +107,6 @@ public class AccountDetailsApi {
     /**
      * 
      * Get details for a linked account.
-     * @param xAccountToken Token identifying the end user. (required)
      * @return AccountDetails
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -126,15 +115,14 @@ public class AccountDetailsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public AccountDetails accountDetailsRetrieve(String xAccountToken) throws ApiException {
-        ApiResponse<AccountDetails> localVarResp = accountDetailsRetrieveWithHttpInfo(xAccountToken);
+    public AccountDetails accountDetailsRetrieve() throws ApiException {
+        ApiResponse<AccountDetails> localVarResp = accountDetailsRetrieveWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * 
      * Get details for a linked account.
-     * @param xAccountToken Token identifying the end user. (required)
      * @return ApiResponse&lt;AccountDetails&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -143,8 +131,8 @@ public class AccountDetailsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AccountDetails> accountDetailsRetrieveWithHttpInfo(String xAccountToken) throws ApiException {
-        okhttp3.Call localVarCall = accountDetailsRetrieveValidateBeforeCall(xAccountToken, null);
+    public ApiResponse<AccountDetails> accountDetailsRetrieveWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = accountDetailsRetrieveValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<AccountDetails>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -152,7 +140,6 @@ public class AccountDetailsApi {
     /**
      *  (asynchronously)
      * Get details for a linked account.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -162,9 +149,9 @@ public class AccountDetailsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountDetailsRetrieveAsync(String xAccountToken, final ApiCallback<AccountDetails> _callback) throws ApiException {
+    public okhttp3.Call accountDetailsRetrieveAsync(final ApiCallback<AccountDetails> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = accountDetailsRetrieveValidateBeforeCall(xAccountToken, _callback);
+        okhttp3.Call localVarCall = accountDetailsRetrieveValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<AccountDetails>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

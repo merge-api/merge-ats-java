@@ -37,7 +37,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Candidate Object ### Description The &#x60;Candidate&#x60; object is used to represent a Candidate for various positions. ### Usage Example Fetch from the &#x60;LIST Candidates&#x60; endpoint and filter by &#x60;ID&#x60; to show all candidates.
  */
 @ApiModel(description = "# The Candidate Object ### Description The `Candidate` object is used to represent a Candidate for various positions. ### Usage Example Fetch from the `LIST Candidates` endpoint and filter by `ID` to show all candidates.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class CandidateRequest {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -106,10 +106,6 @@ public class CandidateRequest {
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
   private List<UUID> attachments = null;
-
-  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
-  private Map<String, Object> customFields = null;
 
   public static final String SERIALIZED_NAME_REMOTE_TEMPLATE_ID = "remote_template_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_TEMPLATE_ID)
@@ -571,37 +567,6 @@ public class CandidateRequest {
   }
 
 
-  public CandidateRequest customFields(Map<String, Object> customFields) {
-    
-    this.customFields = customFields;
-    return this;
-  }
-
-  public CandidateRequest putCustomFieldsItem(String key, Object customFieldsItem) {
-    if (this.customFields == null) {
-      this.customFields = new HashMap<String, Object>();
-    }
-    this.customFields.put(key, customFieldsItem);
-    return this;
-  }
-
-   /**
-   * Custom fields configured for a given model.
-   * @return customFields
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Custom fields configured for a given model.")
-
-  public Map<String, Object> getCustomFields() {
-    return customFields;
-  }
-
-
-  public void setCustomFields(Map<String, Object> customFields) {
-    this.customFields = customFields;
-  }
-
-
   public CandidateRequest remoteTemplateId(String remoteTemplateId) {
     
     this.remoteTemplateId = remoteTemplateId;
@@ -713,7 +678,6 @@ public class CandidateRequest {
         Objects.equals(this.tags, candidateRequest.tags) &&
         Objects.equals(this.applications, candidateRequest.applications) &&
         Objects.equals(this.attachments, candidateRequest.attachments) &&
-        Objects.equals(this.customFields, candidateRequest.customFields) &&
         Objects.equals(this.remoteTemplateId, candidateRequest.remoteTemplateId) &&
         Objects.equals(this.integrationParams, candidateRequest.integrationParams) &&
         Objects.equals(this.linkedAccountParams, candidateRequest.linkedAccountParams);
@@ -721,7 +685,7 @@ public class CandidateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, customFields, remoteTemplateId, integrationParams, linkedAccountParams);
+    return Objects.hash(remoteId, firstName, lastName, company, title, remoteCreatedAt, remoteUpdatedAt, lastInteractionAt, isPrivate, canEmail, locations, phoneNumbers, emailAddresses, urls, tags, applications, attachments, remoteTemplateId, integrationParams, linkedAccountParams);
   }
 
   @Override
@@ -745,7 +709,6 @@ public class CandidateRequest {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    applications: ").append(toIndentedString(applications)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
-    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    remoteTemplateId: ").append(toIndentedString(remoteTemplateId)).append("\n");
     sb.append("    integrationParams: ").append(toIndentedString(integrationParams)).append("\n");
     sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams)).append("\n");

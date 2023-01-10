@@ -29,7 +29,7 @@ import merge_ats_client.model.CategoryEnum;
 /**
  * AccountDetails
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class AccountDetails {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -66,6 +66,10 @@ public class AccountDetails {
   public static final String SERIALIZED_NAME_WEBHOOK_LISTENER_URL = "webhook_listener_url";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_LISTENER_URL)
   private String webhookListenerUrl;
+
+  public static final String SERIALIZED_NAME_IS_DUPLICATE = "is_duplicate";
+  @SerializedName(SERIALIZED_NAME_IS_DUPLICATE)
+  private Boolean isDuplicate;
 
 
    /**
@@ -203,6 +207,20 @@ public class AccountDetails {
 
 
 
+   /**
+   * Whether a Production Linked Account&#39;s credentials match another existing Production Linked Account. This field is &#x60;null&#x60; for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
+   * @return isDuplicate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.")
+
+  public Boolean getIsDuplicate() {
+    return isDuplicate;
+  }
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -220,12 +238,13 @@ public class AccountDetails {
         Objects.equals(this.endUserOrganizationName, accountDetails.endUserOrganizationName) &&
         Objects.equals(this.endUserEmailAddress, accountDetails.endUserEmailAddress) &&
         Objects.equals(this.status, accountDetails.status) &&
-        Objects.equals(this.webhookListenerUrl, accountDetails.webhookListenerUrl);
+        Objects.equals(this.webhookListenerUrl, accountDetails.webhookListenerUrl) &&
+        Objects.equals(this.isDuplicate, accountDetails.isDuplicate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, integration, integrationSlug, category, endUserOriginId, endUserOrganizationName, endUserEmailAddress, status, webhookListenerUrl);
+    return Objects.hash(id, integration, integrationSlug, category, endUserOriginId, endUserOrganizationName, endUserEmailAddress, status, webhookListenerUrl, isDuplicate);
   }
 
   @Override
@@ -241,6 +260,7 @@ public class AccountDetails {
     sb.append("    endUserEmailAddress: ").append(toIndentedString(endUserEmailAddress)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    webhookListenerUrl: ").append(toIndentedString(webhookListenerUrl)).append("\n");
+    sb.append("    isDuplicate: ").append(toIndentedString(isDuplicate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

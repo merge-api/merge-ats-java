@@ -59,11 +59,10 @@ public class JobInterviewStagesApi {
 
     /**
      * Build call for jobInterviewStagesList
-     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return interview stages for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -79,7 +78,7 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobInterviewStagesListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call jobInterviewStagesListCall(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -131,10 +130,6 @@ public class JobInterviewStagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
         }
 
-        if (xAccountToken != null) {
-            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -149,20 +144,15 @@ public class JobInterviewStagesApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call jobInterviewStagesListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'xAccountToken' is set
-        if (xAccountToken == null) {
-            throw new ApiException("Missing the required parameter 'xAccountToken' when calling jobInterviewStagesList(Async)");
-        }
+    private okhttp3.Call jobInterviewStagesListValidateBeforeCall(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = jobInterviewStagesListCall(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = jobInterviewStagesListCall(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         return localVarCall;
 
     }
@@ -170,11 +160,10 @@ public class JobInterviewStagesApi {
     /**
      * 
      * Returns a list of &#x60;JobInterviewStage&#x60; objects.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return interview stages for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -189,19 +178,18 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedJobInterviewStageList jobInterviewStagesList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        ApiResponse<PaginatedJobInterviewStageList> localVarResp = jobInterviewStagesListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+    public PaginatedJobInterviewStageList jobInterviewStagesList(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        ApiResponse<PaginatedJobInterviewStageList> localVarResp = jobInterviewStagesListWithHttpInfo(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of &#x60;JobInterviewStage&#x60; objects.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return interview stages for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -216,8 +204,8 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedJobInterviewStageList> jobInterviewStagesListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = jobInterviewStagesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
+    public ApiResponse<PaginatedJobInterviewStageList> jobInterviewStagesListWithHttpInfo(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = jobInterviewStagesListValidateBeforeCall(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedJobInterviewStageList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -225,11 +213,10 @@ public class JobInterviewStagesApi {
     /**
      *  (asynchronously)
      * Returns a list of &#x60;JobInterviewStage&#x60; objects.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
-     * @param includeDeletedData Whether to include data that was deleted in the third-party service. (optional)
+     * @param includeDeletedData Whether to include data that was marked as deleted by third party webhooks. (optional)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param jobId If provided, will only return interview stages for this job. (optional)
      * @param modifiedAfter If provided, will only return objects modified after this datetime. (optional)
@@ -245,16 +232,15 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobInterviewStagesListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedJobInterviewStageList> _callback) throws ApiException {
+    public okhttp3.Call jobInterviewStagesListAsync(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteId, final ApiCallback<PaginatedJobInterviewStageList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = jobInterviewStagesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
+        okhttp3.Call localVarCall = jobInterviewStagesListValidateBeforeCall(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedJobInterviewStageList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for jobInterviewStagesRetrieve
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param _callback Callback for upload/download progress
@@ -266,7 +252,7 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobInterviewStagesRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call jobInterviewStagesRetrieveCall(UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -283,10 +269,6 @@ public class JobInterviewStagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_remote_data", includeRemoteData));
         }
 
-        if (xAccountToken != null) {
-            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -301,17 +283,12 @@ public class JobInterviewStagesApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call jobInterviewStagesRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'xAccountToken' is set
-        if (xAccountToken == null) {
-            throw new ApiException("Missing the required parameter 'xAccountToken' when calling jobInterviewStagesRetrieve(Async)");
-        }
+    private okhttp3.Call jobInterviewStagesRetrieveValidateBeforeCall(UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -319,7 +296,7 @@ public class JobInterviewStagesApi {
         }
         
 
-        okhttp3.Call localVarCall = jobInterviewStagesRetrieveCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = jobInterviewStagesRetrieveCall(id, includeRemoteData, _callback);
         return localVarCall;
 
     }
@@ -327,7 +304,6 @@ public class JobInterviewStagesApi {
     /**
      * 
      * Returns a &#x60;JobInterviewStage&#x60; object with the given &#x60;id&#x60;.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @return JobInterviewStage
@@ -338,15 +314,14 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public JobInterviewStage jobInterviewStagesRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        ApiResponse<JobInterviewStage> localVarResp = jobInterviewStagesRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
+    public JobInterviewStage jobInterviewStagesRetrieve(UUID id, Boolean includeRemoteData) throws ApiException {
+        ApiResponse<JobInterviewStage> localVarResp = jobInterviewStagesRetrieveWithHttpInfo(id, includeRemoteData);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a &#x60;JobInterviewStage&#x60; object with the given &#x60;id&#x60;.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @return ApiResponse&lt;JobInterviewStage&gt;
@@ -357,8 +332,8 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<JobInterviewStage> jobInterviewStagesRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
-        okhttp3.Call localVarCall = jobInterviewStagesRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, null);
+    public ApiResponse<JobInterviewStage> jobInterviewStagesRetrieveWithHttpInfo(UUID id, Boolean includeRemoteData) throws ApiException {
+        okhttp3.Call localVarCall = jobInterviewStagesRetrieveValidateBeforeCall(id, includeRemoteData, null);
         Type localVarReturnType = new TypeToken<JobInterviewStage>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -366,7 +341,6 @@ public class JobInterviewStagesApi {
     /**
      *  (asynchronously)
      * Returns a &#x60;JobInterviewStage&#x60; object with the given &#x60;id&#x60;.
-     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -378,9 +352,9 @@ public class JobInterviewStagesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call jobInterviewStagesRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback<JobInterviewStage> _callback) throws ApiException {
+    public okhttp3.Call jobInterviewStagesRetrieveAsync(UUID id, Boolean includeRemoteData, final ApiCallback<JobInterviewStage> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = jobInterviewStagesRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = jobInterviewStagesRetrieveValidateBeforeCall(id, includeRemoteData, _callback);
         Type localVarReturnType = new TypeToken<JobInterviewStage>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

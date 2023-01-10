@@ -31,10 +31,10 @@ import merge_ats_client.JSON;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
+ * # The Scorecard Object ### Description The &#x60;Scorecard&#x60; object is used to represent a Scorecard for an interview. ### Usage Example Fetch from the &#x60;LIST Scorecards&#x60; endpoint and filter by &#x60;application&#x60; to show all scorecard for an applicant.
  */
-@ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@ApiModel(description = "# The Scorecard Object ### Description The `Scorecard` object is used to represent a Scorecard for an interview. ### Usage Example Fetch from the `LIST Scorecards` endpoint and filter by `application` to show all scorecard for an applicant.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class ScorecardRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -75,6 +75,10 @@ public class ScorecardRawJson {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private JsonElement remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private JsonElement fieldMappings;
 
   private transient JSON serializer;
 
@@ -119,11 +123,11 @@ public class ScorecardRawJson {
   }
 
    /**
-   * Get application
+   * The application being scored.
    * @return application
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The application being scored.")
 
   public JsonElement getApplication() {
     return application;
@@ -138,11 +142,11 @@ public class ScorecardRawJson {
   }
 
    /**
-   * Get interview
+   * The interview being scored.
    * @return interview
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The interview being scored.")
 
   public JsonElement getInterview() {
     return interview;
@@ -157,11 +161,11 @@ public class ScorecardRawJson {
   }
 
    /**
-   * Get interviewer
+   * The interviewer doing the scoring.
    * @return interviewer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "bbb519a3-246e-4b95-b6b3-dba16107ba6b", value = "")
+  @ApiModelProperty(example = "bbb519a3-246e-4b95-b6b3-dba16107ba6b", value = "The interviewer doing the scoring.")
 
   public JsonElement getInterviewer() {
     return interviewer;
@@ -239,14 +243,25 @@ public class ScorecardRawJson {
   }
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public JsonElement getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public JsonElement getFieldMappings() {
+    return fieldMappings;
   }
   @Override
   public boolean equals(Object o) {
@@ -266,11 +281,12 @@ public class ScorecardRawJson {
         Objects.equals(this.submittedAt.getAsString(), scorecard.submittedAt.getAsString()) &&
         Objects.equals(this.overallRecommendation.getAsString(), scorecard.overallRecommendation.getAsString()) &&
         Objects.equals(this.remoteData.getAsString(), scorecard.remoteData.getAsString()) &&
-        Objects.equals(this.remoteWasDeleted.getAsString(), scorecard.remoteWasDeleted.getAsString());
+        Objects.equals(this.remoteWasDeleted.getAsString(), scorecard.remoteWasDeleted.getAsString()) &&
+        Objects.equals(this.fieldMappings.getAsString(), scorecard.fieldMappings.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, application, interview, interviewer, remoteCreatedAt, submittedAt, overallRecommendation, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, application, interview, interviewer, remoteCreatedAt, submittedAt, overallRecommendation, remoteData, remoteWasDeleted, fieldMappings);
   }
   @Override
   public String toString() {
@@ -286,6 +302,7 @@ public class ScorecardRawJson {
     sb.append("    overallRecommendation: ").append(toIndentedString(overallRecommendation.getAsString())).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData.getAsString())).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted.getAsString())).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

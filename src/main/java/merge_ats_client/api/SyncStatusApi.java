@@ -56,7 +56,6 @@ public class SyncStatusApi {
 
     /**
      * Build call for syncStatusList
-     * @param xAccountToken Token identifying the end user. (required)
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param _callback Callback for upload/download progress
@@ -68,7 +67,7 @@ public class SyncStatusApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call syncStatusListCall(String xAccountToken, String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call syncStatusListCall(String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -88,10 +87,6 @@ public class SyncStatusApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page_size", pageSize));
         }
 
-        if (xAccountToken != null) {
-            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -106,28 +101,22 @@ public class SyncStatusApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "tokenAuth" };
+        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call syncStatusListValidateBeforeCall(String xAccountToken, String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'xAccountToken' is set
-        if (xAccountToken == null) {
-            throw new ApiException("Missing the required parameter 'xAccountToken' when calling syncStatusList(Async)");
-        }
+    private okhttp3.Call syncStatusListValidateBeforeCall(String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = syncStatusListCall(xAccountToken, cursor, pageSize, _callback);
+        okhttp3.Call localVarCall = syncStatusListCall(cursor, pageSize, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
-     * @param xAccountToken Token identifying the end user. (required)
+     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;PAUSED&#x60;, &#x60;SYNCING&#x60;
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @return PaginatedSyncStatusList
@@ -138,15 +127,14 @@ public class SyncStatusApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedSyncStatusList syncStatusList(String xAccountToken, String cursor, Integer pageSize) throws ApiException {
-        ApiResponse<PaginatedSyncStatusList> localVarResp = syncStatusListWithHttpInfo(xAccountToken, cursor, pageSize);
+    public PaginatedSyncStatusList syncStatusList(String cursor, Integer pageSize) throws ApiException {
+        ApiResponse<PaginatedSyncStatusList> localVarResp = syncStatusListWithHttpInfo(cursor, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
-     * @param xAccountToken Token identifying the end user. (required)
+     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;PAUSED&#x60;, &#x60;SYNCING&#x60;
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @return ApiResponse&lt;PaginatedSyncStatusList&gt;
@@ -157,16 +145,15 @@ public class SyncStatusApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedSyncStatusList> syncStatusListWithHttpInfo(String xAccountToken, String cursor, Integer pageSize) throws ApiException {
-        okhttp3.Call localVarCall = syncStatusListValidateBeforeCall(xAccountToken, cursor, pageSize, null);
+    public ApiResponse<PaginatedSyncStatusList> syncStatusListWithHttpInfo(String cursor, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = syncStatusListValidateBeforeCall(cursor, pageSize, null);
         Type localVarReturnType = new TypeToken<PaginatedSyncStatusList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
-     * @param xAccountToken Token identifying the end user. (required)
+     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;PAUSED&#x60;, &#x60;SYNCING&#x60;
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -178,9 +165,9 @@ public class SyncStatusApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call syncStatusListAsync(String xAccountToken, String cursor, Integer pageSize, final ApiCallback<PaginatedSyncStatusList> _callback) throws ApiException {
+    public okhttp3.Call syncStatusListAsync(String cursor, Integer pageSize, final ApiCallback<PaginatedSyncStatusList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = syncStatusListValidateBeforeCall(xAccountToken, cursor, pageSize, _callback);
+        okhttp3.Call localVarCall = syncStatusListValidateBeforeCall(cursor, pageSize, _callback);
         Type localVarReturnType = new TypeToken<PaginatedSyncStatusList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

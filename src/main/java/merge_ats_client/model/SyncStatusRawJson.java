@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The SyncStatus Object ### Description The &#x60;SyncStatus&#x60; object is used to represent the syncing state of an account  ### Usage Example View the &#x60;SyncStatus&#x60; for an account to see how recently its models were synced.
  */
 @ApiModel(description = "# The SyncStatus Object ### Description The `SyncStatus` object is used to represent the syncing state of an account  ### Usage Example View the `SyncStatus` for an account to see how recently its models were synced.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class SyncStatusRawJson {
   public static final String SERIALIZED_NAME_MODEL_NAME = "model_name";
   @SerializedName(SERIALIZED_NAME_MODEL_NAME)
@@ -59,6 +59,10 @@ public class SyncStatusRawJson {
   public static final String SERIALIZED_NAME_IS_INITIAL_SYNC = "is_initial_sync";
   @SerializedName(SERIALIZED_NAME_IS_INITIAL_SYNC)
   private JsonElement isInitialSync;
+
+  public static final String SERIALIZED_NAME_SELECTIVE_SYNC_CONFIGURATIONS_USAGE = "selective_sync_configurations_usage";
+  @SerializedName(SERIALIZED_NAME_SELECTIVE_SYNC_CONFIGURATIONS_USAGE)
+  private JsonElement selectiveSyncConfigurationsUsage;
 
   private transient JSON serializer;
 
@@ -114,8 +118,8 @@ public class SyncStatusRawJson {
    * Get lastSyncStart
    * @return lastSyncStart
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2021-03-30T19:44:18.695973Z", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2021-03-30T19:44:18.695973Z", value = "")
 
   public JsonElement getLastSyncStart() {
     return lastSyncStart;
@@ -133,8 +137,8 @@ public class SyncStatusRawJson {
    * Get nextSyncStart
    * @return nextSyncStart
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2021-03-30T20:44:18.662942Z", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2021-03-30T20:44:18.662942Z", value = "")
 
   public JsonElement getNextSyncStart() {
     return nextSyncStart;
@@ -180,6 +184,25 @@ public class SyncStatusRawJson {
   public void setIsInitialSync(JsonElement isInitialSync) {
     this.isInitialSync = isInitialSync;
   }
+
+  public SyncStatusRawJson selectiveSyncConfigurationsUsage(SelectiveSyncConfigurationsUsageEnum selectiveSyncConfigurationsUsage) {
+    this.selectiveSyncConfigurationsUsage = this.serializer.getGson().toJsonTree(selectiveSyncConfigurationsUsage);
+    return this;
+  }
+
+   /**
+   * Get selectiveSyncConfigurationsUsage
+   * @return selectiveSyncConfigurationsUsage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "IN_NEXT_SYNC", value = "")
+
+  public JsonElement getSelectiveSyncConfigurationsUsage() {
+    return selectiveSyncConfigurationsUsage;
+  }
+  public void setSelectiveSyncConfigurationsUsage(JsonElement selectiveSyncConfigurationsUsage) {
+    this.selectiveSyncConfigurationsUsage = selectiveSyncConfigurationsUsage;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -194,11 +217,12 @@ public class SyncStatusRawJson {
         Objects.equals(this.lastSyncStart.getAsString(), syncStatus.lastSyncStart.getAsString()) &&
         Objects.equals(this.nextSyncStart.getAsString(), syncStatus.nextSyncStart.getAsString()) &&
         Objects.equals(this.status.getAsString(), syncStatus.status.getAsString()) &&
-        Objects.equals(this.isInitialSync.getAsString(), syncStatus.isInitialSync.getAsString());
+        Objects.equals(this.isInitialSync.getAsString(), syncStatus.isInitialSync.getAsString()) &&
+        Objects.equals(this.selectiveSyncConfigurationsUsage.getAsString(), syncStatus.selectiveSyncConfigurationsUsage.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(modelName, modelId, lastSyncStart, nextSyncStart, status, isInitialSync);
+    return Objects.hash(modelName, modelId, lastSyncStart, nextSyncStart, status, isInitialSync, selectiveSyncConfigurationsUsage);
   }
   @Override
   public String toString() {
@@ -210,6 +234,7 @@ public class SyncStatusRawJson {
     sb.append("    nextSyncStart: ").append(toIndentedString(nextSyncStart.getAsString())).append("\n");
     sb.append("    status: ").append(toIndentedString(status.getAsString())).append("\n");
     sb.append("    isInitialSync: ").append(toIndentedString(isInitialSync.getAsString())).append("\n");
+    sb.append("    selectiveSyncConfigurationsUsage: ").append(toIndentedString(selectiveSyncConfigurationsUsage.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

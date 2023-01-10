@@ -45,7 +45,6 @@ public class RejectReasonsApiTest {
      */
     @Test
     public void rejectReasonsListTest() throws ApiException {
-        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -55,7 +54,7 @@ public class RejectReasonsApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedRejectReasonList response = api.rejectReasonsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedRejectReasonList response = api.rejectReasonsList(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -70,10 +69,9 @@ public class RejectReasonsApiTest {
      */
     @Test
     public void rejectReasonsRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        RejectReason response = api.rejectReasonsRetrieve(xAccountToken, id, includeRemoteData);
+        RejectReason response = api.rejectReasonsRetrieve(id, includeRemoteData);
 
         // TODO: test validations
     }

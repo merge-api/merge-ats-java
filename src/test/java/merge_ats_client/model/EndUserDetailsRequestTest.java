@@ -91,4 +91,12 @@ public class EndUserDetailsRequestTest {
         // TODO: test linkExpiryMins
     }
 
+    /**
+     * Test the property 'shouldCreateMagicLinkUrl'
+     */
+    @Test
+    public void shouldCreateMagicLinkUrlTest() {
+        // TODO: test shouldCreateMagicLinkUrl
+    }
+
 }

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="webhookReceiversCreate"></a>
 # **webhookReceiversCreate**
-> WebhookReceiver webhookReceiversCreate(xAccountToken, webhookReceiverRequest)
+> WebhookReceiver webhookReceiversCreate(webhookReceiverRequest)
 
 
 
@@ -31,17 +31,20 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: accountTokenAuth
+    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
+    accountTokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
+    //accountTokenAuth.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     WebhookReceiversApi apiInstance = new WebhookReceiversApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     WebhookReceiverRequest webhookReceiverRequest = new WebhookReceiverRequest(); // WebhookReceiverRequest | 
     try {
-      WebhookReceiver result = apiInstance.webhookReceiversCreate(xAccountToken, webhookReceiverRequest);
+      WebhookReceiver result = apiInstance.webhookReceiversCreate(webhookReceiverRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookReceiversApi#webhookReceiversCreate");
@@ -58,7 +61,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xAccountToken** | **String**| Token identifying the end user. |
  **webhookReceiverRequest** | [**WebhookReceiverRequest**](WebhookReceiverRequest.md)|  |
 
 ### Return type
@@ -67,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -81,7 +83,7 @@ Name | Type | Description  | Notes
 
 <a name="webhookReceiversList"></a>
 # **webhookReceiversList**
-> List&lt;WebhookReceiver&gt; webhookReceiversList(xAccountToken)
+> List&lt;WebhookReceiver&gt; webhookReceiversList()
 
 
 
@@ -102,16 +104,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: accountTokenAuth
+    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
+    accountTokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
+    //accountTokenAuth.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     WebhookReceiversApi apiInstance = new WebhookReceiversApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      List<WebhookReceiver> result = apiInstance.webhookReceiversList(xAccountToken);
+      List<WebhookReceiver> result = apiInstance.webhookReceiversList();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookReceiversApi#webhookReceiversList");
@@ -125,10 +130,7 @@ public class Example {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xAccountToken** | **String**| Token identifying the end user. |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -136,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

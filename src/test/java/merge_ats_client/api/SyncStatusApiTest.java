@@ -35,17 +35,16 @@ public class SyncStatusApiTest {
     /**
      * 
      *
-     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
+     * Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;PAUSED&#x60;, &#x60;SYNCING&#x60;
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
     public void syncStatusListTest() throws ApiException {
-        String xAccountToken = null;
         String cursor = null;
         Integer pageSize = null;
-        PaginatedSyncStatusList response = api.syncStatusList(xAccountToken, cursor, pageSize);
+        PaginatedSyncStatusList response = api.syncStatusList(cursor, pageSize);
 
         // TODO: test validations
     }

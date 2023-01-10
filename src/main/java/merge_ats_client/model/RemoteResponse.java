@@ -26,12 +26,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import merge_ats_client.model.ResponseTypeEnum;
 
 /**
  * # The RemoteResponse Object ### Description The &#x60;RemoteResponse&#x60; object is used to represent information returned from a third-party endpoint.  ### Usage Example View the &#x60;RemoteResponse&#x60; returned from your &#x60;DataPassthrough&#x60;.
  */
 @ApiModel(description = "# The RemoteResponse Object ### Description The `RemoteResponse` object is used to represent information returned from a third-party endpoint.  ### Usage Example View the `RemoteResponse` returned from your `DataPassthrough`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class RemoteResponse {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -47,7 +48,15 @@ public class RemoteResponse {
 
   public static final String SERIALIZED_NAME_RESPONSE = "response";
   @SerializedName(SERIALIZED_NAME_RESPONSE)
-  private Map<String, Object> response = new HashMap<String, Object>();
+  private Object response = null;
+
+  public static final String SERIALIZED_NAME_RESPONSE_HEADERS = "response_headers";
+  @SerializedName(SERIALIZED_NAME_RESPONSE_HEADERS)
+  private Map<String, Object> responseHeaders = null;
+
+  public static final String SERIALIZED_NAME_RESPONSE_TYPE = "response_type";
+  @SerializedName(SERIALIZED_NAME_RESPONSE_TYPE)
+  private ResponseTypeEnum responseType;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
@@ -120,14 +129,9 @@ public class RemoteResponse {
   }
 
 
-  public RemoteResponse response(Map<String, Object> response) {
+  public RemoteResponse response(Object response) {
     
     this.response = response;
-    return this;
-  }
-
-  public RemoteResponse putResponseItem(String key, Object responseItem) {
-    this.response.put(key, responseItem);
     return this;
   }
 
@@ -135,15 +139,70 @@ public class RemoteResponse {
    * Get response
    * @return response
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"scooters\":[{\"company\":\"Lime\",\"model\":\"Gen 2.5\"},{\"company\":\"Bird\",\"model\":\"Bird Zero\"}]}", required = true, value = "")
 
-  public Map<String, Object> getResponse() {
+  public Object getResponse() {
     return response;
   }
 
 
-  public void setResponse(Map<String, Object> response) {
+  public void setResponse(Object response) {
     this.response = response;
+  }
+
+
+  public RemoteResponse responseHeaders(Map<String, Object> responseHeaders) {
+    
+    this.responseHeaders = responseHeaders;
+    return this;
+  }
+
+  public RemoteResponse putResponseHeadersItem(String key, Object responseHeadersItem) {
+    if (this.responseHeaders == null) {
+      this.responseHeaders = new HashMap<String, Object>();
+    }
+    this.responseHeaders.put(key, responseHeadersItem);
+    return this;
+  }
+
+   /**
+   * Get responseHeaders
+   * @return responseHeaders
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"X-Page-Token\":\"value\"}", value = "")
+
+  public Map<String, Object> getResponseHeaders() {
+    return responseHeaders;
+  }
+
+
+  public void setResponseHeaders(Map<String, Object> responseHeaders) {
+    this.responseHeaders = responseHeaders;
+  }
+
+
+  public RemoteResponse responseType(ResponseTypeEnum responseType) {
+    
+    this.responseType = responseType;
+    return this;
+  }
+
+   /**
+   * Get responseType
+   * @return responseType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "JSON", value = "")
+
+  public ResponseTypeEnum getResponseType() {
+    return responseType;
+  }
+
+
+  public void setResponseType(ResponseTypeEnum responseType) {
+    this.responseType = responseType;
   }
 
 
@@ -191,12 +250,14 @@ public class RemoteResponse {
         Objects.equals(this.path, remoteResponse.path) &&
         Objects.equals(this.status, remoteResponse.status) &&
         Objects.equals(this.response, remoteResponse.response) &&
+        Objects.equals(this.responseHeaders, remoteResponse.responseHeaders) &&
+        Objects.equals(this.responseType, remoteResponse.responseType) &&
         Objects.equals(this.headers, remoteResponse.headers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, path, status, response, headers);
+    return Objects.hash(method, path, status, response, responseHeaders, responseType, headers);
   }
 
   @Override
@@ -207,6 +268,8 @@ public class RemoteResponse {
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    response: ").append(toIndentedString(response)).append("\n");
+    sb.append("    responseHeaders: ").append(toIndentedString(responseHeaders)).append("\n");
+    sb.append("    responseType: ").append(toIndentedString(responseType)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("}");
     return sb.toString();

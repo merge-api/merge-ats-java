@@ -24,7 +24,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import merge_ats_client.model.DisabilityStatusEnum;
 import merge_ats_client.model.GenderEnum;
@@ -37,7 +39,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The EEOC Object ### Description The &#x60;EEOC&#x60; object is used to represent the Equal Employment Opportunity Commission information for a candidate. ### Usage Example Fetch from the &#x60;LIST EEOCs&#x60; endpoint and filter by &#x60;candidate&#x60; to show all EEOC information for a candidate.
  */
 @ApiModel(description = "# The EEOC Object ### Description The `EEOC` object is used to represent the Equal Employment Opportunity Commission information for a candidate. ### Usage Example Fetch from the `LIST EEOCs` endpoint and filter by `candidate` to show all EEOC information for a candidate.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class EEOC {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -78,6 +80,10 @@ public class EEOC {
   public static final String SERIALIZED_NAME_REMOTE_WAS_DELETED = "remote_was_deleted";
   @SerializedName(SERIALIZED_NAME_REMOTE_WAS_DELETED)
   private Boolean remoteWasDeleted;
+
+  public static final String SERIALIZED_NAME_FIELD_MAPPINGS = "field_mappings";
+  @SerializedName(SERIALIZED_NAME_FIELD_MAPPINGS)
+  private Map<String, Object> fieldMappings = null;
 
 
    /**
@@ -124,11 +130,11 @@ public class EEOC {
   }
 
    /**
-   * Get candidate
+   * The candidate being represented.
    * @return candidate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "f963f34d-3d2f-4f77-b557-cf36bc7e6498", value = "")
+  @ApiModelProperty(example = "f963f34d-3d2f-4f77-b557-cf36bc7e6498", value = "The candidate being represented.")
 
   public UUID getCandidate() {
     return candidate;
@@ -270,14 +276,28 @@ public class EEOC {
 
 
    /**
-   * Indicates whether or not this object has been deleted on the third-party.
+   * Indicates whether or not this object has been deleted by third party webhooks.
    * @return remoteWasDeleted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not this object has been deleted on the third-party.")
+  @ApiModelProperty(value = "Indicates whether or not this object has been deleted by third party webhooks.")
 
   public Boolean getRemoteWasDeleted() {
     return remoteWasDeleted;
+  }
+
+
+
+
+   /**
+   * Get fieldMappings
+   * @return fieldMappings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"organization_defined_targets\":{\"custom_key\":\"custom_value\"},\"linked_account_defined_targets\":{\"custom_key\":\"custom_value\"}}", value = "")
+
+  public Map<String, Object> getFieldMappings() {
+    return fieldMappings;
   }
 
 
@@ -301,12 +321,13 @@ public class EEOC {
         Objects.equals(this.veteranStatus, EEOC.veteranStatus) &&
         Objects.equals(this.disabilityStatus, EEOC.disabilityStatus) &&
         Objects.equals(this.remoteData, EEOC.remoteData) &&
-        Objects.equals(this.remoteWasDeleted, EEOC.remoteWasDeleted);
+        Objects.equals(this.remoteWasDeleted, EEOC.remoteWasDeleted) &&
+        Objects.equals(this.fieldMappings, EEOC.fieldMappings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, remoteId, candidate, submittedAt, race, gender, veteranStatus, disabilityStatus, remoteData, remoteWasDeleted);
+    return Objects.hash(id, remoteId, candidate, submittedAt, race, gender, veteranStatus, disabilityStatus, remoteData, remoteWasDeleted, fieldMappings);
   }
 
   @Override
@@ -323,6 +344,7 @@ public class EEOC {
     sb.append("    disabilityStatus: ").append(toIndentedString(disabilityStatus)).append("\n");
     sb.append("    remoteData: ").append(toIndentedString(remoteData)).append("\n");
     sb.append("    remoteWasDeleted: ").append(toIndentedString(remoteWasDeleted)).append("\n");
+    sb.append("    fieldMappings: ").append(toIndentedString(fieldMappings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

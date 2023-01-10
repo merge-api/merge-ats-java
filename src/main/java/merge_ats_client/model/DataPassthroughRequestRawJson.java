@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The DataPassthrough Object ### Description The &#x60;DataPassthrough&#x60; object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a &#x60;DataPassthrough&#x60; to get team hierarchies from your Rippling integration.
  */
 @ApiModel(description = "# The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class DataPassthroughRequestRawJson {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -63,6 +63,10 @@ public class DataPassthroughRequestRawJson {
   public static final String SERIALIZED_NAME_REQUEST_FORMAT = "request_format";
   @SerializedName(SERIALIZED_NAME_REQUEST_FORMAT)
   private JsonElement requestFormat;
+
+  public static final String SERIALIZED_NAME_NORMALIZE_RESPONSE = "normalize_response";
+  @SerializedName(SERIALIZED_NAME_NORMALIZE_RESPONSE)
+  private JsonElement normalizeResponse;
 
   private transient JSON serializer;
 
@@ -203,6 +207,25 @@ public class DataPassthroughRequestRawJson {
   public void setRequestFormat(JsonElement requestFormat) {
     this.requestFormat = requestFormat;
   }
+
+  public DataPassthroughRequestRawJson normalizeResponse(Boolean normalizeResponse) {
+    this.normalizeResponse = this.serializer.getGson().toJsonTree(normalizeResponse);
+    return this;
+  }
+
+   /**
+   * Optional. If true, the response will always be an object of the form &#x60;{\&quot;type\&quot;: T, \&quot;value\&quot;: ...}&#x60; where &#x60;T&#x60; will be one of &#x60;string, boolean, number, null, array, object&#x60;.
+   * @return normalizeResponse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional. If true, the response will always be an object of the form `{\"type\": T, \"value\": ...}` where `T` will be one of `string, boolean, number, null, array, object`.")
+
+  public JsonElement getNormalizeResponse() {
+    return normalizeResponse;
+  }
+  public void setNormalizeResponse(JsonElement normalizeResponse) {
+    this.normalizeResponse = normalizeResponse;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -218,11 +241,12 @@ public class DataPassthroughRequestRawJson {
         Objects.equals(this.data.getAsString(), dataPassthroughRequest.data.getAsString()) &&
         Objects.equals(this.multipartFormData.getAsString(), dataPassthroughRequest.multipartFormData.getAsString()) &&
         Objects.equals(this.headers.getAsString(), dataPassthroughRequest.headers.getAsString()) &&
-        Objects.equals(this.requestFormat.getAsString(), dataPassthroughRequest.requestFormat.getAsString());
+        Objects.equals(this.requestFormat.getAsString(), dataPassthroughRequest.requestFormat.getAsString()) &&
+        Objects.equals(this.normalizeResponse.getAsString(), dataPassthroughRequest.normalizeResponse.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(method, path, baseUrlOverride, data, multipartFormData, headers, requestFormat);
+    return Objects.hash(method, path, baseUrlOverride, data, multipartFormData, headers, requestFormat, normalizeResponse);
   }
   @Override
   public String toString() {
@@ -235,6 +259,7 @@ public class DataPassthroughRequestRawJson {
     sb.append("    multipartFormData: ").append(toIndentedString(multipartFormData.getAsString())).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers.getAsString())).append("\n");
     sb.append("    requestFormat: ").append(toIndentedString(requestFormat.getAsString())).append("\n");
+    sb.append("    normalizeResponse: ").append(toIndentedString(normalizeResponse.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

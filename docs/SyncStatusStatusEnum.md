@@ -13,5 +13,7 @@
 
 * `DISABLED` (value: `"DISABLED"`)
 
+* `PAUSED` (value: `"PAUSED"`)
+
 
 

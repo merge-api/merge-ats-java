@@ -10,14 +10,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **UUID** |  |  [optional] [readonly]
 **remoteId** | **String** | The third-party API ID of the matching object. |  [optional]
-**user** | **UUID** |  |  [optional]
+**user** | **UUID** | The user the performed the action. |  [optional]
 **remoteCreatedAt** | **OffsetDateTime** | When the third party&#39;s activity was created. |  [optional]
 **activityType** | [**ActivityTypeEnum**](ActivityTypeEnum.md) | The activity&#39;s type. |  [optional]
 **subject** | **String** | The activity&#39;s subject. |  [optional]
 **body** | **String** | The activity&#39;s body. |  [optional]
 **visibility** | [**VisibilityEnum**](VisibilityEnum.md) | The activity&#39;s visibility. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
-**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted on the third-party. |  [optional] [readonly]
+**remoteWasDeleted** | **Boolean** | Indicates whether or not this object has been deleted by third party webhooks. |  [optional] [readonly]
+**fieldMappings** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly]
 
 
 

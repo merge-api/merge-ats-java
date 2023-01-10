@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The Application Object ### Description The &#x60;Application&#x60; object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.  Please note: Application objects are constructed if the object does not exist in the remote system.  ### Usage Example Fetch from the &#x60;LIST Applications&#x60; endpoint and filter by &#x60;ID&#x60; to show all applications.
  */
 @ApiModel(description = "# The Application Object ### Description The `Application` object is used to represent an Application for a job position. This is separate from the Candidate object, although some systems may only allow a Candidate to have one Application.  Please note: Application objects are constructed if the object does not exist in the remote system.  ### Usage Example Fetch from the `LIST Applications` endpoint and filter by `ID` to show all applications.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class ApplicationRequestRawJson {
   public static final String SERIALIZED_NAME_REMOTE_ID = "remote_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_ID)
@@ -71,10 +71,6 @@ public class ApplicationRequestRawJson {
   public static final String SERIALIZED_NAME_REJECT_REASON = "reject_reason";
   @SerializedName(SERIALIZED_NAME_REJECT_REASON)
   private JsonElement rejectReason;
-
-  public static final String SERIALIZED_NAME_CUSTOM_FIELDS = "custom_fields";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_FIELDS)
-  private JsonElement customFields;
 
   public static final String SERIALIZED_NAME_REMOTE_TEMPLATE_ID = "remote_template_id";
   @SerializedName(SERIALIZED_NAME_REMOTE_TEMPLATE_ID)
@@ -120,11 +116,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * Get candidate
+   * The candidate applying.
    * @return candidate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "")
+  @ApiModelProperty(example = "2872ba14-4084-492b-be96-e5eee6fc33ef", value = "The candidate applying.")
 
   public JsonElement getCandidate() {
     return candidate;
@@ -139,11 +135,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * Get job
+   * The job being applied for.
    * @return job
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "")
+  @ApiModelProperty(example = "52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633", value = "The job being applied for.")
 
   public JsonElement getJob() {
     return job;
@@ -215,11 +211,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * Get creditedTo
+   * The user credited for this application.
    * @return creditedTo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "58166795-8d68-4b30-9bfb-bfd402479484", value = "")
+  @ApiModelProperty(example = "58166795-8d68-4b30-9bfb-bfd402479484", value = "The user credited for this application.")
 
   public JsonElement getCreditedTo() {
     return creditedTo;
@@ -234,11 +230,11 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * Get currentStage
+   * The application&#39;s current stage.
    * @return currentStage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "")
+  @ApiModelProperty(example = "d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea", value = "The application's current stage.")
 
   public JsonElement getCurrentStage() {
     return currentStage;
@@ -253,36 +249,17 @@ public class ApplicationRequestRawJson {
   }
 
    /**
-   * Get rejectReason
+   * The application&#39;s reason for rejection.
    * @return rejectReason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "")
+  @ApiModelProperty(example = "59b25f2b-da02-40f5-9656-9fa0db555784", value = "The application's reason for rejection.")
 
   public JsonElement getRejectReason() {
     return rejectReason;
   }
   public void setRejectReason(JsonElement rejectReason) {
     this.rejectReason = rejectReason;
-  }
-
-  public ApplicationRequestRawJson customFields(Map<String, Object> customFields) {
-    this.customFields = this.serializer.getGson().toJsonTree(customFields);
-    return this;
-  }
-
-   /**
-   * Custom fields configured for a given model.
-   * @return customFields
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Custom fields configured for a given model.")
-
-  public JsonElement getCustomFields() {
-    return customFields;
-  }
-  public void setCustomFields(JsonElement customFields) {
-    this.customFields = customFields;
   }
 
   public ApplicationRequestRawJson remoteTemplateId(String remoteTemplateId) {
@@ -359,14 +336,13 @@ public class ApplicationRequestRawJson {
         Objects.equals(this.creditedTo.getAsString(), applicationRequest.creditedTo.getAsString()) &&
         Objects.equals(this.currentStage.getAsString(), applicationRequest.currentStage.getAsString()) &&
         Objects.equals(this.rejectReason.getAsString(), applicationRequest.rejectReason.getAsString()) &&
-        Objects.equals(this.customFields.getAsString(), applicationRequest.customFields.getAsString()) &&
         Objects.equals(this.remoteTemplateId.getAsString(), applicationRequest.remoteTemplateId.getAsString()) &&
         Objects.equals(this.integrationParams.getAsString(), applicationRequest.integrationParams.getAsString()) &&
         Objects.equals(this.linkedAccountParams.getAsString(), applicationRequest.linkedAccountParams.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, customFields, remoteTemplateId, integrationParams, linkedAccountParams);
+    return Objects.hash(remoteId, candidate, job, appliedAt, rejectedAt, source, creditedTo, currentStage, rejectReason, remoteTemplateId, integrationParams, linkedAccountParams);
   }
   @Override
   public String toString() {
@@ -381,7 +357,6 @@ public class ApplicationRequestRawJson {
     sb.append("    creditedTo: ").append(toIndentedString(creditedTo.getAsString())).append("\n");
     sb.append("    currentStage: ").append(toIndentedString(currentStage.getAsString())).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason.getAsString())).append("\n");
-    sb.append("    customFields: ").append(toIndentedString(customFields.getAsString())).append("\n");
     sb.append("    remoteTemplateId: ").append(toIndentedString(remoteTemplateId.getAsString())).append("\n");
     sb.append("    integrationParams: ").append(toIndentedString(integrationParams.getAsString())).append("\n");
     sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams.getAsString())).append("\n");

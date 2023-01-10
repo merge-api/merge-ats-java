@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import merge_ats_client.model.SelectiveSyncConfigurationsUsageEnum;
 import merge_ats_client.model.SyncStatusStatusEnum;
 import org.threeten.bp.OffsetDateTime;
 import org.junit.Assert;
@@ -88,6 +89,14 @@ public class SyncStatusTest {
     @Test
     public void isInitialSyncTest() {
         // TODO: test isInitialSync
+    }
+
+    /**
+     * Test the property 'selectiveSyncConfigurationsUsage'
+     */
+    @Test
+    public void selectiveSyncConfigurationsUsageTest() {
+        // TODO: test selectiveSyncConfigurationsUsage
     }
 
 }

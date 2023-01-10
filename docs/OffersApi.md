@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="offersList"></a>
 # **offersList**
-> PaginatedOfferList offersList(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId)
+> PaginatedOfferList offersList(applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId)
 
 
 
@@ -31,27 +31,31 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: accountTokenAuth
+    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
+    accountTokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
+    //accountTokenAuth.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     OffersApi apiInstance = new OffersApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     String applicationId = "applicationId_example"; // String | If provided, will only return offers for this application.
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
     String creatorId = "creatorId_example"; // String | If provided, will only return offers created by this user.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
-    Boolean includeDeletedData = true; // Boolean | Whether to include data that was deleted in the third-party service.
+    Boolean includeDeletedData = true; // Boolean | Whether to include data that was marked as deleted by third party webhooks.
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     OffsetDateTime modifiedAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified after this datetime.
     OffsetDateTime modifiedBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects modified before this datetime.
     Integer pageSize = 56; // Integer | Number of results to return per page.
+    String remoteFields = "status"; // String | Which fields should be returned in non-normalized form.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedOfferList result = apiInstance.offersList(xAccountToken, applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+      PaginatedOfferList result = apiInstance.offersList(applicationId, createdAfter, createdBefore, creatorId, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OffersApi#offersList");
@@ -68,17 +72,17 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xAccountToken** | **String**| Token identifying the end user. |
  **applicationId** | **String**| If provided, will only return offers for this application. | [optional]
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
  **creatorId** | **String**| If provided, will only return offers created by this user. | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
- **includeDeletedData** | **Boolean**| Whether to include data that was deleted in the third-party service. | [optional]
+ **includeDeletedData** | **Boolean**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **modifiedAfter** | **OffsetDateTime**| If provided, will only return objects modified after this datetime. | [optional]
  **modifiedBefore** | **OffsetDateTime**| If provided, will only return objects modified before this datetime. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
+ **remoteFields** | **String**| Which fields should be returned in non-normalized form. | [optional] [enum: status]
  **remoteId** | **String**| The API provider&#39;s ID for the given object. | [optional]
 
 ### Return type
@@ -87,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -101,7 +105,7 @@ Name | Type | Description  | Notes
 
 <a name="offersRetrieve"></a>
 # **offersRetrieve**
-> Offer offersRetrieve(xAccountToken, id, includeRemoteData)
+> Offer offersRetrieve(id, includeRemoteData, remoteFields)
 
 
 
@@ -122,18 +126,22 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: tokenAuth
-    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
-    tokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: accountTokenAuth
+    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
+    accountTokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //tokenAuth.setApiKeyPrefix("Token");
+    //accountTokenAuth.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     OffersApi apiInstance = new OffersApi(defaultClient);
-    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
+    String remoteFields = "status"; // String | Which fields should be returned in non-normalized form.
     try {
-      Offer result = apiInstance.offersRetrieve(xAccountToken, id, includeRemoteData);
+      Offer result = apiInstance.offersRetrieve(id, includeRemoteData, remoteFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OffersApi#offersRetrieve");
@@ -150,9 +158,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
+ **remoteFields** | **String**| Which fields should be returned in non-normalized form. | [optional] [enum: status]
 
 ### Return type
 
@@ -160,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

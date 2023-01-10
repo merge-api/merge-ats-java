@@ -8,7 +8,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **linkToken** | **String** |  | 
-**integrationName** | **String** |  | 
+**integrationName** | **String** |  |  [optional]
+**magicLinkUrl** | **String** |  |  [optional]
 
 
 

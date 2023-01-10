@@ -45,7 +45,6 @@ public class OfficesApiTest {
      */
     @Test
     public void officesListTest() throws ApiException {
-        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -55,7 +54,7 @@ public class OfficesApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedOfficeList response = api.officesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedOfficeList response = api.officesList(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -70,10 +69,9 @@ public class OfficesApiTest {
      */
     @Test
     public void officesRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Office response = api.officesRetrieve(xAccountToken, id, includeRemoteData);
+        Office response = api.officesRetrieve(id, includeRemoteData);
 
         // TODO: test validations
     }

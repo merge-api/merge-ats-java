@@ -31,7 +31,7 @@ import merge_ats_client.model.CategoryEnum;
  * # The LinkedAccount Object ### Description The &#x60;LinkedAccount&#x60; object is used to represent an end user&#39;s link with a specific integration.  ### Usage Example View a list of your organization&#39;s &#x60;LinkedAccount&#x60; objects.
  */
 @ApiModel(description = "# The LinkedAccount Object ### Description The `LinkedAccount` object is used to represent an end user's link with a specific integration.  ### Usage Example View a list of your organization's `LinkedAccount` objects.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class AccountDetailsAndActions {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -64,6 +64,10 @@ public class AccountDetailsAndActions {
   public static final String SERIALIZED_NAME_WEBHOOK_LISTENER_URL = "webhook_listener_url";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_LISTENER_URL)
   private String webhookListenerUrl;
+
+  public static final String SERIALIZED_NAME_IS_DUPLICATE = "is_duplicate";
+  @SerializedName(SERIALIZED_NAME_IS_DUPLICATE)
+  private Boolean isDuplicate;
 
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
@@ -249,6 +253,29 @@ public class AccountDetailsAndActions {
   }
 
 
+  public AccountDetailsAndActions isDuplicate(Boolean isDuplicate) {
+    
+    this.isDuplicate = isDuplicate;
+    return this;
+  }
+
+   /**
+   * Whether a Production Linked Account&#39;s credentials match another existing Production Linked Account. This field is &#x60;null&#x60; for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
+   * @return isDuplicate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.")
+
+  public Boolean getIsDuplicate() {
+    return isDuplicate;
+  }
+
+
+  public void setIsDuplicate(Boolean isDuplicate) {
+    this.isDuplicate = isDuplicate;
+  }
+
+
   public AccountDetailsAndActions integration(AccountDetailsAndActionsIntegration integration) {
     
     this.integration = integration;
@@ -289,12 +316,13 @@ public class AccountDetailsAndActions {
         Objects.equals(this.endUserOrganizationName, accountDetailsAndActions.endUserOrganizationName) &&
         Objects.equals(this.endUserEmailAddress, accountDetailsAndActions.endUserEmailAddress) &&
         Objects.equals(this.webhookListenerUrl, accountDetailsAndActions.webhookListenerUrl) &&
+        Objects.equals(this.isDuplicate, accountDetailsAndActions.isDuplicate) &&
         Objects.equals(this.integration, accountDetailsAndActions.integration);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, webhookListenerUrl, integration);
+    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, webhookListenerUrl, isDuplicate, integration);
   }
 
   @Override
@@ -309,6 +337,7 @@ public class AccountDetailsAndActions {
     sb.append("    endUserOrganizationName: ").append(toIndentedString(endUserOrganizationName)).append("\n");
     sb.append("    endUserEmailAddress: ").append(toIndentedString(endUserEmailAddress)).append("\n");
     sb.append("    webhookListenerUrl: ").append(toIndentedString(webhookListenerUrl)).append("\n");
+    sb.append("    isDuplicate: ").append(toIndentedString(isDuplicate)).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration)).append("\n");
     sb.append("}");
     return sb.toString();

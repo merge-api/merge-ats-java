@@ -30,7 +30,7 @@ import merge_ats_client.model.CategoriesEnum;
 /**
  * EndUserDetailsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class EndUserDetailsRequest {
   public static final String SERIALIZED_NAME_END_USER_EMAIL_ADDRESS = "end_user_email_address";
   @SerializedName(SERIALIZED_NAME_END_USER_EMAIL_ADDRESS)
@@ -56,6 +56,10 @@ public class EndUserDetailsRequest {
   @SerializedName(SERIALIZED_NAME_LINK_EXPIRY_MINS)
   private Integer linkExpiryMins = 30;
 
+  public static final String SERIALIZED_NAME_SHOULD_CREATE_MAGIC_LINK_URL = "should_create_magic_link_url";
+  @SerializedName(SERIALIZED_NAME_SHOULD_CREATE_MAGIC_LINK_URL)
+  private Boolean shouldCreateMagicLinkUrl = false;
+
 
   public EndUserDetailsRequest endUserEmailAddress(String endUserEmailAddress) {
     
@@ -64,10 +68,10 @@ public class EndUserDetailsRequest {
   }
 
    /**
-   * Get endUserEmailAddress
+   * Your end user&#39;s email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
    * @return endUserEmailAddress
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.")
 
   public String getEndUserEmailAddress() {
     return endUserEmailAddress;
@@ -86,10 +90,10 @@ public class EndUserDetailsRequest {
   }
 
    /**
-   * Get endUserOrganizationName
+   * Your end user&#39;s organization.
    * @return endUserOrganizationName
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Your end user's organization.")
 
   public String getEndUserOrganizationName() {
     return endUserOrganizationName;
@@ -108,10 +112,10 @@ public class EndUserDetailsRequest {
   }
 
    /**
-   * Get endUserOriginId
+   * This unique identifier typically represents the ID for your end user in your product&#39;s database. This value must be distinct from other Linked Accounts&#39; unique identifiers.
    * @return endUserOriginId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.")
 
   public String getEndUserOriginId() {
     return endUserOriginId;
@@ -135,10 +139,10 @@ public class EndUserDetailsRequest {
   }
 
    /**
-   * Get categories
+   * The integration categories to show in Merge Link.
    * @return categories
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The integration categories to show in Merge Link.")
 
   public List<CategoriesEnum> getCategories() {
     return categories;
@@ -157,11 +161,11 @@ public class EndUserDetailsRequest {
   }
 
    /**
-   * The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata
+   * The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.
    * @return integration
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The slug of a specific pre-selected integration for this linking flow token, for examples of slugs see https://www.merge.dev/docs/basics/integration-metadata")
+  @ApiModelProperty(value = "The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.")
 
   public String getIntegration() {
     return integration;
@@ -180,13 +184,13 @@ public class EndUserDetailsRequest {
   }
 
    /**
-   * An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30
+   * An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.
    * minimum: 30
-   * maximum: 720
+   * maximum: 10080
    * @return linkExpiryMins
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An integer number of minutes between [30, 720] for how long this token is valid. Defaults to 30")
+  @ApiModelProperty(value = "An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.")
 
   public Integer getLinkExpiryMins() {
     return linkExpiryMins;
@@ -195,6 +199,29 @@ public class EndUserDetailsRequest {
 
   public void setLinkExpiryMins(Integer linkExpiryMins) {
     this.linkExpiryMins = linkExpiryMins;
+  }
+
+
+  public EndUserDetailsRequest shouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl) {
+    
+    this.shouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl;
+    return this;
+  }
+
+   /**
+   * Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/.
+   * @return shouldCreateMagicLinkUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/.")
+
+  public Boolean getShouldCreateMagicLinkUrl() {
+    return shouldCreateMagicLinkUrl;
+  }
+
+
+  public void setShouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl) {
+    this.shouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl;
   }
 
 
@@ -212,12 +239,13 @@ public class EndUserDetailsRequest {
         Objects.equals(this.endUserOriginId, endUserDetailsRequest.endUserOriginId) &&
         Objects.equals(this.categories, endUserDetailsRequest.categories) &&
         Objects.equals(this.integration, endUserDetailsRequest.integration) &&
-        Objects.equals(this.linkExpiryMins, endUserDetailsRequest.linkExpiryMins);
+        Objects.equals(this.linkExpiryMins, endUserDetailsRequest.linkExpiryMins) &&
+        Objects.equals(this.shouldCreateMagicLinkUrl, endUserDetailsRequest.shouldCreateMagicLinkUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration, linkExpiryMins);
+    return Objects.hash(endUserEmailAddress, endUserOrganizationName, endUserOriginId, categories, integration, linkExpiryMins, shouldCreateMagicLinkUrl);
   }
 
   @Override
@@ -230,6 +258,7 @@ public class EndUserDetailsRequest {
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration)).append("\n");
     sb.append("    linkExpiryMins: ").append(toIndentedString(linkExpiryMins)).append("\n");
+    sb.append("    shouldCreateMagicLinkUrl: ").append(toIndentedString(shouldCreateMagicLinkUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

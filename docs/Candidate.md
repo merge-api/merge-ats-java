@@ -27,8 +27,8 @@ Name | Type | Description | Notes
 **applications** | **List&lt;UUID&gt;** | Array of &#x60;Application&#x60; object IDs. |  [optional]
 **attachments** | **List&lt;UUID&gt;** | Array of &#x60;Attachment&#x60; object IDs. |  [optional]
 **remoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  |  [optional] [readonly]
-**customFields** | **Map&lt;String, Object&gt;** | Custom fields configured for a given model. |  [optional]
 **remoteWasDeleted** | **Boolean** |  |  [optional] [readonly]
+**fieldMappings** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly]
 
 
 

@@ -23,13 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import merge_ats_client.model.UrlTypeEnum;
 
 /**
- * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent a candidate&#39;s website. ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.
+ * # The Url Object ### Description The &#x60;Url&#x60; object is used to represent hyperlinks associated with the parent model. ### Usage Example Fetch from the &#x60;GET Candidate&#x60; endpoint and view their website urls.
  */
-@ApiModel(description = "# The Url Object ### Description The `Url` object is used to represent a candidate's website. ### Usage Example Fetch from the `GET Candidate` endpoint and view their website urls.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@ApiModel(description = "# The Url Object ### Description The `Url` object is used to represent hyperlinks associated with the parent model. ### Usage Example Fetch from the `GET Candidate` endpoint and view their website urls.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class UrlRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -38,6 +41,14 @@ public class UrlRequest {
   public static final String SERIALIZED_NAME_URL_TYPE = "url_type";
   @SerializedName(SERIALIZED_NAME_URL_TYPE)
   private UrlTypeEnum urlType;
+
+  public static final String SERIALIZED_NAME_INTEGRATION_PARAMS = "integration_params";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_PARAMS)
+  private Map<String, Object> integrationParams = null;
+
+  public static final String SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS = "linked_account_params";
+  @SerializedName(SERIALIZED_NAME_LINKED_ACCOUNT_PARAMS)
+  private Map<String, Object> linkedAccountParams = null;
 
 
   public UrlRequest value(String value) {
@@ -86,6 +97,68 @@ public class UrlRequest {
   }
 
 
+  public UrlRequest integrationParams(Map<String, Object> integrationParams) {
+    
+    this.integrationParams = integrationParams;
+    return this;
+  }
+
+  public UrlRequest putIntegrationParamsItem(String key, Object integrationParamsItem) {
+    if (this.integrationParams == null) {
+      this.integrationParams = new HashMap<String, Object>();
+    }
+    this.integrationParams.put(key, integrationParamsItem);
+    return this;
+  }
+
+   /**
+   * Get integrationParams
+   * @return integrationParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_integration_field\":\"unique_integration_field_value\"}", value = "")
+
+  public Map<String, Object> getIntegrationParams() {
+    return integrationParams;
+  }
+
+
+  public void setIntegrationParams(Map<String, Object> integrationParams) {
+    this.integrationParams = integrationParams;
+  }
+
+
+  public UrlRequest linkedAccountParams(Map<String, Object> linkedAccountParams) {
+    
+    this.linkedAccountParams = linkedAccountParams;
+    return this;
+  }
+
+  public UrlRequest putLinkedAccountParamsItem(String key, Object linkedAccountParamsItem) {
+    if (this.linkedAccountParams == null) {
+      this.linkedAccountParams = new HashMap<String, Object>();
+    }
+    this.linkedAccountParams.put(key, linkedAccountParamsItem);
+    return this;
+  }
+
+   /**
+   * Get linkedAccountParams
+   * @return linkedAccountParams
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"unique_linked_account_field\":\"unique_linked_account_field_value\"}", value = "")
+
+  public Map<String, Object> getLinkedAccountParams() {
+    return linkedAccountParams;
+  }
+
+
+  public void setLinkedAccountParams(Map<String, Object> linkedAccountParams) {
+    this.linkedAccountParams = linkedAccountParams;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -96,12 +169,14 @@ public class UrlRequest {
     }
     UrlRequest urlRequest = (UrlRequest) o;
     return Objects.equals(this.value, urlRequest.value) &&
-        Objects.equals(this.urlType, urlRequest.urlType);
+        Objects.equals(this.urlType, urlRequest.urlType) &&
+        Objects.equals(this.integrationParams, urlRequest.integrationParams) &&
+        Objects.equals(this.linkedAccountParams, urlRequest.linkedAccountParams);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, urlType);
+    return Objects.hash(value, urlType, integrationParams, linkedAccountParams);
   }
 
   @Override
@@ -110,6 +185,8 @@ public class UrlRequest {
     sb.append("class UrlRequest {\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    urlType: ").append(toIndentedString(urlType)).append("\n");
+    sb.append("    integrationParams: ").append(toIndentedString(integrationParams)).append("\n");
+    sb.append("    linkedAccountParams: ").append(toIndentedString(linkedAccountParams)).append("\n");
     sb.append("}");
     return sb.toString();
   }

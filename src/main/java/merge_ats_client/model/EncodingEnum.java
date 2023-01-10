@@ -37,7 +37,9 @@ public enum EncodingEnum {
   
   RAW("RAW"),
   
-  BASE64("BASE64");
+  BASE64("BASE64"),
+  
+  GZIP_BASE64("GZIP_BASE64");
 
   private String value;
 

@@ -203,19 +203,19 @@ public class CandidateTest {
     }
 
     /**
-     * Test the property 'customFields'
-     */
-    @Test
-    public void customFieldsTest() {
-        // TODO: test customFields
-    }
-
-    /**
      * Test the property 'remoteWasDeleted'
      */
     @Test
     public void remoteWasDeletedTest() {
         // TODO: test remoteWasDeleted
+    }
+
+    /**
+     * Test the property 'fieldMappings'
+     */
+    @Test
+    public void fieldMappingsTest() {
+        // TODO: test fieldMappings
     }
 
 }

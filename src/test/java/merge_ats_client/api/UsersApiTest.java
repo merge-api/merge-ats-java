@@ -45,7 +45,6 @@ public class UsersApiTest {
      */
     @Test
     public void usersListTest() throws ApiException {
-        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -55,8 +54,9 @@ public class UsersApiTest {
         OffsetDateTime modifiedAfter = null;
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
+        String remoteFields = null;
         String remoteId = null;
-        PaginatedRemoteUserList response = api.usersList(xAccountToken, createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedRemoteUserList response = api.usersList(createdAfter, createdBefore, cursor, email, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
 
         // TODO: test validations
     }
@@ -71,10 +71,10 @@ public class UsersApiTest {
      */
     @Test
     public void usersRetrieveTest() throws ApiException {
-        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        RemoteUser response = api.usersRetrieve(xAccountToken, id, includeRemoteData);
+        String remoteFields = null;
+        RemoteUser response = api.usersRetrieve(id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

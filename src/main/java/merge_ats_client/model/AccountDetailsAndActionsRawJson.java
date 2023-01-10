@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * # The LinkedAccount Object ### Description The &#x60;LinkedAccount&#x60; object is used to represent an end user&#39;s link with a specific integration.  ### Usage Example View a list of your organization&#39;s &#x60;LinkedAccount&#x60; objects.
  */
 @ApiModel(description = "# The LinkedAccount Object ### Description The `LinkedAccount` object is used to represent an end user's link with a specific integration.  ### Usage Example View a list of your organization's `LinkedAccount` objects.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-12T20:59:08.199624Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
 public class AccountDetailsAndActionsRawJson {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -67,6 +67,10 @@ public class AccountDetailsAndActionsRawJson {
   public static final String SERIALIZED_NAME_WEBHOOK_LISTENER_URL = "webhook_listener_url";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_LISTENER_URL)
   private JsonElement webhookListenerUrl;
+
+  public static final String SERIALIZED_NAME_IS_DUPLICATE = "is_duplicate";
+  @SerializedName(SERIALIZED_NAME_IS_DUPLICATE)
+  private JsonElement isDuplicate;
 
   public static final String SERIALIZED_NAME_INTEGRATION = "integration";
   @SerializedName(SERIALIZED_NAME_INTEGRATION)
@@ -231,6 +235,25 @@ public class AccountDetailsAndActionsRawJson {
     this.webhookListenerUrl = webhookListenerUrl;
   }
 
+  public AccountDetailsAndActionsRawJson isDuplicate(Boolean isDuplicate) {
+    this.isDuplicate = this.serializer.getGson().toJsonTree(isDuplicate);
+    return this;
+  }
+
+   /**
+   * Whether a Production Linked Account&#39;s credentials match another existing Production Linked Account. This field is &#x60;null&#x60; for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
+   * @return isDuplicate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.")
+
+  public JsonElement getIsDuplicate() {
+    return isDuplicate;
+  }
+  public void setIsDuplicate(JsonElement isDuplicate) {
+    this.isDuplicate = isDuplicate;
+  }
+
   public AccountDetailsAndActionsRawJson integration(AccountDetailsAndActionsIntegration integration) {
     this.integration = this.serializer.getGson().toJsonTree(integration);
     return this;
@@ -266,11 +289,12 @@ public class AccountDetailsAndActionsRawJson {
         Objects.equals(this.endUserOrganizationName.getAsString(), accountDetailsAndActions.endUserOrganizationName.getAsString()) &&
         Objects.equals(this.endUserEmailAddress.getAsString(), accountDetailsAndActions.endUserEmailAddress.getAsString()) &&
         Objects.equals(this.webhookListenerUrl.getAsString(), accountDetailsAndActions.webhookListenerUrl.getAsString()) &&
+        Objects.equals(this.isDuplicate.getAsString(), accountDetailsAndActions.isDuplicate.getAsString()) &&
         Objects.equals(this.integration.getAsString(), accountDetailsAndActions.integration.getAsString());
   }
   @Override
   public int hashCode() {
-    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, webhookListenerUrl, integration);
+    return Objects.hash(id, category, status, statusDetail, endUserOriginId, endUserOrganizationName, endUserEmailAddress, webhookListenerUrl, isDuplicate, integration);
   }
   @Override
   public String toString() {
@@ -284,6 +308,7 @@ public class AccountDetailsAndActionsRawJson {
     sb.append("    endUserOrganizationName: ").append(toIndentedString(endUserOrganizationName.getAsString())).append("\n");
     sb.append("    endUserEmailAddress: ").append(toIndentedString(endUserEmailAddress.getAsString())).append("\n");
     sb.append("    webhookListenerUrl: ").append(toIndentedString(webhookListenerUrl.getAsString())).append("\n");
+    sb.append("    isDuplicate: ").append(toIndentedString(isDuplicate.getAsString())).append("\n");
     sb.append("    integration: ").append(toIndentedString(integration.getAsString())).append("\n");
     sb.append("}");
     return sb.toString();

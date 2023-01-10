@@ -43,9 +43,8 @@ public class WebhookReceiversApiTest {
      */
     @Test
     public void webhookReceiversCreateTest() throws ApiException {
-        String xAccountToken = null;
         WebhookReceiverRequest webhookReceiverRequest = null;
-        WebhookReceiver response = api.webhookReceiversCreate(xAccountToken, webhookReceiverRequest);
+        WebhookReceiver response = api.webhookReceiversCreate(webhookReceiverRequest);
 
         // TODO: test validations
     }
@@ -60,8 +59,7 @@ public class WebhookReceiversApiTest {
      */
     @Test
     public void webhookReceiversListTest() throws ApiException {
-        String xAccountToken = null;
-        List<WebhookReceiver> response = api.webhookReceiversList(xAccountToken);
+        List<WebhookReceiver> response = api.webhookReceiversList();
 
         // TODO: test validations
     }

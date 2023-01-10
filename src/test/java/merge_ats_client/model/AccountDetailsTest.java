@@ -114,4 +114,12 @@ public class AccountDetailsTest {
         // TODO: test webhookListenerUrl
     }
 
+    /**
+     * Test the property 'isDuplicate'
+     */
+    @Test
+    public void isDuplicateTest() {
+        // TODO: test isDuplicate
+    }
+
 }
