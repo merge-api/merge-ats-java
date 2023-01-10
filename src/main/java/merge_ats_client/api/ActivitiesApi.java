@@ -59,6 +59,7 @@ public class ActivitiesApi {
 
     /**
      * Build call for activitiesList
+     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -79,7 +80,7 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activitiesListCall(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call activitiesListCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -135,6 +136,10 @@ public class ActivitiesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("user_id", userId));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -149,15 +154,20 @@ public class ActivitiesApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call activitiesListValidateBeforeCall(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call activitiesListValidateBeforeCall(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling activitiesList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = activitiesListCall(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId, _callback);
+        okhttp3.Call localVarCall = activitiesListCall(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId, _callback);
         return localVarCall;
 
     }
@@ -165,6 +175,7 @@ public class ActivitiesApi {
     /**
      * 
      * Returns a list of &#x60;Activity&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -184,14 +195,15 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedActivityList activitiesList(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId) throws ApiException {
-        ApiResponse<PaginatedActivityList> localVarResp = activitiesListWithHttpInfo(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId);
+    public PaginatedActivityList activitiesList(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId) throws ApiException {
+        ApiResponse<PaginatedActivityList> localVarResp = activitiesListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of &#x60;Activity&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -211,8 +223,8 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedActivityList> activitiesListWithHttpInfo(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId) throws ApiException {
-        okhttp3.Call localVarCall = activitiesListValidateBeforeCall(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId, null);
+    public ApiResponse<PaginatedActivityList> activitiesListWithHttpInfo(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId) throws ApiException {
+        okhttp3.Call localVarCall = activitiesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId, null);
         Type localVarReturnType = new TypeToken<PaginatedActivityList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -220,6 +232,7 @@ public class ActivitiesApi {
     /**
      *  (asynchronously)
      * Returns a list of &#x60;Activity&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
      * @param cursor The pagination cursor value. (optional)
@@ -240,15 +253,16 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activitiesListAsync(OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId, final ApiCallback<PaginatedActivityList> _callback) throws ApiException {
+    public okhttp3.Call activitiesListAsync(String xAccountToken, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, String userId, final ApiCallback<PaginatedActivityList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = activitiesListValidateBeforeCall(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId, _callback);
+        okhttp3.Call localVarCall = activitiesListValidateBeforeCall(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedActivityList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for activitiesRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -261,7 +275,7 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activitiesRetrieveCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call activitiesRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -282,6 +296,10 @@ public class ActivitiesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -296,12 +314,17 @@ public class ActivitiesApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call activitiesRetrieveValidateBeforeCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call activitiesRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling activitiesRetrieve(Async)");
+        }
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -309,7 +332,7 @@ public class ActivitiesApi {
         }
         
 
-        okhttp3.Call localVarCall = activitiesRetrieveCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = activitiesRetrieveCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         return localVarCall;
 
     }
@@ -317,6 +340,7 @@ public class ActivitiesApi {
     /**
      * 
      * Returns an &#x60;Activity&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -328,14 +352,15 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Activity activitiesRetrieve(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        ApiResponse<Activity> localVarResp = activitiesRetrieveWithHttpInfo(id, includeRemoteData, remoteFields);
+    public Activity activitiesRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        ApiResponse<Activity> localVarResp = activitiesRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns an &#x60;Activity&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -347,8 +372,8 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Activity> activitiesRetrieveWithHttpInfo(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        okhttp3.Call localVarCall = activitiesRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, null);
+    public ApiResponse<Activity> activitiesRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        okhttp3.Call localVarCall = activitiesRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, null);
         Type localVarReturnType = new TypeToken<Activity>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -356,6 +381,7 @@ public class ActivitiesApi {
     /**
      *  (asynchronously)
      * Returns an &#x60;Activity&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -368,9 +394,9 @@ public class ActivitiesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activitiesRetrieveAsync(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<Activity> _callback) throws ApiException {
+    public okhttp3.Call activitiesRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<Activity> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = activitiesRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = activitiesRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         Type localVarReturnType = new TypeToken<Activity>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

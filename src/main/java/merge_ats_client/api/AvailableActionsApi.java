@@ -56,6 +56,7 @@ public class AvailableActionsApi {
 
     /**
      * Build call for availableActionsRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -65,7 +66,7 @@ public class AvailableActionsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call availableActionsRetrieveCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call availableActionsRetrieveCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -76,6 +77,10 @@ public class AvailableActionsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -91,15 +96,20 @@ public class AvailableActionsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call availableActionsRetrieveValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call availableActionsRetrieveValidateBeforeCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling availableActionsRetrieve(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = availableActionsRetrieveCall(_callback);
+        okhttp3.Call localVarCall = availableActionsRetrieveCall(xAccountToken, _callback);
         return localVarCall;
 
     }
@@ -107,6 +117,7 @@ public class AvailableActionsApi {
     /**
      * 
      * Returns a list of models and actions available for an account.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return AvailableActions
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -115,14 +126,15 @@ public class AvailableActionsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public AvailableActions availableActionsRetrieve() throws ApiException {
-        ApiResponse<AvailableActions> localVarResp = availableActionsRetrieveWithHttpInfo();
+    public AvailableActions availableActionsRetrieve(String xAccountToken) throws ApiException {
+        ApiResponse<AvailableActions> localVarResp = availableActionsRetrieveWithHttpInfo(xAccountToken);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of models and actions available for an account.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return ApiResponse&lt;AvailableActions&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -131,8 +143,8 @@ public class AvailableActionsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AvailableActions> availableActionsRetrieveWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = availableActionsRetrieveValidateBeforeCall(null);
+    public ApiResponse<AvailableActions> availableActionsRetrieveWithHttpInfo(String xAccountToken) throws ApiException {
+        okhttp3.Call localVarCall = availableActionsRetrieveValidateBeforeCall(xAccountToken, null);
         Type localVarReturnType = new TypeToken<AvailableActions>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -140,6 +152,7 @@ public class AvailableActionsApi {
     /**
      *  (asynchronously)
      * Returns a list of models and actions available for an account.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -149,9 +162,9 @@ public class AvailableActionsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call availableActionsRetrieveAsync(final ApiCallback<AvailableActions> _callback) throws ApiException {
+    public okhttp3.Call availableActionsRetrieveAsync(String xAccountToken, final ApiCallback<AvailableActions> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = availableActionsRetrieveValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = availableActionsRetrieveValidateBeforeCall(xAccountToken, _callback);
         Type localVarReturnType = new TypeToken<AvailableActions>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

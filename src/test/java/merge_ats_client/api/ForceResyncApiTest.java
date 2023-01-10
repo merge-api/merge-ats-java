@@ -42,7 +42,8 @@ public class ForceResyncApiTest {
      */
     @Test
     public void syncStatusResyncCreateTest() throws ApiException {
-        List<SyncStatus> response = api.syncStatusResyncCreate();
+        String xAccountToken = null;
+        List<SyncStatus> response = api.syncStatusResyncCreate(xAccountToken);
 
         // TODO: test validations
     }

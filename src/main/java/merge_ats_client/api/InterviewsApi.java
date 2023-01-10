@@ -59,6 +59,7 @@ public class InterviewsApi {
 
     /**
      * Build call for interviewsList
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return interviews for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -81,7 +82,7 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call interviewsListCall(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call interviewsListCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -145,6 +146,10 @@ public class InterviewsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -159,15 +164,20 @@ public class InterviewsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call interviewsListValidateBeforeCall(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call interviewsListValidateBeforeCall(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling interviewsList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = interviewsListCall(applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId, _callback);
+        okhttp3.Call localVarCall = interviewsListCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId, _callback);
         return localVarCall;
 
     }
@@ -175,6 +185,7 @@ public class InterviewsApi {
     /**
      * 
      * Returns a list of &#x60;ScheduledInterview&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return interviews for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -196,14 +207,15 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedScheduledInterviewList interviewsList(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
-        ApiResponse<PaginatedScheduledInterviewList> localVarResp = interviewsListWithHttpInfo(applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId);
+    public PaginatedScheduledInterviewList interviewsList(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        ApiResponse<PaginatedScheduledInterviewList> localVarResp = interviewsListWithHttpInfo(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of &#x60;ScheduledInterview&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return interviews for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -225,8 +237,8 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedScheduledInterviewList> interviewsListWithHttpInfo(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId, null);
+    public ApiResponse<PaginatedScheduledInterviewList> interviewsListWithHttpInfo(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedScheduledInterviewList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -234,6 +246,7 @@ public class InterviewsApi {
     /**
      *  (asynchronously)
      * Returns a list of &#x60;ScheduledInterview&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationId If provided, will only return interviews for this application. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -256,15 +269,16 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call interviewsListAsync(String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedScheduledInterviewList> _callback) throws ApiException {
+    public okhttp3.Call interviewsListAsync(String xAccountToken, String applicationId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobInterviewStageId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, String organizerId, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedScheduledInterviewList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId, _callback);
+        okhttp3.Call localVarCall = interviewsListValidateBeforeCall(xAccountToken, applicationId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobInterviewStageId, modifiedAfter, modifiedBefore, organizerId, pageSize, remoteFields, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedScheduledInterviewList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for interviewsRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -277,7 +291,7 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call interviewsRetrieveCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call interviewsRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -298,6 +312,10 @@ public class InterviewsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -312,12 +330,17 @@ public class InterviewsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call interviewsRetrieveValidateBeforeCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call interviewsRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling interviewsRetrieve(Async)");
+        }
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -325,7 +348,7 @@ public class InterviewsApi {
         }
         
 
-        okhttp3.Call localVarCall = interviewsRetrieveCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = interviewsRetrieveCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         return localVarCall;
 
     }
@@ -333,6 +356,7 @@ public class InterviewsApi {
     /**
      * 
      * Returns a &#x60;ScheduledInterview&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -344,14 +368,15 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ScheduledInterview interviewsRetrieve(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        ApiResponse<ScheduledInterview> localVarResp = interviewsRetrieveWithHttpInfo(id, includeRemoteData, remoteFields);
+    public ScheduledInterview interviewsRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        ApiResponse<ScheduledInterview> localVarResp = interviewsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a &#x60;ScheduledInterview&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -363,8 +388,8 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ScheduledInterview> interviewsRetrieveWithHttpInfo(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        okhttp3.Call localVarCall = interviewsRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, null);
+    public ApiResponse<ScheduledInterview> interviewsRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        okhttp3.Call localVarCall = interviewsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, null);
         Type localVarReturnType = new TypeToken<ScheduledInterview>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -372,6 +397,7 @@ public class InterviewsApi {
     /**
      *  (asynchronously)
      * Returns a &#x60;ScheduledInterview&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -384,9 +410,9 @@ public class InterviewsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call interviewsRetrieveAsync(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<ScheduledInterview> _callback) throws ApiException {
+    public okhttp3.Call interviewsRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<ScheduledInterview> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = interviewsRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = interviewsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         Type localVarReturnType = new TypeToken<ScheduledInterview>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

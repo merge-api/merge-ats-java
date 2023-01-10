@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="syncStatusList"></a>
 # **syncStatusList**
-> PaginatedSyncStatusList syncStatusList(cursor, pageSize)
+> PaginatedSyncStatusList syncStatusList(xAccountToken, cursor, pageSize)
 
 
 
@@ -30,21 +30,18 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     SyncStatusApi apiInstance = new SyncStatusApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     try {
-      PaginatedSyncStatusList result = apiInstance.syncStatusList(cursor, pageSize);
+      PaginatedSyncStatusList result = apiInstance.syncStatusList(xAccountToken, cursor, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SyncStatusApi#syncStatusList");
@@ -61,6 +58,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **cursor** | **String**| The pagination cursor value. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
 
@@ -70,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

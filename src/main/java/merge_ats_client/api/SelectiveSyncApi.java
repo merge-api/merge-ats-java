@@ -58,6 +58,7 @@ public class SelectiveSyncApi {
 
     /**
      * Build call for selectiveSyncConfigurationsList
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -67,7 +68,7 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selectiveSyncConfigurationsListCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call selectiveSyncConfigurationsListCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -78,6 +79,10 @@ public class SelectiveSyncApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -93,15 +98,20 @@ public class SelectiveSyncApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call selectiveSyncConfigurationsListValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call selectiveSyncConfigurationsListValidateBeforeCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling selectiveSyncConfigurationsList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = selectiveSyncConfigurationsListCall(_callback);
+        okhttp3.Call localVarCall = selectiveSyncConfigurationsListCall(xAccountToken, _callback);
         return localVarCall;
 
     }
@@ -109,6 +119,7 @@ public class SelectiveSyncApi {
     /**
      * 
      * Get a linked account&#39;s selective syncs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return List&lt;LinkedAccountSelectiveSyncConfiguration&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -117,14 +128,15 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public List<LinkedAccountSelectiveSyncConfiguration> selectiveSyncConfigurationsList() throws ApiException {
-        ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> localVarResp = selectiveSyncConfigurationsListWithHttpInfo();
+    public List<LinkedAccountSelectiveSyncConfiguration> selectiveSyncConfigurationsList(String xAccountToken) throws ApiException {
+        ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> localVarResp = selectiveSyncConfigurationsListWithHttpInfo(xAccountToken);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Get a linked account&#39;s selective syncs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return ApiResponse&lt;List&lt;LinkedAccountSelectiveSyncConfiguration&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -133,8 +145,8 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> selectiveSyncConfigurationsListWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = selectiveSyncConfigurationsListValidateBeforeCall(null);
+    public ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> selectiveSyncConfigurationsListWithHttpInfo(String xAccountToken) throws ApiException {
+        okhttp3.Call localVarCall = selectiveSyncConfigurationsListValidateBeforeCall(xAccountToken, null);
         Type localVarReturnType = new TypeToken<List<LinkedAccountSelectiveSyncConfiguration>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -142,6 +154,7 @@ public class SelectiveSyncApi {
     /**
      *  (asynchronously)
      * Get a linked account&#39;s selective syncs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -151,15 +164,16 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selectiveSyncConfigurationsListAsync(final ApiCallback<List<LinkedAccountSelectiveSyncConfiguration>> _callback) throws ApiException {
+    public okhttp3.Call selectiveSyncConfigurationsListAsync(String xAccountToken, final ApiCallback<List<LinkedAccountSelectiveSyncConfiguration>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = selectiveSyncConfigurationsListValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = selectiveSyncConfigurationsListValidateBeforeCall(xAccountToken, _callback);
         Type localVarReturnType = new TypeToken<List<LinkedAccountSelectiveSyncConfiguration>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for selectiveSyncConfigurationsUpdate
+     * @param xAccountToken Token identifying the end user. (required)
      * @param linkedAccountSelectiveSyncConfigurationListRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -170,7 +184,7 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selectiveSyncConfigurationsUpdateCall(LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call selectiveSyncConfigurationsUpdateCall(String xAccountToken, LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = linkedAccountSelectiveSyncConfigurationListRequest;
 
         // create path and map variables
@@ -181,6 +195,10 @@ public class SelectiveSyncApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -196,12 +214,17 @@ public class SelectiveSyncApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call selectiveSyncConfigurationsUpdateValidateBeforeCall(LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call selectiveSyncConfigurationsUpdateValidateBeforeCall(String xAccountToken, LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling selectiveSyncConfigurationsUpdate(Async)");
+        }
         
         // verify the required parameter 'linkedAccountSelectiveSyncConfigurationListRequest' is set
         if (linkedAccountSelectiveSyncConfigurationListRequest == null) {
@@ -209,7 +232,7 @@ public class SelectiveSyncApi {
         }
         
 
-        okhttp3.Call localVarCall = selectiveSyncConfigurationsUpdateCall(linkedAccountSelectiveSyncConfigurationListRequest, _callback);
+        okhttp3.Call localVarCall = selectiveSyncConfigurationsUpdateCall(xAccountToken, linkedAccountSelectiveSyncConfigurationListRequest, _callback);
         return localVarCall;
 
     }
@@ -217,6 +240,7 @@ public class SelectiveSyncApi {
     /**
      * 
      * Replace a linked account&#39;s selective syncs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param linkedAccountSelectiveSyncConfigurationListRequest  (required)
      * @return List&lt;LinkedAccountSelectiveSyncConfiguration&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -226,14 +250,15 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public List<LinkedAccountSelectiveSyncConfiguration> selectiveSyncConfigurationsUpdate(LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest) throws ApiException {
-        ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> localVarResp = selectiveSyncConfigurationsUpdateWithHttpInfo(linkedAccountSelectiveSyncConfigurationListRequest);
+    public List<LinkedAccountSelectiveSyncConfiguration> selectiveSyncConfigurationsUpdate(String xAccountToken, LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest) throws ApiException {
+        ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> localVarResp = selectiveSyncConfigurationsUpdateWithHttpInfo(xAccountToken, linkedAccountSelectiveSyncConfigurationListRequest);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Replace a linked account&#39;s selective syncs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param linkedAccountSelectiveSyncConfigurationListRequest  (required)
      * @return ApiResponse&lt;List&lt;LinkedAccountSelectiveSyncConfiguration&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -243,8 +268,8 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> selectiveSyncConfigurationsUpdateWithHttpInfo(LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest) throws ApiException {
-        okhttp3.Call localVarCall = selectiveSyncConfigurationsUpdateValidateBeforeCall(linkedAccountSelectiveSyncConfigurationListRequest, null);
+    public ApiResponse<List<LinkedAccountSelectiveSyncConfiguration>> selectiveSyncConfigurationsUpdateWithHttpInfo(String xAccountToken, LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest) throws ApiException {
+        okhttp3.Call localVarCall = selectiveSyncConfigurationsUpdateValidateBeforeCall(xAccountToken, linkedAccountSelectiveSyncConfigurationListRequest, null);
         Type localVarReturnType = new TypeToken<List<LinkedAccountSelectiveSyncConfiguration>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -252,6 +277,7 @@ public class SelectiveSyncApi {
     /**
      *  (asynchronously)
      * Replace a linked account&#39;s selective syncs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param linkedAccountSelectiveSyncConfigurationListRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -262,15 +288,16 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selectiveSyncConfigurationsUpdateAsync(LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest, final ApiCallback<List<LinkedAccountSelectiveSyncConfiguration>> _callback) throws ApiException {
+    public okhttp3.Call selectiveSyncConfigurationsUpdateAsync(String xAccountToken, LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest, final ApiCallback<List<LinkedAccountSelectiveSyncConfiguration>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = selectiveSyncConfigurationsUpdateValidateBeforeCall(linkedAccountSelectiveSyncConfigurationListRequest, _callback);
+        okhttp3.Call localVarCall = selectiveSyncConfigurationsUpdateValidateBeforeCall(xAccountToken, linkedAccountSelectiveSyncConfigurationListRequest, _callback);
         Type localVarReturnType = new TypeToken<List<LinkedAccountSelectiveSyncConfiguration>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for selectiveSyncMetaList
+     * @param xAccountToken Token identifying the end user. (required)
      * @param commonModel  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -283,7 +310,7 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selectiveSyncMetaListCall(String commonModel, String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call selectiveSyncMetaListCall(String xAccountToken, String commonModel, String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -307,6 +334,10 @@ public class SelectiveSyncApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page_size", pageSize));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -321,15 +352,20 @@ public class SelectiveSyncApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call selectiveSyncMetaListValidateBeforeCall(String commonModel, String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call selectiveSyncMetaListValidateBeforeCall(String xAccountToken, String commonModel, String cursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling selectiveSyncMetaList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = selectiveSyncMetaListCall(commonModel, cursor, pageSize, _callback);
+        okhttp3.Call localVarCall = selectiveSyncMetaListCall(xAccountToken, commonModel, cursor, pageSize, _callback);
         return localVarCall;
 
     }
@@ -337,6 +373,7 @@ public class SelectiveSyncApi {
     /**
      * 
      * Get metadata for the conditions available to a linked account.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param commonModel  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -348,14 +385,15 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedConditionSchemaList selectiveSyncMetaList(String commonModel, String cursor, Integer pageSize) throws ApiException {
-        ApiResponse<PaginatedConditionSchemaList> localVarResp = selectiveSyncMetaListWithHttpInfo(commonModel, cursor, pageSize);
+    public PaginatedConditionSchemaList selectiveSyncMetaList(String xAccountToken, String commonModel, String cursor, Integer pageSize) throws ApiException {
+        ApiResponse<PaginatedConditionSchemaList> localVarResp = selectiveSyncMetaListWithHttpInfo(xAccountToken, commonModel, cursor, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Get metadata for the conditions available to a linked account.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param commonModel  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -367,8 +405,8 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedConditionSchemaList> selectiveSyncMetaListWithHttpInfo(String commonModel, String cursor, Integer pageSize) throws ApiException {
-        okhttp3.Call localVarCall = selectiveSyncMetaListValidateBeforeCall(commonModel, cursor, pageSize, null);
+    public ApiResponse<PaginatedConditionSchemaList> selectiveSyncMetaListWithHttpInfo(String xAccountToken, String commonModel, String cursor, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = selectiveSyncMetaListValidateBeforeCall(xAccountToken, commonModel, cursor, pageSize, null);
         Type localVarReturnType = new TypeToken<PaginatedConditionSchemaList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -376,6 +414,7 @@ public class SelectiveSyncApi {
     /**
      *  (asynchronously)
      * Get metadata for the conditions available to a linked account.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param commonModel  (optional)
      * @param cursor The pagination cursor value. (optional)
      * @param pageSize Number of results to return per page. (optional)
@@ -388,9 +427,9 @@ public class SelectiveSyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selectiveSyncMetaListAsync(String commonModel, String cursor, Integer pageSize, final ApiCallback<PaginatedConditionSchemaList> _callback) throws ApiException {
+    public okhttp3.Call selectiveSyncMetaListAsync(String xAccountToken, String commonModel, String cursor, Integer pageSize, final ApiCallback<PaginatedConditionSchemaList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = selectiveSyncMetaListValidateBeforeCall(commonModel, cursor, pageSize, _callback);
+        okhttp3.Call localVarCall = selectiveSyncMetaListValidateBeforeCall(xAccountToken, commonModel, cursor, pageSize, _callback);
         Type localVarReturnType = new TypeToken<PaginatedConditionSchemaList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="attachmentsCreate"></a>
 # **attachmentsCreate**
-> AttachmentResponse attachmentsCreate(attachmentEndpointRequest, isDebugMode, runAsync)
+> AttachmentResponse attachmentsCreate(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync)
 
 
 
@@ -33,22 +33,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     AttachmentEndpointRequest attachmentEndpointRequest = new AttachmentEndpointRequest(); // AttachmentEndpointRequest | 
     Boolean isDebugMode = true; // Boolean | Whether to include debug fields (such as log file links) in the response.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     try {
-      AttachmentResponse result = apiInstance.attachmentsCreate(attachmentEndpointRequest, isDebugMode, runAsync);
+      AttachmentResponse result = apiInstance.attachmentsCreate(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttachmentsApi#attachmentsCreate");
@@ -65,6 +62,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **attachmentEndpointRequest** | [**AttachmentEndpointRequest**](AttachmentEndpointRequest.md)|  |
  **isDebugMode** | **Boolean**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
@@ -75,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -89,7 +87,7 @@ Name | Type | Description  | Notes
 
 <a name="attachmentsList"></a>
 # **attachmentsList**
-> PaginatedAttachmentList attachmentsList(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId)
+> PaginatedAttachmentList attachmentsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId)
 
 
 
@@ -110,17 +108,14 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     String candidateId = "candidateId_example"; // String | If provided, will only return attachments for this candidate.
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
@@ -133,7 +128,7 @@ public class Example {
     String remoteFields = "attachment_type"; // String | Which fields should be returned in non-normalized form.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedAttachmentList result = apiInstance.attachmentsList(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+      PaginatedAttachmentList result = apiInstance.attachmentsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttachmentsApi#attachmentsList");
@@ -150,6 +145,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **candidateId** | **String**| If provided, will only return attachments for this candidate. | [optional]
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
@@ -168,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -182,7 +178,7 @@ Name | Type | Description  | Notes
 
 <a name="attachmentsMetaPostRetrieve"></a>
 # **attachmentsMetaPostRetrieve**
-> MetaResponse attachmentsMetaPostRetrieve()
+> MetaResponse attachmentsMetaPostRetrieve(xAccountToken)
 
 
 
@@ -203,19 +199,16 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      MetaResponse result = apiInstance.attachmentsMetaPostRetrieve();
+      MetaResponse result = apiInstance.attachmentsMetaPostRetrieve(xAccountToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttachmentsApi#attachmentsMetaPostRetrieve");
@@ -229,7 +222,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
 
 ### Return type
 
@@ -237,7 +233,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -251,7 +247,7 @@ This endpoint does not need any parameter.
 
 <a name="attachmentsRetrieve"></a>
 # **attachmentsRetrieve**
-> Attachment attachmentsRetrieve(id, includeRemoteData, remoteFields)
+> Attachment attachmentsRetrieve(xAccountToken, id, includeRemoteData, remoteFields)
 
 
 
@@ -272,22 +268,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     AttachmentsApi apiInstance = new AttachmentsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String remoteFields = "attachment_type"; // String | Which fields should be returned in non-normalized form.
     try {
-      Attachment result = apiInstance.attachmentsRetrieve(id, includeRemoteData, remoteFields);
+      Attachment result = apiInstance.attachmentsRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttachmentsApi#attachmentsRetrieve");
@@ -304,6 +297,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **remoteFields** | **String**| Which fields should be returned in non-normalized form. | [optional] [enum: attachment_type]
@@ -314,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

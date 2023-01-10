@@ -63,6 +63,7 @@ public class ApplicationsApi {
 
     /**
      * Build call for applicationsChangeStageCreate
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -76,7 +77,7 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsChangeStageCreateCall(UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call applicationsChangeStageCreateCall(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = updateApplicationStageRequest;
 
         // create path and map variables
@@ -97,6 +98,10 @@ public class ApplicationsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -111,12 +116,17 @@ public class ApplicationsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call applicationsChangeStageCreateValidateBeforeCall(UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call applicationsChangeStageCreateValidateBeforeCall(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling applicationsChangeStageCreate(Async)");
+        }
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -124,7 +134,7 @@ public class ApplicationsApi {
         }
         
 
-        okhttp3.Call localVarCall = applicationsChangeStageCreateCall(id, isDebugMode, runAsync, updateApplicationStageRequest, _callback);
+        okhttp3.Call localVarCall = applicationsChangeStageCreateCall(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest, _callback);
         return localVarCall;
 
     }
@@ -132,6 +142,7 @@ public class ApplicationsApi {
     /**
      * 
      * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -144,14 +155,15 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApplicationResponse applicationsChangeStageCreate(UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest) throws ApiException {
-        ApiResponse<ApplicationResponse> localVarResp = applicationsChangeStageCreateWithHttpInfo(id, isDebugMode, runAsync, updateApplicationStageRequest);
+    public ApplicationResponse applicationsChangeStageCreate(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest) throws ApiException {
+        ApiResponse<ApplicationResponse> localVarResp = applicationsChangeStageCreateWithHttpInfo(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -164,8 +176,8 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ApplicationResponse> applicationsChangeStageCreateWithHttpInfo(UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest) throws ApiException {
-        okhttp3.Call localVarCall = applicationsChangeStageCreateValidateBeforeCall(id, isDebugMode, runAsync, updateApplicationStageRequest, null);
+    public ApiResponse<ApplicationResponse> applicationsChangeStageCreateWithHttpInfo(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest) throws ApiException {
+        okhttp3.Call localVarCall = applicationsChangeStageCreateValidateBeforeCall(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest, null);
         Type localVarReturnType = new TypeToken<ApplicationResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -173,6 +185,7 @@ public class ApplicationsApi {
     /**
      *  (asynchronously)
      * Updates the &#x60;current_stage&#x60; field of an &#x60;Application&#x60; object
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -186,15 +199,16 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsChangeStageCreateAsync(UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback<ApplicationResponse> _callback) throws ApiException {
+    public okhttp3.Call applicationsChangeStageCreateAsync(String xAccountToken, UUID id, Boolean isDebugMode, Boolean runAsync, UpdateApplicationStageRequest updateApplicationStageRequest, final ApiCallback<ApplicationResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = applicationsChangeStageCreateValidateBeforeCall(id, isDebugMode, runAsync, updateApplicationStageRequest, _callback);
+        okhttp3.Call localVarCall = applicationsChangeStageCreateValidateBeforeCall(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest, _callback);
         Type localVarReturnType = new TypeToken<ApplicationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for applicationsCreate
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -207,7 +221,7 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsCreateCall(ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call applicationsCreateCall(String xAccountToken, ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = applicationEndpointRequest;
 
         // create path and map variables
@@ -227,6 +241,10 @@ public class ApplicationsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -241,12 +259,17 @@ public class ApplicationsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call applicationsCreateValidateBeforeCall(ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call applicationsCreateValidateBeforeCall(String xAccountToken, ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling applicationsCreate(Async)");
+        }
         
         // verify the required parameter 'applicationEndpointRequest' is set
         if (applicationEndpointRequest == null) {
@@ -254,7 +277,7 @@ public class ApplicationsApi {
         }
         
 
-        okhttp3.Call localVarCall = applicationsCreateCall(applicationEndpointRequest, isDebugMode, runAsync, _callback);
+        okhttp3.Call localVarCall = applicationsCreateCall(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync, _callback);
         return localVarCall;
 
     }
@@ -262,6 +285,7 @@ public class ApplicationsApi {
     /**
      * 
      * Creates an &#x60;Application&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -273,14 +297,15 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApplicationResponse applicationsCreate(ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
-        ApiResponse<ApplicationResponse> localVarResp = applicationsCreateWithHttpInfo(applicationEndpointRequest, isDebugMode, runAsync);
+    public ApplicationResponse applicationsCreate(String xAccountToken, ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
+        ApiResponse<ApplicationResponse> localVarResp = applicationsCreateWithHttpInfo(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Creates an &#x60;Application&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -292,8 +317,8 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ApplicationResponse> applicationsCreateWithHttpInfo(ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
-        okhttp3.Call localVarCall = applicationsCreateValidateBeforeCall(applicationEndpointRequest, isDebugMode, runAsync, null);
+    public ApiResponse<ApplicationResponse> applicationsCreateWithHttpInfo(String xAccountToken, ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
+        okhttp3.Call localVarCall = applicationsCreateValidateBeforeCall(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync, null);
         Type localVarReturnType = new TypeToken<ApplicationResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -301,6 +326,7 @@ public class ApplicationsApi {
     /**
      *  (asynchronously)
      * Creates an &#x60;Application&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -313,15 +339,16 @@ public class ApplicationsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsCreateAsync(ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback<ApplicationResponse> _callback) throws ApiException {
+    public okhttp3.Call applicationsCreateAsync(String xAccountToken, ApplicationEndpointRequest applicationEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback<ApplicationResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = applicationsCreateValidateBeforeCall(applicationEndpointRequest, isDebugMode, runAsync, _callback);
+        okhttp3.Call localVarCall = applicationsCreateValidateBeforeCall(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync, _callback);
         Type localVarReturnType = new TypeToken<ApplicationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for applicationsList
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return applications for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -346,7 +373,7 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsListCall(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call applicationsListCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -418,6 +445,10 @@ public class ApplicationsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("source", source));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -432,15 +463,20 @@ public class ApplicationsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call applicationsListValidateBeforeCall(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call applicationsListValidateBeforeCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling applicationsList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = applicationsListCall(candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, _callback);
+        okhttp3.Call localVarCall = applicationsListCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, _callback);
         return localVarCall;
 
     }
@@ -448,6 +484,7 @@ public class ApplicationsApi {
     /**
      * 
      * Returns a list of &#x60;Application&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return applications for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -471,14 +508,15 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedApplicationList applicationsList(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source) throws ApiException {
-        ApiResponse<PaginatedApplicationList> localVarResp = applicationsListWithHttpInfo(candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source);
+    public PaginatedApplicationList applicationsList(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source) throws ApiException {
+        ApiResponse<PaginatedApplicationList> localVarResp = applicationsListWithHttpInfo(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of &#x60;Application&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return applications for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -502,8 +540,8 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedApplicationList> applicationsListWithHttpInfo(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source) throws ApiException {
-        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, null);
+    public ApiResponse<PaginatedApplicationList> applicationsListWithHttpInfo(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source) throws ApiException {
+        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, null);
         Type localVarReturnType = new TypeToken<PaginatedApplicationList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -511,6 +549,7 @@ public class ApplicationsApi {
     /**
      *  (asynchronously)
      * Returns a list of &#x60;Application&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return applications for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -535,15 +574,16 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsListAsync(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback<PaginatedApplicationList> _callback) throws ApiException {
+    public okhttp3.Call applicationsListAsync(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String creditedToId, String currentStageId, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, String jobId, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String rejectReasonId, String remoteId, String source, final ApiCallback<PaginatedApplicationList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, _callback);
+        okhttp3.Call localVarCall = applicationsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source, _callback);
         Type localVarReturnType = new TypeToken<PaginatedApplicationList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for applicationsMetaPostRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -554,7 +594,7 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsMetaPostRetrieveCall(String applicationRemoteTemplateId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call applicationsMetaPostRetrieveCall(String xAccountToken, String applicationRemoteTemplateId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -568,6 +608,10 @@ public class ApplicationsApi {
 
         if (applicationRemoteTemplateId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("application_remote_template_id", applicationRemoteTemplateId));
+        }
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
         }
 
         final String[] localVarAccepts = {
@@ -584,15 +628,20 @@ public class ApplicationsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call applicationsMetaPostRetrieveValidateBeforeCall(String applicationRemoteTemplateId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call applicationsMetaPostRetrieveValidateBeforeCall(String xAccountToken, String applicationRemoteTemplateId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling applicationsMetaPostRetrieve(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = applicationsMetaPostRetrieveCall(applicationRemoteTemplateId, _callback);
+        okhttp3.Call localVarCall = applicationsMetaPostRetrieveCall(xAccountToken, applicationRemoteTemplateId, _callback);
         return localVarCall;
 
     }
@@ -600,6 +649,7 @@ public class ApplicationsApi {
     /**
      * 
      * Returns metadata for &#x60;Application&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
      * @return MetaResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -609,14 +659,15 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public MetaResponse applicationsMetaPostRetrieve(String applicationRemoteTemplateId) throws ApiException {
-        ApiResponse<MetaResponse> localVarResp = applicationsMetaPostRetrieveWithHttpInfo(applicationRemoteTemplateId);
+    public MetaResponse applicationsMetaPostRetrieve(String xAccountToken, String applicationRemoteTemplateId) throws ApiException {
+        ApiResponse<MetaResponse> localVarResp = applicationsMetaPostRetrieveWithHttpInfo(xAccountToken, applicationRemoteTemplateId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns metadata for &#x60;Application&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
      * @return ApiResponse&lt;MetaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -626,8 +677,8 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MetaResponse> applicationsMetaPostRetrieveWithHttpInfo(String applicationRemoteTemplateId) throws ApiException {
-        okhttp3.Call localVarCall = applicationsMetaPostRetrieveValidateBeforeCall(applicationRemoteTemplateId, null);
+    public ApiResponse<MetaResponse> applicationsMetaPostRetrieveWithHttpInfo(String xAccountToken, String applicationRemoteTemplateId) throws ApiException {
+        okhttp3.Call localVarCall = applicationsMetaPostRetrieveValidateBeforeCall(xAccountToken, applicationRemoteTemplateId, null);
         Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -635,6 +686,7 @@ public class ApplicationsApi {
     /**
      *  (asynchronously)
      * Returns metadata for &#x60;Application&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param applicationRemoteTemplateId The template ID associated with the nested application in the request. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -645,15 +697,16 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsMetaPostRetrieveAsync(String applicationRemoteTemplateId, final ApiCallback<MetaResponse> _callback) throws ApiException {
+    public okhttp3.Call applicationsMetaPostRetrieveAsync(String xAccountToken, String applicationRemoteTemplateId, final ApiCallback<MetaResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = applicationsMetaPostRetrieveValidateBeforeCall(applicationRemoteTemplateId, _callback);
+        okhttp3.Call localVarCall = applicationsMetaPostRetrieveValidateBeforeCall(xAccountToken, applicationRemoteTemplateId, _callback);
         Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for applicationsRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param _callback Callback for upload/download progress
@@ -665,7 +718,7 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsRetrieveCall(UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call applicationsRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -682,6 +735,10 @@ public class ApplicationsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_remote_data", includeRemoteData));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -696,12 +753,17 @@ public class ApplicationsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call applicationsRetrieveValidateBeforeCall(UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call applicationsRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling applicationsRetrieve(Async)");
+        }
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -709,7 +771,7 @@ public class ApplicationsApi {
         }
         
 
-        okhttp3.Call localVarCall = applicationsRetrieveCall(id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = applicationsRetrieveCall(xAccountToken, id, includeRemoteData, _callback);
         return localVarCall;
 
     }
@@ -717,6 +779,7 @@ public class ApplicationsApi {
     /**
      * 
      * Returns an &#x60;Application&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @return Application
@@ -727,14 +790,15 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Application applicationsRetrieve(UUID id, Boolean includeRemoteData) throws ApiException {
-        ApiResponse<Application> localVarResp = applicationsRetrieveWithHttpInfo(id, includeRemoteData);
+    public Application applicationsRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
+        ApiResponse<Application> localVarResp = applicationsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns an &#x60;Application&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @return ApiResponse&lt;Application&gt;
@@ -745,8 +809,8 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Application> applicationsRetrieveWithHttpInfo(UUID id, Boolean includeRemoteData) throws ApiException {
-        okhttp3.Call localVarCall = applicationsRetrieveValidateBeforeCall(id, includeRemoteData, null);
+    public ApiResponse<Application> applicationsRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData) throws ApiException {
+        okhttp3.Call localVarCall = applicationsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, null);
         Type localVarReturnType = new TypeToken<Application>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -754,6 +818,7 @@ public class ApplicationsApi {
     /**
      *  (asynchronously)
      * Returns an &#x60;Application&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -765,9 +830,9 @@ public class ApplicationsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call applicationsRetrieveAsync(UUID id, Boolean includeRemoteData, final ApiCallback<Application> _callback) throws ApiException {
+    public okhttp3.Call applicationsRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, final ApiCallback<Application> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = applicationsRetrieveValidateBeforeCall(id, includeRemoteData, _callback);
+        okhttp3.Call localVarCall = applicationsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, _callback);
         Type localVarReturnType = new TypeToken<Application>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

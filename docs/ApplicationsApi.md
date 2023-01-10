@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="applicationsChangeStageCreate"></a>
 # **applicationsChangeStageCreate**
-> ApplicationResponse applicationsChangeStageCreate(id, isDebugMode, runAsync, updateApplicationStageRequest)
+> ApplicationResponse applicationsChangeStageCreate(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest)
 
 
 
@@ -34,23 +34,20 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
     Boolean isDebugMode = true; // Boolean | Whether to include debug fields (such as log file links) in the response.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     UpdateApplicationStageRequest updateApplicationStageRequest = new UpdateApplicationStageRequest(); // UpdateApplicationStageRequest | 
     try {
-      ApplicationResponse result = apiInstance.applicationsChangeStageCreate(id, isDebugMode, runAsync, updateApplicationStageRequest);
+      ApplicationResponse result = apiInstance.applicationsChangeStageCreate(xAccountToken, id, isDebugMode, runAsync, updateApplicationStageRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsChangeStageCreate");
@@ -67,6 +64,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
  **isDebugMode** | **Boolean**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
@@ -78,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -92,7 +90,7 @@ Name | Type | Description  | Notes
 
 <a name="applicationsCreate"></a>
 # **applicationsCreate**
-> ApplicationResponse applicationsCreate(applicationEndpointRequest, isDebugMode, runAsync)
+> ApplicationResponse applicationsCreate(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync)
 
 
 
@@ -113,22 +111,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     ApplicationEndpointRequest applicationEndpointRequest = new ApplicationEndpointRequest(); // ApplicationEndpointRequest | 
     Boolean isDebugMode = true; // Boolean | Whether to include debug fields (such as log file links) in the response.
     Boolean runAsync = true; // Boolean | Whether or not third-party updates should be run asynchronously.
     try {
-      ApplicationResponse result = apiInstance.applicationsCreate(applicationEndpointRequest, isDebugMode, runAsync);
+      ApplicationResponse result = apiInstance.applicationsCreate(xAccountToken, applicationEndpointRequest, isDebugMode, runAsync);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsCreate");
@@ -145,6 +140,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **applicationEndpointRequest** | [**ApplicationEndpointRequest**](ApplicationEndpointRequest.md)|  |
  **isDebugMode** | **Boolean**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **runAsync** | **Boolean**| Whether or not third-party updates should be run asynchronously. | [optional]
@@ -155,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -169,7 +165,7 @@ Name | Type | Description  | Notes
 
 <a name="applicationsList"></a>
 # **applicationsList**
-> PaginatedApplicationList applicationsList(candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source)
+> PaginatedApplicationList applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source)
 
 
 
@@ -190,17 +186,14 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     String candidateId = "candidateId_example"; // String | If provided, will only return applications for this candidate.
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
@@ -217,7 +210,7 @@ public class Example {
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     String source = "source_example"; // String | If provided, will only return applications with this source.
     try {
-      PaginatedApplicationList result = apiInstance.applicationsList(candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source);
+      PaginatedApplicationList result = apiInstance.applicationsList(xAccountToken, candidateId, createdAfter, createdBefore, creditedToId, currentStageId, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, rejectReasonId, remoteId, source);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsList");
@@ -234,6 +227,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **candidateId** | **String**| If provided, will only return applications for this candidate. | [optional]
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
@@ -256,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -270,7 +264,7 @@ Name | Type | Description  | Notes
 
 <a name="applicationsMetaPostRetrieve"></a>
 # **applicationsMetaPostRetrieve**
-> MetaResponse applicationsMetaPostRetrieve(applicationRemoteTemplateId)
+> MetaResponse applicationsMetaPostRetrieve(xAccountToken, applicationRemoteTemplateId)
 
 
 
@@ -291,20 +285,17 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     String applicationRemoteTemplateId = "applicationRemoteTemplateId_example"; // String | The template ID associated with the nested application in the request.
     try {
-      MetaResponse result = apiInstance.applicationsMetaPostRetrieve(applicationRemoteTemplateId);
+      MetaResponse result = apiInstance.applicationsMetaPostRetrieve(xAccountToken, applicationRemoteTemplateId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsMetaPostRetrieve");
@@ -321,6 +312,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **applicationRemoteTemplateId** | **String**| The template ID associated with the nested application in the request. | [optional]
 
 ### Return type
@@ -329,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -343,7 +335,7 @@ Name | Type | Description  | Notes
 
 <a name="applicationsRetrieve"></a>
 # **applicationsRetrieve**
-> Application applicationsRetrieve(id, includeRemoteData)
+> Application applicationsRetrieve(xAccountToken, id, includeRemoteData)
 
 
 
@@ -364,21 +356,18 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     ApplicationsApi apiInstance = new ApplicationsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     try {
-      Application result = apiInstance.applicationsRetrieve(id, includeRemoteData);
+      Application result = apiInstance.applicationsRetrieve(xAccountToken, id, includeRemoteData);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApplicationsApi#applicationsRetrieve");
@@ -395,6 +384,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
 
@@ -404,7 +394,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

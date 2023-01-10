@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="selectiveSyncConfigurationsList"></a>
 # **selectiveSyncConfigurationsList**
-> List&lt;LinkedAccountSelectiveSyncConfiguration&gt; selectiveSyncConfigurationsList()
+> List&lt;LinkedAccountSelectiveSyncConfiguration&gt; selectiveSyncConfigurationsList(xAccountToken)
 
 
 
@@ -32,19 +32,16 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     SelectiveSyncApi apiInstance = new SelectiveSyncApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     try {
-      List<LinkedAccountSelectiveSyncConfiguration> result = apiInstance.selectiveSyncConfigurationsList();
+      List<LinkedAccountSelectiveSyncConfiguration> result = apiInstance.selectiveSyncConfigurationsList(xAccountToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SelectiveSyncApi#selectiveSyncConfigurationsList");
@@ -58,7 +55,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
 
 ### Return type
 
@@ -66,7 +66,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -80,7 +80,7 @@ This endpoint does not need any parameter.
 
 <a name="selectiveSyncConfigurationsUpdate"></a>
 # **selectiveSyncConfigurationsUpdate**
-> List&lt;LinkedAccountSelectiveSyncConfiguration&gt; selectiveSyncConfigurationsUpdate(linkedAccountSelectiveSyncConfigurationListRequest)
+> List&lt;LinkedAccountSelectiveSyncConfiguration&gt; selectiveSyncConfigurationsUpdate(xAccountToken, linkedAccountSelectiveSyncConfigurationListRequest)
 
 
 
@@ -101,20 +101,17 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     SelectiveSyncApi apiInstance = new SelectiveSyncApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest = new LinkedAccountSelectiveSyncConfigurationListRequest(); // LinkedAccountSelectiveSyncConfigurationListRequest | 
     try {
-      List<LinkedAccountSelectiveSyncConfiguration> result = apiInstance.selectiveSyncConfigurationsUpdate(linkedAccountSelectiveSyncConfigurationListRequest);
+      List<LinkedAccountSelectiveSyncConfiguration> result = apiInstance.selectiveSyncConfigurationsUpdate(xAccountToken, linkedAccountSelectiveSyncConfigurationListRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SelectiveSyncApi#selectiveSyncConfigurationsUpdate");
@@ -131,6 +128,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **linkedAccountSelectiveSyncConfigurationListRequest** | [**LinkedAccountSelectiveSyncConfigurationListRequest**](LinkedAccountSelectiveSyncConfigurationListRequest.md)|  |
 
 ### Return type
@@ -139,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -153,7 +151,7 @@ Name | Type | Description  | Notes
 
 <a name="selectiveSyncMetaList"></a>
 # **selectiveSyncMetaList**
-> PaginatedConditionSchemaList selectiveSyncMetaList(commonModel, cursor, pageSize)
+> PaginatedConditionSchemaList selectiveSyncMetaList(xAccountToken, commonModel, cursor, pageSize)
 
 
 
@@ -174,22 +172,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     SelectiveSyncApi apiInstance = new SelectiveSyncApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     String commonModel = "commonModel_example"; // String | 
     String cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"; // String | The pagination cursor value.
     Integer pageSize = 56; // Integer | Number of results to return per page.
     try {
-      PaginatedConditionSchemaList result = apiInstance.selectiveSyncMetaList(commonModel, cursor, pageSize);
+      PaginatedConditionSchemaList result = apiInstance.selectiveSyncMetaList(xAccountToken, commonModel, cursor, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SelectiveSyncApi#selectiveSyncMetaList");
@@ -206,6 +201,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **commonModel** | **String**|  | [optional]
  **cursor** | **String**| The pagination cursor value. | [optional]
  **pageSize** | **Integer**| Number of results to return per page. | [optional]
@@ -216,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

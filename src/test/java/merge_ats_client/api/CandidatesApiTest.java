@@ -50,10 +50,11 @@ public class CandidatesApiTest {
      */
     @Test
     public void candidatesCreateTest() throws ApiException {
+        String xAccountToken = null;
         CandidateEndpointRequest candidateEndpointRequest = null;
         Boolean isDebugMode = null;
         Boolean runAsync = null;
-        CandidateResponse response = api.candidatesCreate(candidateEndpointRequest, isDebugMode, runAsync);
+        CandidateResponse response = api.candidatesCreate(xAccountToken, candidateEndpointRequest, isDebugMode, runAsync);
 
         // TODO: test validations
     }
@@ -68,9 +69,10 @@ public class CandidatesApiTest {
      */
     @Test
     public void candidatesIgnoreCreateTest() throws ApiException {
+        String xAccountToken = null;
         UUID modelId = null;
         IgnoreCommonModelRequest ignoreCommonModelRequest = null;
-        IgnoreCommonModel response = api.candidatesIgnoreCreate(modelId, ignoreCommonModelRequest);
+        IgnoreCommonModel response = api.candidatesIgnoreCreate(xAccountToken, modelId, ignoreCommonModelRequest);
 
         // TODO: test validations
     }
@@ -85,6 +87,7 @@ public class CandidatesApiTest {
      */
     @Test
     public void candidatesListTest() throws ApiException {
+        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -98,7 +101,7 @@ public class CandidatesApiTest {
         Integer pageSize = null;
         String remoteId = null;
         String tags = null;
-        PaginatedCandidateList response = api.candidatesList(createdAfter, createdBefore, cursor, emailAddresses, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, tags);
+        PaginatedCandidateList response = api.candidatesList(xAccountToken, createdAfter, createdBefore, cursor, emailAddresses, firstName, includeDeletedData, includeRemoteData, lastName, modifiedAfter, modifiedBefore, pageSize, remoteId, tags);
 
         // TODO: test validations
     }
@@ -113,7 +116,8 @@ public class CandidatesApiTest {
      */
     @Test
     public void candidatesMetaPostRetrieveTest() throws ApiException {
-        MetaResponse response = api.candidatesMetaPostRetrieve();
+        String xAccountToken = null;
+        MetaResponse response = api.candidatesMetaPostRetrieve(xAccountToken);
 
         // TODO: test validations
     }
@@ -128,9 +132,10 @@ public class CandidatesApiTest {
      */
     @Test
     public void candidatesRetrieveTest() throws ApiException {
+        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Candidate response = api.candidatesRetrieve(id, includeRemoteData);
+        Candidate response = api.candidatesRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }

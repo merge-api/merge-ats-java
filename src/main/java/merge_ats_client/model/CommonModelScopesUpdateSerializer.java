@@ -30,7 +30,7 @@ import merge_ats_client.model.CommonModelScopesPutInnerDeserializerRequest;
 /**
  * CommonModelScopesUpdateSerializer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class CommonModelScopesUpdateSerializer {
   public static final String SERIALIZED_NAME_COMMON_MODELS = "common_models";
   @SerializedName(SERIALIZED_NAME_COMMON_MODELS)

@@ -59,6 +59,7 @@ public class EeocsApi {
 
     /**
      * Build call for eeocsList
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return EEOC info for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -79,7 +80,7 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call eeocsListCall(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call eeocsListCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -135,6 +136,10 @@ public class EeocsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -149,15 +154,20 @@ public class EeocsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call eeocsListValidateBeforeCall(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call eeocsListValidateBeforeCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling eeocsList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = eeocsListCall(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
+        okhttp3.Call localVarCall = eeocsListCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         return localVarCall;
 
     }
@@ -165,6 +175,7 @@ public class EeocsApi {
     /**
      * 
      * Returns a list of &#x60;EEOC&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return EEOC info for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -184,14 +195,15 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedEEOCList eeocsList(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
-        ApiResponse<PaginatedEEOCList> localVarResp = eeocsListWithHttpInfo(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+    public PaginatedEEOCList eeocsList(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        ApiResponse<PaginatedEEOCList> localVarResp = eeocsListWithHttpInfo(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of &#x60;EEOC&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return EEOC info for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -211,8 +223,8 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedEEOCList> eeocsListWithHttpInfo(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = eeocsListValidateBeforeCall(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, null);
+    public ApiResponse<PaginatedEEOCList> eeocsListWithHttpInfo(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = eeocsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedEEOCList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -220,6 +232,7 @@ public class EeocsApi {
     /**
      *  (asynchronously)
      * Returns a list of &#x60;EEOC&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return EEOC info for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -240,15 +253,16 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call eeocsListAsync(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedEEOCList> _callback) throws ApiException {
+    public okhttp3.Call eeocsListAsync(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedEEOCList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = eeocsListValidateBeforeCall(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
+        okhttp3.Call localVarCall = eeocsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedEEOCList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for eeocsRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -261,7 +275,7 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call eeocsRetrieveCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call eeocsRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -282,6 +296,10 @@ public class EeocsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -296,12 +314,17 @@ public class EeocsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call eeocsRetrieveValidateBeforeCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call eeocsRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling eeocsRetrieve(Async)");
+        }
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -309,7 +332,7 @@ public class EeocsApi {
         }
         
 
-        okhttp3.Call localVarCall = eeocsRetrieveCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = eeocsRetrieveCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         return localVarCall;
 
     }
@@ -317,6 +340,7 @@ public class EeocsApi {
     /**
      * 
      * Returns an &#x60;EEOC&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -328,14 +352,15 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public EEOC eeocsRetrieve(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        ApiResponse<EEOC> localVarResp = eeocsRetrieveWithHttpInfo(id, includeRemoteData, remoteFields);
+    public EEOC eeocsRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        ApiResponse<EEOC> localVarResp = eeocsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns an &#x60;EEOC&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -347,8 +372,8 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EEOC> eeocsRetrieveWithHttpInfo(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        okhttp3.Call localVarCall = eeocsRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, null);
+    public ApiResponse<EEOC> eeocsRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        okhttp3.Call localVarCall = eeocsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, null);
         Type localVarReturnType = new TypeToken<EEOC>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -356,6 +381,7 @@ public class EeocsApi {
     /**
      *  (asynchronously)
      * Returns an &#x60;EEOC&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -368,9 +394,9 @@ public class EeocsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call eeocsRetrieveAsync(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<EEOC> _callback) throws ApiException {
+    public okhttp3.Call eeocsRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<EEOC> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = eeocsRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = eeocsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         Type localVarReturnType = new TypeToken<EEOC>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -45,6 +45,7 @@ public class DepartmentsApiTest {
      */
     @Test
     public void departmentsListTest() throws ApiException {
+        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -54,7 +55,7 @@ public class DepartmentsApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedDepartmentList response = api.departmentsList(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedDepartmentList response = api.departmentsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -69,9 +70,10 @@ public class DepartmentsApiTest {
      */
     @Test
     public void departmentsRetrieveTest() throws ApiException {
+        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        Department response = api.departmentsRetrieve(id, includeRemoteData);
+        Department response = api.departmentsRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }

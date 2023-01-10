@@ -42,7 +42,8 @@ public class AvailableActionsApiTest {
      */
     @Test
     public void availableActionsRetrieveTest() throws ApiException {
-        AvailableActions response = api.availableActionsRetrieve();
+        String xAccountToken = null;
+        AvailableActions response = api.availableActionsRetrieve(xAccountToken);
 
         // TODO: test validations
     }

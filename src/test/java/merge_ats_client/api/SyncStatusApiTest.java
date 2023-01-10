@@ -42,9 +42,10 @@ public class SyncStatusApiTest {
      */
     @Test
     public void syncStatusListTest() throws ApiException {
+        String xAccountToken = null;
         String cursor = null;
         Integer pageSize = null;
-        PaginatedSyncStatusList response = api.syncStatusList(cursor, pageSize);
+        PaginatedSyncStatusList response = api.syncStatusList(xAccountToken, cursor, pageSize);
 
         // TODO: test validations
     }

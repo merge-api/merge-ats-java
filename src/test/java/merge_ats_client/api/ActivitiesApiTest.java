@@ -45,6 +45,7 @@ public class ActivitiesApiTest {
      */
     @Test
     public void activitiesListTest() throws ApiException {
+        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -56,7 +57,7 @@ public class ActivitiesApiTest {
         String remoteFields = null;
         String remoteId = null;
         String userId = null;
-        PaginatedActivityList response = api.activitiesList(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId);
+        PaginatedActivityList response = api.activitiesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, userId);
 
         // TODO: test validations
     }
@@ -71,10 +72,11 @@ public class ActivitiesApiTest {
      */
     @Test
     public void activitiesRetrieveTest() throws ApiException {
+        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
         String remoteFields = null;
-        Activity response = api.activitiesRetrieve(id, includeRemoteData, remoteFields);
+        Activity response = api.activitiesRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
 
         // TODO: test validations
     }

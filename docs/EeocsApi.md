@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="eeocsList"></a>
 # **eeocsList**
-> PaginatedEEOCList eeocsList(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId)
+> PaginatedEEOCList eeocsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId)
 
 
 
@@ -31,17 +31,14 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     EeocsApi apiInstance = new EeocsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     String candidateId = "candidateId_example"; // String | If provided, will only return EEOC info for this candidate.
     OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created after this datetime.
     OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | If provided, will only return objects created before this datetime.
@@ -54,7 +51,7 @@ public class Example {
     String remoteFields = "disability_status,gender,race,veteran_status"; // String | Which fields should be returned in non-normalized form.
     String remoteId = "remoteId_example"; // String | The API provider's ID for the given object.
     try {
-      PaginatedEEOCList result = apiInstance.eeocsList(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+      PaginatedEEOCList result = apiInstance.eeocsList(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EeocsApi#eeocsList");
@@ -71,6 +68,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **candidateId** | **String**| If provided, will only return EEOC info for this candidate. | [optional]
  **createdAfter** | **OffsetDateTime**| If provided, will only return objects created after this datetime. | [optional]
  **createdBefore** | **OffsetDateTime**| If provided, will only return objects created before this datetime. | [optional]
@@ -89,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -103,7 +101,7 @@ Name | Type | Description  | Notes
 
 <a name="eeocsRetrieve"></a>
 # **eeocsRetrieve**
-> EEOC eeocsRetrieve(id, includeRemoteData, remoteFields)
+> EEOC eeocsRetrieve(xAccountToken, id, includeRemoteData, remoteFields)
 
 
 
@@ -124,22 +122,19 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.merge.dev/api/ats/v1");
     
-    // Configure API key authorization: accountTokenAuth
-    ApiKeyAuth accountTokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("accountTokenAuth");
-    accountTokenAuth.setApiKey("YOUR API KEY");
+    // Configure API key authorization: tokenAuth
+    ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+    tokenAuth.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //accountTokenAuth.setApiKeyPrefix("Token");
-
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
+    //tokenAuth.setApiKeyPrefix("Token");
 
     EeocsApi apiInstance = new EeocsApi(defaultClient);
+    String xAccountToken = "xAccountToken_example"; // String | Token identifying the end user.
     UUID id = new UUID(); // UUID | 
     Boolean includeRemoteData = true; // Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
     String remoteFields = "disability_status,gender,race,veteran_status"; // String | Which fields should be returned in non-normalized form.
     try {
-      EEOC result = apiInstance.eeocsRetrieve(id, includeRemoteData, remoteFields);
+      EEOC result = apiInstance.eeocsRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EeocsApi#eeocsRetrieve");
@@ -156,6 +151,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **String**| Token identifying the end user. |
  **id** | [**UUID**](.md)|  |
  **includeRemoteData** | **Boolean**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **remoteFields** | **String**| Which fields should be returned in non-normalized form. | [optional] [enum: disability_status, disability_status,gender, disability_status,gender,race, disability_status,gender,race,veteran_status, disability_status,gender,veteran_status, disability_status,race, disability_status,race,veteran_status, disability_status,veteran_status, gender, gender,race, gender,race,veteran_status, gender,veteran_status, race, race,veteran_status, veteran_status]
@@ -166,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

@@ -44,7 +44,8 @@ public class SelectiveSyncApiTest {
      */
     @Test
     public void selectiveSyncConfigurationsListTest() throws ApiException {
-        List<LinkedAccountSelectiveSyncConfiguration> response = api.selectiveSyncConfigurationsList();
+        String xAccountToken = null;
+        List<LinkedAccountSelectiveSyncConfiguration> response = api.selectiveSyncConfigurationsList(xAccountToken);
 
         // TODO: test validations
     }
@@ -59,8 +60,9 @@ public class SelectiveSyncApiTest {
      */
     @Test
     public void selectiveSyncConfigurationsUpdateTest() throws ApiException {
+        String xAccountToken = null;
         LinkedAccountSelectiveSyncConfigurationListRequest linkedAccountSelectiveSyncConfigurationListRequest = null;
-        List<LinkedAccountSelectiveSyncConfiguration> response = api.selectiveSyncConfigurationsUpdate(linkedAccountSelectiveSyncConfigurationListRequest);
+        List<LinkedAccountSelectiveSyncConfiguration> response = api.selectiveSyncConfigurationsUpdate(xAccountToken, linkedAccountSelectiveSyncConfigurationListRequest);
 
         // TODO: test validations
     }
@@ -75,10 +77,11 @@ public class SelectiveSyncApiTest {
      */
     @Test
     public void selectiveSyncMetaListTest() throws ApiException {
+        String xAccountToken = null;
         String commonModel = null;
         String cursor = null;
         Integer pageSize = null;
-        PaginatedConditionSchemaList response = api.selectiveSyncMetaList(commonModel, cursor, pageSize);
+        PaginatedConditionSchemaList response = api.selectiveSyncMetaList(xAccountToken, commonModel, cursor, pageSize);
 
         // TODO: test validations
     }

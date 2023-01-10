@@ -62,6 +62,7 @@ public class AttachmentsApi {
 
     /**
      * Build call for attachmentsCreate
+     * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -74,7 +75,7 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsCreateCall(AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call attachmentsCreateCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = attachmentEndpointRequest;
 
         // create path and map variables
@@ -94,6 +95,10 @@ public class AttachmentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("run_async", runAsync));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -108,12 +113,17 @@ public class AttachmentsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call attachmentsCreateValidateBeforeCall(AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call attachmentsCreateValidateBeforeCall(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling attachmentsCreate(Async)");
+        }
         
         // verify the required parameter 'attachmentEndpointRequest' is set
         if (attachmentEndpointRequest == null) {
@@ -121,7 +131,7 @@ public class AttachmentsApi {
         }
         
 
-        okhttp3.Call localVarCall = attachmentsCreateCall(attachmentEndpointRequest, isDebugMode, runAsync, _callback);
+        okhttp3.Call localVarCall = attachmentsCreateCall(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync, _callback);
         return localVarCall;
 
     }
@@ -129,6 +139,7 @@ public class AttachmentsApi {
     /**
      * 
      * Creates an &#x60;Attachment&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -140,14 +151,15 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public AttachmentResponse attachmentsCreate(AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
-        ApiResponse<AttachmentResponse> localVarResp = attachmentsCreateWithHttpInfo(attachmentEndpointRequest, isDebugMode, runAsync);
+    public AttachmentResponse attachmentsCreate(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
+        ApiResponse<AttachmentResponse> localVarResp = attachmentsCreateWithHttpInfo(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Creates an &#x60;Attachment&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -159,8 +171,8 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttachmentResponse> attachmentsCreateWithHttpInfo(AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
-        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(attachmentEndpointRequest, isDebugMode, runAsync, null);
+    public ApiResponse<AttachmentResponse> attachmentsCreateWithHttpInfo(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync) throws ApiException {
+        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync, null);
         Type localVarReturnType = new TypeToken<AttachmentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -168,6 +180,7 @@ public class AttachmentsApi {
     /**
      *  (asynchronously)
      * Creates an &#x60;Attachment&#x60; object with the given values.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param attachmentEndpointRequest  (required)
      * @param isDebugMode Whether to include debug fields (such as log file links) in the response. (optional)
      * @param runAsync Whether or not third-party updates should be run asynchronously. (optional)
@@ -180,15 +193,16 @@ public class AttachmentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsCreateAsync(AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback<AttachmentResponse> _callback) throws ApiException {
+    public okhttp3.Call attachmentsCreateAsync(String xAccountToken, AttachmentEndpointRequest attachmentEndpointRequest, Boolean isDebugMode, Boolean runAsync, final ApiCallback<AttachmentResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(attachmentEndpointRequest, isDebugMode, runAsync, _callback);
+        okhttp3.Call localVarCall = attachmentsCreateValidateBeforeCall(xAccountToken, attachmentEndpointRequest, isDebugMode, runAsync, _callback);
         Type localVarReturnType = new TypeToken<AttachmentResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for attachmentsList
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return attachments for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -209,7 +223,7 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsListCall(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call attachmentsListCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -265,6 +279,10 @@ public class AttachmentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_id", remoteId));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -279,15 +297,20 @@ public class AttachmentsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call attachmentsListValidateBeforeCall(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call attachmentsListValidateBeforeCall(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling attachmentsList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = attachmentsListCall(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
+        okhttp3.Call localVarCall = attachmentsListCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         return localVarCall;
 
     }
@@ -295,6 +318,7 @@ public class AttachmentsApi {
     /**
      * 
      * Returns a list of &#x60;Attachment&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return attachments for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -314,14 +338,15 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public PaginatedAttachmentList attachmentsList(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
-        ApiResponse<PaginatedAttachmentList> localVarResp = attachmentsListWithHttpInfo(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+    public PaginatedAttachmentList attachmentsList(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        ApiResponse<PaginatedAttachmentList> localVarResp = attachmentsListWithHttpInfo(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns a list of &#x60;Attachment&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return attachments for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -341,8 +366,8 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaginatedAttachmentList> attachmentsListWithHttpInfo(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
-        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, null);
+    public ApiResponse<PaginatedAttachmentList> attachmentsListWithHttpInfo(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId) throws ApiException {
+        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, null);
         Type localVarReturnType = new TypeToken<PaginatedAttachmentList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -350,6 +375,7 @@ public class AttachmentsApi {
     /**
      *  (asynchronously)
      * Returns a list of &#x60;Attachment&#x60; objects.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param candidateId If provided, will only return attachments for this candidate. (optional)
      * @param createdAfter If provided, will only return objects created after this datetime. (optional)
      * @param createdBefore If provided, will only return objects created before this datetime. (optional)
@@ -370,15 +396,16 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsListAsync(String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedAttachmentList> _callback) throws ApiException {
+    public okhttp3.Call attachmentsListAsync(String xAccountToken, String candidateId, OffsetDateTime createdAfter, OffsetDateTime createdBefore, String cursor, Boolean includeDeletedData, Boolean includeRemoteData, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Integer pageSize, String remoteFields, String remoteId, final ApiCallback<PaginatedAttachmentList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
+        okhttp3.Call localVarCall = attachmentsListValidateBeforeCall(xAccountToken, candidateId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, _callback);
         Type localVarReturnType = new TypeToken<PaginatedAttachmentList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for attachmentsMetaPostRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -388,7 +415,7 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsMetaPostRetrieveCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call attachmentsMetaPostRetrieveCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -399,6 +426,10 @@ public class AttachmentsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -414,15 +445,20 @@ public class AttachmentsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call attachmentsMetaPostRetrieveValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call attachmentsMetaPostRetrieveValidateBeforeCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling attachmentsMetaPostRetrieve(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = attachmentsMetaPostRetrieveCall(_callback);
+        okhttp3.Call localVarCall = attachmentsMetaPostRetrieveCall(xAccountToken, _callback);
         return localVarCall;
 
     }
@@ -430,6 +466,7 @@ public class AttachmentsApi {
     /**
      * 
      * Returns metadata for &#x60;Attachment&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return MetaResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -438,14 +475,15 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public MetaResponse attachmentsMetaPostRetrieve() throws ApiException {
-        ApiResponse<MetaResponse> localVarResp = attachmentsMetaPostRetrieveWithHttpInfo();
+    public MetaResponse attachmentsMetaPostRetrieve(String xAccountToken) throws ApiException {
+        ApiResponse<MetaResponse> localVarResp = attachmentsMetaPostRetrieveWithHttpInfo(xAccountToken);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns metadata for &#x60;Attachment&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return ApiResponse&lt;MetaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -454,8 +492,8 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MetaResponse> attachmentsMetaPostRetrieveWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = attachmentsMetaPostRetrieveValidateBeforeCall(null);
+    public ApiResponse<MetaResponse> attachmentsMetaPostRetrieveWithHttpInfo(String xAccountToken) throws ApiException {
+        okhttp3.Call localVarCall = attachmentsMetaPostRetrieveValidateBeforeCall(xAccountToken, null);
         Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -463,6 +501,7 @@ public class AttachmentsApi {
     /**
      *  (asynchronously)
      * Returns metadata for &#x60;Attachment&#x60; POSTs.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -472,15 +511,16 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsMetaPostRetrieveAsync(final ApiCallback<MetaResponse> _callback) throws ApiException {
+    public okhttp3.Call attachmentsMetaPostRetrieveAsync(String xAccountToken, final ApiCallback<MetaResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = attachmentsMetaPostRetrieveValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = attachmentsMetaPostRetrieveValidateBeforeCall(xAccountToken, _callback);
         Type localVarReturnType = new TypeToken<MetaResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for attachmentsRetrieve
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -493,7 +533,7 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsRetrieveCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call attachmentsRetrieveCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -514,6 +554,10 @@ public class AttachmentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("remote_fields", remoteFields));
         }
 
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -528,12 +572,17 @@ public class AttachmentsApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call attachmentsRetrieveValidateBeforeCall(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call attachmentsRetrieveValidateBeforeCall(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling attachmentsRetrieve(Async)");
+        }
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -541,7 +590,7 @@ public class AttachmentsApi {
         }
         
 
-        okhttp3.Call localVarCall = attachmentsRetrieveCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = attachmentsRetrieveCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         return localVarCall;
 
     }
@@ -549,6 +598,7 @@ public class AttachmentsApi {
     /**
      * 
      * Returns an &#x60;Attachment&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -560,14 +610,15 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public Attachment attachmentsRetrieve(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        ApiResponse<Attachment> localVarResp = attachmentsRetrieveWithHttpInfo(id, includeRemoteData, remoteFields);
+    public Attachment attachmentsRetrieve(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        ApiResponse<Attachment> localVarResp = attachmentsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Returns an &#x60;Attachment&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -579,8 +630,8 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Attachment> attachmentsRetrieveWithHttpInfo(UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
-        okhttp3.Call localVarCall = attachmentsRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, null);
+    public ApiResponse<Attachment> attachmentsRetrieveWithHttpInfo(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields) throws ApiException {
+        okhttp3.Call localVarCall = attachmentsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, null);
         Type localVarReturnType = new TypeToken<Attachment>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -588,6 +639,7 @@ public class AttachmentsApi {
     /**
      *  (asynchronously)
      * Returns an &#x60;Attachment&#x60; object with the given &#x60;id&#x60;.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param id  (required)
      * @param includeRemoteData Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
      * @param remoteFields Which fields should be returned in non-normalized form. (optional)
@@ -600,9 +652,9 @@ public class AttachmentsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call attachmentsRetrieveAsync(UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<Attachment> _callback) throws ApiException {
+    public okhttp3.Call attachmentsRetrieveAsync(String xAccountToken, UUID id, Boolean includeRemoteData, String remoteFields, final ApiCallback<Attachment> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = attachmentsRetrieveValidateBeforeCall(id, includeRemoteData, remoteFields, _callback);
+        okhttp3.Call localVarCall = attachmentsRetrieveValidateBeforeCall(xAccountToken, id, includeRemoteData, remoteFields, _callback);
         Type localVarReturnType = new TypeToken<Attachment>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

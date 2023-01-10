@@ -18,6 +18,15 @@ paths:
     get:
       description: Get details for a linked account.
       operationId: account_details_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -25,8 +34,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountDetails'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - account-details
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -51,7 +59,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountToken'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - account-token
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -61,6 +69,14 @@ paths:
       description: Returns a list of `Activity` objects.
       operationId: activities_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -178,8 +194,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedActivityList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - activities
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -189,6 +204,14 @@ paths:
       description: Returns an `Activity` object with the given `id`.
       operationId: activities_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -229,8 +252,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Activity'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - activities
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -240,6 +262,14 @@ paths:
       description: Returns a list of `Application` objects.
       operationId: applications_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return applications for this candidate.
         examples:
           CandidateId:
@@ -395,8 +425,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedApplicationList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - applications
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -405,6 +434,14 @@ paths:
       description: Creates an `Application` object with the given values.
       operationId: applications_create
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: Whether to include debug fields (such as log file links) in the
           response.
         explode: true
@@ -441,8 +478,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - applications
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -453,6 +489,14 @@ paths:
       description: Returns an `Application` object with the given `id`.
       operationId: applications_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -477,8 +521,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Application'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - applications
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -488,6 +531,14 @@ paths:
       description: Updates the `current_stage` field of an `Application` object
       operationId: applications_change_stage_create
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -531,8 +582,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - applications
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -543,6 +593,14 @@ paths:
       description: Returns metadata for `Application` POSTs.
       operationId: applications_meta_post_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The template ID associated with the nested application in the
           request.
         explode: true
@@ -559,8 +617,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/MetaResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - applications
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -570,6 +627,14 @@ paths:
       description: Returns a list of `Attachment` objects.
       operationId: attachments_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return attachments for this candidate.
         examples:
           CandidateId:
@@ -685,8 +750,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedAttachmentList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - attachments
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -695,6 +759,14 @@ paths:
       description: Creates an `Attachment` object with the given values.
       operationId: attachments_create
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: Whether to include debug fields (such as log file links) in the
           response.
         explode: true
@@ -731,8 +803,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AttachmentResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - attachments
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -743,6 +814,14 @@ paths:
       description: Returns an `Attachment` object with the given `id`.
       operationId: attachments_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -781,8 +860,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Attachment'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - attachments
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -791,6 +869,15 @@ paths:
     get:
       description: Returns metadata for `Attachment` POSTs.
       operationId: attachments_meta_post_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -798,8 +885,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/MetaResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - attachments
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -808,6 +894,15 @@ paths:
     get:
       description: Returns a list of models and actions available for an account.
       operationId: available_actions_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -815,8 +910,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AvailableActions'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - available-actions
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -826,6 +920,14 @@ paths:
       description: Returns a list of `Candidate` objects.
       operationId: candidates_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -952,8 +1054,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedCandidateList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - candidates
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -962,6 +1063,14 @@ paths:
       description: Creates a `Candidate` object with the given values.
       operationId: candidates_create
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: Whether to include debug fields (such as log file links) in the
           response.
         explode: true
@@ -998,8 +1107,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CandidateResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - candidates
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1010,6 +1118,14 @@ paths:
       description: Returns a `Candidate` object with the given `id`.
       operationId: candidates_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -1034,8 +1150,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Candidate'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - candidates
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1048,6 +1163,14 @@ paths:
         stored for audit purposes.
       operationId: candidates_ignore_create
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: model_id
@@ -1075,8 +1198,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/IgnoreCommonModel'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - candidates
       x-extra-tags:
@@ -1087,6 +1209,15 @@ paths:
     get:
       description: Returns metadata for `Candidate` POSTs.
       operationId: candidates_meta_post_retrieve
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1094,8 +1225,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/MetaResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - candidates
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1130,7 +1260,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommonModelScopes'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - common-model-scopes
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1176,7 +1306,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommonModelScopes'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - common-model-scopes
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1186,12 +1316,20 @@ paths:
     post:
       description: Delete a linked account.
       operationId: delete_account_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           description: No response body
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - delete-account
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1201,6 +1339,14 @@ paths:
       description: Returns a list of `Department` objects.
       operationId: departments_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -1291,8 +1437,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedDepartmentList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - departments
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1302,6 +1447,14 @@ paths:
       description: Returns a `Department` object with the given `id`.
       operationId: departments_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -1326,8 +1479,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Department'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - departments
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1337,6 +1489,14 @@ paths:
       description: Returns a list of `EEOC` objects.
       operationId: eeocs_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return EEOC info for this candidate.
         examples:
           CandidateId:
@@ -1466,8 +1626,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedEEOCList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - eeocs
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1477,6 +1636,14 @@ paths:
       description: Returns an `EEOC` object with the given `id`.
       operationId: eeocs_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -1529,8 +1696,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EEOC'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - eeocs
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1558,7 +1724,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RemoteKey'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - generate-key
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1569,6 +1735,14 @@ paths:
       description: Returns a list of `ScheduledInterview` objects.
       operationId: interviews_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return interviews for this application.
         examples:
           ApplicationId:
@@ -1706,8 +1880,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedScheduledInterviewList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - interviews
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1717,6 +1890,14 @@ paths:
       description: Returns a `ScheduledInterview` object with the given `id`.
       operationId: interviews_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -1755,8 +1936,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ScheduledInterview'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - interviews
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1894,7 +2074,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedIssueList'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - issues
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1919,7 +2099,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Issue'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - issues
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -1929,6 +2109,14 @@ paths:
       description: Returns a list of `JobInterviewStage` objects.
       operationId: job_interview_stages_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -2030,8 +2218,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedJobInterviewStageList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - job-interview-stages
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2041,6 +2228,14 @@ paths:
       description: Returns a `JobInterviewStage` object with the given `id`.
       operationId: job_interview_stages_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -2065,8 +2260,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/JobInterviewStage'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - job-interview-stages
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2076,6 +2270,14 @@ paths:
       description: Returns a list of `Job` objects.
       operationId: jobs_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return jobs with this code.
         explode: true
         in: query
@@ -2205,8 +2407,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedJobList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - jobs
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2216,6 +2417,14 @@ paths:
       description: Returns a `Job` object with the given `id`.
       operationId: jobs_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -2254,8 +2463,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Job'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - jobs
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2283,7 +2491,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LinkToken'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - link-token
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2424,7 +2632,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedAccountDetailsAndActionsList'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - linked-accounts
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2434,6 +2642,14 @@ paths:
       description: Returns a list of `Offer` objects.
       operationId: offers_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return offers for this application.
         examples:
           ApplicationId:
@@ -2560,8 +2776,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedOfferList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - offers
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2571,6 +2786,14 @@ paths:
       description: Returns an `Offer` object with the given `id`.
       operationId: offers_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -2609,8 +2832,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Offer'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - offers
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2620,6 +2842,14 @@ paths:
       description: Returns a list of `Office` objects.
       operationId: offices_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -2710,8 +2940,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedOfficeList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - offices
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2721,6 +2950,14 @@ paths:
       description: Returns an `Office` object with the given `id`.
       operationId: offices_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -2745,8 +2982,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Office'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - offices
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2755,6 +2991,15 @@ paths:
     post:
       description: Pull data from an endpoint not currently supported by Merge.
       operationId: passthrough_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2774,8 +3019,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RemoteResponse'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - passthrough
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2804,7 +3048,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RemoteKey'
       security:
-      - bearerAuth: []
+      - tokenAuth: []
       tags:
       - regenerate-key
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2815,6 +3059,14 @@ paths:
       description: Returns a list of `RejectReason` objects.
       operationId: reject_reasons_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -2905,8 +3157,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedRejectReasonList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - reject-reasons
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2916,6 +3167,14 @@ paths:
       description: Returns a `RejectReason` object with the given `id`.
       operationId: reject_reasons_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -2940,8 +3199,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RejectReason'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - reject-reasons
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -2951,6 +3209,14 @@ paths:
       description: Returns a list of `Scorecard` objects.
       operationId: scorecards_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return scorecards for this application.
         examples:
           ApplicationId:
@@ -3088,8 +3354,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedScorecardList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - scorecards
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3099,6 +3364,14 @@ paths:
       description: Returns a `Scorecard` object with the given `id`.
       operationId: scorecards_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -3137,8 +3410,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Scorecard'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - scorecards
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3147,6 +3419,15 @@ paths:
     get:
       description: Get a linked account's selective syncs.
       operationId: selective_sync_configurations_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -3167,8 +3448,7 @@ paths:
                   $ref: '#/components/schemas/LinkedAccountSelectiveSyncConfiguration'
                 type: array
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - selective-sync
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3176,6 +3456,15 @@ paths:
     put:
       description: Replace a linked account's selective syncs.
       operationId: selective_sync_configurations_update
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -3210,8 +3499,7 @@ paths:
                   $ref: '#/components/schemas/LinkedAccountSelectiveSyncConfiguration'
                 type: array
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - selective-sync
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3222,6 +3510,14 @@ paths:
       description: Get metadata for the conditions available to a linked account.
       operationId: selective_sync_meta_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: true
         in: query
         name: common_model
@@ -3274,8 +3570,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedConditionSchemaList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - selective-sync
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3286,6 +3581,14 @@ paths:
         `PAUSED`, `SYNCING`'
       operationId: sync_status_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The pagination cursor value.
         examples:
           CursorExample:
@@ -3313,8 +3616,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedSyncStatusList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - sync-status
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3324,6 +3626,15 @@ paths:
       description: Force re-sync of all models. This is only available for organizations
         on Merge's Grow and Expand plans.
       operationId: sync_status_resync_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -3333,8 +3644,7 @@ paths:
                   $ref: '#/components/schemas/SyncStatus'
                 type: array
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - force-resync
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3344,6 +3654,14 @@ paths:
       description: Returns a list of `Tag` objects.
       operationId: tags_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -3434,8 +3752,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedTagList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - tags
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3445,6 +3762,14 @@ paths:
       description: Returns a list of `RemoteUser` objects.
       operationId: users_list
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: If provided, will only return objects created after this datetime.
         explode: true
         in: query
@@ -3560,8 +3885,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedRemoteUserList'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - users
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3571,6 +3895,14 @@ paths:
       description: Returns a `RemoteUser` object with the given `id`.
       operationId: users_retrieve
       parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: id
@@ -3609,8 +3941,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RemoteUser'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - users
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3619,6 +3950,15 @@ paths:
     get:
       description: Returns a list of `WebhookReceiver` objects.
       operationId: webhook_receivers_list
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -3628,8 +3968,7 @@ paths:
                   $ref: '#/components/schemas/WebhookReceiver'
                 type: array
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - webhook-receivers
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -3637,6 +3976,15 @@ paths:
     post:
       description: Creates a `WebhookReceiver` object with the given values.
       operationId: webhook_receivers_create
+      parameters:
+      - description: Token identifying the end user.
+        explode: false
+        in: header
+        name: X-Account-Token
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -3656,8 +4004,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WebhookReceiver'
       security:
-      - bearerAuth: []
-        accountTokenAuth: []
+      - tokenAuth: []
       tags:
       - webhook-receivers
       x-endpoint-availability: ENDPOINT_AVAILABILITY_PUBLIC
@@ -8909,12 +9256,9 @@ components:
       type: object
       x-merge-category: ats
   securitySchemes:
-    accountTokenAuth:
-      description: Token identifying the end user.
+    tokenAuth:
+      description: Token-based authentication with required prefix "Bearer"
       in: header
-      name: X-Account-Token
+      name: Authorization
       type: apiKey
-    bearerAuth:
-      scheme: bearer
-      type: http
 

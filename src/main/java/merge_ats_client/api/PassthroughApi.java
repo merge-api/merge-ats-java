@@ -57,6 +57,7 @@ public class PassthroughApi {
 
     /**
      * Build call for passthroughCreate
+     * @param xAccountToken Token identifying the end user. (required)
      * @param dataPassthroughRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -67,7 +68,7 @@ public class PassthroughApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call passthroughCreateCall(DataPassthroughRequest dataPassthroughRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call passthroughCreateCall(String xAccountToken, DataPassthroughRequest dataPassthroughRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = dataPassthroughRequest;
 
         // create path and map variables
@@ -78,6 +79,10 @@ public class PassthroughApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -93,12 +98,17 @@ public class PassthroughApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call passthroughCreateValidateBeforeCall(DataPassthroughRequest dataPassthroughRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call passthroughCreateValidateBeforeCall(String xAccountToken, DataPassthroughRequest dataPassthroughRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling passthroughCreate(Async)");
+        }
         
         // verify the required parameter 'dataPassthroughRequest' is set
         if (dataPassthroughRequest == null) {
@@ -106,7 +116,7 @@ public class PassthroughApi {
         }
         
 
-        okhttp3.Call localVarCall = passthroughCreateCall(dataPassthroughRequest, _callback);
+        okhttp3.Call localVarCall = passthroughCreateCall(xAccountToken, dataPassthroughRequest, _callback);
         return localVarCall;
 
     }
@@ -114,6 +124,7 @@ public class PassthroughApi {
     /**
      * 
      * Pull data from an endpoint not currently supported by Merge.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param dataPassthroughRequest  (required)
      * @return RemoteResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -123,14 +134,15 @@ public class PassthroughApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public RemoteResponse passthroughCreate(DataPassthroughRequest dataPassthroughRequest) throws ApiException {
-        ApiResponse<RemoteResponse> localVarResp = passthroughCreateWithHttpInfo(dataPassthroughRequest);
+    public RemoteResponse passthroughCreate(String xAccountToken, DataPassthroughRequest dataPassthroughRequest) throws ApiException {
+        ApiResponse<RemoteResponse> localVarResp = passthroughCreateWithHttpInfo(xAccountToken, dataPassthroughRequest);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Pull data from an endpoint not currently supported by Merge.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param dataPassthroughRequest  (required)
      * @return ApiResponse&lt;RemoteResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -140,8 +152,8 @@ public class PassthroughApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RemoteResponse> passthroughCreateWithHttpInfo(DataPassthroughRequest dataPassthroughRequest) throws ApiException {
-        okhttp3.Call localVarCall = passthroughCreateValidateBeforeCall(dataPassthroughRequest, null);
+    public ApiResponse<RemoteResponse> passthroughCreateWithHttpInfo(String xAccountToken, DataPassthroughRequest dataPassthroughRequest) throws ApiException {
+        okhttp3.Call localVarCall = passthroughCreateValidateBeforeCall(xAccountToken, dataPassthroughRequest, null);
         Type localVarReturnType = new TypeToken<RemoteResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -149,6 +161,7 @@ public class PassthroughApi {
     /**
      *  (asynchronously)
      * Pull data from an endpoint not currently supported by Merge.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param dataPassthroughRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -159,9 +172,9 @@ public class PassthroughApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call passthroughCreateAsync(DataPassthroughRequest dataPassthroughRequest, final ApiCallback<RemoteResponse> _callback) throws ApiException {
+    public okhttp3.Call passthroughCreateAsync(String xAccountToken, DataPassthroughRequest dataPassthroughRequest, final ApiCallback<RemoteResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = passthroughCreateValidateBeforeCall(dataPassthroughRequest, _callback);
+        okhttp3.Call localVarCall = passthroughCreateValidateBeforeCall(xAccountToken, dataPassthroughRequest, _callback);
         Type localVarReturnType = new TypeToken<RemoteResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

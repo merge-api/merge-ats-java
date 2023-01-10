@@ -56,6 +56,7 @@ public class ForceResyncApi {
 
     /**
      * Build call for syncStatusResyncCreate
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -65,7 +66,7 @@ public class ForceResyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call syncStatusResyncCreateCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call syncStatusResyncCreateCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -76,6 +77,10 @@ public class ForceResyncApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xAccountToken != null) {
+            localVarHeaderParams.put("X-Account-Token", localVarApiClient.parameterToString(xAccountToken));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -91,15 +96,20 @@ public class ForceResyncApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "accountTokenAuth", "bearerAuth" };
+        String[] localVarAuthNames = new String[] { "tokenAuth" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call syncStatusResyncCreateValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call syncStatusResyncCreateValidateBeforeCall(String xAccountToken, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'xAccountToken' is set
+        if (xAccountToken == null) {
+            throw new ApiException("Missing the required parameter 'xAccountToken' when calling syncStatusResyncCreate(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = syncStatusResyncCreateCall(_callback);
+        okhttp3.Call localVarCall = syncStatusResyncCreateCall(xAccountToken, _callback);
         return localVarCall;
 
     }
@@ -107,6 +117,7 @@ public class ForceResyncApi {
     /**
      * 
      * Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return List&lt;SyncStatus&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -115,14 +126,15 @@ public class ForceResyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public List<SyncStatus> syncStatusResyncCreate() throws ApiException {
-        ApiResponse<List<SyncStatus>> localVarResp = syncStatusResyncCreateWithHttpInfo();
+    public List<SyncStatus> syncStatusResyncCreate(String xAccountToken) throws ApiException {
+        ApiResponse<List<SyncStatus>> localVarResp = syncStatusResyncCreateWithHttpInfo(xAccountToken);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
+     * @param xAccountToken Token identifying the end user. (required)
      * @return ApiResponse&lt;List&lt;SyncStatus&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -131,8 +143,8 @@ public class ForceResyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<SyncStatus>> syncStatusResyncCreateWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = syncStatusResyncCreateValidateBeforeCall(null);
+    public ApiResponse<List<SyncStatus>> syncStatusResyncCreateWithHttpInfo(String xAccountToken) throws ApiException {
+        okhttp3.Call localVarCall = syncStatusResyncCreateValidateBeforeCall(xAccountToken, null);
         Type localVarReturnType = new TypeToken<List<SyncStatus>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -140,6 +152,7 @@ public class ForceResyncApi {
     /**
      *  (asynchronously)
      * Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
+     * @param xAccountToken Token identifying the end user. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -149,9 +162,9 @@ public class ForceResyncApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call syncStatusResyncCreateAsync(final ApiCallback<List<SyncStatus>> _callback) throws ApiException {
+    public okhttp3.Call syncStatusResyncCreateAsync(String xAccountToken, final ApiCallback<List<SyncStatus>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = syncStatusResyncCreateValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = syncStatusResyncCreateValidateBeforeCall(xAccountToken, _callback);
         Type localVarReturnType = new TypeToken<List<SyncStatus>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

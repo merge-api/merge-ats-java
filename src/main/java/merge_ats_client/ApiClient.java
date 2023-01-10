@@ -85,8 +85,7 @@ public class ApiClient {
         initHttpClient();
 
         // Setup authentications (key: authentication name, value: authentication).
-        authentications.put("accountTokenAuth", new ApiKeyAuth("header", "X-Account-Token"));
-        authentications.put("bearerAuth", new HttpBearerAuth("bearer"));
+        authentications.put("tokenAuth", new ApiKeyAuth("header", "Authorization"));
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
@@ -100,8 +99,7 @@ public class ApiClient {
         httpClient = client;
 
         // Setup authentications (key: authentication name, value: authentication).
-        authentications.put("accountTokenAuth", new ApiKeyAuth("header", "X-Account-Token"));
-        authentications.put("bearerAuth", new HttpBearerAuth("bearer"));
+        authentications.put("tokenAuth", new ApiKeyAuth("header", "Authorization"));
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
@@ -304,19 +302,6 @@ public class ApiClient {
         return authentications.get(authName);
     }
 
-        /**
-        * Helper method to set access token for the first Bearer authentication.
-        * @param bearerToken Bearer token
-        */
-    public void setBearerToken(String bearerToken) {
-        for (Authentication auth : authentications.values()) {
-            if (auth instanceof HttpBearerAuth) {
-                ((HttpBearerAuth) auth).setBearerToken(bearerToken);
-                return;
-            }
-        }
-        throw new RuntimeException("No Bearer authentication configured!");
-    }
 
     /**
      * Helper method to set username for the first HTTP basic authentication.

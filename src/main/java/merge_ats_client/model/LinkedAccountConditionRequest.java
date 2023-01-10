@@ -28,7 +28,7 @@ import java.util.UUID;
 /**
  * LinkedAccountConditionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:13:14.599893Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T20:48:58.736658Z[Etc/UTC]")
 public class LinkedAccountConditionRequest {
   public static final String SERIALIZED_NAME_CONDITION_SCHEMA_ID = "condition_schema_id";
   @SerializedName(SERIALIZED_NAME_CONDITION_SCHEMA_ID)

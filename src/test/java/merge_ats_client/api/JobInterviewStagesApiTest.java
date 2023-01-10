@@ -45,6 +45,7 @@ public class JobInterviewStagesApiTest {
      */
     @Test
     public void jobInterviewStagesListTest() throws ApiException {
+        String xAccountToken = null;
         OffsetDateTime createdAfter = null;
         OffsetDateTime createdBefore = null;
         String cursor = null;
@@ -55,7 +56,7 @@ public class JobInterviewStagesApiTest {
         OffsetDateTime modifiedBefore = null;
         Integer pageSize = null;
         String remoteId = null;
-        PaginatedJobInterviewStageList response = api.jobInterviewStagesList(createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
+        PaginatedJobInterviewStageList response = api.jobInterviewStagesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, jobId, modifiedAfter, modifiedBefore, pageSize, remoteId);
 
         // TODO: test validations
     }
@@ -70,9 +71,10 @@ public class JobInterviewStagesApiTest {
      */
     @Test
     public void jobInterviewStagesRetrieveTest() throws ApiException {
+        String xAccountToken = null;
         UUID id = null;
         Boolean includeRemoteData = null;
-        JobInterviewStage response = api.jobInterviewStagesRetrieve(id, includeRemoteData);
+        JobInterviewStage response = api.jobInterviewStagesRetrieve(xAccountToken, id, includeRemoteData);
 
         // TODO: test validations
     }
